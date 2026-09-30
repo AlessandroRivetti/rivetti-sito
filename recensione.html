@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lascia una recensione | Rivetti Impianti</title>
+<meta name="description" content="Racconta la tua esperienza con Rivetti Impianti: voto da 1 a 5 stelle e una breve recensione.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+  body{background:var(--sky)}
+  main{max-width:720px;margin:0 auto;padding:44px 20px 70px}
+  h1{font-size:clamp(1.6rem,4vw,2.2rem);margin-bottom:8px}
+  .lead{color:var(--ink2);margin-bottom:26px}
+  form{display:grid;gap:20px;padding:30px;border-radius:24px;background:#fff;box-shadow:var(--shadow)}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  fieldset{border:0;padding:0}
+  legend{margin-bottom:6px}
+  .stars-in{display:inline-flex;flex-direction:row-reverse;gap:4px}
+  .stars-in input{position:absolute;opacity:0;width:1px;height:1px}
+  .stars-in label{font-size:2.3rem;line-height:1;color:#c9d6e6;cursor:pointer;transition:color .15s,transform .15s;padding:0 2px}
+  .stars-in label:hover,.stars-in label:hover ~ label,.stars-in input:checked ~ label{color:#f5a300}
+  .stars-in label:hover{transform:scale(1.12)}
+  .stars-in input:focus-visible + label{outline:3px solid var(--blue);outline-offset:2px;border-radius:6px}
+  .count{font-size:.82rem;color:var(--ink2);text-align:right}
+  .count.ok{color:var(--green-d)}
+  .note{font-size:.85rem;color:var(--ink2);background:var(--sky);border-radius:12px;padding:12px 14px}
+  .done{text-align:center;padding:30px 10px}
+  .done h2{font-size:1.5rem;margin:10px 0}
+  .done p{color:var(--ink2)}
+  .badge-ok{width:64px;height:64px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-size:2rem;margin:0 auto}
+  @media (max-width:560px){.row{grid-template-columns:1fr}form{padding:22px}.bar img{height:54px}}
+</style>
+</head>
+<body>
+<header class="bar">
+  <a href="index.html" aria-label="Rivetti Impianti — home">
+    <span id="logoBox"><img src="assets/logo-rivetti-dark.png" alt="Rivetti Impianti – Technical Engineering" onerror="this.parentNode.classList.add('nologo')"><span class="fallback-logo">RIVETTI <em>IMPIANTI</em></span></span>
+  </a>
+  <a class="back" href="index.html">&larr; Torna al sito</a>
+</header>
+
+<main>
+  <h1>Com'è andata con Rivetti Impianti?</h1>
+  <p class="lead">Scegli un voto da 1 a 5 stelle e racconta la tua esperienza in almeno 5 parole. La recensione arriva al nostro staff, che la legge e la approva prima dell’eventuale pubblicazione sul sito.</p>
+
+  <form id="revForm" novalidate>
+    <fieldset>
+      <legend>Il tuo voto *</legend>
+      <div class="stars-in" id="stars">
+        <input type="radio" name="stelle" id="s5" value="5"><label for="s5" title="5 stelle — Eccellente"><span aria-hidden="true">★</span><span class="hp">5 stelle</span></label>
+        <input type="radio" name="stelle" id="s4" value="4"><label for="s4" title="4 stelle — Molto buono"><span aria-hidden="true">★</span><span class="hp">4 stelle</span></label>
+        <input type="radio" name="stelle" id="s3" value="3"><label for="s3" title="3 stelle — Buono"><span aria-hidden="true">★</span><span class="hp">3 stelle</span></label>
+        <input type="radio" name="stelle" id="s2" value="2"><label for="s2" title="2 stelle — Sufficiente"><span aria-hidden="true">★</span><span class="hp">2 stelle</span></label>
+        <input type="radio" name="stelle" id="s1" value="1"><label for="s1" title="1 stella — Insufficiente"><span aria-hidden="true">★</span><span class="hp">1 stella</span></label>
+      </div>
+    </fieldset>
+
+    <div class="row">
+      <div class="field"><label for="nome">Nome da mostrare sul sito *</label><input id="nome" name="nome" type="text" maxlength="60" autocomplete="name" placeholder="es. Mario R." required></div>
+      <div class="field">
+        <label for="tipo">Sei un cliente... *</label>
+        <select id="tipo" name="tipo" required>
+          <option value="" disabled selected>Seleziona…</option>
+          <option>Privato</option>
+          <option>Condominio</option>
+          <option>Azienda / PMI</option>
+          <option>Ente / Pubblica Amministrazione</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="testo">La tua recensione * <span style="font-weight:400">(minimo 5 parole)</span></label>
+      <textarea id="testo" name="testo" maxlength="1200" required placeholder="Che lavoro abbiamo fatto? Come ti sei trovato? Cosa è cambiato nella tua casa o azienda?"></textarea>
+      <div class="count" id="count" aria-live="polite">0 parole</div>
+    </div>
+
+    <div class="field hp" aria-hidden="true"><label>Non compilare<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+
+    <div class="field check">
+      <input id="consenso" type="checkbox" name="consenso" required>
+      <label for="consenso">Acconsento alla pubblicazione sul sito del mio nome e della mia recensione, dopo la lettura e l’approvazione dello staff. *</label>
+    </div>
+
+    <button class="btn btn-primary" type="submit" id="sendBtn">Invia la recensione &rarr;</button>
+    <p class="form-msg" id="msg" role="status" aria-live="polite"></p>
+  </form>
+
+  <div class="done" id="done" hidden>
+    <div class="badge-ok" aria-hidden="true">✓</div>
+    <h2>Grazie per la tua recensione!</h2>
+    <p>L'abbiamo ricevuta: verrà letta dal nostro staff e, una volta approvata, potrà comparire sul sito.</p>
+    <p style="margin-top:18px"><a class="btn btn-ghost" href="index.html#recensioni">Torna al sito</a></p>
+  </div>
+</main>
+
+<script src="ri.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+const EMAIL = 'rivettiimpianti@gmail.com', ENDPOINT = 'https://formsubmit.co/ajax/' + EMAIL;   // al primo invio FormSubmit chiede di confermare l'indirizzo
+const form = $('revForm'), msg = $('msg'), btn = $('sendBtn'), txt = $('testo'), count = $('count');
+const setMsg = (t, c) => { msg.textContent = t; msg.className = 'form-msg ' + (c || ''); };
+
+txt.addEventListener('input', () => {
+  const n = RI.words(txt.value);
+  count.textContent = n + (n === 1 ? ' parola' : ' parole') + (n < 5 ? ' (ne servono almeno 5)' : '');
+  count.className = 'count' + (n >= 5 ? ' ok' : '');
+});
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  if (form._honey.value) return;                                   // anti-spam
+  const rating = +(form.stelle.value || 0);
+  const name = form.nome.value.trim(), tipo = form.tipo.value, body = txt.value.trim();
+  if (!rating)                     return setMsg('Scegli un voto da 1 a 5 stelle.', 'err');
+  if (name.length < 2)             return setMsg('Inserisci il nome da mostrare sul sito.', 'err');
+  if (!tipo)                       return setMsg('Indica che tipo di cliente sei.', 'err');
+  if (RI.words(body) < 5)          return setMsg('La recensione deve contenere almeno 5 parole.', 'err');
+  if (!form.consenso.checked)      return setMsg('Serve il consenso alla pubblicazione per inviare la recensione.', 'err');
+
+  btn.disabled = true; setMsg('Invio in corso…');
+  try {
+    const r = await fetch(ENDPOINT, {
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ Stelle: rating + ' su 5', Nome: name, 'Tipo cliente': tipo, Recensione: body,
+        _subject: 'Nuova recensione da approvare — ' + rating + '★ — ' + name, _template: 'table', _captcha: 'false' })
+    });
+    if (!r.ok) throw new Error(r.status);
+    form.hidden = true; $('done').hidden = false; window.scrollTo({ top: 0, behavior: 'smooth' });
+  } catch (err) {
+    setMsg('Invio non riuscito. Riprova tra qualche minuto oppure scrivici a ' + EMAIL + '.', 'err');
+    btn.disabled = false;
+  }
+});
+</script>
+</body>
+</html>

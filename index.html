@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rivetti Impianti | Technical Engineering — Fotovoltaico e Termoidraulica in Campania</title>
+<meta name="description" content="Rivetti Impianti dal 2008 a Mondragone (CE): fotovoltaico, termografia, termoidraulica e climatizzazione per privati e aziende. Bonus e incentivi.">
+<meta name="theme-color" content="#0d2d58">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HomeAndConstructionBusiness","name":"Rivetti Impianti","slogan":"Dal 2008 costruiamo l’energia del Futuro","foundingDate":"2008","founder":{"@type":"Person","name":"Michele Rivetti"},"vatID":"IT03428210615","taxID":"03428210615","email":"rivettiimpianti@gmail.com","telephone":"+393533437800","address":{"@type":"PostalAddress","streetAddress":"Via Landolfo","addressLocality":"Mondragone","addressRegion":"CE","addressCountry":"IT"},"areaServed":["Campania","IT"]}
+</script>
+<style>
+  html{scroll-padding-top:112px}
+
+  /* ===== NAVBAR ===== */
+  .site-head{position:fixed;top:0;left:0;right:0;z-index:40;transition:background .3s,box-shadow .3s}
+  .site-head.scrolled{background:rgba(13,45,88,.97);backdrop-filter:blur(10px);box-shadow:0 10px 30px -16px rgba(0,0,0,.55)}
+  nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:10px var(--pad)}
+  .brand{display:flex;align-items:center}
+  .brand img{height:78px;width:auto;display:block;filter:drop-shadow(0 2px 8px rgba(0,0,0,.25))}
+  .brand-fallback{display:none;line-height:1.05}
+  .brand-fallback b{font:700 1.25rem var(--f-display);color:#fff}
+  .brand-fallback b em{font-style:normal;color:#7ac943}
+  .brand-fallback small{display:block;font-size:.52rem;letter-spacing:.34em;color:#8fd0ff;margin-top:3px}
+  .brand.nologo img{display:none}.brand.nologo .brand-fallback{display:block}
+  .menu{display:flex;align-items:center;gap:4px}
+  .menu a{color:#e3eefc;padding:9px 12px;border-radius:999px;font-size:.92rem;white-space:nowrap;transition:background .2s,color .2s}
+  .menu a:hover{color:#fff;background:rgba(255,255,255,.16)}
+  .menu a.active{background:#fff;color:var(--blue-d);font-weight:600}
+  .burger{display:none;width:46px;height:46px;border:1.5px solid rgba(255,255,255,.5);border-radius:12px;background:rgba(13,45,88,.6);color:#fff;cursor:pointer;place-items:center}
+  .burger span,.burger span::before,.burger span::after{display:block;width:20px;height:2px;background:currentColor;border-radius:2px;position:relative;transition:.25s}
+  .burger span::before,.burger span::after{content:"";position:absolute;left:0}
+  .burger span::before{top:-6px}.burger span::after{top:6px}
+  .burger[aria-expanded="true"] span{background:transparent}
+  .burger[aria-expanded="true"] span::before{top:0;transform:rotate(45deg)}
+  .burger[aria-expanded="true"] span::after{top:0;transform:rotate(-45deg)}
+
+  /* ===== HERO (azzurro luminoso) ===== */
+  .hero{position:relative;min-height:min(100vh,880px);display:flex;align-items:center;overflow:hidden;color:#fff;
+    background:radial-gradient(ellipse 52% 70% at 72% 48%,#7cc6fa 0%,rgba(124,198,250,0) 70%),linear-gradient(165deg,#134f9a 0%,#2a7bd0 55%,#52a8ec 100%)}
+  .hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 10% 92%,rgba(255,255,255,.16),transparent 38%),radial-gradient(circle at 92% 6%,rgba(255,255,255,.14),transparent 30%)}
+  #globe{position:absolute;top:0;right:0;width:62%;height:100%;z-index:1;cursor:grab}
+  #globe:active{cursor:grabbing}
+  #globe.fallback{background:radial-gradient(circle at 36% 34%,#9ad4ff,#2a7bd0 52%,#0d3a7a 100%);border-radius:50%;width:min(52vw,560px);height:min(52vw,560px);top:50%;right:6%;transform:translateY(-50%);cursor:default}
+  .hero-content{position:relative;z-index:5;padding:170px var(--pad) 130px;max-width:650px;pointer-events:none}
+  .hero-content > *{pointer-events:auto}
+  .badge{display:inline-flex;align-items:center;gap:10px;padding:7px 16px;border:1px solid rgba(255,255,255,.4);border-radius:999px;background:rgba(255,255,255,.16);font-size:.85rem;margin-bottom:24px}
+  .badge i{width:8px;height:8px;border-radius:50%;background:#ffd23f;box-shadow:0 0 12px #ffd23f;animation:pulse 2s infinite}
+  @keyframes pulse{50%{opacity:.35;transform:scale(.8)}}
+  h1{font-size:clamp(2.3rem,5.2vw,4.1rem);line-height:1.08;font-weight:700;margin-bottom:22px}
+  h1 span{background:linear-gradient(90deg,#fff3b0,#ffd23f);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lead{color:#e6f1ff;font-size:1.08rem;max-width:520px;margin-bottom:34px}
+  .cta{display:flex;flex-wrap:wrap;gap:14px}
+  .legend{position:absolute;z-index:6;right:var(--pad);top:120px;font-size:.72rem;color:#eaf4ff;letter-spacing:.06em;display:grid;gap:6px;justify-items:end;text-align:right}
+  .legend span{display:inline-flex;align-items:center;gap:8px}
+  .legend small{letter-spacing:.14em;text-transform:uppercase;opacity:.9}
+  .legend i{display:inline-block;width:14px;height:10px;background:#1e6fe6;border:1px solid #cfe6ff;transform:skewX(-14deg)}
+  .legend i.ln{width:22px;height:3px;border:0;border-radius:3px;transform:none;background:linear-gradient(90deg,#ffd23f,#3b9dff)}
+  .pv{width:26px;height:24px;filter:drop-shadow(0 0 5px #4aa8ff);transition:opacity .3s;pointer-events:none}
+  .pv svg{width:100%;height:100%;display:block}
+  .pv.hq{width:40px;height:36px;filter:drop-shadow(0 0 9px #ffd23f)}
+
+  /* ===== SEZIONI ===== */
+  .sec{padding:100px var(--pad)}
+  .sec-head{max-width:780px;margin-bottom:44px}
+  .eyebrow{color:var(--green-d);letter-spacing:.28em;text-transform:uppercase;font-size:.74rem;font-weight:600}
+  .sec-head h2{font-size:clamp(1.7rem,3.4vw,2.6rem);margin:8px 0 12px}
+  .sec-head p{color:var(--ink2)}
+
+  /* servizi: introduzione */
+  .intro{background:#fff;padding-bottom:70px}
+  .paths{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .path{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:26px 30px;border-radius:20px;color:#fff;font-family:var(--f-display);box-shadow:var(--shadow);transition:transform .25s}
+  .path:hover{transform:translateY(-4px)}
+  .path.p1{background:linear-gradient(120deg,#1f6fd1,#3f9be6)}
+  .path.p2{background:linear-gradient(120deg,#17804f,#2fb57c)}
+  .path.p3{background:linear-gradient(120deg,#3a4fa6,#6b7fd6)}
+  .path b{display:block;font-size:1.3rem}
+  .path span{font:400 .9rem var(--f-body);opacity:.92}
+  .path i{font-style:normal;font-size:1.6rem}
+
+  /* immagini/visual dei servizi */
+  .vis{position:relative;overflow:hidden;aspect-ratio:8/5;background:var(--sky2)}
+  .vis svg,.vis img{position:absolute;inset:0;width:100%;height:100%;display:block}
+  .vis img{object-fit:cover}
+
+  /* privati */
+  .privati{background:var(--sky)}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .svc-card{display:flex;flex-direction:column;background:#fff;border-radius:22px;overflow:hidden;box-shadow:var(--shadow);border:1px solid #fff;transition:transform .3s}
+  .svc-card:hover{transform:translateY(-6px)}
+  .svc-body{display:flex;flex-direction:column;gap:8px;padding:22px 24px 26px;flex:1}
+  .svc-body h3{font-size:1.15rem}
+  .svc-body p{color:var(--ink2);font-size:.94rem;flex:1}
+  .more{align-self:flex-start;margin-top:6px;color:var(--blue);font-weight:600;font-size:.92rem}
+  .more:hover{text-decoration:underline}
+
+  /* aziende */
+  .aziende{background:var(--mint)}
+  .feat{display:grid;grid-template-columns:1.2fr 1fr;gap:46px;align-items:center}
+  .feat + .feat{margin-top:60px}
+  .feat:nth-child(even) .vis{order:2}
+  .feat .vis{aspect-ratio:16/9;border-radius:28px;box-shadow:var(--shadow)}
+  .feat .tag{display:inline-block;padding:4px 12px;border-radius:999px;background:#fff;color:var(--green-d);font:600 .72rem var(--f-display);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;border:1px solid #b9e3cf}
+  .feat h3{font-size:clamp(1.4rem,2.4vw,1.9rem);margin-bottom:10px}
+  .feat p{color:var(--ink2);font-size:1.03rem;margin-bottom:16px}
+
+  /* bonus */
+  .bonus{background:var(--cream)}
+  .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:24px}
+  .bcard{display:flex;flex-direction:column;gap:10px;padding:26px 28px 30px;border-radius:24px;background:#fff;box-shadow:var(--shadow);border:1px solid #f6e6b8;transition:transform .3s}
+  .bcard:hover{transform:translateY(-5px)}
+  .sticker{width:108px;height:108px;margin-bottom:6px;transform:rotate(-4deg);filter:drop-shadow(0 10px 14px rgba(15,42,74,.22))}
+  .bcard:nth-child(2) .sticker{transform:rotate(3deg)}
+  .bdg{align-self:flex-start;padding:4px 12px;border-radius:999px;background:#fff1c7;color:#7a5600;font:600 .72rem var(--f-display);letter-spacing:.06em;text-transform:uppercase}
+  .bcard h3{font-size:1.18rem}
+  .bcard p{color:var(--ink2);font-size:.95rem}
+  .bonus-foot{margin-top:28px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--ink2);font-size:.92rem}
+  .bonus-foot a{color:var(--blue);font-weight:600}
+  .bonus-foot a:hover{text-decoration:underline}
+
+  /* informazioni */
+  .about{background:#fff}
+  .about-wrap{display:grid;grid-template-columns:1.15fr 1fr;gap:54px;align-items:start}
+  .about-text p{color:var(--ink2);font-size:1.05rem}
+  .about-text p strong{color:var(--ink);font-weight:600}
+  .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .fact{padding:20px;border:1px solid var(--line);border-radius:18px;background:var(--paper)}
+  .fact.wide{grid-column:1/-1}
+  .fact b{display:block;font:700 1.25rem var(--f-display);color:var(--blue-d);line-height:1.3}
+  .fact span{font-size:.86rem;color:var(--ink2);display:block;margin-top:2px}
+
+  /* contatti */
+  .contact{background:var(--sky2)}
+  .contact-wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start}
+  .phone-cards{display:grid;gap:12px;margin-bottom:26px}
+  .pcard{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:16px 18px;border-radius:16px;background:#fff;box-shadow:0 8px 22px -14px rgba(15,42,74,.4)}
+  .pcard b{font:700 1.15rem var(--f-display)}
+  .pcard .acts{display:flex;gap:8px;flex-wrap:wrap}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;font-size:.84rem;font-weight:600;transition:transform .2s,background .2s,color .2s}
+  .pill:hover{transform:translateY(-2px)}
+  .pill.call{border:1.5px solid var(--blue);color:var(--blue-d)}
+  .pill.call:hover{background:var(--blue);color:#fff}
+  .pill.wapill{background:var(--wa);color:#04210f}
+  .info-list{display:grid;gap:18px}
+  .info-list li{display:flex;gap:16px}
+  .ico{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:#fff;color:var(--blue);flex:none}
+  .ico svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .info-list b{display:block;font:600 .74rem var(--f-display);letter-spacing:.14em;text-transform:uppercase;color:var(--green-d);margin-bottom:2px}
+  .info-list span,.info-list a{font-size:.97rem;word-break:break-word}
+  .info-list a:hover{color:var(--blue);text-decoration:underline}
+  #quoteForm{padding:32px;border-radius:24px;background:#fff;box-shadow:var(--shadow);display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  #quoteForm .full{grid-column:1/-1}
+
+  /* recensioni */
+  .reviews{background:var(--paper)}
+  .rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px;margin-bottom:28px}
+  .rev-grid:empty{display:none}
+  .rev{margin:0;padding:26px;border-radius:20px;background:#fff;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:14px;border:1px solid var(--line)}
+  .rev blockquote{font-size:.97rem;flex:1}
+  .rev figcaption b{display:block;font:600 .95rem var(--f-display)}
+  .rev figcaption span{font-size:.8rem;color:var(--ink2)}
+  .rev-empty{padding:28px;border:2px dashed #b9d0ea;border-radius:20px;color:var(--ink2);text-align:center;margin-bottom:28px}
+  .invite{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:34px;border-radius:24px;color:#fff;background:linear-gradient(120deg,#14539f,#2a86d6)}
+  .invite h3{font-size:1.35rem;margin-bottom:6px}
+  .invite p{color:#e3f0ff;max-width:560px}
+
+  /* footer */
+  footer{padding:54px var(--pad) 28px;background:var(--navy);color:#c9dbf2;font-size:.88rem}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px;margin-bottom:34px}
+  .foot-grid h4{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:#7fe0b0;margin-bottom:12px}
+  .foot-grid p,.foot-grid a{display:block;margin-bottom:5px}
+  .foot-grid a:hover{color:#fff;text-decoration:underline}
+  .foot-grid .brand{margin-bottom:14px;display:inline-flex}
+  .foot-grid .brand img{height:88px}
+  .copy{padding-top:22px;border-top:1px solid rgba(255,255,255,.16);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:.8rem}
+  .copy a:hover{color:#fff;text-decoration:underline}
+
+
+  /* ===== STORIA / TIMELINE 2008 → 2026 ===== */
+  .storia{background:var(--paper);overflow:hidden}
+  .tl{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:18px;align-items:end;position:relative}
+  .tl li{display:flex;flex-direction:column;justify-content:flex-end;min-width:0}
+  .tl-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px 15px 18px;box-shadow:var(--shadow);margin-bottom:10px}
+  .tl-card .yr{display:block;font:700 1.55rem var(--f-display);color:var(--blue-d);line-height:1}
+  .tl-card .num{display:block;font:700 2.1rem var(--f-display);color:var(--green-d);line-height:1.1;margin-top:10px}
+  .tl-card h3{font-size:.92rem;margin:8px 0 8px;line-height:1.3}
+  .tl-card ul{display:flex;flex-wrap:wrap;gap:5px}
+  .tl-card li{display:inline-block;padding:3px 9px;border-radius:999px;background:var(--mint);color:var(--green-d);font:600 .68rem var(--f-display);line-height:1.35}
+  .tl-bar{height:var(--h);min-height:26px;border-radius:12px 12px 4px 4px;background:linear-gradient(180deg,#3f9be6,#1f6fd1 55%,#23a36a);position:relative}
+  .tl li:last-child .tl-bar{background:linear-gradient(180deg,#ffd23f,#23a36a)}
+  .tl-bar::after{content:"";position:absolute;left:50%;top:-7px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:#fff;border:4px solid var(--blue)}
+  .tl li:last-child .tl-bar::after{border-color:var(--gold);box-shadow:0 0 0 6px rgba(255,200,61,.3)}
+  .tl-note{margin-top:22px;text-align:center;color:var(--ink2);font-size:.92rem}
+
+  /* ===== PUBBLICA AMMINISTRAZIONE ===== */
+  .pa{background:#eef1fb}
+  .pa .feat .tag{color:#3a4fa6;border-color:#c6cdf0}
+  .pa-list{display:grid;gap:9px;margin:0 0 20px}
+  .pa-list li{display:flex;gap:10px;align-items:flex-start;color:var(--ink2);font-size:.98rem}
+  .pa-list li::before{content:"✓";flex:none;width:22px;height:22px;border-radius:50%;background:#3a4fa6;color:#fff;font-size:.78rem;display:grid;place-items:center;margin-top:2px}
+
+  /* ===== LAVORA CON NOI ===== */
+  .lavora{background:var(--sky)}
+  .lav-wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:44px;align-items:center}
+  .lav-profiles{display:grid;gap:14px}
+  .lprof{display:flex;gap:16px;align-items:center;padding:18px 20px;border-radius:18px;background:#fff;box-shadow:var(--shadow)}
+  .lprof .ico{background:var(--sky);width:48px;height:48px}
+  .lprof b{display:block;font:600 1.02rem var(--f-display)}
+  .lprof span{font-size:.88rem;color:var(--ink2)}
+  .lav-cta{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 10px}
+  .lav-mail{font-size:.92rem;color:var(--ink2)}
+  .lav-mail a{color:var(--blue);font-weight:600;text-decoration:underline}
+  .motto{margin-top:20px;padding:16px 20px;border-left:5px solid var(--green);background:var(--mint);border-radius:0 14px 14px 0;font:600 1.1rem var(--f-display);color:var(--green-d)}
+  .about-text p + p{margin-top:14px}
+
+  /* footer esteso */
+  .foot-grid{grid-template-columns:1.3fr 1.1fr 1.2fr .8fr}
+  .fphone{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+  .fphone b{font:600 .95rem var(--f-display);color:#fff}
+  .fphone .acts{display:flex;gap:6px}
+  .fphone a{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 12px;border-radius:999px;font-size:.78rem;font-weight:600;border:1px solid rgba(255,255,255,.4);color:#fff}
+  .fphone a.w{background:var(--wa);border-color:var(--wa);color:#04210f}
+  .fphone a:hover{text-decoration:none;transform:translateY(-1px)}
+  .copy .legal a{margin:0 2px}
+
+  @media (max-width:1320px){
+    .burger{display:grid}
+    .menu{position:fixed;top:0;left:0;right:0;flex-direction:column;align-items:stretch;gap:2px;padding:112px 20px 24px;background:rgba(13,45,88,.98);
+      backdrop-filter:blur(14px);transform:translateY(-110%);transition:transform .35s;z-index:-1;box-shadow:0 20px 40px -20px #000}
+    .menu.open{transform:none}
+    .menu a{padding:14px 16px;font-size:1.02rem;border-radius:12px}
+  }
+  @media (max-width:1100px){
+    .svc-grid{grid-template-columns:repeat(2,1fr)}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .tl{grid-template-columns:1fr;gap:16px}
+    .tl li{flex-direction:column}
+    .tl-card{margin-bottom:8px}
+    .tl-bar{height:14px!important;min-height:0;width:var(--h);border-radius:999px;background:linear-gradient(90deg,#3f9be6,#23a36a)}
+    .tl li:last-child .tl-bar{background:linear-gradient(90deg,#ffd23f,#23a36a)}
+    .tl-bar::after{left:auto;right:-4px;top:-2px;margin:0}
+  }
+  @media (max-width:900px){
+    .sec{padding:76px 20px}
+    .hero{flex-direction:column;align-items:flex-start;min-height:auto}
+    #globe{position:relative;width:100%;height:52vh;margin-top:106px;order:-1}
+    #globe.fallback{width:70vw;height:70vw;margin:106px auto 0;top:auto;right:auto;transform:none}
+    .hero-content{padding:0 20px 24px}
+    .legend{display:none}
+    .paths,.feat,.about-wrap,.contact-wrap,.lav-wrap{grid-template-columns:1fr}
+    .feat{gap:22px}.feat + .feat{margin-top:44px}
+    .feat:nth-child(even) .vis{order:0}
+    .invite{padding:26px}
+  }
+  @media (max-width:640px){.svc-grid{grid-template-columns:1fr}.foot-grid{grid-template-columns:1fr}}
+  @media (max-width:560px){
+    .brand img{height:62px}
+    #quoteForm{grid-template-columns:1fr;padding:22px}
+    .btn{width:100%}
+    .foot-grid{grid-template-columns:1fr}
+    .facts{grid-template-columns:1fr 1fr}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<linearGradient id="gSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fcaf6"/><stop offset="1" stop-color="#eaf6ff"/></linearGradient>
+<linearGradient id="gPanel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2f7fe3"/><stop offset="1" stop-color="#14489a"/></linearGradient>
+<linearGradient id="gHill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#93d8a8"/><stop offset="1" stop-color="#5dbb82"/></linearGradient>
+<linearGradient id="gTherm" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#2b5cd9"/><stop offset=".25" stop-color="#26b6d8"/><stop offset=".5" stop-color="#5fd07a"/><stop offset=".72" stop-color="#ffd23f"/><stop offset="1" stop-color="#ff3b1f"/></linearGradient>
+<linearGradient id="gCone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd23f" stop-opacity=".55"/><stop offset="1" stop-color="#ffd23f" stop-opacity="0"/></linearGradient>
+<radialGradient id="gHot"><stop offset="0" stop-color="#fff6b0"/><stop offset=".35" stop-color="#ffb000"/><stop offset=".75" stop-color="#ff3b1f"/><stop offset="1" stop-color="#ff3b1f" stop-opacity="0"/></radialGradient>
+<symbol id="mod" viewBox="0 0 60 36"><rect width="60" height="36" rx="2" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1.6"/><path d="M15 0V36M30 0V36M45 0V36M0 12H60M0 24H60" stroke="#8fc0f5" stroke-width=".8" opacity=".85"/></symbol>
+<symbol id="sun" viewBox="0 0 64 64"><g stroke="#ffc83d" stroke-width="3" stroke-linecap="round"><path d="M32 3v8M32 53v8M3 32h8M53 32h8M11 11l6 6M47 47l6 6M53 11l-6 6M17 47l-6 6"/></g><circle cx="32" cy="32" r="14" fill="#ffd23f"/></symbol>
+<symbol id="spark" viewBox="-10 -10 20 20"><path d="M0-10L2-2 10 0 2 2 0 10-2 2-10 0-2-2z" fill="#fff"/></symbol>
+<symbol id="drop" viewBox="-7 -8 14 16"><path d="M0-7C4-1 6 2 0 6C-6 2-4-1 0-7z" fill="#4fb3f2"/></symbol>
+</defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></symbol>
+  <symbol id="i-ph" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2Z"/></symbol>
+</svg>
+
+<div class="site-head" id="siteHead">
+  <nav aria-label="Navigazione principale">
+    <a href="#home" class="brand" aria-label="Rivetti Impianti — Technical Engineering">
+      <!-- Logo con sfondo trasparente: assets/logo-rivetti-dark.png (se manca compare il logotipo testuale) -->
+      <img src="assets/logo-rivetti-dark.png" alt="Rivetti Impianti – Technical Engineering" width="140" height="78" onerror="this.parentNode.classList.add('nologo')">
+      <span class="brand-fallback"><b>RIVETTI <em>IMPIANTI</em></b><small>TECHNICAL ENGINEERING</small></span>
+    </a>
+    <div class="menu" id="menu">
+      <a href="#home">Home</a>
+      <a href="#servizi">Servizi</a>
+      <a href="#incentivi">Bonus &amp; Incentivi</a>
+      <a href="#informazioni">Chi siamo</a>
+      <a href="#lavora">Lavora con noi</a>
+      <a href="#contatti">Contatti</a>
+      <a href="#recensioni">Cosa dicono di noi</a>
+    </div>
+    <button class="burger" id="burger" aria-label="Apri il menu" aria-expanded="false" aria-controls="menu"><span></span></button>
+  </nav>
+</div>
+
+<!-- ===== HOME ===== -->
+<header class="hero" id="home">
+  <div id="globe" aria-label="Globo terrestre interattivo con impianti fotovoltaici e rete di trasporto dell'energia"></div>
+  <div class="legend">
+    <small>Trascina per ruotare</small>
+    <span>Impianti fotovoltaici <i></i></span>
+    <span>Flussi di energia <i class="ln"></i></span>
+  </div>
+  <div class="hero-content">
+    <div class="badge"><i></i> Energia e Tecnologia per il Futuro</div>
+    <h1>Dal 2008 costruiamo l’energia <span>del Futuro</span></h1>
+    <p class="lead">Fotovoltaico, termoidraulica, impianti civili e industriali. Dalla progettazione alla manutenzione, un'unica squadra qualificata al tuo fianco in tutta la Campania.</p>
+    <div class="cta">
+      <a class="btn btn-light" href="#contatti">Richiedi un preventivo &rarr;</a>
+      <a class="btn btn-wa" data-wa-main href="#" target="_blank" rel="noopener"><svg class="ic"><use href="#i-wa"/></svg>Scrivici su WhatsApp</a>
+      <a class="btn btn-outline-light" href="#servizi">Scopri i servizi</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== STORIA: TIMELINE 2008 → 2026 ===== -->
+<section class="sec storia" id="storia">
+  <div class="sec-head">
+    <span class="eyebrow">La nostra storia</span>
+    <h2>Dal 2008 a oggi: una crescita continua</h2>
+    <p>Anno dopo anno cresce la fiducia dei clienti e si ampliano i settori in cui operiamo.</p>
+  </div>
+  <ol class="tl">
+    <li><div class="tl-card"><b class="yr">2008</b><h3>Nascita dell'azienda con Michele Rivetti, Il Fondatore</h3></div><div class="tl-bar" style="--h:40px"></div></li>
+    <li><div class="tl-card"><b class="yr">2010</b><b class="num">90</b><h3>clienti soddisfatti</h3></div><div class="tl-bar" style="--h:90px"></div></li>
+    <li><div class="tl-card"><b class="yr">2015</b><b class="num">200+</b><h3>clienti soddisfatti</h3></div><div class="tl-bar" style="--h:150px"></div></li>
+    <li><div class="tl-card"><b class="yr">2020</b><b class="num">500+</b><h3>clienti soddisfatti</h3></div><div class="tl-bar" style="--h:210px"></div></li>
+    <li><div class="tl-card"><b class="yr">2026 · Oggi</b><b class="num">1000+</b><h3>clienti soddisfatti, con ampliamento continuo dei settori residenziale, industriale e PA</h3></div><div class="tl-bar" style="--h:270px"></div></li>
+  </ol>
+</section>
+
+<!-- ===== COSA FACCIAMO ===== -->
+<section class="sec intro" id="servizi">
+  <div class="sec-head">
+    <span class="eyebrow">Cosa facciamo</span>
+    <h2>Tre percorsi, un unico standard: impianti sicuri, efficienti e duraturi nel tempo</h2>
+    <p>Eseguiamo direttamente le lavorazioni per cui siamo abilitati e coordiniamo le attività affidate a imprese partner specializzate.</p>
+  </div>
+  <div class="paths">
+    <a class="path p1" href="#privati"><div><b>Privati · Residenziale</b><span>Per la tua casa e il tuo condominio</span></div><i aria-hidden="true">&darr;</i></a>
+    <a class="path p2" href="#aziende"><div><b>Imprese · Industriale</b><span>Per capannoni, industrie e grandi impianti</span></div><i aria-hidden="true">&darr;</i></a>
+    <a class="path p3" href="#pa"><div><b>PA · Pubblica Amministrazione</b><span>Per enti e strutture comunali</span></div><i aria-hidden="true">&darr;</i></a>
+  </div>
+</section>
+
+<section class="sec privati" id="privati">
+  <div class="sec-head">
+    <span class="eyebrow">Privati · Residenziale</span>
+    <h2>Energia pulita, comfort e risparmio per la tua casa</h2>
+    <p>Energia pulita, comfort, risparmio e valore aggiunto alla tua abitazione.</p>
+  </div>
+  <div class="svc-grid">
+    <article class="svc-card">
+      <figure class="vis"><svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+<rect width="400" height="250" fill="url(#gSky)"/>
+<use href="#sun" x="305" y="10" width="70" height="70"/>
+<path d="M0 205Q100 172 210 196T400 188V250H0Z" fill="url(#gHill)"/>
+<path d="M0 228Q140 206 260 226T400 216V250H0Z" fill="#46a872"/>
+<rect x="70" y="138" width="190" height="84" fill="#fff" stroke="#c7d7ea" stroke-width="2"/>
+<polygon points="52,140 278,140 278,98 52,124" fill="#d3dcea" stroke="#b7c6db" stroke-width="2"/>
+<g transform="translate(64,122.6) skewY(-6.56)"><use href="#mod" x="0" y="-30" width="51" height="28"/><use href="#mod" x="55" y="-30" width="51" height="28"/><use href="#mod" x="110" y="-30" width="51" height="28"/><use href="#mod" x="165" y="-30" width="51" height="28"/></g>
+<rect x="98" y="174" width="28" height="48" rx="2" fill="#2f7fe3"/>
+<rect x="160" y="162" width="56" height="38" rx="2" fill="#cfe8fb" stroke="#9ec3e8" stroke-width="2"/>
+<path d="M188 162v38M160 181h56" stroke="#9ec3e8" stroke-width="2"/>
+<rect x="290" y="170" width="36" height="56" rx="7" fill="#e7f8ef" stroke="#23a36a" stroke-width="2.5" stroke-dasharray="5 4"/>
+<path d="M310 186l-9 15h8l-3 14 11-17h-8z" fill="#23a36a"/>
+<path d="M276 118C300 120 308 140 308 168" fill="none" stroke="#23a36a" stroke-width="2" stroke-dasharray="4 4"/>
+<rect x="246" y="229" width="124" height="17" rx="8.5" fill="#fff" fill-opacity=".92"/><text x="308" y="241" text-anchor="middle" font-size="11" font-weight="600" font-family="Inter,sans-serif" fill="#17804f">Accumulo opzionale</text></svg><img src="assets/servizi/fotovoltaico-domestico.jpg" alt="Impianto fotovoltaico domestico" loading="lazy" onerror="this.remove()"></figure>
+      <div class="svc-body"><h3>Impianti fotovoltaici domestici</h3><p>Progettazione e installazione su misura.</p><a class="more" href="#contatti" data-service="Fotovoltaico domestico">Richiedi informazioni &rarr;</a></div>
+    </article>
+    <article class="svc-card">
+      <figure class="vis"><svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+<rect width="400" height="250" fill="url(#gSky)"/>
+<rect x="200" width="200" height="250" fill="#16335f"/><circle cx="230" cy="30" r="1.6" fill="#fff"/><circle cx="262" cy="58" r="1.6" fill="#fff"/><circle cx="300" cy="24" r="1.6" fill="#fff"/><circle cx="330" cy="70" r="1.6" fill="#fff"/><circle cx="372" cy="96" r="1.6" fill="#fff"/><circle cx="250" cy="100" r="1.6" fill="#fff"/><circle cx="392" cy="40" r="1.6" fill="#fff"/>
+<path d="M352 28a22 22 0 1 0 14 38a18 18 0 0 1-14-38z" fill="#ffe9a8"/>
+<use href="#sun" x="14" y="10" width="60" height="60"/>
+<rect y="218" width="400" height="32" fill="#7fc79a" opacity=".55"/>
+<g transform="translate(18,150) skewX(-12)"><use href="#mod" x="0" y="0" width="84" height="50"/></g>
+<path d="M112 176H142" stroke="#23a36a" stroke-width="5" stroke-linecap="round"/><polygon points="140,167 156,176 140,185" fill="#23a36a"/>
+<rect x="186" y="56" width="28" height="14" rx="4" fill="#14539f"/>
+<rect x="150" y="68" width="100" height="126" rx="16" fill="#fff" stroke="#1f6fd1" stroke-width="5"/><rect x="168" y="84" width="64" height="18" rx="4" fill="#23a36a"/><rect x="168" y="108" width="64" height="18" rx="4" fill="#23a36a"/><rect x="168" y="132" width="64" height="18" rx="4" fill="#23a36a"/><rect x="168" y="156" width="64" height="18" rx="4" fill="#23a36a"/>
+<circle cx="250" cy="74" r="17" fill="#ffc83d" stroke="#fff" stroke-width="3"/><path d="M252 64l-9 12h7l-3 11 11-14h-7z" fill="#0f2a4a"/>
+<path d="M258 176H290" stroke="#23a36a" stroke-width="5" stroke-linecap="round"/><polygon points="288,167 304,176 288,185" fill="#23a36a"/>
+<rect x="308" y="150" width="72" height="62" fill="#e9f1fb"/>
+<polygon points="300,152 344,114 388,152" fill="#b9c7dc"/>
+<rect x="320" y="166" width="18" height="18" rx="2" fill="#ffd86b"/><rect x="350" y="166" width="18" height="18" rx="2" fill="#ffd86b"/><rect x="336" y="190" width="16" height="22" rx="2" fill="#2f7fe3"/>
+<text x="96" y="242" text-anchor="middle" font-size="12" font-weight="600" font-family="Inter,sans-serif" fill="#14539f">Di giorno</text>
+<text x="344" y="242" text-anchor="middle" font-size="12" font-weight="600" font-family="Inter,sans-serif" fill="#dfe9f8">Di sera</text></svg><img src="assets/servizi/accumulo.jpg" alt="Sistema di accumulo" loading="lazy" onerror="this.remove()"></figure>
+      <div class="svc-body"><h3>Sistemi di accumulo</h3><p>Uso serale dell'energia prodotta.</p><a class="more" href="#contatti" data-service="Sistema di accumulo">Richiedi informazioni &rarr;</a></div>
+    </article>
+    <article class="svc-card">
+      <figure class="vis"><svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+<rect width="400" height="250" fill="#f3f7fc"/>
+<rect x="238" width="162" height="250" fill="url(#gSky)"/>
+<rect x="228" width="10" height="250" fill="#cdd9e8"/>
+<rect y="208" width="228" height="42" fill="#e8dccb"/><rect x="238" y="208" width="162" height="42" fill="#7fc79a"/>
+<rect x="34" y="32" width="156" height="42" rx="12" fill="#fff" stroke="#c4d3e6" stroke-width="2"/>
+<rect x="46" y="56" width="132" height="6" rx="3" fill="#dde7f3"/><circle cx="172" cy="44" r="4" fill="#23a36a"/><path d="M56 88c12 10-12 22 0 32s-12 20 0 30" fill="none" stroke="#62b6ef" stroke-width="3" stroke-linecap="round" opacity=".85"/><path d="M92 88c12 10-12 22 0 32s-12 20 0 30" fill="none" stroke="#62b6ef" stroke-width="3" stroke-linecap="round" opacity=".85"/><path d="M128 88c12 10-12 22 0 32s-12 20 0 30" fill="none" stroke="#62b6ef" stroke-width="3" stroke-linecap="round" opacity=".85"/><path d="M164 88c12 10-12 22 0 32s-12 20 0 30" fill="none" stroke="#62b6ef" stroke-width="3" stroke-linecap="round" opacity=".85"/>
+<rect x="36" y="196" width="138" height="8" rx="3" fill="#cdd9e8"/><rect x="46" y="142" width="12" height="58" rx="4" fill="#ffe3cf" stroke="#f3a06b" stroke-width="1.5"/><rect x="61" y="142" width="12" height="58" rx="4" fill="#ffe3cf" stroke="#f3a06b" stroke-width="1.5"/><rect x="76" y="142" width="12" height="58" rx="4" fill="#ffe3cf" stroke="#f3a06b" stroke-width="1.5"/><rect x="91" y="142" width="12" height="58" rx="4" fill="#ffe3cf" stroke="#f3a06b" stroke-width="1.5"/><rect x="106" y="142" width="12" height="58" rx="4" fill="#ffe3cf" stroke="#f3a06b" stroke-width="1.5"/><rect x="121" y="142" width="12" height="58" rx="4" fill="#ffe3cf" stroke="#f3a06b" stroke-width="1.5"/><rect x="136" y="142" width="12" height="58" rx="4" fill="#ffe3cf" stroke="#f3a06b" stroke-width="1.5"/><rect x="151" y="142" width="12" height="58" rx="4" fill="#ffe3cf" stroke="#f3a06b" stroke-width="1.5"/>
+<path d="M278 142V58H190" fill="none" stroke="#c98b5e" stroke-width="5" stroke-linejoin="round"/>
+<path d="M262 142V90H232" fill="none" stroke="#e0553a" stroke-width="3"/>
+<circle cx="278" cy="100" r="8" fill="#e0553a" stroke="#fff" stroke-width="2"/>
+<rect x="262" y="142" width="108" height="66" rx="8" fill="#fff" stroke="#b8c9dd" stroke-width="2"/>
+<circle cx="316" cy="175" r="25" fill="#e6eef8" stroke="#b8c9dd" stroke-width="2"/>
+<g transform="translate(316 175)"><path d="M0 0L0-20a20 20 0 0 1 14 6z" fill="#7fb3e8" transform="rotate(0)"/><path d="M0 0L0-20a20 20 0 0 1 14 6z" fill="#7fb3e8" transform="rotate(90)"/><path d="M0 0L0-20a20 20 0 0 1 14 6z" fill="#7fb3e8" transform="rotate(180)"/><path d="M0 0L0-20a20 20 0 0 1 14 6z" fill="#7fb3e8" transform="rotate(270)"/></g><circle cx="316" cy="175" r="4" fill="#14539f"/></svg><img src="assets/servizi/termoidraulica-climatizzazione.jpg" alt="Termoidraulica e climatizzazione" loading="lazy" onerror="this.remove()"></figure>
+      <div class="svc-body"><h3>Termoidraulica e Climatizzazione</h3><p>Riscaldamento, pompe di calore, impianti idrosanitari.</p><a class="more" href="#contatti" data-service="Termoidraulica e Climatizzazione">Richiedi informazioni &rarr;</a></div>
+    </article>
+    <article class="svc-card">
+      <figure class="vis"><svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+<rect width="400" height="250" fill="#e9f1fa"/>
+<rect y="216" width="400" height="34" fill="#cfdcec"/>
+<path d="M150 50V14M190 50V14" stroke="#26344a" stroke-width="4"/>
+<rect x="112" y="50" width="116" height="126" rx="12" fill="#fff" stroke="#b4c7de" stroke-width="3"/>
+<rect x="128" y="66" width="84" height="40" rx="6" fill="#0f2a4a"/>
+<polyline points="134,96 146,88 158,92 170,80 184,86 198,74" fill="none" stroke="#46e3a0" stroke-width="2.6" stroke-linejoin="round"/>
+<circle cx="136" cy="124" r="5" fill="#23a36a"/><circle cx="152" cy="124" r="5" fill="#23a36a"/><circle cx="168" cy="124" r="5" fill="#ffc83d"/>
+<path d="M132 142H208M132 152H208M132 162H208" stroke="#dbe6f2" stroke-width="3" stroke-linecap="round"/>
+<rect x="132" y="176" width="12" height="10" fill="#26344a"/><rect x="152" y="176" width="12" height="10" fill="#26344a"/><rect x="172" y="176" width="12" height="10" fill="#26344a"/><rect x="192" y="176" width="12" height="10" fill="#26344a"/>
+<path d="M228 72L262 52" stroke="#1f6fd1" stroke-width="2.5"/>
+<rect x="262" y="34" width="96" height="30" rx="15" fill="#1f6fd1"/><text x="310" y="54" text-anchor="middle" font-size="14" font-weight="700" font-family="Inter,sans-serif" fill="#fff">Inverter</text>
+<g font-family="Inter,sans-serif" font-size="12.5" font-weight="600" fill="#0f2a4a">
+<circle cx="276" cy="94" r="9" fill="#23a36a"/><path d="M271 94l4 4 6-8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><text x="293" y="98">Prestazioni</text>
+<circle cx="276" cy="124" r="9" fill="#23a36a"/><path d="M271 124l4 4 6-8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><text x="293" y="128">Collegamenti</text>
+<circle cx="276" cy="154" r="9" fill="#23a36a"/><path d="M271 154l4 4 6-8" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><text x="293" y="158">Sicurezza</text></g>
+<rect x="50" y="188" width="14" height="30" fill="#26344a"/><rect x="68" y="188" width="14" height="30" fill="#26344a"/>
+<rect x="44" y="120" width="44" height="72" rx="12" fill="#1f6fd1"/><rect x="44" y="148" width="44" height="6" fill="#ffc83d"/>
+<path d="M88 134L118 122" stroke="#1f6fd1" stroke-width="12" stroke-linecap="round"/><circle cx="121" cy="121" r="6" fill="#f1c7a0"/>
+<circle cx="66" cy="104" r="14" fill="#f1c7a0"/><path d="M44 100a22 20 0 0 1 44 0z" fill="#ffc83d"/><rect x="40" y="98" width="52" height="6" rx="3" fill="#f2b21e"/>
+<g transform="translate(100,170) rotate(-40)"><rect x="-3" y="-20" width="6" height="42" rx="3" fill="#8a99ad"/><circle cy="-24" r="9" fill="#8a99ad"/><rect x="-3" y="-36" width="6" height="12" fill="#e9f1fa"/></g></svg><img src="assets/servizi/manutenzione-inverter.jpg" alt="Manutenzione dell'inverter" loading="lazy" onerror="this.remove()"></figure>
+      <div class="svc-body"><h3>Manutenzione ordinaria e straordinaria</h3><p>Verifiche su inverter, collegamenti e sicurezza.</p><a class="more" href="#contatti" data-service="Manutenzione ordinaria e straordinaria">Richiedi informazioni &rarr;</a></div>
+    </article>
+    <article class="svc-card">
+      <figure class="vis"><svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+<rect width="400" height="250" fill="url(#gSky)"/>
+<use href="#sun" x="10" y="8" width="56" height="56"/>
+<path d="M0 214Q120 192 240 210T400 204V250H0Z" fill="url(#gHill)"/>
+<g transform="matrix(1,0,-0.25,1,50,0)"><rect x="40" y="90" width="300" height="110" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="3"/><path d="M90 90V200" stroke="#8fc0f5" stroke-width="1.2"/><path d="M140 90V200" stroke="#8fc0f5" stroke-width="1.2"/><path d="M190 90V200" stroke="#8fc0f5" stroke-width="1.2"/><path d="M240 90V200" stroke="#8fc0f5" stroke-width="1.2"/><path d="M290 90V200" stroke="#8fc0f5" stroke-width="1.2"/><path d="M40 127H340M40 163H340" stroke="#8fc0f5" stroke-width="1.2"/>
+<rect x="40" y="90" width="150" height="110" fill="#9aa7b8" opacity=".55"/><circle cx="70" cy="110" r="9" fill="#7d8a9b" opacity=".5"/><circle cx="120" cy="150" r="13" fill="#7d8a9b" opacity=".5"/><circle cx="160" cy="120" r="8" fill="#7d8a9b" opacity=".5"/><circle cx="95" cy="180" r="10" fill="#7d8a9b" opacity=".5"/><circle cx="175" cy="175" r="7" fill="#7d8a9b" opacity=".5"/></g>
+<use href="#spark" x="240" y="110" width="20" height="20"/><use href="#spark" x="290" y="140" width="26" height="26"/><use href="#spark" x="210" y="160" width="16" height="16"/><use href="#spark" x="320" y="98" width="16" height="16"/>
+<path d="M356 28L200 130" stroke="#7b8a9e" stroke-width="6" stroke-linecap="round"/>
+<g transform="translate(192,136) rotate(-32)"><rect x="-32" y="-8" width="64" height="15" rx="5" fill="#f0a93a"/><rect x="-30" y="7" width="60" height="7" rx="2" fill="#3a4a63"/></g>
+<use href="#drop" x="179" y="160" width="14" height="16"/><use href="#drop" x="199" y="168" width="14" height="16"/><use href="#drop" x="221" y="150" width="14" height="16"/><use href="#drop" x="163" y="182" width="14" height="16"/><use href="#drop" x="243" y="176" width="14" height="16"/>
+<circle cx="150" cy="200" r="7" fill="#fff" fill-opacity=".55" stroke="#bfe4fb" stroke-width="1.5"/><circle cx="162" cy="214" r="10" fill="#fff" fill-opacity=".55" stroke="#bfe4fb" stroke-width="1.5"/><circle cx="270" cy="206" r="6" fill="#fff" fill-opacity=".55" stroke="#bfe4fb" stroke-width="1.5"/></svg><img src="assets/servizi/lavaggio-pannelli.jpg" alt="Lavaggio moduli fotovoltaici" loading="lazy" onerror="this.remove()"></figure>
+      <div class="svc-body"><h3>Lavaggio moduli fotovoltaici</h3><p>Pulizia professionale.</p><a class="more" href="#contatti" data-service="Lavaggio moduli fotovoltaici">Richiedi informazioni &rarr;</a></div>
+    </article>
+    <article class="svc-card">
+      <figure class="vis"><svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+<rect width="400" height="250" fill="#0f2a4a"/>
+<rect x="30" y="46" width="12" height="150" rx="3" fill="url(#gTherm)"/>
+<text x="50" y="54" font-size="10" font-weight="600" font-family="Inter,sans-serif" fill="#ffb4a8">caldo</text><text x="50" y="196" font-size="10" font-weight="600" font-family="Inter,sans-serif" fill="#9fc4ff">freddo</text>
+<rect x="70" y="46.0" width="38" height="35.5" rx="2" fill="#2988d9"/><rect x="110" y="46.0" width="38" height="35.5" rx="2" fill="#2893d8"/><rect x="150" y="46.0" width="38" height="35.5" rx="2" fill="#3bbfb6"/><rect x="190" y="46.0" width="38" height="35.5" rx="2" fill="#77d071"/><rect x="230" y="46.0" width="38" height="35.5" rx="2" fill="#3bbfb6"/><rect x="270" y="46.0" width="38" height="35.5" rx="2" fill="#2893d8"/><rect x="70" y="83.5" width="38" height="35.5" rx="2" fill="#2988d9"/><rect x="110" y="83.5" width="38" height="35.5" rx="2" fill="#27a1d8"/><rect x="150" y="83.5" width="38" height="35.5" rx="2" fill="#a1d162"/><rect x="190" y="83.5" width="38" height="35.5" rx="2" fill="#ff3b1f"/><rect x="230" y="83.5" width="38" height="35.5" rx="2" fill="#a1d162"/><rect x="270" y="83.5" width="38" height="35.5" rx="2" fill="#27a1d8"/><rect x="70" y="121.0" width="38" height="35.5" rx="2" fill="#2988d9"/><rect x="110" y="121.0" width="38" height="35.5" rx="2" fill="#2893d8"/><rect x="150" y="121.0" width="38" height="35.5" rx="2" fill="#3bbfb6"/><rect x="190" y="121.0" width="38" height="35.5" rx="2" fill="#77d071"/><rect x="230" y="121.0" width="38" height="35.5" rx="2" fill="#3bbfb6"/><rect x="270" y="121.0" width="38" height="35.5" rx="2" fill="#2893d8"/><rect x="70" y="158.5" width="38" height="35.5" rx="2" fill="#2987d9"/><rect x="110" y="158.5" width="38" height="35.5" rx="2" fill="#2988d9"/><rect x="150" y="158.5" width="38" height="35.5" rx="2" fill="#288fd8"/><rect x="190" y="158.5" width="38" height="35.5" rx="2" fill="#2897d8"/><rect x="230" y="158.5" width="38" height="35.5" rx="2" fill="#288fd8"/><rect x="270" y="158.5" width="38" height="35.5" rx="2" fill="#2988d9"/><circle cx="209" cy="101.25" r="26" fill="url(#gHot)" opacity=".85"/>
+<circle cx="209" cy="101.25" r="15" fill="none" stroke="#fff" stroke-width="2"/><path d="M187 101.25H201M217 101.25H231M209 79.25V93.25M209 109.25V123.25" stroke="#fff" stroke-width="2"/>
+<rect x="225" y="59.25" width="82" height="22" rx="11" fill="#fff"/><text x="266" y="74.25" text-anchor="middle" font-size="11.5" font-weight="700" font-family="Inter,sans-serif" fill="#b83227">Punto caldo</text>
+<rect x="262" y="168" width="116" height="74" rx="14" fill="#e6edf6" stroke="#9fb3cc" stroke-width="2"/>
+<rect x="272" y="178" width="66" height="52" rx="6" fill="#0f2a4a"/><rect x="276" y="182" width="12" height="40" fill="#2892d8"/><rect x="288" y="188" width="12" height="28" fill="#2fbac9"/><rect x="300" y="182" width="12" height="40" fill="#4fc994"/><rect x="312" y="188" width="12" height="28" fill="#92d167"/><rect x="324" y="182" width="12" height="40" fill="#f8d242"/>
+<circle cx="356" cy="204" r="14" fill="#26344a" stroke="#9fb3cc" stroke-width="3"/><circle cx="356" cy="204" r="5" fill="#46e3a0"/></svg><img src="assets/servizi/termografia.jpg" alt="Termografia di un impianto fotovoltaico" loading="lazy" onerror="this.remove()"></figure>
+      <div class="svc-body"><h3>Termografia impianti fotovoltaici</h3><p>Analisi per individuare anomalie e guasti.</p><a class="more" href="#contatti" data-service="Termografia impianti fotovoltaici">Richiedi informazioni &rarr;</a></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec aziende" id="aziende">
+  <div class="sec-head">
+    <span class="eyebrow">Imprese · Industriale</span>
+    <h2>Energia e continuità per la tua impresa</h2>
+    <p>Impianti affidabili e gestiti con metodo per attività produttive, edifici e strutture complesse.</p>
+  </div>
+  <div class="feat-list">
+    <article class="feat">
+      <figure class="vis"><svg viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+<rect width="640" height="360" fill="url(#gSky)"/>
+<use href="#sun" x="500" y="20" width="110" height="110"/>
+<path d="M0 196Q130 150 270 184T520 172T640 184V360H0Z" fill="#b6e0c4"/>
+<g transform="translate(120 190) scale(0.9)" stroke="#6b7a90" stroke-width="2.2" fill="none"><path d="M-22 0L-6-100M22 0L6-100M-6-100H6M-14-40H14M-18-20H18M-10-70H10M-14-40L14-20M14-40L-14-20"/><path d="M-34-84H34M-26-104H26"/></g><g transform="translate(520 190) scale(0.62)" stroke="#6b7a90" stroke-width="2.2" fill="none"><path d="M-22 0L-6-100M22 0L6-100M-6-100H6M-14-40H14M-18-20H18M-10-70H10M-14-40L14-20M14-40L-14-20"/><path d="M-34-84H34M-26-104H26"/></g><path d="M20 100Q200 130 330 104T640 112" stroke="#6b7a90" stroke-width="1.4" fill="none"/><path d="M20 124Q200 152 330 126T640 134" stroke="#6b7a90" stroke-width="1.4" fill="none"/>
+<path d="M0 206Q160 190 320 204T640 198V360H0Z" fill="url(#gHill)"/>
+<polygon points="-11.2,198 22.8,198 18.0,214 -16.0,214" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M3.4 198L1.0 214M-13.6 206.0H20.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="28.8,198 62.8,198 58.0,214 24.0,214" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M43.4 198L41.0 214M26.4 206.0H60.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="68.8,198 102.8,198 98.0,214 64.0,214" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M83.4 198L81.0 214M66.4 206.0H100.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="108.8,198 142.8,198 138.0,214 104.0,214" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M123.4 198L121.0 214M106.4 206.0H140.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="148.8,198 182.8,198 178.0,214 144.0,214" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M163.4 198L161.0 214M146.4 206.0H180.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="188.8,198 222.8,198 218.0,214 184.0,214" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M203.4 198L201.0 214M186.4 206.0H220.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="228.8,198 262.8,198 258.0,214 224.0,214" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M243.4 198L241.0 214M226.4 206.0H260.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="268.8,198 302.8,198 298.0,214 264.0,214" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M283.4 198L281.0 214M266.4 206.0H300.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="308.8,198 342.8,198 338.0,214 304.0,214" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M323.4 198L321.0 214M306.4 206.0H340.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="348.8,198 382.8,198 378.0,214 344.0,214" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M363.4 198L361.0 214M346.4 206.0H380.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="388.8,198 422.8,198 418.0,214 384.0,214" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M403.4 198L401.0 214M386.4 206.0H420.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="428.8,198 462.8,198 458.0,214 424.0,214" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M443.4 198L441.0 214M426.4 206.0H460.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="468.8,198 502.8,198 498.0,214 464.0,214" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M483.4 198L481.0 214M466.4 206.0H500.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="508.8,198 542.8,198 538.0,214 504.0,214" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M523.4 198L521.0 214M506.4 206.0H540.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="548.8,198 582.8,198 578.0,214 544.0,214" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M563.4 198L561.0 214M546.4 206.0H580.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="588.8,198 622.8,198 618.0,214 584.0,214" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M603.4 198L601.0 214M586.4 206.0H620.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="628.8,198 662.8,198 658.0,214 624.0,214" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M643.4 198L641.0 214M626.4 206.0H660.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="668.8,198 702.8,198 698.0,214 664.0,214" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M683.4 198L681.0 214M666.4 206.0H700.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="708.8,198 742.8,198 738.0,214 704.0,214" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M723.4 198L721.0 214M706.4 206.0H740.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="-16.0,224 34.0,224 26.8,248 -23.2,248" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M5.4 224L1.8 248M-19.6 236.0H30.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="42.0,224 92.0,224 84.8,248 34.8,248" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M63.4 224L59.8 248M38.4 236.0H88.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="100.0,224 150.0,224 142.8,248 92.8,248" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M121.4 224L117.8 248M96.4 236.0H146.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="158.0,224 208.0,224 200.8,248 150.8,248" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M179.4 224L175.8 248M154.4 236.0H204.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="216.0,224 266.0,224 258.8,248 208.8,248" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M237.4 224L233.8 248M212.4 236.0H262.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="274.0,224 324.0,224 316.8,248 266.8,248" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M295.4 224L291.8 248M270.4 236.0H320.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="332.0,224 382.0,224 374.8,248 324.8,248" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M353.4 224L349.8 248M328.4 236.0H378.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="390.0,224 440.0,224 432.8,248 382.8,248" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M411.4 224L407.8 248M386.4 236.0H436.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="448.0,224 498.0,224 490.8,248 440.8,248" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M469.4 224L465.8 248M444.4 236.0H494.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="506.0,224 556.0,224 548.8,248 498.8,248" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M527.4 224L523.8 248M502.4 236.0H552.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="564.0,224 614.0,224 606.8,248 556.8,248" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M585.4 224L581.8 248M560.4 236.0H610.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="622.0,224 672.0,224 664.8,248 614.8,248" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M643.4 224L639.8 248M618.4 236.0H668.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="680.0,224 730.0,224 722.8,248 672.8,248" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M701.4 224L697.8 248M676.4 236.0H726.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="738.0,224 788.0,224 780.8,248 730.8,248" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M759.4 224L755.8 248M734.4 236.0H784.4" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="-22.599999999999998,264 49.400000000000006,264 39.2,298 -32.8,298" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M8.3 264L3.2 298M-27.7 281.0H44.3" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="59.400000000000006,264 131.4,264 121.2,298 49.2,298" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M90.3 264L85.2 298M54.3 281.0H126.3" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="141.39999999999998,264 213.39999999999998,264 203.2,298 131.2,298" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M172.3 264L167.2 298M136.3 281.0H208.3" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="223.39999999999998,264 295.4,264 285.2,298 213.2,298" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M254.3 264L249.2 298M218.3 281.0H290.3" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="305.4,264 377.4,264 367.2,298 295.2,298" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M336.3 264L331.2 298M300.3 281.0H372.3" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="387.4,264 459.4,264 449.2,298 377.2,298" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M418.3 264L413.2 298M382.3 281.0H454.3" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="469.4,264 541.4000000000001,264 531.2,298 459.2,298" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M500.3 264L495.2 298M464.3 281.0H536.3" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="551.4000000000001,264 623.4000000000001,264 613.2,298 541.2,298" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M582.3 264L577.2 298M546.3 281.0H618.3" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="633.4000000000001,264 705.4000000000001,264 695.2,298 623.2,298" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M664.3 264L659.2 298M628.3 281.0H700.3" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="715.4000000000001,264 787.4000000000001,264 777.2,298 705.2,298" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M746.3 264L741.2 298M710.3 281.0H782.3" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="-33.400000000000006,318 70.6,318 56.8,364 -47.2,364" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M11.7 318L4.8 364M-40.3 341.0H63.7" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="84.6,318 188.60000000000002,318 174.8,364 70.8,364" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M129.7 318L122.8 364M77.7 341.0H181.7" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="202.60000000000002,318 306.6,318 292.8,364 188.8,364" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M247.7 318L240.8 364M195.7 341.0H299.7" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="320.6,318 424.6,318 410.8,364 306.8,364" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M365.7 318L358.8 364M313.7 341.0H417.7" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="438.6,318 542.5999999999999,318 528.8,364 424.8,364" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M483.7 318L476.8 364M431.7 341.0H535.7" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="556.5999999999999,318 660.5999999999999,318 646.8,364 542.8,364" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M601.7 318L594.8 364M549.7 341.0H653.7" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="674.5999999999999,318 778.5999999999999,318 764.8,364 660.8,364" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M719.7 318L712.8 364M667.7 341.0H771.7" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/></svg><img src="assets/servizi/utility-scale.jpg" alt="Parco fotovoltaico Utility Scale" loading="lazy" onerror="this.remove()"></figure>
+      <div><span class="tag">Grandi impianti</span><h3>Impianti fotovoltaici Utility Scale</h3><p>Produzione su larga scala.</p><a class="btn btn-primary btn-sm" href="#contatti" data-service="Fotovoltaico Utility Scale">Richiedi informazioni &rarr;</a></div>
+    </article>
+    <article class="feat">
+      <figure class="vis"><svg viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+<rect width="640" height="360" fill="#d9eedf"/><path d="M0 30H640" stroke="#cbe5d3" stroke-width="2"/><path d="M0 74H640" stroke="#cbe5d3" stroke-width="2"/><path d="M0 118H640" stroke="#cbe5d3" stroke-width="2"/><path d="M0 162H640" stroke="#cbe5d3" stroke-width="2"/><path d="M0 206H640" stroke="#cbe5d3" stroke-width="2"/><path d="M0 250H640" stroke="#cbe5d3" stroke-width="2"/><path d="M0 294H640" stroke="#cbe5d3" stroke-width="2"/><path d="M0 338H640" stroke="#cbe5d3" stroke-width="2"/>
+<rect x="70" y="130" width="96" height="60" rx="3" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="2"/><path d="M94 130V190M118 130V190M142 130V190M70 150H166M70 170H166" stroke="#8fc0f5" stroke-width=".9" opacity=".8"/><rect x="176" y="130" width="96" height="60" rx="3" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="2"/><path d="M200 130V190M224 130V190M248 130V190M176 150H272M176 170H272" stroke="#8fc0f5" stroke-width=".9" opacity=".8"/><rect x="282" y="130" width="96" height="60" rx="3" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="2"/><path d="M306 130V190M330 130V190M354 130V190M282 150H378M282 170H378" stroke="#8fc0f5" stroke-width=".9" opacity=".8"/><rect x="388" y="130" width="96" height="60" rx="3" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="2"/><path d="M412 130V190M436 130V190M460 130V190M388 150H484M388 170H484" stroke="#8fc0f5" stroke-width=".9" opacity=".8"/><rect x="494" y="130" width="96" height="60" rx="3" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="2"/><path d="M518 130V190M542 130V190M566 130V190M494 150H590M494 170H590" stroke="#8fc0f5" stroke-width=".9" opacity=".8"/><rect x="70" y="200" width="96" height="60" rx="3" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="2"/><path d="M94 200V260M118 200V260M142 200V260M70 220H166M70 240H166" stroke="#8fc0f5" stroke-width=".9" opacity=".8"/><rect x="176" y="200" width="96" height="60" rx="3" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="2"/><path d="M200 200V260M224 200V260M248 200V260M176 220H272M176 240H272" stroke="#8fc0f5" stroke-width=".9" opacity=".8"/><rect x="282" y="200" width="96" height="60" rx="3" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="2"/><path d="M306 200V260M330 200V260M354 200V260M282 220H378M282 240H378" stroke="#8fc0f5" stroke-width=".9" opacity=".8"/><rect x="388" y="200" width="96" height="60" rx="3" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="2"/><path d="M412 200V260M436 200V260M460 200V260M388 220H484M388 240H484" stroke="#8fc0f5" stroke-width=".9" opacity=".8"/><rect x="494" y="200" width="96" height="60" rx="3" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="2"/><path d="M518 200V260M542 200V260M566 200V260M494 220H590M494 240H590" stroke="#8fc0f5" stroke-width=".9" opacity=".8"/><rect x="70" y="270" width="96" height="60" rx="3" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="2"/><path d="M94 270V330M118 270V330M142 270V330M70 290H166M70 310H166" stroke="#8fc0f5" stroke-width=".9" opacity=".8"/><rect x="176" y="270" width="96" height="60" rx="3" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="2"/><path d="M200 270V330M224 270V330M248 270V330M176 290H272M176 310H272" stroke="#8fc0f5" stroke-width=".9" opacity=".8"/><rect x="282" y="270" width="96" height="60" rx="3" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="2"/><path d="M306 270V330M330 270V330M354 270V330M282 290H378M282 310H378" stroke="#8fc0f5" stroke-width=".9" opacity=".8"/><rect x="388" y="270" width="96" height="60" rx="3" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="2"/><path d="M412 270V330M436 270V330M460 270V330M388 290H484M388 310H484" stroke="#8fc0f5" stroke-width=".9" opacity=".8"/><rect x="494" y="270" width="96" height="60" rx="3" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="2"/><path d="M518 270V330M542 270V330M566 270V330M494 290H590M494 310H590" stroke="#8fc0f5" stroke-width=".9" opacity=".8"/>
+<circle cx="436" cy="230" r="62" fill="url(#gHot)" opacity=".92"/>
+<polygon points="436,84 390,210 482,210" fill="url(#gCone)"/>
+<g stroke="#26344a" stroke-width="4" stroke-linecap="round"><path d="M420 66L392 52M452 66L480 52"/></g>
+<ellipse cx="390" cy="50" rx="22" ry="4.5" fill="#9fb3cc"/><ellipse cx="482" cy="50" rx="22" ry="4.5" fill="#9fb3cc"/>
+<ellipse cx="436" cy="68" rx="24" ry="10" fill="#26344a"/><circle cx="436" cy="80" r="6" fill="#ffd23f" stroke="#26344a" stroke-width="2"/>
+<rect x="494" y="194" width="112" height="30" rx="15" fill="#fff" stroke="#b83227" stroke-width="2"/>
+<text x="550" y="214" text-anchor="middle" font-size="14" font-weight="700" font-family="Inter,sans-serif" fill="#b83227">Punto caldo</text></svg><img src="assets/servizi/termografia-azienda.jpg" alt="Termografia di un campo fotovoltaico" loading="lazy" onerror="this.remove()"></figure>
+      <div><span class="tag">Diagnostica</span><h3>Termografia impianti fotovoltaici</h3><p>Diagnosi per salvaguardare l'impianto.</p><a class="btn btn-primary btn-sm" href="#contatti" data-service="Termografia impianti fotovoltaici (impresa)">Richiedi informazioni &rarr;</a></div>
+    </article>
+    <article class="feat">
+      <figure class="vis"><svg viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+<rect width="640" height="360" fill="url(#gSky)"/>
+<rect y="300" width="640" height="60" fill="#b9c7d8"/>
+<polygon points="30,122 155,70 280,122" fill="#e7eef7" stroke="#c7d7ea" stroke-width="3"/>
+<rect x="40" y="120" width="230" height="180" fill="#fff" stroke="#c7d7ea" stroke-width="3"/><rect x="58" y="142" width="34" height="42" rx="3" fill="#cfe8fb" stroke="#9ec3e8" stroke-width="2"/><rect x="110" y="142" width="34" height="42" rx="3" fill="#cfe8fb" stroke="#9ec3e8" stroke-width="2"/><rect x="162" y="142" width="34" height="42" rx="3" fill="#cfe8fb" stroke="#9ec3e8" stroke-width="2"/><rect x="214" y="142" width="34" height="42" rx="3" fill="#cfe8fb" stroke="#9ec3e8" stroke-width="2"/><rect x="58" y="200" width="34" height="42" rx="3" fill="#cfe8fb" stroke="#9ec3e8" stroke-width="2"/><rect x="214" y="200" width="34" height="42" rx="3" fill="#cfe8fb" stroke="#9ec3e8" stroke-width="2"/>
+<rect x="128" y="232" width="52" height="68" rx="3" fill="#2f7fe3"/>
+<path d="M270 262H338" stroke="#e0553a" stroke-width="9"/><path d="M270 284H338" stroke="#2f7fe3" stroke-width="9"/>
+<rect x="330" y="170" width="280" height="130" fill="#dce6f2" stroke="#b5c6db" stroke-width="3"/>
+<rect x="540" y="62" width="26" height="110" fill="#a9b8cc"/><rect x="540" y="96" width="26" height="14" fill="#e0553a"/><circle cx="553" cy="46" r="14" fill="#fff" opacity=".9"/><circle cx="578" cy="28" r="18" fill="#fff" opacity=".9"/><circle cx="608" cy="16" r="14" fill="#fff" opacity=".9"/>
+<ellipse cx="392" cy="204" rx="36" ry="10" fill="#eaf1f9"/><rect x="356" y="204" width="72" height="88" fill="#c3d1e3"/><ellipse cx="392" cy="292" rx="36" ry="10" fill="#c3d1e3"/>
+<path d="M356 226H428M356 262H428" stroke="#a9b8cc" stroke-width="3"/>
+<ellipse cx="478" cy="220" rx="30" ry="9" fill="#eaf1f9"/><rect x="448" y="220" width="60" height="72" fill="#c3d1e3"/><ellipse cx="478" cy="292" rx="30" ry="9" fill="#c3d1e3"/>
+<circle cx="392" cy="246" r="15" fill="#fff" stroke="#7a8aa0" stroke-width="3"/><path d="M392 246L401 238" stroke="#e0553a" stroke-width="3" stroke-linecap="round"/>
+<path d="M338 262H356M338 284H356" stroke="#7a8aa0" stroke-width="5"/>
+<path d="M508 250H540V172" fill="none" stroke="#e0553a" stroke-width="6"/>
+<circle cx="560" cy="246" r="24" fill="#ff7a2b"/><path d="M560 228C567 238 574 243 572 253C570 262 552 262 550 251C549 245 554 243 555 236C558 240 560 236 560 228Z" fill="#fff"/></svg><img src="assets/servizi/impianti-termici.jpg" alt="Gestione di impianti termici" loading="lazy" onerror="this.remove()"></figure>
+      <div><span class="tag">Edifici e settore pubblico</span><h3>Gestione di impianti termici</h3><p>Esperienza nel settore pubblico e negli edifici.</p><a class="btn btn-primary btn-sm" href="#contatti" data-service="Gestione impianti termici">Richiedi informazioni &rarr;</a></div>
+    </article>
+    <article class="feat">
+      <figure class="vis"><svg viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+<rect width="640" height="360" fill="url(#gSky)"/>
+<use href="#sun" x="20" y="14" width="80" height="80"/>
+<rect y="300" width="640" height="60" fill="#b9c7d8"/>
+<rect x="230" y="150" width="390" height="150" fill="#edf2f8" stroke="#c4d2e4" stroke-width="3"/>
+<rect x="224" y="138" width="402" height="14" fill="#cfd9e7"/><rect x="266" y="226" width="90" height="74" fill="#9fb3cc"/><path d="M266 244H356M266 262H356M266 280H356" stroke="#8ea3be" stroke-width="2"/><rect x="386" y="226" width="90" height="74" fill="#9fb3cc"/><path d="M386 244H476M386 262H476M386 280H476" stroke="#8ea3be" stroke-width="2"/><rect x="506" y="226" width="90" height="74" fill="#9fb3cc"/><path d="M506 244H596M506 262H596M506 280H596" stroke="#8ea3be" stroke-width="2"/><polygon points="256,98 312,98 300,134 244,134" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M278.0 98L272.0 134M250.0 116.0H306.0" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="256,98 312,98 300,134 244,134" fill="#9aa7b8" opacity=".55"/><polygon points="318,98 374,98 362,134 306,134" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M340.0 98L334.0 134M312.0 116.0H368.0" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="318,98 374,98 362,134 306,134" fill="#9aa7b8" opacity=".55"/><polygon points="380,98 436,98 424,134 368,134" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M402.0 98L396.0 134M374.0 116.0H430.0" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="380,98 436,98 424,134 368,134" fill="#9aa7b8" opacity=".55"/><polygon points="442,98 498,98 486,134 430,134" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M464.0 98L458.0 134M436.0 116.0H492.0" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="504,98 560,98 548,134 492,134" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M526.0 98L520.0 134M498.0 116.0H554.0" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="566,98 622,98 610,134 554,134" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M588.0 98L582.0 134M560.0 116.0H616.0" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><use href="#spark" x="460" y="102" width="20" height="20"/><use href="#spark" x="530" y="110" width="26" height="26"/><use href="#spark" x="586" y="94" width="18" height="18"/>
+<path d="M150 252L236 124L306 98" fill="none" stroke="#f0a93a" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="236" cy="124" r="7" fill="#26344a"/>
+<g transform="translate(312,96) rotate(-24)"><rect x="-22" y="-7" width="44" height="14" rx="5" fill="#3a4a63"/></g>
+<path d="M322 92Q350 70 392 100" fill="none" stroke="#4fb3f2" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round"/>
+<path d="M322 98Q356 88 380 112" fill="none" stroke="#4fb3f2" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round"/><use href="#drop" x="323" y="108" width="14" height="16"/><use href="#drop" x="345" y="120" width="14" height="16"/><use href="#drop" x="365" y="96" width="14" height="16"/><use href="#drop" x="305" y="126" width="14" height="16"/><use href="#drop" x="387" y="112" width="14" height="16"/>
+<rect x="72" y="250" width="104" height="44" rx="20" fill="#2f7fe3" stroke="#14489a" stroke-width="3"/>
+<rect x="32" y="258" width="44" height="36" rx="7" fill="#fff" stroke="#b5c6db" stroke-width="2"/><rect x="40" y="264" width="24" height="14" rx="2" fill="#cfe8fb"/>
+<rect x="26" y="290" width="156" height="9" fill="#26344a"/>
+<circle cx="60" cy="298" r="14" fill="#26344a"/><circle cx="60" cy="298" r="5" fill="#9fb3cc"/><circle cx="150" cy="298" r="14" fill="#26344a"/><circle cx="150" cy="298" r="5" fill="#9fb3cc"/></svg><img src="assets/servizi/lavaggio-azienda.jpg" alt="Lavaggio moduli fotovoltaici su capannone" loading="lazy" onerror="this.remove()"></figure>
+      <div><span class="tag">Manutenzione</span><h3>Lavaggio moduli fotovoltaici</h3><p>Pulizia professionale.</p><a class="btn btn-primary btn-sm" href="#contatti" data-service="Lavaggio moduli fotovoltaici (impresa)">Richiedi informazioni &rarr;</a></div>
+    </article>
+  </div>
+</section>
+
+<section class="sec pa" id="pa">
+  <div class="sec-head">
+    <span class="eyebrow">PA · Pubblica Amministrazione</span>
+    <h2>Al fianco di enti e strutture comunali</h2>
+    <p>Una sezione dedicata agli enti pubblici e alle strutture comunali, con un interlocutore tecnico unico.</p>
+  </div>
+  <article class="feat">
+    <figure class="vis"><svg viewBox="0 0 640 360" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+<rect width="640" height="360" fill="url(#gSky)"/>
+<use href="#sun" x="520" y="18" width="96" height="96"/>
+<path d="M0 290Q160 262 320 282T640 274V360H0Z" fill="url(#gHill)"/>
+<rect x="44" y="200" width="130" height="92" fill="#f4ead0" stroke="#d3bd86" stroke-width="2"/>
+<rect x="446" y="200" width="150" height="92" fill="#f4ead0" stroke="#d3bd86" stroke-width="2"/>
+<rect x="70" y="218" width="14" height="22" rx="2" fill="#9ec3e8" stroke="#fff" stroke-width="2"/><rect x="70" y="250" width="14" height="22" rx="2" fill="#9ec3e8" stroke="#fff" stroke-width="2"/><rect x="102" y="218" width="14" height="22" rx="2" fill="#9ec3e8" stroke="#fff" stroke-width="2"/><rect x="102" y="250" width="14" height="22" rx="2" fill="#9ec3e8" stroke="#fff" stroke-width="2"/><rect x="456" y="218" width="14" height="22" rx="2" fill="#9ec3e8" stroke="#fff" stroke-width="2"/><rect x="456" y="250" width="14" height="22" rx="2" fill="#9ec3e8" stroke="#fff" stroke-width="2"/><rect x="488" y="218" width="14" height="22" rx="2" fill="#9ec3e8" stroke="#fff" stroke-width="2"/><rect x="488" y="250" width="14" height="22" rx="2" fill="#9ec3e8" stroke="#fff" stroke-width="2"/><rect x="520" y="218" width="14" height="22" rx="2" fill="#9ec3e8" stroke="#fff" stroke-width="2"/><rect x="520" y="250" width="14" height="22" rx="2" fill="#9ec3e8" stroke="#fff" stroke-width="2"/>
+<polygon points="200,196 320,120 440,196" fill="#fff" stroke="#c9d6e6" stroke-width="3"/>
+<polygon points="230,138 270,138 262,160 222,160" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M246.0 138L242.0 160M226.0 149.0H266.0" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="276,138 316,138 308,160 268,160" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M292.0 138L288.0 160M272.0 149.0H312.0" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="322,138 362,138 354,160 314,160" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M338.0 138L334.0 160M318.0 149.0H358.0" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="368,138 408,138 400,160 360,160" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M384.0 138L380.0 160M364.0 149.0H404.0" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/><polygon points="414,138 454,138 446,160 406,160" fill="url(#gPanel)" stroke="#dbe9fb" stroke-width="1"/><path d="M430.0 138L426.0 160M410.0 149.0H450.0" stroke="#8fc0f5" stroke-width=".8" opacity=".8"/>
+<circle cx="320" cy="176" r="9" fill="#ffd86b" stroke="#c9b06a" stroke-width="2"/>
+<rect x="210" y="190" width="220" height="10" fill="#f1f5fb" stroke="#c9d6e6" stroke-width="2"/>
+<rect x="236" y="196" width="12" height="82" fill="#fff" stroke="#c9d6e6" stroke-width="2"/><rect x="270" y="196" width="12" height="82" fill="#fff" stroke="#c9d6e6" stroke-width="2"/><rect x="304" y="196" width="12" height="82" fill="#fff" stroke="#c9d6e6" stroke-width="2"/><rect x="338" y="196" width="12" height="82" fill="#fff" stroke="#c9d6e6" stroke-width="2"/><rect x="372" y="196" width="12" height="82" fill="#fff" stroke="#c9d6e6" stroke-width="2"/><rect x="406" y="196" width="12" height="82" fill="#fff" stroke="#c9d6e6" stroke-width="2"/>
+<rect x="206" y="278" width="228" height="10" fill="#f1f5fb" stroke="#c9d6e6" stroke-width="2"/>
+<rect x="196" y="288" width="248" height="12" fill="#e5ecf6" stroke="#c9d6e6" stroke-width="2"/>
+<rect x="306" y="232" width="28" height="46" rx="3" fill="#2f7fe3" stroke="#fff" stroke-width="2"/>
+<path d="M320 120V70" stroke="#6b7a90" stroke-width="3"/>
+<rect x="320" y="70" width="18" height="8" fill="#23a36a"/><rect x="338" y="70" width="18" height="8" fill="#fff" stroke="#dbe3ee" stroke-width="1"/><rect x="356" y="70" width="18" height="8" fill="#d23a2e"/>
+<g fill="#23a36a" opacity=".9"><circle cx="24" cy="282" r="16"/><circle cx="616" cy="278" r="18"/><circle cx="178" cy="286" r="12"/></g></svg><img src="assets/servizi/pubblica-amministrazione.jpg" alt="Edificio pubblico con impianto fotovoltaico" loading="lazy" onerror="this.remove()"></figure>
+    <div>
+      <span class="tag">Enti pubblici</span>
+      <h3>Impianti efficienti per edifici e servizi pubblici</h3>
+      <ul class="pa-list">
+        <li>Gestione di impianti termici in edifici pubblici</li>
+        <li>Impianti fotovoltaici per strutture comunali</li>
+        <li>Termografia e diagnosi degli impianti fotovoltaici</li>
+        <li>Manutenzione e lavaggio dei moduli fotovoltaici</li>
+        <li>Informazioni sui bandi di efficientamento energetico</li>
+      </ul>
+      <a class="btn btn-primary btn-sm" href="#contatti" data-service="Servizi per la Pubblica Amministrazione">Contatta il nostro ufficio tecnico &rarr;</a>
+    </div>
+  </article>
+</section>
+
+<!-- ===== BONUS & INCENTIVI ===== -->
+<section class="sec bonus" id="incentivi">
+  <div class="sec-head">
+    <span class="eyebrow">Agevolazioni</span>
+    <h2>Bonus &amp; Incentivi</h2>
+    <p>Investire in energia pulita conviene: esistono agevolazioni pensate per ogni tipo di cliente. Ti aiutiamo a orientarti tra detrazioni, bandi e finanziamenti per scegliere la soluzione più vantaggiosa.</p>
+  </div>
+  <div class="bgrid">
+    <article class="bcard">
+      <div class="sticker"><svg viewBox="0 0 120 120" aria-hidden="true" focusable="false"><defs><clipPath id="cpPeople"><circle cx="60" cy="60" r="54"/></clipPath></defs>
+<circle cx="60" cy="60" r="57" fill="#dcefff" stroke="#fff" stroke-width="6"/>
+<g clip-path="url(#cpPeople)">
+<path d="M14 64L60 28l46 36v60H14z" fill="#fff" opacity=".7"/>
+<path d="M18 120V96a16 16 0 0 1 32 0v24z" fill="#23a36a"/><circle cx="34" cy="76" r="9" fill="#e8b48a"/><path d="M25 74a9 9 0 0 1 18 0 9 7 0 0 0-18 0z" fill="#5a3a26"/>
+<path d="M72 120V98a14 14 0 0 1 28 0v22z" fill="#ffc83d"/><circle cx="86" cy="80" r="8" fill="#f4d2b0"/><path d="M78 78a8 8 0 0 1 16 0z" fill="#2b2b2b"/>
+<path d="M38 120V88a22 22 0 0 1 44 0v32z" fill="#1f6fd1"/><circle cx="60" cy="64" r="12" fill="#f1c7a0"/><path d="M48 62a12 12 0 0 1 24 0 12 8 0 0 0-24 0z" fill="#3a2a1c"/>
+</g></svg></div>
+      <span class="bdg">Privati · Residenziale</span>
+      <h3>Detrazioni fiscali</h3>
+      <p>Detrazioni fiscali per riqualificazione, fotovoltaico e accumulo.</p>
+    </article>
+    <article class="bcard">
+      <div class="sticker"><svg viewBox="0 0 120 120" aria-hidden="true" focusable="false"><defs><clipPath id="cpFact"><circle cx="60" cy="60" r="54"/></clipPath></defs>
+<circle cx="60" cy="60" r="57" fill="#d5f2e3" stroke="#fff" stroke-width="6"/>
+<g clip-path="url(#cpFact)">
+<circle cx="82" cy="22" r="9" fill="#fff" opacity=".9"/><circle cx="94" cy="12" r="11" fill="#fff" opacity=".8"/>
+<rect x="76" y="28" width="11" height="40" fill="#5b6b82"/><rect x="76" y="36" width="11" height="6" fill="#e0553a"/>
+<polygon points="18,102 18,62 40,78 40,62 62,78 62,62 84,78 84,62 102,70 102,102" fill="#fff" stroke="#b7cfc2" stroke-width="2"/>
+<rect x="26" y="84" width="12" height="10" fill="#9ec3e8"/><rect x="46" y="84" width="12" height="10" fill="#9ec3e8"/><rect x="66" y="84" width="12" height="10" fill="#9ec3e8"/>
+<rect x="84" y="84" width="12" height="18" fill="#2f7fe3"/><rect x="0" y="102" width="120" height="20" fill="#7fc79a"/>
+</g></svg></div>
+      <span class="bdg">Aziende · Industrie e PMI</span>
+      <h3>Bandi e finanziamenti</h3>
+      <p>Bandi e finanziamenti regionali e nazionali per la transizione energetica.</p>
+    </article>
+    <article class="bcard">
+      <div class="sticker"><svg viewBox="0 0 120 120" aria-hidden="true" focusable="false"><defs><clipPath id="cpHall"><circle cx="60" cy="60" r="54"/></clipPath></defs>
+<circle cx="60" cy="60" r="57" fill="#ffefc4" stroke="#fff" stroke-width="6"/>
+<g clip-path="url(#cpHall)">
+<path d="M60 30V10" stroke="#8a7a52" stroke-width="2"/><rect x="60" y="10" width="7" height="9" fill="#23a36a"/><rect x="67" y="10" width="7" height="9" fill="#fff" stroke="#e2d6b4" stroke-width=".6"/><rect x="74" y="10" width="7" height="9" fill="#d23a2e"/>
+<polygon points="20,54 60,28 100,54" fill="#fff" stroke="#d3bd86" stroke-width="2"/><circle cx="60" cy="45" r="5" fill="#ffd86b"/>
+<rect x="24" y="54" width="72" height="6" fill="#f3e6bd" stroke="#d3bd86" stroke-width="1.5"/><rect x="30" y="60" width="8" height="30" fill="#fff" stroke="#d3bd86" stroke-width="1.5"/><rect x="46" y="60" width="8" height="30" fill="#fff" stroke="#d3bd86" stroke-width="1.5"/><rect x="62" y="60" width="8" height="30" fill="#fff" stroke="#d3bd86" stroke-width="1.5"/><rect x="78" y="60" width="8" height="30" fill="#fff" stroke="#d3bd86" stroke-width="1.5"/>
+<rect x="20" y="90" width="80" height="6" fill="#f3e6bd" stroke="#d3bd86" stroke-width="1.5"/><rect x="14" y="96" width="92" height="8" fill="#f3e6bd" stroke="#d3bd86" stroke-width="1.5"/>
+</g></svg></div>
+      <span class="bdg">Enti e Pubblica Amministrazione</span>
+      <h3>Bandi di efficientamento energetico</h3>
+      <p>Bandi di efficientamento energetico per edifici e strutture pubbliche.</p>
+    </article>
+  </div>
+  <div class="bonus-foot">
+    <span>Le agevolazioni cambiano nel tempo: contattaci per verificare quelle attive per il tuo intervento.</span>
+    <a href="#contatti" data-service="Bonus e incentivi">Chiedi una consulenza &rarr;</a>
+  </div>
+</section>
+
+<!-- ===== CHI SIAMO ===== -->
+<section class="sec about" id="informazioni">
+  <div class="sec-head">
+    <span class="eyebrow">Chi siamo</span>
+    <h2>Dal 2008, punto di riferimento per l'efficienza energetica di Privati, Aziende e Pubbliche Amministrazioni.</h2>
+  </div>
+  <div class="about-wrap">
+    <div class="about-text">
+      <p>Fondata nel 2008 da <strong>Michele Rivetti</strong>, Rivetti Impianti vanta quasi vent'anni di esperienza sul campo. Grazie a un impegno costante e a una visione orientata all'innovazione, l'azienda si è affermata come partner solido e affidabile per clienti privati, realtà industriali ed enti pubblici.</p>
+      <p>Ci avvaliamo di un team di tecnici altamente specializzati, in grado di seguire l'intero ciclo di vita dell'opera: dalla progettazione e sviluppo fino alla realizzazione e alla manutenzione programmata degli impianti.</p>
+      <p class="motto">Eccellenza tecnica, competenza qualificata e massima sicurezza in ogni intervento.</p>
+    </div>
+    <div class="facts">
+      <div class="fact"><span>Anno di fondazione</span><b>2008</b></div>
+      <div class="fact"><span>Esperienza</span><b>~20 anni</b></div>
+      <div class="fact wide"><span>Sede</span><b>Via Landolfo, Mondragone - CE</b></div>
+      <div class="fact wide"><span>Territorio operativo</span><b>Campania e Italia</b></div>
+      <div class="fact wide"><span>P.IVA</span><b>03428210615</b></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LAVORA CON NOI ===== -->
+<section class="sec lavora" id="lavora">
+  <div class="sec-head">
+    <span class="eyebrow">Candidature</span>
+    <h2>Lavora con noi</h2>
+    <p>Sei un tecnico, un installatore o un professionista del settore? Rivetti Impianti cerca persone competenti e motivate con cui crescere insieme: inviaci la tua candidatura.</p>
+  </div>
+  <div class="lav-wrap">
+    <div class="lav-profiles">
+      <div class="lprof"><div class="ico"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg></div><div><b>Tecnici</b><span>Impiantisti e specialisti di fotovoltaico e termoidraulica</span></div></div>
+      <div class="lprof"><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h4M7 14h10"/></svg></div><div><b>Installatori</b><span>Squadre e singoli installatori, per cantieri residenziali e industriali</span></div></div>
+      <div class="lprof"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l9 4-9 4-9-4z"/><path d="M7 10v5c0 1.5 2.2 3 5 3s5-1.5 5-3v-5"/></svg></div><div><b>Professionisti</b><span>Progettisti, ingegneri, periti e consulenti tecnici</span></div></div>
+    </div>
+    <div>
+      <p style="color:var(--ink2);font-size:1.03rem">Scrivici presentandoti e allega il tuo curriculum: valuteremo ogni candidatura e ti ricontatteremo se il tuo profilo è in linea con le nostre esigenze.</p>
+      <div class="lav-cta">
+        <a class="btn btn-primary" id="jobMail" href="mailto:rivettiimpianti@gmail.com">Invia la tua candidatura &rarr;</a>
+      </div>
+      <p class="lav-mail">Candidature a: <a href="mailto:rivettiimpianti@gmail.com">rivettiimpianti@gmail.com</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTATTI / PREVENTIVO ===== -->
+<section class="sec contact" id="contatti">
+  <div class="sec-head">
+    <span class="eyebrow">Contatti</span>
+    <h2>Richiedi un preventivo o un sopralluogo</h2>
+    <p>Chiamaci, scrivici su WhatsApp o compila il modulo: ti ricontatteremo per un sopralluogo e un preventivo dettagliato.</p>
+  </div>
+  <div class="contact-wrap">
+    <div>
+      <div class="phone-cards" id="phoneCards"><noscript><p>Tel. 353 343 7800 · 330 348 700 · 327 878 1998</p></noscript></div>
+      <ul class="info-list">
+        <li><div class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div><div><b>Email</b><a href="mailto:rivettiimpianti@gmail.com">rivettiimpianti@gmail.com</a></div></li>
+        <li><div class="ico"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><div><b>PEC</b><a href="mailto:rmimpiantisas@pec.it">rmimpiantisas@pec.it</a></div></li>
+        <li><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div><div><b>Sede</b><span>Via Landolfo, Mondragone (CE) — Campania</span></div></li>
+        <li><div class="ico"><svg viewBox="0 0 24 24"><path d="M7 3h10v18l-2.5-1.5L12 21l-2.5-1.5L7 21z"/><path d="M10 8h4M10 12h4"/></svg></div><div><b>P.IVA / Codice Fiscale</b><span>03428210615</span></div></li>
+      </ul>
+    </div>
+
+    <form id="quoteForm" novalidate>
+      <div class="field"><label for="nome">Nome e cognome *</label><input id="nome" name="nome" type="text" autocomplete="name" required></div>
+      <div class="field"><label for="tel">Telefono *</label><input id="tel" name="telefono" type="tel" autocomplete="tel" inputmode="tel" required></div>
+      <div class="field"><label for="email">Email *</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+      <div class="field">
+        <label for="servizio">Servizio richiesto *</label>
+        <select id="servizio" name="servizio" required>
+          <option value="" disabled selected>Seleziona…</option>
+          <optgroup label="Privati / Residenziale">
+            <option>Fotovoltaico domestico</option>
+            <option>Sistema di accumulo</option>
+            <option>Termoidraulica e Climatizzazione</option>
+            <option>Manutenzione ordinaria e straordinaria</option>
+            <option>Lavaggio moduli fotovoltaici</option>
+            <option>Termografia impianti fotovoltaici</option>
+          </optgroup>
+          <optgroup label="Imprese / Industriale">
+            <option>Fotovoltaico Utility Scale</option>
+            <option>Termografia impianti fotovoltaici (impresa)</option>
+            <option>Gestione impianti termici</option>
+            <option>Lavaggio moduli fotovoltaici (impresa)</option>
+          </optgroup>
+          <optgroup label="Pubblica Amministrazione">
+            <option>Servizi per la Pubblica Amministrazione</option>
+          </optgroup>
+          <optgroup label="Altro">
+            <option>Bonus e incentivi</option>
+            <option>Sopralluogo</option>
+            <option>Altro</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="field full"><label for="msg">Messaggio</label><textarea id="msg" name="messaggio" placeholder="Località dell'intervento, tipo di immobile, tempistiche…"></textarea></div>
+      <div class="field full hp" aria-hidden="true"><label>Non compilare<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+      <div class="field full check">
+        <input id="privacy" type="checkbox" name="privacy" required>
+        <label for="privacy">Ho letto l'<a href="privacy.html" target="_blank" rel="noopener">informativa sulla privacy</a> e acconsento al trattamento dei dati per essere ricontattato. *</label>
+      </div>
+      <button class="btn btn-primary full" type="submit" id="sendBtn">Invia richiesta &rarr;</button>
+      <p class="form-msg full" id="formMsg" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ===== COSA DICONO DI NOI ===== -->
+<section class="sec reviews" id="recensioni">
+  <div class="sec-head">
+    <span class="eyebrow">Recensioni</span>
+    <h2>Cosa dicono di noi</h2>
+    <p>La fiducia dei nostri clienti è il motore del nostro lavoro quotidiano. Ogni recensione rappresenta per noi uno stimolo concreto al miglioramento continuo e alla trasparenza.</p>
+  </div>
+  <div class="rev-grid" id="revGrid"></div>
+  <div class="rev-empty" id="revEmpty" hidden>Le testimonianze dei nostri clienti saranno pubblicate in questa sezione a seguito di un accurato processo di verifica della qualità del servizio erogato.</div>
+  <div class="invite">
+    <div><h3>Hai scelto Rivetti Impianti?</h3><p>Condividi la tua esperienza con la nostra squadra. Il tuo feedback ci aiuta a crescere e orienta chi cerca un partner affidabile per l'energia e l'efficienza.</p></div>
+    <a class="btn btn-light" href="recensione.html">Lascia una recensione &rarr;</a>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-grid">
+    <div>
+      <a href="#home" class="brand" aria-label="Rivetti Impianti — Technical Engineering">
+        <img src="assets/logo-rivetti-dark.png" alt="Rivetti Impianti – Technical Engineering" onerror="this.parentNode.classList.add('nologo')">
+        <span class="brand-fallback"><b>RIVETTI <em>IMPIANTI</em></b><small>TECHNICAL ENGINEERING</small></span>
+      </a>
+      <p>Dal 2008 costruiamo l’energia del Futuro.<br>Al servizio di Privati, Aziende e Pubbliche Amministrazioni.</p>
+    </div>
+    <div>
+      <h4>Azienda</h4>
+      <p>Rivetti Impianti — Technical Engineering</p>
+      <p>Via Landolfo, Mondragone (CE) — Campania</p>
+      <p>P.IVA / C.F. 03428210615</p>
+      <a href="mailto:rivettiimpianti@gmail.com">rivettiimpianti@gmail.com</a>
+      <a href="mailto:rmimpiantisas@pec.it">PEC: rmimpiantisas@pec.it</a>
+    </div>
+    <div>
+      <h4>Telefono &amp; WhatsApp</h4>
+      <div id="footPhones"></div>
+    </div>
+    <div>
+      <h4>Navigazione</h4>
+      <a href="#servizi">Servizi</a><a href="#incentivi">Bonus &amp; Incentivi</a><a href="#informazioni">Chi siamo</a><a href="#lavora">Lavora con noi</a><a href="#contatti">Contatti</a><a href="#recensioni">Cosa dicono di noi</a>
+    </div>
+  </div>
+  <div class="copy">
+    <span>© <span id="y"></span> Rivetti Impianti — P.IVA 03428210615 — Tutti i diritti riservati</span>
+    <span class="legal"><a href="privacy.html">Privacy Policy</a> · <a href="cookie.html">Cookie Policy</a></span>
+  </div>
+</footer>
+
+<script src="ri.js"></script>
+<script src="recensioni.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/globe.gl@2.34.4/dist/globe.gl.min.js"></script>
+<script>
+document.getElementById('y').textContent = new Date().getFullYear();
+const esc = RI.esc;
+
+/* =====================================================
+   CONTATTI — unica fonte dei dati: modifica qui i numeri
+   Ogni numero ha il proprio pulsante Chiama e il proprio pulsante WhatsApp.
+   ===================================================== */
+const PHONES = [
+  '353 343 7800',
+  '330 348 700',
+  '327 878 1998'
+];
+const WA_MAIN = '327 878 1998';   // numero del pulsante WhatsApp nella hero
+const WA_TEXT = 'Salve, ho visitato il vostro sito e avrei bisogno di informazioni, grazie.';
+const digits = n => n.replace(/\D/g, '');
+const waUrl  = n => `https://wa.me/39${digits(n)}?text=${encodeURIComponent(WA_TEXT)}`;
+const telUrl = n => `tel:+39${digits(n)}`;
+const WA = '<svg class="ic"><use href="#i-wa"/></svg>', PH = '<svg class="ic"><use href="#i-ph"/></svg>';
+
+document.getElementById('footPhones').innerHTML = PHONES.map(n =>
+  `<div class="fphone"><b>${n}</b><div class="acts"><a href="${telUrl(n)}" aria-label="Chiama ${n}">${PH}Chiama</a><a class="w" href="${waUrl(n)}" target="_blank" rel="noopener" aria-label="WhatsApp ${n}">${WA}WhatsApp</a></div></div>`).join('');
+document.getElementById('jobMail').href = 'mailto:rivettiimpianti@gmail.com?subject=' + encodeURIComponent('Candidatura – Lavora con noi') +
+  '&body=' + encodeURIComponent('Buongiorno,\nmi chiamo … e mi propongo come (tecnico / installatore / professionista).\nAllego il mio curriculum.\n\nRecapiti: \nZona di residenza: \n\nGrazie.');
+document.getElementById('phoneCards').innerHTML = PHONES.map(n =>
+  `<div class="pcard"><b>${n}</b><div class="acts">
+     <a class="pill call" href="${telUrl(n)}" aria-label="Chiama ${n}">${PH}Chiama</a>
+     <a class="pill wapill" href="${waUrl(n)}" target="_blank" rel="noopener" aria-label="Scrivi su WhatsApp al ${n}">${WA}WhatsApp</a>
+   </div></div>`).join('');
+document.querySelectorAll('[data-wa-main]').forEach(a => { a.href = waUrl(WA_MAIN); });
+
+/* pulsanti "Richiedi informazioni": portano ai Contatti e preselezionano il servizio */
+document.querySelectorAll('[data-service]').forEach(a => a.addEventListener('click', () => {
+  const sel = document.getElementById('servizio'), v = a.dataset.service;
+  if ([...sel.options].some(o => o.value === v)) sel.value = v;
+}));
+
+/* ============ NAVBAR ============ */
+const head = document.getElementById('siteHead');
+const onScroll = () => head.classList.toggle('scrolled', scrollY > 30);
+onScroll(); addEventListener('scroll', onScroll, {passive:true});
+
+const burger = document.getElementById('burger'), menu = document.getElementById('menu');
+const setMenu = open => { menu.classList.toggle('open', open); burger.setAttribute('aria-expanded', open); burger.setAttribute('aria-label', open ? 'Chiudi il menu' : 'Apri il menu'); };
+burger.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+menu.addEventListener('click', e => { if (e.target.closest('a')) setMenu(false); });
+addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+const links = [...menu.querySelectorAll('a')];
+const MAP = {home:'#home', storia:'#home', servizi:'#servizi', privati:'#servizi', aziende:'#servizi', pa:'#servizi', incentivi:'#incentivi', informazioni:'#informazioni', lavora:'#lavora', contatti:'#contatti', recensioni:'#recensioni'};
+const spy = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === MAP[e.target.id]));
+}), {rootMargin:'-40% 0px -55% 0px'});
+Object.keys(MAP).forEach(id => spy.observe(document.getElementById(id)));
+
+/* ============ RECENSIONI PUBBLICATE ============
+   Le recensioni arrivano via email a rivettiimpianti@gmail.com; quelle approvate si incollano in recensioni.js. */
+(() => {
+  const grid = document.getElementById('revGrid'), empty = document.getElementById('revEmpty');
+  const list = (window.RECENSIONI_APPROVATE || []).filter(r => r && r.testo && r.nome);
+  if (!list.length) { empty.hidden = false; return; }
+  grid.innerHTML = list.map(r => `<figure class="rev">${RI.stars(r.stelle || 5)}
+    <blockquote>“${esc(r.testo)}”</blockquote>
+    <figcaption><b>${esc(r.nome)}</b><span>${esc(r.tipo || 'Cliente')}${r.data ? ' · ' + esc(r.data) : ''}</span></figcaption></figure>`).join('');
+})();
+
+/* ============ MODULO PREVENTIVO ============
+   - endpoint: inoltro email (FormSubmit) verso rivettiimpianti@gmail.com.
+     Al PRIMO invio arriva a quell'indirizzo una mail di attivazione da confermare una volta.
+   - se l'invio fallisce si apre il programma di posta con il messaggio già compilato. */
+const FORM_CONFIG = { endpoint: 'https://formsubmit.co/ajax/rivettiimpianti@gmail.com', email: 'rivettiimpianti@gmail.com' };
+const form = document.getElementById('quoteForm'), msg = document.getElementById('formMsg'), sendBtn = document.getElementById('sendBtn');
+const setMsg = (t, cls) => { msg.textContent = t; msg.className = 'form-msg ' + (cls || ''); };
+const mailtoFallback = d => {
+  const body = `Nome: ${d.nome}\nTelefono: ${d.telefono}\nEmail: ${d.email}\nServizio: ${d.servizio}\n\n${d.messaggio || ''}`;
+  location.href = `mailto:${FORM_CONFIG.email}?subject=${encodeURIComponent('Richiesta preventivo — ' + d.servizio)}&body=${encodeURIComponent(body)}`;
+};
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  if (form._honey.value) return;
+  if (!form.checkValidity()) { form.reportValidity(); setMsg('Compila i campi obbligatori.', 'err'); return; }
+  const d = Object.fromEntries(new FormData(form));
+  sendBtn.disabled = true; setMsg('Invio in corso…');
+  try {
+    const r = await fetch(FORM_CONFIG.endpoint, {
+      method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify({...d, _subject:'Richiesta preventivo dal sito — ' + d.servizio, _template:'table', _captcha:'false'})
+    });
+    if (!r.ok) throw new Error(r.status);
+    form.reset(); setMsg('Grazie! Richiesta inviata: ti ricontatteremo al più presto.', 'ok');
+  } catch {
+    setMsg('Invio automatico non riuscito: si apre la tua posta per completare la richiesta.', 'err');
+    mailtoFallback(d);
+  } finally { sendBtn.disabled = false; }
+});
+
+try {
+  if (typeof Globe === 'undefined') throw new Error('globe.gl non disponibile');
+/* =====================================================
+   GLOBO 3D — impianti fotovoltaici che alimentano la rete
+   Nota tecnica: i dati degli archi vengono impostati UNA sola volta.
+   Riassegnarli durante l'animazione riavviava il flusso e faceva "bloccare" le linee.
+   ===================================================== */
+const plants = [   // impianti fotovoltaici (sorgenti di energia)
+  {lat:41.12, lng:13.88,  name:'Rivetti Impianti · Mondragone (CE)', hq:true},
+  {lat:37.4,  lng:-5.9,   name:'Impianto fotovoltaico · Andalusia'},
+  {lat:31.0,  lng:-6.9,   name:'Impianto fotovoltaico · Marocco'},
+  {lat:24.8,  lng:55.2,   name:'Impianto fotovoltaico · Emirati'},
+  {lat:27.0,  lng:71.0,   name:'Impianto fotovoltaico · Rajasthan'},
+  {lat:40.0,  lng:96.0,   name:'Impianto fotovoltaico · Gobi'},
+  {lat:-27.5, lng:140.0,  name:'Impianto fotovoltaico · Australia'},
+  {lat:-23.9, lng:-69.1,  name:'Impianto fotovoltaico · Atacama'},
+  {lat:35.0,  lng:-116.0, name:'Impianto fotovoltaico · Mojave'},
+  {lat:-28.4, lng:21.3,   name:'Impianto fotovoltaico · Sudafrica'}
+];
+const hubs = [     // nodi della rete che ricevono energia
+  {lat:51.5,  lng:-0.1},  {lat:52.5,  lng:13.4},  {lat:45.5,  lng:9.2},   {lat:30.0,  lng:31.2},
+  {lat:-1.3,  lng:36.8},  {lat:6.5,   lng:3.4},   {lat:-26.2, lng:28.0},  {lat:28.6,  lng:77.2},
+  {lat:39.9,  lng:116.4}, {lat:35.7,  lng:139.7}, {lat:1.35,  lng:103.8}, {lat:-33.9, lng:151.2},
+  {lat:40.7,  lng:-74.0}, {lat:19.4,  lng:-99.1}, {lat:-23.5, lng:-46.6}, {lat:64.1,  lng:-21.9}
+];
+const rad = x => x * Math.PI / 180;
+const dist = (a,b) => Math.acos(Math.min(1, Math.sin(rad(a.lat))*Math.sin(rad(b.lat)) + Math.cos(rad(a.lat))*Math.cos(rad(b.lat))*Math.cos(rad(b.lng-a.lng))));
+
+/* ogni impianto alimenta i nodi più vicini (la sede ne alimenta di più); tempi e sfasamenti fissi ⇒ flusso continuo e fluido */
+const arcs = plants.flatMap((p, pi) =>
+  [...hubs].sort((a,b) => dist(p,a) - dist(p,b)).slice(0, p.hq ? 6 : 3).map((h, i) => ({
+    startLat:p.lat, startLng:p.lng, endLat:h.lat, endLng:h.lng,
+    time: 2600 + ((pi * 3 + i) % 5) * 450,
+    gap: ((pi * 7 + i * 3) % 10) / 10
+  })));
+
+const solarSVG = `<svg viewBox="0 0 32 28" aria-hidden="true">
+  <path d="M6 4h22l-4 14H2z" fill="#1e6fe6" stroke="#9fd0ff" stroke-width="1.3" stroke-linejoin="round"/>
+  <path d="M4.7 8.5H26.7M3.3 13.5H25.3M13.3 4L9.3 18M20.7 4L16.7 18" stroke="#cfe8ff" stroke-width=".7" opacity=".9"/>
+  <path d="M13 18v5M9.5 24.5h9" stroke="#bcd3ee" stroke-width="1.8" stroke-linecap="round"/></svg>`;
+
+const el = document.getElementById('globe');
+const IMG = 'https://cdn.jsdelivr.net/npm/three-globe@2.31.0/example/img/';
+
+const world = Globe({animateIn:true})(el)
+  .globeImageUrl(IMG + 'earth-blue-marble.jpg')
+  .bumpImageUrl(IMG + 'earth-topology.png')
+  .backgroundColor('rgba(0,0,0,0)')
+  .showAtmosphere(true)
+  .atmosphereColor('#5cc8ff')
+  .atmosphereAltitude(0.22)
+
+  /* nodi di rete */
+  .pointsData(hubs)
+  .pointColor(() => '#66c2ff')
+  .pointAltitude(0.012)
+  .pointRadius(0.4)
+
+  /* impianti fotovoltaici: marker con moduli blu */
+  .htmlElementsData(plants)
+  .htmlLat('lat').htmlLng('lng')
+  .htmlAltitude(0.012)
+  .htmlElement(d => {
+    const n = document.createElement('div');
+    n.className = 'pv' + (d.hq ? ' hq' : '');
+    n.title = d.name;
+    n.innerHTML = solarSVG;
+    return n;
+  })
+
+  /* onde di energia dagli impianti */
+  .ringsData(plants)
+  .ringColor(d => t => `rgba(255,210,63,${(1 - t) * (d.hq ? 1 : .8)})`)
+  .ringMaxRadius(d => d.hq ? 6 : 3.6)
+  .ringPropagationSpeed(2.2)
+  .ringRepeatPeriod(1500)
+
+  /* fili luminosi: dall'impianto (giallo) sfumano verso il blu dei nodi di rete */
+  .arcsData(arcs)
+  .arcColor(() => ['rgba(255,214,10,.98)', 'rgba(255,190,50,.9)', 'rgba(59,157,255,.95)'])
+  .arcStroke(0.45)
+  .arcCurveResolution(48)
+  .arcAltitudeAutoScale(0.42)
+  .arcDashLength(0.4)
+  .arcDashGap(0.2)
+  .arcDashInitialGap('gap')
+  .arcDashAnimateTime('time');
+
+/* i marker sul lato nascosto del globo spariscono (se supportato dalla versione) */
+if (world.htmlElementVisibilityModifier) {
+  world.htmlElementVisibilityModifier((node, visible) => { node.style.opacity = visible ? '1' : '0'; });
+}
+
+/* prestazioni: limita i pixel per non appesantire gli schermi ad alta densità */
+world.renderer().setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+
+const mat = world.globeMaterial();
+mat.color.set('#ffffff');            /* colori naturali della foto satellitare, nessuna tinta */
+mat.emissive.set('#0b2a4d');
+mat.emissiveIntensity = 0.12;
+mat.bumpScale = 4;                   /* rilievo leggero di montagne e oceani */
+
+const ctrl = world.controls();
+ctrl.autoRotate = true;
+ctrl.autoRotateSpeed = 0.55;
+ctrl.enableZoom = false;
+ctrl.enablePan = false;
+ctrl.enableDamping = true;
+
+world.pointOfView({lat:36, lng:20, altitude:2.35}, 0);
+
+function fit(){ world.width(el.clientWidth).height(el.clientHeight); }
+fit();
+new ResizeObserver(fit).observe(el);
+
+/* durante il trascinamento la rotazione automatica si ferma e poi riprende da sola */
+let t;
+el.addEventListener('pointerdown', () => { ctrl.autoRotate = false; clearTimeout(t); });
+addEventListener('pointerup', () => { clearTimeout(t); t = setTimeout(() => ctrl.autoRotate = true, 1800); });
+
+/* pausa solo quando l'hero è completamente fuori schermo */
+new IntersectionObserver(([e]) => e.isIntersecting ? world.resumeAnimation() : world.pauseAnimation(), {threshold:0}).observe(el);
+} catch (e) {
+  document.getElementById('globe').classList.add('fallback');
+}
+</script>
+</body>
+</html>

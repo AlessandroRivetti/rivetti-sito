@@ -1,0 +1,69 @@
+/* ===== Rivetti Impianti — stile condiviso (palette chiara: blu, celeste, bianco, verde) ===== */
+:root{
+  --ink:#0f2a4a; --ink2:#46607f; --white:#fff;
+  --sky:#eaf4fe; --sky2:#d8ebfc; --mint:#e5f6ed; --cream:#fff7e2; --paper:#f6faff;
+  --blue:#1f6fd1; --blue-d:#14539f; --cyan:#1aa6d8; --green:#23a36a; --green-d:#17804f; --gold:#ffc83d;
+  --navy:#0d2d58; --navy2:#0a2347; --line:#d3e2f3; --wa:#25d366; --danger:#b83227;
+  --grad:linear-gradient(90deg,#1f6fd1,#1aa6d8 55%,#23a36a);
+  --shadow:0 14px 34px -16px rgba(15,42,74,.35);
+  --pad:clamp(20px,5vw,64px);
+  --f-display:'Sora',system-ui,sans-serif; --f-body:'Inter',system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#fff;color:var(--ink);font-family:var(--f-body);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--f-display);line-height:1.2;text-wrap:balance}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+[hidden]{display:none!important}
+img{max-width:100%}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.ic{width:1em;height:1em;fill:currentColor;flex:none}
+
+/* bottoni */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 28px;border-radius:12px;border:0;cursor:pointer;
+  font:600 .95rem var(--f-display);transition:transform .25s,box-shadow .25s,background .25s,color .25s}
+.btn:hover{transform:translateY(-2px)}
+.btn[disabled]{opacity:.6;cursor:wait;transform:none}
+.btn-primary{background:linear-gradient(90deg,#1f6fd1,#1a8fc9);color:#fff;box-shadow:0 10px 26px -12px #1f6fd1}
+.btn-primary:hover{box-shadow:0 14px 30px -10px #1f6fd1}
+.btn-light{background:#fff;color:var(--blue-d);box-shadow:0 10px 26px -12px rgba(0,0,0,.45)}
+.btn-ghost{border:2px solid var(--blue);color:var(--blue-d);background:transparent}
+.btn-ghost:hover{background:var(--blue);color:#fff}
+.btn-outline-light{border:2px solid #ffffffb0;color:#fff;background:transparent}
+.btn-outline-light:hover{background:#fff;color:var(--blue-d)}
+.btn-wa{background:var(--wa);color:#04210f}
+.btn-danger{background:#fff;border:2px solid var(--danger);color:var(--danger)}
+.btn-danger:hover{background:var(--danger);color:#fff}
+.btn-sm{padding:9px 16px;font-size:.84rem;border-radius:10px}
+
+/* moduli */
+.field{display:flex;flex-direction:column;gap:6px}
+label,legend{font-size:.82rem;color:var(--ink2);font-weight:500}
+input,select,textarea{width:100%;font:inherit;color:var(--ink);background:#fff;border:1.5px solid #bfd3ea;border-radius:12px;padding:12px 14px;transition:border-color .2s,box-shadow .2s}
+select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink2) 50%),linear-gradient(135deg,var(--ink2) 50%,transparent 50%);
+  background-position:calc(100% - 20px) 50%,calc(100% - 14px) 50%;background-size:6px 6px;background-repeat:no-repeat;padding-right:38px}
+textarea{min-height:130px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--blue);box-shadow:0 0 0 4px #1f6fd126}
+.check{flex-direction:row;align-items:flex-start;gap:10px;font-size:.82rem;color:var(--ink2)}
+.check input{width:18px;height:18px;margin-top:2px;flex:none;accent-color:var(--blue)}
+.check a{color:var(--blue);text-decoration:underline}
+.hp{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
+.form-msg{font-size:.92rem;min-height:1.4em}
+.form-msg.ok{color:var(--green-d);font-weight:500}
+.form-msg.err{color:var(--danger);font-weight:500}
+
+/* stelle in sola lettura */
+.stars{color:#f5a300;letter-spacing:3px;font-size:1.05rem;white-space:nowrap}
+.stars .off{color:#c9d6e6}
+
+/* barra semplice per pagine di servizio (recensione, admin) */
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px var(--pad);background:var(--navy);color:#fff}
+.bar img{height:64px;width:auto;display:block}
+.bar a.back{color:#dbe9fb;font-size:.9rem}
+.bar a.back:hover{color:#fff}
+.fallback-logo{display:none;font:700 1.2rem var(--f-display);color:#fff}
+.fallback-logo em{font-style:normal;color:#7ac943}
+.nologo img{display:none}
+.nologo .fallback-logo{display:block}
