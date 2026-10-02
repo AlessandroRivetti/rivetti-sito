@@ -1,0 +1,7 @@
+_backup_originali/
+_backup_prima_dello_script/
+serverless/
+LEGGIMI.md
+scarica-risorse-locali.py
+*.code-search
+node_modules/

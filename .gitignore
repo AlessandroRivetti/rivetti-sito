@@ -1,2 +1,21 @@
-.vercel
-.env*
+# Segreti e configurazioni locali
+.env
+.env.*
+!.env.example
+
+# Vercel locale
+.vercel/
+
+# Dipendenze
+node_modules/
+
+# Backup e file di lavoro
+_backup_originali/
+_backup_prima_dello_script/
+serverless/
+LEGGIMI.md
+scarica-risorse-locali.py
+
+# macOS / editor
+.DS_Store
+*.code-search
