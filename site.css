@@ -127,3 +127,16 @@ body.modal-open{overflow:hidden}
   .category-title,.menu .dropdown-menu a.category-title{border-bottom-color:rgba(255,255,255,.25)}
   .menu .dropdown-menu a.category-title,.menu .dropdown-menu a.category-title:hover{color:#7fe0b0!important}
 }
+/* Regole per la visibilità e apertura del mega-menu all'hover */
+.nav-item-dropdown:hover .mega-menu,
+.nav-item-dropdown:focus-within .mega-menu,
+.has-dropdown:hover .mega-menu,
+.has-dropdown:focus-within .mega-menu,
+.dropdown:hover .dropdown-menu,
+.dropdown-3-col:hover {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateY(0) !important;
+}
