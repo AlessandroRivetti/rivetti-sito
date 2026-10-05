@@ -27,7 +27,7 @@ esc, qa = C.esc, C.qa
 # ----------------------------------------------------------------------------- pagine: metadati SEO
 PAGINE = {
     'home': dict(path='/', file='index.html',
-                 title='Impianti Fotovoltaici e Termoidraulici | Rivetti Impianti',
+                 title='Dal 2008 realizziamo sogni | Rivetti Impianti',
                  desc='Dal 2008 progettiamo, realizziamo e manteniamo impianti fotovoltaici, termoidraulici e sistemi energetici per privati, imprese ed enti pubblici.'),
     'privati': dict(path='/privati.html', file='privati.html', crumbs=[('Privati', '/privati.html')],
                     title='Fotovoltaico e Climatizzazione Casa | Rivetti Impianti',
@@ -119,7 +119,7 @@ def home():
   </div>
   <div class="hero-content">
     <div class="badge"><i aria-hidden="true"></i> Fotovoltaico · Termoidraulica · Manutenzione</div>
-    <h1>Impianti fotovoltaici e termoidraulici <span>dal 2008</span></h1>
+    <h1>Dal 2008 realizziamo sogni <span>dal 2008</span></h1>
     <p class="lead">Progettiamo, realizziamo e manteniamo impianti per abitazioni, imprese ed enti pubblici, seguendo ogni intervento dalla valutazione tecnica all&rsquo;assistenza.</p>
     <div class="cta">{C.cta_pair('home')}</div>
   </div>
