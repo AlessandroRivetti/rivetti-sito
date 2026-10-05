@@ -1,0 +1,29 @@
+COPERTINE ILLUSTRATIVE DELLE TRE MACROAREE  (immagini IA fotorealistiche — NON sono lavori eseguiti)
+
+File attesi (JPG, 1600x1000 px circa, rapporto 8:5, qualità 82-85):
+  assets/servizi/privati-hero.jpg
+  assets/servizi/imprese-hero.jpg
+  assets/servizi/pa-hero.jpg
+Se un file manca il sito mostra l'illustrazione SVG attuale. Dopo averli inseriti: python3 prepara-foto.py  e  python3 src/build.py
+(crea le versioni -480/-800/-1200/-1600 in JPG e WebP). Le stesse immagini compaiono anche nelle tre aree della Home.
+
+COME DESCRIVERLE: sono immagini illustrative dei servizi. Nel sito hanno testo alternativo generico ("Abitazione con impianto
+fotovoltaico", "Impianto fotovoltaico su copertura industriale", "Edificio pubblico con impianto fotovoltaico") e non vanno mai
+presentate come "nostro impianto", "nostra realizzazione", "lavoro eseguito" o "cantiere Rivetti". Non vanno MAI messe nelle gallerie.
+
+STILE COMUNE (stesso servizio fotografico): fotografia professionale, fotorealismo molto elevato, luce naturale, clima italiano/
+mediterraneo, colori sobri, contrasto realistico, cielo non troppo saturo, vegetazione credibile, materiali realistici, nessuna
+scritta, nessun logo, nessun elemento futuristico, nessun effetto CGI. Moduli fotovoltaici con proporzioni corrette, numero e
+disposizione credibili, strutture reali, nessun cavo o componente assurdo. Orizzontale 8:5, soggetto principale nel centro-sinistra
+(su desktop il bordo destro può essere ritagliato).
+
+PRIVATI (privati-hero.jpg): abitazione italiana contemporanea; impianto fotovoltaico realmente installabile, pannelli ben allineati
+sulla falda; riferimento discreto a pompa di calore/accumulo; luce naturale; architettura mediterranea. NO render 3D, NO pubblicità
+immobiliare, NO casa americana, NO impianto futuristico.
+IMPRESE (imprese-hero.jpg): capannone industriale o struttura produttiva reale con grande copertura fotovoltaica, proporzioni
+realistiche, componenti credibili, eventuali tecnici presenti ma secondari, contesto industriale reale.
+PA (pa-hero.jpg): edificio pubblico contemporaneo e neutro (scuola, centro pubblico, struttura collettiva), fotovoltaico integrato,
+eventualmente pensiline; contesto ordinato ma realistico. NO stemmi, bandiere, nomi di Comuni, loghi pubblici, monumenti riconoscibili.
+
+Prompt di partenza (da adattare): "Professional architectural photograph, <soggetto>, Mediterranean Italian setting, natural
+daylight, muted realistic colors, no text, no logos, photorealistic, shot on full-frame camera, 35mm, slightly overcast soft sky".

@@ -1,0 +1,9 @@
+ALCUNI DEI NOSTRI LAVORI — PUBBLICA AMMINISTRAZIONE  (solo fotografie REALI di lavori effettivamente eseguiti)
+
+Metti qui le fotografie vere (JPG, lato lungo 1600-2400 px, qualità 80-85) e descrivile in src/gallerie.py, nella lista "pa".
+Per ogni foto servono: file, alt (testo alternativo, obbligatorio), 'reale': True e 'pubblicato': True.
+Facoltativi: titolo, descrizione, categoria, ordine. Cliente, indirizzo, località e potenza compaiono solo se compilati E autorizzati.
+
+NON inserire immagini generate con IA, render, foto di internet o di lavori di altri: le copertine illustrative stanno in assets/servizi/.
+La sezione "Alcuni dei nostri lavori" compare solo con almeno 3 foto pubblicate (MIN_FOTO_GALLERIA in src/gallerie.py).
+Prima di pubblicare togli targhe, volti, indirizzi e metadati di posizione. Poi: python3 prepara-foto.py  e  python3 src/build.py

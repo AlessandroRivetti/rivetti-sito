@@ -39,4 +39,6 @@ servizi = '''<li class="has-mega">
 -            </div>
 -          </li>'''
 
-f = open('script.py', 'w')0f.write(base64.b64decode(code).decode('utf-8'))0f.close()
+f = open('script.py', 'w')
+f.write(base64.b64decode(code).decode('utf-8'))
+f.close()

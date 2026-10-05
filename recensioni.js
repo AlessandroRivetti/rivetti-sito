@@ -7,8 +7,8 @@
        testo: 'Testo della recensione, esattamente come ricevuto.' },
 
    Solo ciò che inserisci in questo elenco viene mostrato. Per rimuovere una
-   recensione cancella la sua voce. Elenco vuoto = il sito mostra il messaggio
-   il messaggio di attesa delle recensioni.
+   recensione cancella la sua voce. Elenco vuoto = la sezione recensioni, la voce
+   di menu "Cosa dicono di noi" e il link nel footer restano NASCOSTI.
    ========================================================================== */
 window.RECENSIONI_APPROVATE = [
 ];

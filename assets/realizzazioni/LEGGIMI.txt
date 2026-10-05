@@ -1,0 +1,16 @@
+FOTO DELLE REALIZZAZIONI  (solo fotografie REALI e autorizzate)
+
+Una cartella per progetto, con lo stesso nome dello "slug" scelto in src/progetti.py:
+
+  assets/realizzazioni/<slug>/principale.jpg      foto principale (obbligatoria per pubblicare)
+  assets/realizzazioni/<slug>/02.jpg, 03.jpg ...  galleria (facoltativa)
+
+Le foto possono essere orizzontali o verticali: il sito le gestisce entrambe.
+Ogni foto pubblicata ha bisogno di un testo alternativo ("alt") che descriva ciò che si vede, scritto in src/progetti.py.
+Non usare immagini prese da internet, render o foto di altri lavori.
+
+VERSIONI LEGGERE (consigliato, per caricare meno dati su telefono)
+Dal computer: python3 prepara-foto.py   (crea per ogni foto le versioni -480, -800, -1200, -1600 in JPG e WebP).
+Il sito le usa in automatico (srcset); se non esistono usa il file originale.
+Dimensioni consigliate degli originali: lato lungo 1600–2400 px, JPG qualità 80–85.
+Prima di pubblicare, togli dalle foto i dati personali (targhe, volti, indirizzi) e i metadati di posizione.

@@ -1,0 +1,5 @@
+FOTO DELL'AZIENDA  (team, sede, mezzi, attrezzature: solo foto reali e con il consenso delle persone ritratte)
+
+Nomi suggeriti:  team.jpg, sede.jpg, mezzi.jpg, attrezzature.jpg ...  (con testo alternativo scritto nel punto in cui si usano)
+Valgono le stesse regole delle realizzazioni (versioni leggere con prepara-foto.py, niente immagini prese da internet).
+Questa cartella è predisposta ma NON è ancora usata da nessuna pagina.

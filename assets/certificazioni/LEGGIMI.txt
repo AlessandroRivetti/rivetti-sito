@@ -1,0 +1,6 @@
+CERTIFICAZIONI, QUALIFICHE E LOGHI AUTORIZZATI
+
+  loghi/        loghi di enti certificatori o produttori, SOLO se autorizzati all'uso (vedi src/qualifiche.py)
+  documenti/    copie pubblicabili di attestati (PDF), solo se si decide di renderle scaricabili
+
+Non inserire nulla che non sia documentato. Questa cartella è predisposta ma NON è ancora usata da nessuna pagina.
