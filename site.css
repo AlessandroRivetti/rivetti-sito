@@ -60,7 +60,7 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--blue);box-s
 
 /* barra semplice per pagine di servizio (recensione, admin) */
 .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px var(--pad);background:var(--navy);color:#fff}
-.bar img{height:64px;width:auto;display:block}
+.bar img{height:90px;width:auto;display:block}
 .bar a.back{color:#dbe9fb;font-size:.9rem}
 .bar a.back:hover{color:#fff}
 .fallback-logo{display:none;font:700 1.2rem var(--f-display);color:#fff}
