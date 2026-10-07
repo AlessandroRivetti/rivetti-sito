@@ -281,18 +281,66 @@ body.modal-open { overflow: hidden; }
   100% { transform: scale(0.95); opacity: 0.8; }
 }
 
-/* Media Query specifica per Smartphone */
-@media (max-width: 768px) {
-  .hero-video-wrapper {
-    margin-top: 20px;
-    border-radius: 14px;
-    max-width: 100%;
+/* Media Query specifica per Smartphone */@media (max-width: 768px) {
+  /* Distanzia l'header per non far sovrapporre il logo al video */
+  .hero {
+    padding-top: 100px !important; /* Spazio sufficiente sotto la navbar fissa */
   }
-  
+
+  .hero-video-wrapper {
+    margin-top: 12px;
+    margin-bottom: 24px;
+    border-radius: 14px;
+    width: 100%;
+  }
+
+  .hero-video-container {
+    aspect-ratio: 16 / 9;
+    min-height: auto; /* Rimuove altezze fisse rigide */
+  }
+
+  /* Badge posizionato correttamente dentro il video */
   .video-badge {
-    top: 10px;
-    left: 10px;
-    padding: 6px 12px;
-    font-size: 0.72rem;
+    top: 8px;
+    left: 8px;
+    padding: 4px 10px;
+    font-size: 0.68rem;
+    border-radius: 20px;
+  }
+
+  .video-badge-dot {
+    width: 6px;
+    height: 6px;
+  }
+@media (max-width: 768px) {
+  /* Distanzia l'header per non far sovrapporre il logo al video */
+  .hero {
+    padding-top: 100px !important; /* Spazio sufficiente sotto la navbar fissa */
+  }
+
+  .hero-video-wrapper {
+    margin-top: 12px;
+    margin-bottom: 24px;
+    border-radius: 14px;
+    width: 100%;
+  }
+
+  .hero-video-container {
+    aspect-ratio: 16 / 9;
+    min-height: auto; /* Rimuove altezze fisse rigide */
+  }
+
+  /* Badge posizionato correttamente dentro il video */
+  .video-badge {
+    top: 8px;
+    left: 8px;
+    padding: 4px 10px;
+    font-size: 0.68rem;
+    border-radius: 20px;
+  }
+
+  .video-badge-dot {
+    width: 6px;
+    height: 6px;
   }
 }
