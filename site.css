@@ -196,3 +196,69 @@ body.modal-open{overflow:hidden}
     max-width: 100%;
   }
 }
+/* ===== SFONDO GEOMETRICO CHIARO & STILE BIGLIETTINO DA VISITA ===== */
+.hero, #globe-section {
+  position: relative;
+  background-color: #f0f6ff; /* Blu chiaro di fondo */
+  background-image: 
+    linear-gradient(135deg, rgba(31, 111, 209, 0.05) 0%, rgba(26, 166, 216, 0.08) 100%),
+    radial-gradient(circle at 80% 20%, rgba(130, 216, 48, 0.12) 0%, transparent 40%);
+  overflow: hidden;
+}
+
+/* Forme geometriche decorative stile logo / biglietto da visita */
+.hero::before, .hero::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Poligono azzurro e blu inclinato (Ispirato al logo RI) */
+.hero::before {
+  top: -10%;
+  left: -5%;
+  width: 45%;
+  height: 120%;
+  background: linear-gradient(135deg, rgba(31, 111, 209, 0.12), rgba(26, 166, 216, 0.05));
+  transform: skewX(-22deg);
+  border-right: 3px solid rgba(31, 111, 209, 0.2);
+}
+
+/* Poligono verde acido / dorato angolare */
+.hero::after {
+  bottom: -20%;
+  right: -8%;
+  width: 35%;
+  height: 90%;
+  background: linear-gradient(45deg, rgba(35, 163, 106, 0.15), rgba(130, 216, 48, 0.08));
+  transform: skewX(-22deg);
+  border-left: 3px solid rgba(130, 216, 48, 0.3);
+}
+
+/* ===== STILI MARKER PANNELLI FOTOVOLTAICI SUL GLOBO ===== */
+.pv-marker {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.3s ease;
+  filter: drop-shadow(0 2px 8px rgba(31, 111, 209, 0.5));
+}
+
+.pv-marker.hq {
+  width: 42px;
+  height: 42px;
+  filter: drop-shadow(0 0 12px rgba(255, 200, 61, 0.9));
+}
+
+.pv-marker:hover {
+  transform: scale(1.3);
+}
+
+/* ===== CONTENITORE GLOBO ===== */
+#globe {
+  width: 100%;
+  height: clamp(580px, 70vh, 800px);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
