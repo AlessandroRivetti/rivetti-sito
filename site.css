@@ -262,3 +262,115 @@ body.modal-open{overflow:hidden}
   position: relative;
   z-index: 1;
 }
+/* ===== RIFINITURE BRAND & GEOMETRIE (COLORI LOGO / BIGLIETTINO) ===== */
+:root {
+  --brand-blue: #1f6fd1;
+  --brand-cyan: #1aa6d8;
+  --brand-green: #23a36a;
+  --brand-lime: #82d830;  /* Verde acceso dal bigliettino */
+  --brand-dark: #0d2d58;
+}
+
+/* Sfondo Hero con geometrie oblique taglienti stile logo RI */
+.hero {
+  position: relative;
+  background: #f4f8fe;
+  overflow: hidden;
+  padding: 40px var(--pad) 60px;
+}
+
+/* Poligono decorativo sinistro (Azzurro / Blu) */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: -6%;
+  width: 40%;
+  height: 120%;
+  background: linear-gradient(135deg, rgba(31, 111, 209, 0.12), rgba(26, 166, 216, 0.04));
+  transform: skewX(-20deg);
+  border-right: 3px solid var(--brand-cyan);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Poligono decorativo destro (Verde Acido / Menta) */
+.hero::after {
+  content: "";
+  position: absolute;
+  bottom: -15%;
+  right: -5%;
+  width: 32%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(130, 216, 48, 0.12), rgba(35, 163, 106, 0.05));
+  transform: skewX(-20deg);
+  border-left: 3px solid var(--brand-lime);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===== SEZIONE VIDEO HERO ===== */
+.hero-video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  margin: 24px auto 0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px -15px rgba(13, 45, 88, 0.3);
+  border: 2px solid transparent;
+  /* Bordo sfumato con i colori del logo */
+  background: linear-gradient(#fff, #fff) padding-box,
+              linear-gradient(135deg, var(--brand-blue), var(--brand-cyan), var(--brand-lime)) border-box;
+  z-index: 1;
+}
+
+/* Video e Overlay */
+.hero-video-container {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* Ratio 16:9 */
+  background: var(--brand-dark);
+}
+
+.hero-video-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Badge dinamico sopra il video */
+.video-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: rgba(13, 45, 88, 0.85);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 99px;
+  font: 600 0.82rem var(--f-display);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 2;
+}
+
+.video-badge-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--brand-lime);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--brand-lime);
+}
+
+@media (max-width: 768px) {
+  .hero-video-wrapper {
+    margin-top: 16px;
+    border-radius: 14px;
+  }
+}
