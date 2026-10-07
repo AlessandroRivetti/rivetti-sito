@@ -61,8 +61,8 @@
 </header>
 <main id="main">
 <section class="hero" id="home">
-  <!-- VIDEO HERO DA 30 SECONDI -->
-  <div class="hero-video-wrapper">
+<!-- VIDEO HERO DA 30 SECONDI -->
+<div class="hero-video-wrapper">
     <div class="hero-video-container">
         <!-- Badge identificativo video -->
         <div class="video-badge">
@@ -70,7 +70,13 @@
             <span class="video-badge-text">SHOWREEL AZIENDALE</span>
         </div>
 
-        <video autoplay loop muted playsinline poster="assets/video-poster.jpg" class="hero-video-player">
+        <!-- Pulsante Attivazione Audio -->
+        <button id="toggleAudioBtn" class="audio-toggle-btn" type="button" aria-label="Attiva/Disattiva Audio">
+            <span id="audioIcon">🔇</span>
+            <span id="audioText">Attiva Audio</span>
+        </button>
+
+        <video id="heroVideo" autoplay loop muted playsinline poster="assets/video-poster.jpg" class="hero-video-player">
             <source src="assets/rivetti-showreel.mp4" type="video/mp4">
             Il tuo browser non supporta la riproduzione del video.
         </video>
@@ -424,3 +430,27 @@
 <script src="site.js" defer></script>
 </body>
 </html>
+<!-- SCRIPT GESTIONE AUDIO SHOWREEL -->
+    <script>
+<script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const video = document.getElementById('heroVideo');
+        const audioBtn = document.getElementById('toggleAudioBtn');
+        const audioIcon = document.getElementById('audioIcon');
+        const audioText = document.getElementById('audioText');
+
+        if (video && audioBtn) {
+          audioBtn.addEventListener('click', function () {
+            if (video.muted) {
+              video.muted = false;
+              audioIcon.textContent = '🔊';
+              audioText.textContent = 'Disattiva Audio';
+            } else {
+              video.muted = true;
+              audioIcon.textContent = '🔇';
+              audioText.textContent = 'Attiva Audio';
+            }
+          });
+        }
+      });
+    </script>
