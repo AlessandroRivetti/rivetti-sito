@@ -117,7 +117,8 @@
     ctrl.addEventListener('start', () => { ctrl.autoRotate = true; });
     ctrl.addEventListener('end', () => { ctrl.autoRotate = true; });
 
-    world.pointOfView({lat: 25, lng: 10, altitude: small ? 1.9 : 1.65}, 0);
+    // Aumentando altitude su mobile (es. a 2.45), il pianeta si rimpicciolisce ed entra tutto nello schermo dello smartphone
+world.pointOfView({lat: 25, lng: 10, altitude: small ? 2.45 : 1.65}, 0);
 
     const fit = () => world.width(host.clientWidth).height(host.clientHeight);
     fit();

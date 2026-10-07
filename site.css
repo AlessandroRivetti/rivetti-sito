@@ -192,7 +192,7 @@ body.modal-open{overflow:hidden}
 
 @media (max-width: 768px) {
   #globe, .hero-globe, .globe-container {
-    height: 380px;         /* Ridotto leggermente per evitare troppi scroll su schermi piccoli */
+    height: 360px; /* Ridotto leggermente per far rientrare perfettamente l'intero pianeta */
     max-width: 100%;
   }
 }
