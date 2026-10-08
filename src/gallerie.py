@@ -22,7 +22,7 @@ class ErroreGalleria(Exception):
 FOTO = {
     'privati': [
         {
-            'file': 'RESIDENZIALE.png',
+            'file': 'PRIVATI.png',
             'alt': 'Installazione impianto fotovoltaico residenziale',
             'titolo': 'Impianto Residenziale',
             'descrizione': 'Intervento di installazione residenziale.',
@@ -32,7 +32,7 @@ FOTO = {
     ],
     'imprese': [
         {
-            'file': 'INDUSTRIALE.png',
+            'file': 'IMPRESA.png',
             'alt': 'Installazione impianto fotovoltaico industriale',
             'titolo': 'Impianto Industriale',
             'descrizione': 'Intervento di installazione industriale.',
