@@ -5,7 +5,7 @@ Sito statico: nessuna installazione. Carica sull'hosting tutti i file della cart
 ## Pagine
 `index.html` (Home), `privati.html`, `imprese.html`, `pubblica-amministrazione.html`, `contatti.html`, `recensione.html`, `privacy.html`, `cookie.html`, `note-legali.html`, `404.html`, `sitemap.xml`, `robots.txt`.
 Le pagine **Realizzazioni** (`realizzazioni.html` e una pagina `progetto-<nome>.html` per ogni lavoro) esistono **solo se ci sono almeno 3 progetti pubblicati** in `src/progetti.py`: finché non è così non ci sono né pagine, né voce di menu o footer, né blocco in Home, né voci in sitemap.
-File condivisi: `site.css` (base e pagine legali), `pagine.css` (pagine del sito), `ri.js` (invio moduli), `site.js` (menu, finestre, filtri, modulo), `globe.js` (globo 3D, solo Home), `recensioni.js` (recensioni approvate).
+File condivisi: `site.css` (base e pagine legali), `pagine.css` (pagine del sito), `ri.js` (invio moduli), `site.js` (menu, finestre, filtri, modulo), `recensioni.js` (recensioni approvate).
 
 ## Come si modifica il sito
 I contenuti stanno in **`src/dati.py`** (dati societari, telefoni, WhatsApp, numeri, servizi, incentivi, FAQ, realizzazioni). Dopo ogni modifica:
@@ -36,7 +36,7 @@ poi apri http://localhost:8000 (la 404 su http://localhost:8000/404.html; sull'h
 Privacy e Cookie Policy (non modificate in Fase 1) descrivono questa configurazione: vedi il report di Fase 1 per i punti da aggiornare.
 
 ## Rendere il sito autonomo da Google Fonts e jsDelivr (consigliato)
-Sul tuo computer con internet: `python3 scarica-risorse-locali.py` (scarica font e libreria in `assets/`, aggiorna tutte le pagine, `globe.js` e i paragrafi di Privacy e Cookie; copia di sicurezza in `_backup_prima_dello_script/`). Se poi rigeneri le pagine con `build.py`, rilancia lo script.
+Sul tuo computer con internet: `python3 scarica-risorse-locali.py` (scarica i font in `assets/`, aggiorna tutte le pagine e i paragrafi di Privacy e Cookie; copia di sicurezza in `_backup_prima_dello_script/`). Se poi rigeneri le pagine con `build.py`, rilancia lo script.
 
 ## Sostituire FormSubmit
 Vedi `serverless/contatto.js` (funzione per Cloudflare Pages con Resend): imposta `RESEND_API_KEY`, `MAIL_FROM`, `MAIL_TO`, `ALLOWED_ORIGIN` nel pannello dell'hosting, poi cambia `FORM_ENDPOINT` in `ri.js` e aggiorna Privacy e Cookie.
@@ -46,3 +46,6 @@ Vedi `serverless/contatto.js` (funzione per Cloudflare Pages con Resend): impost
 2. Conferma dominio e "www" in `SITO['url']`, poi `python3 src/build.py`.
 3. Pagine legali: falle rivedere da un consulente.
 4. Imposta la pagina 404 e, solo dopo aver verificato gli URL indicizzati, gli eventuali redirect 301 (nessun redirect è stato creato).
+
+## Hero della Home (video showreel)
+La Hero usa `assets/rivetti-showreel.mp4` (poster: `assets/servizi/pa-hero.jpg`), con pulsante audio. Testi in `src/dati.py` (`HERO_HOME`). Copia il video in `assets/` con quel nome: finché manca, il build stampa una NOTA e la Hero mostra solo il poster. Il globo 3D è stato rimosso.

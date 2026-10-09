@@ -60,32 +60,25 @@
   </nav>
 </header>
 <main id="main">
-<section class="hero" id="home">
-  <div id="globe" class="globe">
-    <div class="globe-static"><svg viewBox="0 0 400 400" role="img" aria-label="Illustrazione di un globo terrestre con flussi di energia; il punto luminoso indica la sede di Rivetti Impianti" focusable="false">
-<defs>
-<radialGradient id="gsS" cx=".36" cy=".32" r=".85"><stop offset="0" stop-color="#9ad4ff"/><stop offset=".55" stop-color="#2a7bd0"/><stop offset="1" stop-color="#0d3a7a"/></radialGradient>
-<radialGradient id="gsG" cx=".5" cy=".5" r=".5"><stop offset=".86" stop-color="#5cc8ff" stop-opacity="0"/><stop offset="1" stop-color="#5cc8ff" stop-opacity=".5"/></radialGradient>
-<linearGradient id="gsA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd23f"/><stop offset="1" stop-color="#3b9dff"/></linearGradient>
-<radialGradient id="gsH"><stop offset="0" stop-color="#fff6b0"/><stop offset=".45" stop-color="#ffd23f"/><stop offset="1" stop-color="#ffd23f" stop-opacity="0"/></radialGradient>
-<clipPath id="gsC"><circle cx="200" cy="200" r="168"/></clipPath>
-</defs>
-<circle cx="200" cy="200" r="192" fill="url(#gsG)"/>
-<circle cx="200" cy="200" r="168" fill="url(#gsS)"/>
-<g clip-path="url(#gsC)" stroke="#fff" stroke-opacity=".22" stroke-width="1" fill="none"><ellipse cx="200" cy="200" rx="84.0" ry="168"/><ellipse cx="200" cy="200" rx="145.5" ry="168"/><line x1="200" y1="32" x2="200" y2="368"/><line x1="32" x2="368" y1="345.5" y2="345.5"/><line x1="32" x2="368" y1="284.0" y2="284.0"/><line x1="32" x2="368" y1="200.0" y2="200.0"/><line x1="32" x2="368" y1="116.0" y2="116.0"/><line x1="32" x2="368" y1="54.5" y2="54.5"/></g>
-<g clip-path="url(#gsC)"><path d="M222 150 Q181 82 120 120" stroke="url(#gsA)" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M222 150 Q168 112 95 215" stroke="url(#gsA)" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M222 150 Q256 72 270 110" stroke="url(#gsA)" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M222 150 Q267 112 292 205" stroke="url(#gsA)" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M222 150 Q205 112 168 262" stroke="url(#gsA)" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M222 150 Q246 112 250 270" stroke="url(#gsA)" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M222 150 Q191 112 140 175" stroke="url(#gsA)" stroke-width="2.2" fill="none" stroke-linecap="round"/><circle cx="120" cy="120" r="5" fill="#66c2ff"/><circle cx="120" cy="120" r="9" fill="#66c2ff" opacity=".25"/><circle cx="95" cy="215" r="5" fill="#66c2ff"/><circle cx="95" cy="215" r="9" fill="#66c2ff" opacity=".25"/><circle cx="270" cy="110" r="5" fill="#66c2ff"/><circle cx="270" cy="110" r="9" fill="#66c2ff" opacity=".25"/><circle cx="292" cy="205" r="5" fill="#66c2ff"/><circle cx="292" cy="205" r="9" fill="#66c2ff" opacity=".25"/><circle cx="168" cy="262" r="5" fill="#66c2ff"/><circle cx="168" cy="262" r="9" fill="#66c2ff" opacity=".25"/><circle cx="250" cy="270" r="5" fill="#66c2ff"/><circle cx="250" cy="270" r="9" fill="#66c2ff" opacity=".25"/><circle cx="140" cy="175" r="5" fill="#66c2ff"/><circle cx="140" cy="175" r="9" fill="#66c2ff" opacity=".25"/></g>
-<circle cx="222" cy="150" r="22" fill="url(#gsH)"/><circle cx="222" cy="150" r="6.5" fill="#fff"/>
-</svg></div>
-  </div>
-  <div class="legend" aria-hidden="true">
-    <small>Trascina per ruotare</small>
-    <span>Flussi di energia <i class="ln"></i></span>
-  </div>
-  <div class="hero-content">
-    <div class="badge"><i aria-hidden="true"></i> Fotovoltaico · Termoidraulica · Manutenzione</div>
-    <h1>Impianti fotovoltaici e termoidraulici <span>dal 2008</span></h1>
-    <p class="lead">Progettiamo, realizziamo e manteniamo impianti per abitazioni, imprese ed enti pubblici, seguendo ogni intervento dalla valutazione tecnica all&rsquo;assistenza.</p>
-    <div class="cta"><a class="btn btn-light" href="#contatti" data-service="Sopralluogo">Richiedi un sopralluogo &rarr;</a><a class="btn btn-wa" href="https://wa.me/393278781998?text=Salve%2C%20ho%20visitato%20il%20vostro%20sito%20e%20avrei%20bisogno%20di%20informazioni%2C%20grazie." target="_blank" rel="noopener"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-wa"/></svg>Parla con un tecnico</a></div>
+<!-- HERO SECTION CON VIDEO SHOWREEL -->
+<section class="hero-section" id="home">
+  <div class="hero-container">
+    <div class="hero-video-wrapper">
+      <video id="hero-video" autoplay loop muted playsinline poster="assets/servizi/pa-hero.jpg">
+        <source src="assets/rivetti-showreel.mp4" type="video/mp4">
+        Il tuo browser non supporta il tag video.
+      </video>
+      <button id="audio-toggle-btn" class="audio-btn" type="button" aria-label="Attiva audio" aria-pressed="false" data-on="Attiva audio" data-off="Disattiva audio">
+        <svg class="icon-mute" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+        <svg class="icon-unmute" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" style="display:none;"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+      </button>
+    </div>
+    <div class="hero-content">
+      <span class="hero-tag">Rivetti Impianti &bull; Technical Engineering</span>
+      <h1 class="hero-title">Dal 2008 chiudiamo circuiti e stringiamo relazioni. Grazie</h1>
+      <p class="hero-subtitle">Progettiamo, realizziamo e manteniamo impianti tecnologici per abitazioni, imprese ed enti pubblici, seguendo ogni intervento dalla valutazione tecnica all&rsquo;assistenza.</p>
+      <div class="hero-actions cta"><a class="btn btn-light" href="#contatti" data-service="Sopralluogo">Richiedi un sopralluogo &rarr;</a><a class="btn btn-wa" href="https://wa.me/393278781998?text=Salve%2C%20ho%20visitato%20il%20vostro%20sito%20e%20avrei%20bisogno%20di%20informazioni%2C%20grazie." target="_blank" rel="noopener"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-wa"/></svg>Parla con un tecnico</a></div>
+    </div>
   </div>
 </section>
 
@@ -361,6 +354,5 @@
 <script src="ri.js" defer></script>
 <script src="recensioni.js" defer></script>
 <script src="site.js" defer></script>
-<script src="globe.js" defer></script>
 </body>
 </html>

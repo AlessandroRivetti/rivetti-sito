@@ -39,6 +39,20 @@
     if (e.key === 'Escape' && menu.classList.contains('open')) { setMenu(false); burger.focus(); }
   });
 
+  /* Hero: pulsante audio del video showreel */
+  (function () {
+    const v = document.getElementById('hero-video'), b = document.getElementById('audio-toggle-btn');
+    if (!v || !b) return;
+    const set = on => {
+      v.muted = !on; b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.setAttribute('aria-label', on ? b.dataset.off : b.dataset.on);
+      b.querySelector('.icon-mute').style.display = on ? 'none' : '';
+      b.querySelector('.icon-unmute').style.display = on ? '' : 'none';
+    };
+    b.addEventListener('click', () => { const on = v.muted; set(on); if (on && v.paused) v.play().catch(() => {}); });
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) { v.removeAttribute('autoplay'); v.pause(); }
+  })();
+
   /* evidenzia la voce di menu della sezione visibile (solo Home) */
   if (page === 'home' && 'IntersectionObserver' in window) {
     const MAP = { home: 'home', numeri: 'home', servizi: 'servizi',
