@@ -348,9 +348,9 @@ HERO_HOME = dict(
 )
 
 HERO_FOTO = {
-    'privati': ('privati-hero.jpg', 'Abitazione con impianto fotovoltaico'),
-    'imprese': ('imprese-hero.jpg', 'Impianto fotovoltaico su copertura industriale'),
-    'pa': ('pa-hero.jpg', 'Edificio pubblico con impianto fotovoltaico'),
+    'privati': ('privati-hero.png', 'Abitazione con impianto fotovoltaico'),
+    'imprese': ('imprese-hero.png', 'Impianto fotovoltaico su copertura industriale'),
+    'pa': ('pa-hero.png', 'Edificio pubblico con impianto fotovoltaico'),
 }
 
 # ----------------------------------------------------------------------------- PAGINA PUBBLICA AMMINISTRAZIONE
