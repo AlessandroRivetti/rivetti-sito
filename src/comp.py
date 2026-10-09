@@ -145,6 +145,9 @@ def head(p, root_rel=True):
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{pre}site.css">
 <link rel="stylesheet" href="{pre}pagine.css">
+<link rel="icon" type="image/png" sizes="32x32" href="{pre}assets/favicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{pre}assets/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="{pre}assets/favicon.png">
 {ld}</head>
 '''
 
