@@ -41,7 +41,7 @@
 
   /* evidenzia la voce di menu della sezione visibile (solo Home) */
   if (page === 'home' && 'IntersectionObserver' in window) {
-    const MAP = { home: 'home', numeri: 'home', servizi: 'servizi', privati: 'servizi', aziende: 'servizi', pa: 'servizi',
+    const MAP = { home: 'home', numeri: 'home', servizi: 'servizi',
       incentivi: 'incentivi', informazioni: 'informazioni', lavora: 'lavora', recensioni: 'recensioni', faq: 'recensioni', contatti: 'contatti' };
     const links = $$('#menu a[data-spy]');
     const spy = new IntersectionObserver(es => es.forEach(e => {

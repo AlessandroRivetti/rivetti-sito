@@ -27,7 +27,7 @@ esc, qa = C.esc, C.qa
 # ----------------------------------------------------------------------------- pagine: metadati SEO
 PAGINE = {
     'home': dict(path='/', file='index.html',
-                 title='Dal 2008 trasmettiamo Fiducia, Trasparenza e Competenza| Rivetti Impianti',
+                 title='Impianti Fotovoltaici e Termoidraulici | Rivetti Impianti',
                  desc='Dal 2008 progettiamo, realizziamo e manteniamo impianti fotovoltaici, termoidraulici e sistemi energetici per privati, imprese ed enti pubblici.'),
     'privati': dict(path='/privati.html', file='privati.html', crumbs=[('Privati', '/privati.html')],
                     title='Fotovoltaico e Climatizzazione Casa | Rivetti Impianti',
@@ -119,7 +119,7 @@ def home():
   </div>
   <div class="hero-content">
     <div class="badge"><i aria-hidden="true"></i> Fotovoltaico · Termoidraulica · Manutenzione</div>
-    <h1>Dal 2008 trasmettiamo Fiducia, Trasparenza e Competenza <span>grazie a Voi</span></h1>
+    <h1>Impianti fotovoltaici e termoidraulici <span>dal 2008</span></h1>
     <p class="lead">Progettiamo, realizziamo e manteniamo impianti per abitazioni, imprese ed enti pubblici, seguendo ogni intervento dalla valutazione tecnica all&rsquo;assistenza.</p>
     <div class="cta">{C.cta_pair('home')}</div>
   </div>
@@ -132,34 +132,6 @@ def home():
     <a class="path p2" href="imprese.html"><div><b>Imprese</b><span>Fotovoltaico industriale, Utility Scale, O&amp;M e servizi tecnici</span></div><i aria-hidden="true">&rarr;</i></a>
     <a class="path p3" href="pubblica-amministrazione.html"><div><b>Pubblica Amministrazione</b><span>Efficienza energetica, fotovoltaico, Comunità Energetiche e gestione degli impianti</span></div><i aria-hidden="true">&rarr;</i></a>
   </div>
-</section>'''
-
-    chips = lambda items, page: '<ul class="chips-l">' + ''.join(f'<li><a href="{page}#{x["id"]}">{esc(x.get("nav") or x["titolo"])}</a></li>' for x in items) + '</ul>'
-    band_priv = f'''<section class="sec privati band" id="privati">
-  {C.sec_head('Privati · Residenziale', 'Energia e comfort per la casa', 'Fotovoltaico, accumulo, climatizzazione, solare termico e manutenzione per gestire in modo più efficiente l’energia e gli impianti dell’abitazione.')}
-  <article class="feat">
-    {C.vis(D.SERVIZI_PRIVATI[0], prefer=[D.HERO_FOTO['privati']])}
-    <div><span class="tag">I servizi per la casa</span><h3>Dalla produzione di energia alla manutenzione dell’impianto</h3>{chips(D.SERVIZI_PRIVATI, 'privati.html')}
-    <a class="btn btn-primary btn-sm" href="privati.html">Scopri le soluzioni per la tua casa &rarr;</a></div>
-  </article>
-</section>'''
-    band_imp = f'''<section class="sec aziende band" id="aziende">
-  {C.sec_head('Imprese · Industriale', 'Impianti e servizi tecnici per le imprese', 'Fotovoltaico industriale, grandi impianti e servizi O&amp;M per aziende, strutture produttive e operatori del settore.')}
-  <article class="feat">
-    {C.vis(D.SERVIZI_IMPRESE[0], prefer=[D.HERO_FOTO['imprese']])}
-    <div><span class="tag">I servizi per le imprese</span><h3>Progettazione, realizzazione e gestione di impianti industriali e di grande potenza</h3>{chips(D.SERVIZI_IMPRESE, 'imprese.html')}
-    <a class="btn btn-primary btn-sm" href="imprese.html">Scopri le soluzioni per la tua impresa &rarr;</a></div>
-  </article>
-</section>'''
-    pa = D.SERVIZI_PA
-    chips_pa = '<ul class="chips-l">' + ''.join(f'<li><a href="pubblica-amministrazione.html#{x["id"]}">{esc(x.get("nav") or x["titolo"])}</a></li>' for x in D.SERVIZI_PA_PAGINA + [D.IMPIANTO_ESISTENTE_PA]) + '</ul>'
-    band_pa = f'''<section class="sec pa band" id="pa">
-  {C.sec_head('Pubblica Amministrazione', 'Soluzioni energetiche per enti e strutture pubbliche', 'Riqualificazione energetica, fotovoltaico, Comunità Energetiche e manutenzione degli impianti, con un supporto tecnico definito sulle esigenze dell’intervento.')}
-  <article class="feat">
-    {C.vis(pa, prefer=[D.HERO_FOTO['pa']])}
-    <div><span class="tag">{esc(pa['tag'])}</span><h3>Efficienza energetica, fotovoltaico e gestione degli impianti pubblici</h3>{chips_pa}<p class="band-note">In funzione dell’intervento possono essere valutati anche incentivi, contributi e strumenti di finanziamento applicabili.</p>
-    <a class="btn btn-primary btn-sm" href="pubblica-amministrazione.html">Scopri le soluzioni per la Pubblica Amministrazione &rarr;</a></div>
-  </article>
 </section>'''
 
     about = f'''<section class="sec about" id="informazioni">
@@ -206,7 +178,7 @@ def home():
 </section>'''
 
     body = '\n\n'.join(x for x in [
-        hero, C.stats_section(), intro, band_priv, band_imp, band_pa, C.real_home_section(),
+        hero, C.stats_section(), intro, C.real_home_section(),
         C.perche_section(), C.come_section(), C.incentivi_section(), about, C.qualifiche_section(), C.marchi_section(), lavora,
         C.reviews_section(), C.faq_section('home', 'Domande frequenti', 'FAQ'),
         C.contact_section(p, 'Parliamo del tuo impianto', 'Descrivici ciò di cui hai bisogno. Puoi chiamarci, scriverci su WhatsApp oppure utilizzare il modulo: raccoglieremo le informazioni necessarie e, quando serve, organizzeremo un sopralluogo.')] if x)
