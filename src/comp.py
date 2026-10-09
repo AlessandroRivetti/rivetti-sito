@@ -251,23 +251,19 @@ def footer(p, pre=''):
     </div>
 
     <script>
-      (function() {{
-        var namespace = "rivettiimpianti.it";
-        var key = "pages_views";
-        fetch("https://api.counterapi.dev/v1/" + namespace + "/" + key + "/up")
-          .then(function(res) {{ return res.json(); }})
-          .then(function(data) {{
-            if (data && data.count) {{
-              document.getElementById("visits-count").innerText = Number(data.count).toLocaleString("it-IT");
-            }} else {{
-              document.getElementById("visits-count").innerText = "1,000+";
-            }}
-          }})
-          .catch(function() {{
-            document.getElementById("visits-count").innerText = "1,000+";
-          }});
-      }})();
-    </script>
+  (function() {{
+    fetch("https://api.counterapi.dev/v1/rivetti-impianti-sito/visits/up")
+      .then(function(res) {{ return res.json(); }})
+      .then(function(data) {{
+        if (data && data.count) {{
+          document.getElementById("visits-count").innerText = Number(data.count).toLocaleString("it-IT");
+        }}
+      }})
+      .catch(function(err) {{
+        console.log("Errore contatore:", err);
+      }});
+  }})();
+</script>
 </footer>'''
 
 
