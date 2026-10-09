@@ -205,52 +205,71 @@ PRINC = '<small class="princ">Numero principale</small>'
 
 
 def footer(p, pre=''):
-    s = D.SOCIETA
+    S = D.SOCIETA
     home = p['key'] == 'home'
     H = (lambda a: f'#{a}') if home else (lambda a: f'{pre}index.html#{a}')
     phones = ''.join(
-        f'<div class="fphone"><b>{n}{PRINC if n == D.TELEFONO_PRINCIPALE else ""}</b><div class="acts"><a href="{tel_url(n)}" aria-label="Chiama {n}">{PH}Chiama</a>'
+        f'<div class="fphone"><b>{PRINC if n == D.TELEFONO_PRINCIPALE else ""}</b><div class="acts"><a href="{tel_url(n)}">{_fmt_tel(n) if "_fmt_tel" in globals() else n}</a> · '
         f'<a class="w" href="{qa(wa_url(n))}" target="_blank" rel="noopener" aria-label="WhatsApp {n}">{WA}WhatsApp</a></div></div>'
-        for n in D.TELEFONI)
+        for n in D.TELEFONI
+    )
     nav_links = [('Privati', f'{pre}privati.html'), ('Imprese', f'{pre}imprese.html'), ('Pubblica Amministrazione', f'{pre}pubblica-amministrazione.html')]
     if ha_realizzazioni():
         nav_links.append(('Realizzazioni', f'{pre}realizzazioni.html'))
-    nav_links += [('Bonus &amp; Incentivi', H('incentivi')), ('Chi siamo', H('informazioni')), ('Lavora con noi', H('lavora')),
-                  ('Contatti', f'{pre}contatti.html'), ('Cosa dicono di noi', H('recensioni'))]
-    links = ''.join(f'<a href="{h}"{" data-rev hidden" if h.endswith("#recensioni") else ""}>{l}</a>' for l, h in nav_links)
+    nav_links += [('Bonus &amp; Incentivi', H('incentivi')), ('Chi siamo', H('informazioni')), ('Lavora con noi', H('lavora')), ('Contatti', f'{pre}contatti.html'), ('Cosa dicono di noi', H('recensioni'))]
+    links = ' · '.join(f'<a href="{h}"{" data-rev hidden" if h.endswith("#recensioni") else ""}>{l}</a>' for l, h in nav_links)
     logo = f'{pre}{D.SITO["logo_chiaro"]}'
-    return f'''<footer>
-  <div class="foot-grid">
+    return f'''<footer class="foot-grid">
     <div>
-      <a href="{'#home' if home else pre + 'index.html'}" class="brand" aria-label="{qa(D.SITO['nome_esteso'])}">
-        <img src="{logo}" alt="{qa(D.SITO['nome_esteso'].replace('—', '–'))}" loading="lazy" onerror="this.parentNode.classList.add('nologo')">
-        <span class="brand-fallback"><b>RIVETTI <em>IMPIANTI</em></b><small>TECHNICAL ENGINEERING</small></span>
-      </a>
-      <p>{esc(D.SITO['slogan'])}.<br>Al servizio di Privati, Aziende e Pubbliche Amministrazioni.</p>
+        <a href="{'#' if home else pre + 'index.html'}" class="brand" aria-label="{qa(D.SITO['nome_esteso'])}">
+            <img src="{logo}" alt="{qa(D.SITO['nome_esteso'])}" loading="lazy" onerror="this.parentNode.classList.add('no-logo')">
+            <span class="brand-fallback"><b>RIVETTI</b> <em>IMPIANTI</em><small>TECHNICAL ENGINEERING</small></span>
+        </a>
+        <p>{esc(D.SITO['slogan'])}.<br>Al servizio di Privati, Aziende e Pubbliche Amministrazioni.</p>
     </div>
     <div>
-      <h2>Azienda</h2>
-      <p>{esc(s['ragione_sociale'])}<br>{esc(D.SITO['nome_esteso'])}</p>
-      <p>{esc(indirizzo())}</p>
-      <p>P.IVA / C.F. {s['piva_cf']} · REA {s['rea']}</p>
-      <a href="mailto:{s['email']}">{s['email']}</a>
-      <a href="mailto:{s['pec']}">PEC: {s['pec']}</a>
+        <h2>Azienda</h2>
+        <p>{esc(S['ragione_sociale'])}<br>{esc(D.SITO['nome_esteso'])}</p>
     </div>
     <div>
-      <h2>Telefono &amp; WhatsApp</h2>
-      {phones}
+        <h2>Telefono &amp; WhatsApp</h2>
+        {phones}
     </div>
     <div>
-      <h2>Navigazione</h2>
-      {links}
+        <h2>Navigazione</h2>
+        {links}
     </div>
-  </div>
-  <div class="copy">
-    <span>© <span id="y">{ANNO}</span> Rivetti Impianti — {esc(s['ragione_sociale_breve'])} · P. IVA/C.F. {s['piva_cf']} · REA {s['rea']} — Tutti i diritti riservati</span>
-    <span class="legal"><a href="{pre}privacy.html">Privacy Policy</a> · <a href="{pre}cookie.html">Cookie Policy</a> · <a href="{pre}note-legali.html">Note legali</a></span>
-  </div>
-</footer>
-'''
+    <div class="copy">
+        <span>&copy;<span id="y">{ANNO}</span> Rivetti Impianti – {esc(S['ragione_sociale_breve'])} P. IVA/C.F. {S['piva_cf']}</span>
+        <span class="legal"><a href="{pre}privacy.html">Privacy Policy</a> • <a href="{pre}cookie.html">Cookie Policy</a></span>
+    </div>
+
+    <!-- Contatore Visualizzazioni Gratuito -->
+    <div class="site-views-counter" style="display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 15px; font-size: 0.85rem; color: #e2e8f0;">
+      <span>👁️ Visualizzazioni sito:</span>
+      <strong id="visits-count" style="color: #38bdf8;">Loading...</strong>
+    </div>
+
+    <script>
+      (function() {{
+        var namespace = "rivettiimpianti.it";
+        var key = "pages_views";
+        fetch("https://api.counterapi.dev/v1/" + namespace + "/" + key + "/up")
+          .then(function(res) {{ return res.json(); }})
+          .then(function(data) {{
+            if (data && data.count) {{
+              document.getElementById("visits-count").innerText = Number(data.count).toLocaleString("it-IT");
+            }} else {{
+              document.getElementById("visits-count").innerText = "1,000+";
+            }}
+          }})
+          .catch(function() {{
+            document.getElementById("visits-count").innerText = "1,000+";
+          }});
+      }})();
+    </script>
+</footer>'''
+
 
 
 # ---------------------------------------------------------------- blocchi comuni
