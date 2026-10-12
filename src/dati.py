@@ -961,11 +961,11 @@ IMPRESE_FV = {
 }
 PROMOZIONI = [
     {
-        'titolo': 'Fotovoltaico 3 kWp + Accumulo 5 kWh',
+        'titolo': 'Offerta Fotovoltaico 3 kWp + Accumulo 5 kWh',
         'badge': 'Offerta Casa',
-        'descrizione': 'Impianto fotovoltaico residenziale completo con moduli ad alta efficienza e batteria di accumulo da 5 kWh. Inclusi progettazione, installazione, pratiche burocratiche e collaudo.',
+        'descrizione': 'Impianto fotovoltaico "chiavi in mano". Inclusi progettazione, installazione, collaudo, pratiche di allaccio e GSE.',
         'prezzo': 'A partire da € 5.900 + IVA',
-        'note': 'Incentivi statali applicabili con detrazione fiscale 50%',
+        'note': 'Incentivi statali con detrazione fiscale 50%',
         'icona': '⚡'
     },
     {
