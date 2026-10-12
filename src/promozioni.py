@@ -2,10 +2,10 @@ import dati as D
 from comp import head, nav, footer, esc, qa
 
 def build():
-    p = {
-        'key': 'promozioni',
+   p = {
+        'key': 'offerte',
         'path': 'promozioni.html',
-        'title': 'Promozioni e Offerte Speciali | Rivetti Impianti',
+        'title': 'Offerte Speciali | Rivetti Impianti',
         'desc': 'Scopri tutte le offerte attive per fotovoltaico, accumulo, climatizzazione, caldaie e manutenzione impianti a Rivetti Impianti.'
     }
     

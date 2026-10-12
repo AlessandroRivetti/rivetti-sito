@@ -183,7 +183,7 @@ def nav(p, pre=''):
         f'<div class="dropdown-menu dropdown-3-col">{bon}</div></div>',
         f'<a href="{H("informazioni")}" data-spy="informazioni">Chi siamo</a>',
         f'<a href="{H("lavora")}" data-spy="lavora">Lavora con noi</a>',
-        f'<a href="{pre}promozioni.html" style="color: #22c55e; font-weight: 700;" data-spy="promozioni"{act("promozioni")}>Offerte</a>',
+        f'<a href="{pre}offerte.html" style="color: #22c55e; font-weight: 700;" data-spy="Offerte"{act("Offerte")}>Offerte</a>',
         f'<a href="{H("contatti")}" data-spy="contatti"{act("contatti")}>Contatti</a>',
         f'<a href="{H("recensioni")}" data-spy="recensioni" data-rev hidden>Cosa dicono di noi</a>',
     ]
@@ -221,7 +221,7 @@ def footer(p, pre=''):
     nav_links = [('Privati', f'{pre}privati.html'), ('Imprese', f'{pre}imprese.html'), ('Pubblica Amministrazione', f'{pre}pubblica-amministrazione.html')]
     if ha_realizzazioni():
         nav_links.append(('Realizzazioni', f'{pre}realizzazioni.html'))
-    nav_links.append(('<span style="color: #22c55e; font-weight: 600;">Promozioni</span>', f'{pre}promozioni.html'))
+    nav_links.append(('<span style="color: #22c55e; font-weight: 600;">Promozioni</span>', f'{pre}offerte.html'))
     links = ' · '.join(f'<a href="{h}"{" data-rev hidden" if h.endswith("#recensioni") else ""}>{l}</a>' for l, h in nav_links)
     logo = f'{pre}{D.SITO["logo_chiaro"]}'
     return f'''<footer class="foot-grid">
