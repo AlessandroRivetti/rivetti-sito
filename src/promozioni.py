@@ -4,6 +4,7 @@ from comp import head, nav, footer, esc, qa
 def build():
     p = {
         'key': 'promozioni',
+        'path': 'promozioni.html',
         'title': 'Promozioni e Offerte Speciali | Rivetti Impianti',
         'desc': 'Scopri tutte le offerte attive per fotovoltaico, accumulo, climatizzazione, caldaie e manutenzione impianti a Rivetti Impianti.'
     }

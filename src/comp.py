@@ -216,10 +216,11 @@ def footer(p, pre=''):
         f'<a class="w" href="{qa(wa_url(n))}" target="_blank" rel="noopener" aria-label="WhatsApp {n}">{WA}WhatsApp</a></div></div>'
         for n in D.TELEFONI
     )
-    nav_links = [('Privati', f'{pre}privati.html'), ('Imprese', f'{pre}imprese.html'), ('Pubblica Amministrazione', f'{pre}pubblica-amministrazione.html')]
+nav_links = [('Privati', f'{pre}privati.html'), ('Imprese', f'{pre}imprese.html'), ('Pubblica Amministrazione', f'{pre}pubblica-amministrazione.html')]
     if ha_realizzazioni():
         nav_links.append(('Realizzazioni', f'{pre}realizzazioni.html'))
-nav_links += [('<span style="color: #22c55e; font-weight: 600;">Promozioni</span>', f'{pre}promozioni.html'), ('&amp; Bonus &amp; Incentivi', H('incentivi')), ('Chi siamo', H('informazioni')), ('Lavora con noi', H('lavora')), ('Contatti', f'{pre}contatti.html')]    links = ' · '.join(f'<a href="{h}"{" data-rev hidden" if h.endswith("#recensioni") else ""}>{l}</a>' for l, h in nav_links)
+    nav_links.append(('<span style="color: #22c55e; font-weight: 600;">Promozioni</span>', f'{pre}promozioni.html'))
+    links = ' · '.join(f'<a href="{h}"{" data-rev hidden" if h.endswith("#recensioni") else ""}>{l}</a>' for l, h in nav_links)
     logo = f'{pre}{D.SITO["logo_chiaro"]}'
     return f'''<footer class="foot-grid">
     <div>
