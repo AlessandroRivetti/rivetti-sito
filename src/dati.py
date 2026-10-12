@@ -961,20 +961,28 @@ IMPRESE_FV = {
 }
 PROMOZIONI = [
     {
-        'titolo': 'Offerta Fotovoltaico 3 kWp + Accumulo 5 kWh',
-        'badge': 'Offerta Casa',
+        'titolo': 'Fotovoltaico 3 kWp + Accumulo da 5 kWh',
+        'badge': 'Un buon inizio!',
         'descrizione': 'Impianto fotovoltaico "chiavi in mano". Inclusi progettazione, installazione, collaudo, pratiche di allaccio e GSE.',
-        'prezzo': 'A partire da € 5.900 + IVA',
-        'note': 'Incentivi statali con detrazione fiscale 50%',
+        'prezzo': '€ 5.500 + IVA',
+        'note': 'Incentivi statali con detrazione fiscale del 50%, da applicare',
         'icona': '⚡'
     },
     {
-        'titolo': 'Fotovoltaico 6 kWp + Accumulo 10 kWh',
-        'badge': 'Più Venduto',
+        'titolo': 'Fotovoltaico 6 kWp + Accumulo da 10 kWh',
+        'badge': 'Più Venduto!',
         'descrizione': 'Soluzione ideale per la massima indipendenza energetica della tua abitazione. Sistema inverter ibrido e accumulo modulare da 10 kWh.',
         'prezzo': 'A partire da € 8.900 + IVA',
         'note': 'Possibilità di finanziamento a tasso agevolato',
         'icona': '🔋'
+    },
+    {
+        'titolo': 'Fotovoltaico 9 kWp + Accumulo da 15 kWh',
+        'badge': 'Per una maggiore efficienza',
+        'descrizione': 'Soluzione ideale per la massima indipendenza energetica della tua abitazione. Sistema inverter ibrido e accumulo modulare da 10 kWh.',
+        'prezzo': 'A partire da € 8.900 + IVA',
+        'note': 'Possibilità di finanziamento a tasso agevolato',
+        'icona': '📊'
     },
     {
         'titolo': 'Climatizzazione & Pompe di Calore',

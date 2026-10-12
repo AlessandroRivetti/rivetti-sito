@@ -4,7 +4,7 @@ from comp import head, nav, footer, esc, qa
 def build():
     p = {
         'key': 'offerte',
-        'path': 'promozioni.html',
+        'path': 'offerte.html',
         'title': 'Offerte Speciali | Rivetti Impianti',
         'desc': 'Scopri tutte le offerte attive per fotovoltaico, accumulo, climatizzazione, caldaie e manutenzione impianti a Rivetti Impianti.'
     }
@@ -51,6 +51,6 @@ def build():
 </html>
 '''
     
-    with open('promozioni.html', 'w', encoding='utf-8') as f:
+    with open('offerte.html', 'w', encoding='utf-8') as f:
         f.write(content)
-    print("Promozioni.html generato con successo.")
+    print("offerte.html generato con successo.")
