@@ -183,7 +183,7 @@ def nav(p, pre=''):
         f'<div class="dropdown-menu dropdown-3-col">{bon}</div></div>',
         f'<a href="{H("informazioni")}" data-spy="informazioni">Chi siamo</a>',
         f'<a href="{H("lavora")}" data-spy="lavora">Lavora con noi</a>',
-        f'<a href="{H("promozioni.html")}" style="color: #22c55e; font-weight: 700;" data-spy="promozioni"{act("promozioni")}>Offerte</a>',
+        f'<a href="{pre}promozioni.html" style="color: #22c55e; font-weight: 700;" data-spy="promozioni"{act("promozioni")}>Offerte</a>',
         f'<a href="{H("contatti")}" data-spy="contatti"{act("contatti")}>Contatti</a>',
         f'<a href="{H("recensioni")}" data-spy="recensioni" data-rev hidden>Cosa dicono di noi</a>',
     ]
