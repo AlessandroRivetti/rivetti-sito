@@ -216,7 +216,7 @@ def footer(p, pre=''):
         f'<a class="w" href="{qa(wa_url(n))}" target="_blank" rel="noopener" aria-label="WhatsApp {n}">{WA}WhatsApp</a></div></div>'
         for n in D.TELEFONI
     )
-nav_links = [('Privati', f'{pre}privati.html'), ('Imprese', f'{pre}imprese.html'), ('Pubblica Amministrazione', f'{pre}pubblica-amministrazione.html')]
+    nav_links = [('Privati', f'{pre}privati.html'), ('Imprese', f'{pre}imprese.html'), ('Pubblica Amministrazione', f'{pre}pubblica-amministrazione.html')]
     if ha_realizzazioni():
         nav_links.append(('Realizzazioni', f'{pre}realizzazioni.html'))
     nav_links.append(('<span style="color: #22c55e; font-weight: 600;">Promozioni</span>', f'{pre}promozioni.html'))
@@ -224,35 +224,28 @@ nav_links = [('Privati', f'{pre}privati.html'), ('Imprese', f'{pre}imprese.html'
     logo = f'{pre}{D.SITO["logo_chiaro"]}'
     return f'''<footer class="foot-grid">
     <div>
-        <a href="{'#' if home else pre + 'index.html'}" class="brand" aria-label="{qa(D.SITO['nome_esteso'])}">
-            <img src="{logo}" alt="{qa(D.SITO['nome_esteso'])}" loading="lazy" onerror="this.parentNode.classList.add('no-logo')">
-            <span class="brand-fallback"><b>RIVETTI</b> <em>IMPIANTI</em><small>TECHNICAL ENGINEERING</small></span>
-        </a>
-        <p>{esc(D.SITO['slogan'])}.<br>Al servizio di Privati, Aziende e Pubbliche Amministrazioni.</p>
+      <a href="{"#" if home else pre + "index.html"}" class="brand" aria-label="{qa(D.SITO['nome_esteso'])}">
+        <img src="{logo}" alt="{qa(D.SITO['nome_esteso'])}" loading="lazy" onerror="this.parentNode.classList.add('no-logo')">
+        <span class="brand-fallback"><b>RIVETTI</b> <em>IMPIANTI</em><small>TECHNICAL ENGINEERING</small></span>
+      </a>
+      <p>{esc(D.SITO['slogan'])}.<br>Al servizio di Privati, Aziende e Pubbliche Amministrazioni.</p>
     </div>
     <div>
-        <h2>Azienda</h2>
-        <p>{esc(S['ragione_sociale'])}<br>{esc(D.SITO['nome_esteso'])}</p>
+      <h2>Azienda</h2>
+      <p>{esc(D.SITO.get('ragione_sociale', D.SITO['nome_esteso']))}<br>{esc(D.SITO['nome_esteso'])}</p>
     </div>
     <div>
-        <h2>Telefono &amp; WhatsApp</h2>
-        {phones}
+      <h2>Telefono &amp; WhatsApp</h2>
+      {phones}
     </div>
     <div>
-        <h2>Navigazione</h2>
-        {links}
+      <h2>Esplora</h2>
+      <p>{links}</p>
     </div>
-    <div class="copy">
-        <span>&copy;<span id="y">{ANNO}</span> Rivetti Impianti – {esc(S['ragione_sociale_breve'])} P. IVA/C.F. {S['piva_cf']}</span>
-        <span class="legal"><a href="{pre}privacy.html">Privacy Policy</a> • <a href="{pre}cookie.html">Cookie Policy</a></span>
+    <div class="fcopy">
+      <p>&copy; 2026 {esc(D.SITO.get('ragione_sociale', D.SITO['nome_esteso']))} · Tutti i diritti riservati.</p>
+      <p class="counter-text"><span id="visits-count">...</span> visite totali</p>
     </div>
-
-   <!-- Indicatore Visualizzazioni Mensili -->
-    <div class="site-views-counter" style="display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 15px; font-size: 0.85rem; color: #e2e8f0;">
-      <span>👁️ Trafico web:</span>
-      <strong style="color: #38bdf8;">+20.000 visualizzazioni al mese</strong>
-    </div>
-
     <script>
       (function() {{
         fetch("https://api.counterapi.dev/v1/rivetti-impianti-official/visite/up")
@@ -265,15 +258,11 @@ nav_links = [('Privati', f'{pre}privati.html'), ('Imprese', f'{pre}imprese.html'
             }}
           }})
           .catch(function(err) {{
-            // In caso di blocco di rete, mostra un valore dinamico base
             document.getElementById("visits-count").innerText = "124";
           }});
       }})();
     </script>
 </footer>'''
-
-
-
 # ---------------------------------------------------------------- blocchi comuni
 def sec_head(eyebrow, titolo, testo=None, h='h2', extra=''):
     t = f'<p>{testo}</p>' if testo else ''
