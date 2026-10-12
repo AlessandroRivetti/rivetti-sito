@@ -179,14 +179,15 @@ def nav(p, pre=''):
     if ha_realizzazioni():
         items.append(f'<a href="{pre}realizzazioni.html"{act("realizzazioni")}{cur("realizzazioni")}>Realizzazioni</a>')
     items += [
-        f'<div class="dropdown"><a class="dd-trigger" href="{H("incentivi")}" aria-haspopup="true" aria-expanded="false" data-spy="incentivi">Bonus &amp; Incentivi &#9662;</a>'
+        f'<div class="dropdown"><a class="dd-trigger" href="{H("incentivi")}" aria-haspopup="true" aria-expanded="false" data-spy="incentivi">Bonus &amp; Incentivi</a>',
         f'<div class="dropdown-menu dropdown-3-col">{bon}</div></div>',
         f'<a href="{H("informazioni")}" data-spy="informazioni">Chi siamo</a>',
         f'<a href="{H("lavora")}" data-spy="lavora">Lavora con noi</a>',
-        f'a href="{H("promozioni.html")}" data-spy="promozioni"{act("promozioni")}>Promozioni</a>',
-        f'<a href="{"#contatti" if home else pre + "contatti.html"}" data-spy="contatti"{act("contatti")}{cur("contatti")}>Contatti</a>',
+        f'<a href="{H("promozioni.html")}" data-spy="promozioni"{act("promozioni")}>Promozioni</a>',
+        f'<a href="{H("contatti")}" if home else pre + "contatti.html" data-spy="contatti"{act("contatti")}>Contatti</a>',
         f'<a href="{H("recensioni")}" data-spy="recensioni" data-rev hidden>Cosa dicono di noi</a>',
     ]
+
     brand_href = '#home' if home else f'{pre}index.html'
     logo = f'{pre}{D.SITO["logo_chiaro"]}'
     return f'''<a class="skip" href="#main">Vai ai contenuti</a>
