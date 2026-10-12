@@ -178,7 +178,7 @@ def nav(p, pre=''):
     ]
     if ha_realizzazioni():
         items.append(f'<a href="{pre}realizzazioni.html"{act("realizzazioni")}{cur("realizzazioni")}>Realizzazioni</a>')
-   items += [
+    items += [
         f'<div class="dropdown"><a class="dd-trigger" href="{H("incentivi")}" aria-haspopup="true" aria-expanded="false" data-spy="incentivi">Bonus &amp; Incentivi</a>',
         f'<div class="dropdown-menu dropdown-3-col">{bon}</div></div>',
         f'<a href="{H("informazioni")}" data-spy="informazioni">Chi siamo</a>',
