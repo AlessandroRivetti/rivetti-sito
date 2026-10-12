@@ -18,6 +18,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import dati as D
 import gallerie as G
 import progetti as P
+import promozioni
 import comp as C
 from art import ART, DEFS
 
@@ -44,6 +45,9 @@ PAGINE = {
     'contatti': dict(path='/contatti.html', file='contatti.html', crumbs=[('Contatti', '/contatti.html')],
                      title='Contatti e Richiesta di Sopralluogo | Rivetti Impianti',
                      desc='Contatta Rivetti Impianti: telefono, WhatsApp, email e modulo per richiedere un sopralluogo o un preventivo.'),
+                     'promozioni': dict(path='promozioni.html', file='promozioni.html', crumbs=[('Promozioni', 'promozioni.html')],
+        title='Promozioni e Offerte Speciali | Rivetti Impianti',
+        desc='Scopri tutte le offerte attive per fotovoltaico, accumulo, climatizzazione, caldaie e manutenzione impianti.'),
     '404': dict(path='/404.html', file='404.html', title='Pagina non trovata | Rivetti Impianti',
                 desc='La pagina richiesta non esiste o è stata spostata.', noindex=True),
 }
@@ -64,6 +68,9 @@ def pagina(key):
         schema = [C.schema_briciole(p)]
     p['schema'] = schema
     return p
+# ... (codice esistente del ciclo di build) ...
+import promozioni
+promozioni.build()
 
 
 def doc(p, body, dialoghi=True, pre='', scripts=('ri.js', 'site.js')):

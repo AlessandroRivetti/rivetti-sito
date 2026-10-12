@@ -959,3 +959,45 @@ IMPRESE_FV = {
                       'Prima di intervenire è necessario verificare lo stato dell’impianto, le caratteristiche dei componenti esistenti e gli obiettivi dell’intervento.'],
     },
 }
+PROMOZIONI = [
+    {
+        'titolo': 'Fotovoltaico 3 kWp + Accumulo 5 kWh',
+        'badge': 'Offerta Casa',
+        'descrizione': 'Impianto fotovoltaico residenziale completo con moduli ad alta efficienza e batteria di accumulo da 5 kWh. Inclusi progettazione, installazione, pratiche burocratiche e collaudo.',
+        'prezzo': 'A partire da € 5.900 + IVA',
+        'note': 'Incentivi statali applicabili con detrazione fiscale 50%',
+        'icona': '⚡'
+    },
+    {
+        'titolo': 'Fotovoltaico 6 kWp + Accumulo 10 kWh',
+        'badge': 'Più Venduto',
+        'descrizione': 'Soluzione ideale per la massima indipendenza energetica della tua abitazione. Sistema inverter ibrido e accumulo modulare da 10 kWh.',
+        'prezzo': 'A partire da € 8.900 + IVA',
+        'note': 'Possibilità di finanziamento a tasso agevolato',
+        'icona': '🔋'
+    },
+    {
+        'titolo': 'Climatizzazione & Pompe di Calore',
+        'badge': 'Comfort Tutto l\'Anno',
+        'descrizione': 'Installazione condizionatori inverter ad alta efficienza energetica (A+++) con funzione di riscaldamento e raffrescamento rapido.',
+        'prezzo': 'A partire da € 890 + IVA',
+        'note': 'Incluso primo controllo e sanificazione',
+        'icona': '❄️'
+    },
+    {
+        'titolo': 'Sostituzione Caldaia a Condensazione',
+        'badge': 'Risparmio Gas',
+        'descrizione': 'Sostituzione vecchia caldaia con modello a condensazione di ultima generazione, valvole termostatiche e lavaggio impianto termico incluso.',
+        'prezzo': 'A partire da € 1.850 + IVA',
+        'note': 'Rendimento termico elevato e consumi ridotti fino al 30%',
+        'icona': '🔥'
+    },
+    {
+        'titolo': 'Lavaggio & Check-Up Impianto Fotovoltaico',
+        'badge': 'Manutenzione',
+        'descrizione': 'Pulizia professionale dei moduli fotovoltaici con acqua demineralizzata, ispezione termografica e verifica parametri inverter per ripristinare il 100% della produzione.',
+        'prezzo': 'A partire da € 150 + IVA',
+        'note': 'Consigliato almeno una volta all\'anno',
+        'icona': '🧼'
+    }
+]

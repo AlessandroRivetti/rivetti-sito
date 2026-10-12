@@ -219,8 +219,7 @@ def footer(p, pre=''):
     nav_links = [('Privati', f'{pre}privati.html'), ('Imprese', f'{pre}imprese.html'), ('Pubblica Amministrazione', f'{pre}pubblica-amministrazione.html')]
     if ha_realizzazioni():
         nav_links.append(('Realizzazioni', f'{pre}realizzazioni.html'))
-    nav_links += [('Bonus &amp; Incentivi', H('incentivi')), ('Chi siamo', H('informazioni')), ('Lavora con noi', H('lavora')), ('Contatti', f'{pre}contatti.html'), ('Cosa dicono di noi', H('recensioni'))]
-    links = ' · '.join(f'<a href="{h}"{" data-rev hidden" if h.endswith("#recensioni") else ""}>{l}</a>' for l, h in nav_links)
+nav_links += [('<span style="color: #22c55e; font-weight: 600;">Promozioni</span>', f'{pre}promozioni.html'), ('&amp; Bonus &amp; Incentivi', H('incentivi')), ('Chi siamo', H('informazioni')), ('Lavora con noi', H('lavora')), ('Contatti', f'{pre}contatti.html')]    links = ' · '.join(f'<a href="{h}"{" data-rev hidden" if h.endswith("#recensioni") else ""}>{l}</a>' for l, h in nav_links)
     logo = f'{pre}{D.SITO["logo_chiaro"]}'
     return f'''<footer class="foot-grid">
     <div>
