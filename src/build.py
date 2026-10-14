@@ -118,24 +118,56 @@ def home():
   </div>
 </section>'''
 
-    about = f'''<section class="sec about" id="informazioni">
-  <div class="sec-head">
-    <span class="eyebrow">Chi siamo</span>
-    <h2>Dal 2008 lavoriamo su impianti energetici per privati, imprese ed enti pubblici</h2>
-  </div>
-  <div class="about-wrap">
-    <div class="about-text">
-      <p>Rivetti Impianti nasce nel 2008 per iniziativa di <strong>{D.SOCIETA['fondatore']}</strong>. Nel tempo l’attività si è sviluppata nel fotovoltaico, nella termoidraulica e nei servizi di manutenzione, seguendo interventi di diversa tipologia e dimensione.</p>
-      <p>Il lavoro viene seguito da un team tecnico che coordina le fasi di valutazione, progettazione, realizzazione e manutenzione, coinvolgendo quando necessario imprese partner per le attività complementari.</p>
-      <p class="motto">Competenza tecnica, continuità del servizio e attenzione alla sicurezza.</p>
-    </div>
-    <div class="facts">
-      <div class="fact"><span>Anno di fondazione</span><b>{D.SITO['anno_inizio']}</b></div>
-      <div class="fact wide"><span>Competenze</span><b>Fotovoltaico, termoidraulica e manutenzione</b></div>
-      <div class="fact wide"><span>Sede</span><b>{esc(C.indirizzo())}</b></div>
-      <div class="fact wide"><span>P.IVA</span><b>{D.SOCIETA['piva_cf']}</b></div>
-    </div>
-  </div>
+   about = f'''<section class="sec about" id="informazioni">
+<div class="sec-head">
+<span class="eyebrow">Chi siamo</span>
+<h2>Dal 2008, una storia di passione, radici e futuro energetico</h2>
+</div>
+<div class="about-wrap">
+<div class="about-text">
+<p style="font-weight: 700; font-size: 1.15rem; color: #16a34a; margin-bottom: 15px;">Una storia fatta di energia, coraggio e visione.</p>
+
+<p>Ogni grande storia nasce da una scintilla. La nostra, nel 2008, è diventata una promessa: trasformare il lavoro in valore, le competenze in soluzioni e l'energia in futuro.</p>
+
+<p>Ci sono storie che non nascono negli uffici, né tra le righe di un progetto. Nascono sul campo, dove le mani costruiscono, la fatica insegna, gli imprevisti mettono alla prova e ogni dettaglio fa la differenza. Nascono dalla determinazione di chi non cerca scorciatoie, ma sceglie ogni giorno la strada più difficile: quella fatta di impegno, precisione e responsabilità.</p>
+
+<p>È da questa visione che, nel 2008, <strong>Michele Rivetti</strong> dà vita a Rivetti Impianti.</p>
+
+<p>All'inizio c'è una convinzione semplice, ma destinata a diventare il fondamento di tutto: un lavoro ben fatto non è soltanto un risultato da consegnare. È una promessa da mantenere. Una responsabilità verso chi si affida a noi. Un nome, quello della nostra famiglia e della nostra azienda, da difendere attraverso ogni scelta, ogni installazione, ogni intervento.</p>
+
+<p>Gli anni passano. Le sfide cambiano. Le tecnologie evolvono. E noi scegliamo di evolvere con loro. Senza dimenticare da dove siamo partiti. Senza smettere di guardare avanti.</p>
+
+<p>Con costanza, studio e investimenti, <strong>Rivetti Impianti</strong> amplia le proprie competenze e consolida la propria presenza nel settore energetico, sviluppando soluzioni che spaziano dagli impianti fotovoltaici ai sistemi di accumulo, dalla termoidraulica ai servizi di manutenzione. Ogni nuova sfida diventa un'occasione per crescere. Ogni esperienza aggiunge conoscenza. Ogni progetto rafforza una convinzione: l'eccellenza non si improvvisa, si costruisce giorno dopo giorno.</p>
+
+<p>Ma crescere, per noi, non significa soltanto realizzare impianti più complessi o affrontare progetti più ambiziosi. Significa essere pronti ad assumerci responsabilità maggiori. Significa investire nelle persone, affinare i processi, scegliere soluzioni affidabili e mantenere sempre al centro ciò che conta davvero: la qualità del lavoro, la sicurezza degli interventi e la fiducia dei nostri clienti.</p>
+
+<p>Oggi lavoriamo al fianco di privati, imprese ed enti pubblici, affrontando esigenze diverse con lo stesso approccio: ascoltare, analizzare, progettare e realizzare soluzioni concrete, con attenzione a ogni fase del percorso. Dalla prima valutazione alla messa in opera, fino alla manutenzione, mettiamo in campo competenza tecnica, organizzazione e una visione orientata alla durata nel tempo.</p>
+
+<p>Perché la professionalità non si misura soltanto da ciò che si realizza, ma anche da come lo si realizza. Nella chiarezza delle informazioni, nella trasparenza dei rapporti, nella cura dei dettagli e nella capacità di esserci anche dopo la conclusione di un lavoro.</p>
+
+<p>La fiducia non si chiede. Si conquista. E si conferma ogni giorno.</p>
+
+<p>In un mondo in cui l'energia è diventata una delle grandi sfide del nostro tempo, sentiamo la responsabilità di contribuire a un cambiamento concreto. Crediamo nell'efficienza energetica, nelle fonti rinnovabili e nelle tecnologie capaci di ridurre gli sprechi e valorizzare le risorse. Crediamo in un progresso che non insegua soltanto l'innovazione, ma sappia metterla al servizio delle persone, delle imprese e dell'ambiente.</p>
+
+<p>La sostenibilità, per noi, non è una parola da esibire. È una direzione da seguire. È la scelta di progettare pensando al domani, di lavorare con consapevolezza e di costruire soluzioni che sappiano generare valore nel tempo.</p>
+
+<p>Eppure, dopo ogni traguardo, c'è sempre una nuova sfida. Una tecnologia da conoscere, un'esigenza da comprendere, un progetto da trasformare in realtà. È questa tensione verso il miglioramento a tenerci in movimento. È la stessa determinazione che ci ha accompagnati nel 2008 e che continua a guidarci oggi.</p>
+
+<p>Perché l'energia più importante non è soltanto quella che produciamo o trasformiamo. È quella che mettiamo nel nostro lavoro.</p>
+
+<p>È l'energia delle persone che ogni giorno scelgono di fare la differenza. Della competenza che diventa affidabilità. Della costanza che diventa esperienza. Della passione che si trasforma in qualità. Della fiducia che, progetto dopo progetto, diventa una relazione destinata a durare.</p>
+
+<p>Questa è <strong>Rivetti Impianti</strong>. Una storia nata dal lavoro, cresciuta attraverso le sfide e proiettata verso il futuro. Una realtà che guarda all'innovazione senza rinnegare le proprie radici, che affronta il cambiamento con determinazione e che riconosce in ogni progetto un impegno preciso: fare le cose per bene, con serietà, trasparenza e rispetto per chi ci sceglie.</p>
+
+<p>Dal 2008, continuiamo a costruire il nostro percorso con la stessa convinzione: il futuro non si aspetta. Si progetta. Si realizza. Si alimenta, ogni giorno, con le scelte giuste.</p>
+
+<p class="motto" style="background: rgba(34, 197, 94, 0.08); border-left: 4px solid #16a34a; padding: 18px 22px; border-radius: 0 10px 10px 0; color: #15803d; font-weight: 700; font-size: 1.05rem; margin-top: 25px;">
+  «Nati dal lavoro. Cresciuti con passione. Proiettati verso il futuro.»
+</p>
+</div>
+<div class="facts">
+</div>
+</div>
 </section>'''
 
     lavora = f'''<section class="sec lavora" id="lavora">
