@@ -83,7 +83,7 @@ def doc(p, body, dialoghi=True, pre='', scripts=('ri.js', 'site.js')):
 
 
 def home():
-    p = pag('home')
+   p = pagina('home')
     hero = f'''<section class="sec hero" id="home">
   <video autoplay muted loop playsinline poster="{H['poster']}">
     <source src="{H['video']}" type="video/mp4">
