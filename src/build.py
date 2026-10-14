@@ -109,7 +109,7 @@ def home():
   </div>
 </section>'''
 
-  intro = f'''<section class="sec intro" id="servizi">
+    intro = f'''<section class="sec intro" id="servizi">
   {C.sec_head('Cosa facciamo', 'Impianti e servizi tecnici per privati, imprese ed enti pubblici', 'Operiamo nel fotovoltaico, nella termoidraulica, nella climatizzazione e nella manutenzione, su nuovi impianti e su sistemi già esistenti. Ogni intervento viene definito in base alle esigenze del cliente e alle caratteristiche tecniche del progetto.')}
   <div class="paths">
     <a class="path p1" href="privati.html"><div><b>Privati</b><span>Fotovoltaico, accumulo, climatizzazione e manutenzione per la casa</span></div><i aria-hidden="true">&rarr;</i></a>
@@ -118,7 +118,7 @@ def home():
   </div>
 </section>'''
 
-    about = '''<section class="sec about" id="informazioni">
+about = '''<section class="sec about" id="informazioni">
 <div class="sec-head">
 <span class="eyebrow">Chi siamo</span>
 <h2>Dal 2008, una storia di passione, radici e futuro energetico</h2>
@@ -170,7 +170,7 @@ def home():
 </div>
 </section>'''
 
-    lavora = f'''<section class="sec lavora" id="lavora">
+lavora = f'''<section class="sec lavora" id="lavora">
   <div class="sec-head">
     <span class="eyebrow">Candidature</span>
     <h2>Lavora con noi</h2>
@@ -193,13 +193,13 @@ def home():
   </div>
 </section>'''
 
-    body = '\n'.join(x for x in [
+body = '\n'.join(x for x in [
         hero, C.stats_section(), intro, C.real_home_section(),
         C.perche_section(), C.come_section(), C.incentivi_section(), about, C.qualifiche_section(), C.marchi_section(), lavora,
         C.reviews_section(), C.faq_section('home', 'Domande frequenti', 'FAQ'),
         C.contact_section(p, 'Parliamo del tuo impianto', 'Descrivici ciò di cui hai bisogno. Puoi chiamarci, scriverci su WhatsApp oppure utilizzare il modulo: raccoglieremo le informazioni necessarie e, quando serve, organizzeremo un sopralluogo.')
     ] if x)
-    return p, doc(p, body, scripts=('ri.js', 'recensioni.js', 'site.js'))
+return p, doc(p, body, scripts=('ri.js', 'recensioni.js', 'site.js'))
 
 
 # ----------------------------------------------------------------------------- PRIVATI / IMPRESE / PA
