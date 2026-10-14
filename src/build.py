@@ -118,7 +118,7 @@ def home():
   </div>
 </section>'''
 
-   about = f'''<section class="sec about" id="informazioni">
+about = '''<section class="sec about" id="informazioni">
 <div class="sec-head">
 <span class="eyebrow">Chi siamo</span>
 <h2>Dal 2008, una storia di passione, radici e futuro energetico</h2>
@@ -151,7 +151,7 @@ def home():
 
 <p>La sostenibilità, per noi, non è una parola da esibire. È una direzione da seguire. È la scelta di progettare pensando al domani, di lavorare con consapevolezza e di costruire soluzioni che sappiano generare valore nel tempo.</p>
 
-<p>Eppure, dopo ogni traguardo, c'è sempre una nuova sfida. Una tecnologia da conoscere, un'esigenza da comprendere, un progetto da trasformare in realtà. È questa tensione verso il miglioramento a tenerci in movimento. È la stessa determinazione che ci ha accompagnati nel 2008 e che continua a guidarci oggi.</p>
+<p>Eppure, dopo ogni traguardo, c'è sempre una nuova sfida. Una tecnologia da conoscere, un'esigenza da comprendere, un progetto da trasformare in realtà. È questa tensione verso il miglioramento a tenerci in movemento. È la stessa determinazione che ci ha accompagnati nel 2008 e che continua a guidarci oggi.</p>
 
 <p>Perché l'energia più importante non è soltanto quella che produciamo o trasformiamo. È quella che mettiamo nel nostro lavoro.</p>
 
@@ -170,7 +170,7 @@ def home():
 </div>
 </section>'''
 
-    lavora = f'''<section class="sec lavora" id="lavora">
+lavora = f'''<section class="sec lavora" id="lavora">
   <div class="sec-head">
     <span class="eyebrow">Candidature</span>
     <h2>Lavora con noi</h2>
