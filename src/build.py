@@ -83,29 +83,21 @@ def doc(p, body, dialoghi=True, pre='', scripts=('ri.js', 'site.js')):
 
 
 def home():
-    p = pagina('home')
-    H = D.HERO_HOME
-    if not os.path.exists(os.path.join(ROOT, H['video'])):
-        print('NOTA: manca %s — la Hero mostra solo il poster finché il video non viene caricato.' % H['video'])
-    hero = f'''<!-- HERO SECTION CON VIDEO SHOWREEL -->
-<section class="hero-section" id="home">
-  <div class="hero-container">
-    <div class="hero-video-wrapper">
-      <video id="hero-video" autoplay loop muted playsinline poster="{H['poster']}">
-        <source src="{H['video']}" type="video/mp4">
-        Il tuo browser non supporta il tag video.
-      </video>
-      <button id="audio-toggle-btn" class="audio-btn" type="button" aria-label="{H['audio_on']}" aria-pressed="false" data-on="{H['audio_on']}" data-off="{H['audio_off']}">
-        <svg class="icon-mute" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-        <svg class="icon-unmute" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" style="display:none;"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-      </button>
-    </div>
-    <div class="hero-content">
-      <span class="hero-tag">{H['tag']}</span>
-      <h1 class="hero-title">{H['titolo']}</h1>
-      <p class="hero-subtitle">{H['testo']}</p>
-      <div class="hero-actions cta">{C.cta_pair('home')}</div>
-    </div>
+    p = pag('home')
+    hero = f'''<section class="sec hero" id="home">
+  <video autoplay muted loop playsinline poster="{H['poster']}">
+    <source src="{H['video']}" type="video/mp4">
+    Il tuo browser non supporta il tag video.
+  </video>
+  <button id="audio-toggle-btn" class="audio-btn" type="button" aria-label="{H['audio_on']}" aria-pressed="false" data-on="{H['audio_on']}" data-off="{H['audio_off']}">
+    <svg class="icon-mute" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" style="display:block"><path fill="currentColor" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+    <svg class="icon-unmute" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" style="display:none"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+  </button>
+  <div class="hero-content">
+    <span class="hero-tag">{H['tag']}</span>
+    <h1 class="hero-title">{H['titolo']}</h1>
+    <p class="hero-subtitle">{H['testo']}</p>
+    <div class="hero-actions cta">{C.cta_pair('home')}</div>
   </div>
 </section>'''
 
@@ -118,7 +110,7 @@ def home():
   </div>
 </section>'''
 
-about = '''<section class="sec about" id="informazioni">
+    about = '''<section class="sec about" id="informazioni">
 <div class="sec-head">
 <span class="eyebrow">Chi siamo</span>
 <h2>Dal 2008, una storia di passione, radici e futuro energetico</h2>
@@ -170,7 +162,7 @@ about = '''<section class="sec about" id="informazioni">
 </div>
 </section>'''
 
-lavora = f'''<section class="sec lavora" id="lavora">
+    lavora = f'''<section class="sec lavora" id="lavora">
   <div class="sec-head">
     <span class="eyebrow">Candidature</span>
     <h2>Lavora con noi</h2>
@@ -193,14 +185,13 @@ lavora = f'''<section class="sec lavora" id="lavora">
   </div>
 </section>'''
 
-body = '\n'.join(x for x in [
+    body = '\n'.join(x for x in [
         hero, C.stats_section(), intro, C.real_home_section(),
         C.perche_section(), C.come_section(), C.incentivi_section(), about, C.qualifiche_section(), C.marchi_section(), lavora,
         C.reviews_section(), C.faq_section('home', 'Domande frequenti', 'FAQ'),
         C.contact_section(p, 'Parliamo del tuo impianto', 'Descrivici ciò di cui hai bisogno. Puoi chiamarci, scriverci su WhatsApp oppure utilizzare il modulo: raccoglieremo le informazioni necessarie e, quando serve, organizzeremo un sopralluogo.')
     ] if x)
-return p, doc(p, body, scripts=('ri.js', 'recensioni.js', 'site.js'))
-
+    return p, doc(p, body, scripts=('ri.js', 'recensioni.js', 'site.js'))
 
 # ----------------------------------------------------------------------------- PRIVATI / IMPRESE / PA
 def _j(parti):
