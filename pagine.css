@@ -76,7 +76,7 @@ h1 span{background:linear-gradient(90deg,#fff3b0,#ffd23f);-webkit-background-cli
 .path:hover{transform:translateY(-4px)}
 .path.p1{background:linear-gradient(120deg,#1f6fd1,#3f9be6)}
 .path.p2{background:linear-gradient(120deg,#17804f,#2fb57c)}
-.path.p3{background:linear-gradient(120deg,#3a4fa6,#6b7fd6)}
+.path.p3{background: linear-gradient(120deg, #eab308, #ca8a04)}
 .path b{display:block;font-size:1.3rem}
 .path span{font:400 .9rem var(--f-body);opacity:.92}
 .path i{font-style:normal;font-size:1.6rem}
