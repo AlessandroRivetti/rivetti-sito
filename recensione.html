@@ -44,7 +44,7 @@
 
 <main>
   <h1>Com'è andata con Rivetti Impianti?</h1>
-  <p class="lead">Scegli un voto da 1 a 5 stelle e racconta la tua esperienza in almeno 5 parole. La recensione arriva al nostro staff, che la legge e la approva prima dell’eventuale pubblicazione sul sito.</p>
+  <p class="lead">Scegli un voto da 1 a 5 stelle e racconta la tua esperienza in almeno 5 parole per lasciare la tua recensione.</p>
 
   <form id="revForm" method="post" novalidate>
     <fieldset>
@@ -82,7 +82,7 @@
 
     <div class="field check">
       <input id="consenso" type="checkbox" name="consenso" required>
-      <label for="consenso">Ho letto l'<a href="privacy.html" target="_blank" rel="noopener">Informativa Privacy</a> e acconsento alla pubblicazione sul sito del nome indicato e della mia recensione. Sono consapevole che potrò revocare il consenso in qualsiasi momento. *</label>
+      <label for="consenso">Ho letto l'<a href="privacy.html" target="_blank" rel="noopener">Informativa Privacy</a> e acconsento al trattamento dei dati. Sono consapevole che la recensione sarà esaminata dallo staff prima dell'eventuale pubblicazione sul sito e che potrò revocare il consenso in qualsiasi momento. *</label>
     </div>
 
     <button class="btn btn-primary" type="submit" id="sendBtn">Invia la recensione &rarr;</button>
@@ -92,7 +92,7 @@
   <div class="done" id="done" hidden>
     <div class="badge-ok" aria-hidden="true">✓</div>
     <h2>Grazie per la tua recensione!</h2>
-    <p>L'abbiamo ricevuta: verrà letta dal nostro staff e, una volta approvata, potrà comparire sul sito.</p>
+    <p>L'abbiamo ricevuta con successo e ti ringraziamo per il tuo contributo.</p>
     <p style="margin-top:18px"><a class="btn btn-ghost" href="index.html#recensioni">Torna al sito</a></p>
   </div>
 </main>
@@ -123,10 +123,10 @@ form.addEventListener('submit', async e => {
   if (name.length < 2)             return setMsg('Inserisci il nome da mostrare sul sito.', 'err');
   if (!tipo)                       return setMsg('Indica che tipo di cliente sei.', 'err');
   if (RI.words(body) < 5)          return setMsg('La recensione deve contenere almeno 5 parole.', 'err');
-  if (!form.consenso.checked)      return setMsg('Serve il consenso alla pubblicazione per inviare la recensione.', 'err');
+  if (!form.consenso.checked)      return setMsg('Serve il consenso per inviare la recensione.', 'err');
 
   btn.disabled = true; setMsg('Invio in corso…');
-  const consenso = 'Sì — ' + RI.now();   // data e ora del consenso, inviate insieme alla recensione
+  const consenso = 'Sì — ' + RI.now();   
   try {
     await RI.send({
       Stelle: rating + ' su 5', Nome: name, 'Tipo cliente': tipo, Recensione: body,
@@ -138,7 +138,7 @@ form.addEventListener('submit', async e => {
   } catch (err) {
     setMsg('Invio automatico non riuscito: si apre la tua posta per completare l’invio.', 'err');
     RI.mailto('Nuova recensione da approvare — ' + rating + '★ — ' + name,
-      `Voto: ${rating} su 5\nNome: ${name}\nTipo cliente: ${tipo}\n\n${body}\n\nHo letto l'Informativa Privacy e acconsento alla pubblicazione sul sito del nome indicato e della mia recensione (consenso del ${consenso.slice(5)}).`);
+      `Voto: ${rating} su 5\nNome: ${name}\nTipo cliente: ${tipo}\n\n${body}\n\nHo letto l'Informativa Privacy e acconsento al trattamento dei dati e alla moderazione della recensione prima dell'eventuale pubblicazione (consenso del ${consenso.slice(5)}).`);
     btn.disabled = false;
   }
 });
