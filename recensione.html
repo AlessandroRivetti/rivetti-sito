@@ -44,7 +44,7 @@
 
 <main>
   <h1>Com'è andata con Rivetti Impianti?</h1>
-  <p class="lead">Scegli un voto da 1 a 5 stelle e racconta la tua esperienza in almeno 5 parole per lasciare la tua recensione.</p>
+  <p class="lead">Scegli un voto da 1 a 5 stelle e racconta la tua esperienza in almeno 3 parole per lasciare la tua recensione.</p>
 
   <form id="revForm" method="post" novalidate>
     <fieldset>
@@ -73,7 +73,7 @@
     </div>
 
     <div class="field">
-      <label for="testo">La tua recensione * <span style="font-weight:400">(minimo 5 parole)</span></label>
+      <label for="testo">La tua recensione * <span style="font-weight:400">(minimo 3 parole)</span></label>
       <textarea id="testo" name="testo" maxlength="1200" required placeholder="Che lavoro abbiamo fatto? Come ti sei trovato? Cosa è cambiato nella tua casa o azienda?"></textarea>
       <div class="count" id="count" aria-live="polite">0 parole</div>
     </div>
@@ -110,8 +110,8 @@ const setMsg = (t, c) => { msg.textContent = t; msg.className = 'form-msg ' + (c
 
 txt.addEventListener('input', () => {
   const n = RI.words(txt.value);
-  count.textContent = n + (n === 1 ? ' parola' : ' parole') + (n < 5 ? ' (ne servono almeno 5)' : '');
-  count.className = 'count' + (n >= 5 ? ' ok' : '');
+  count.textContent = n + (n === 1 ? ' parola' : ' parole') + (n < 3 ? ' (ne servono almeno 3)' : '');
+  count.className = 'count' + (n >= 3 ? ' ok' : '');
 });
 
 form.addEventListener('submit', async e => {
@@ -122,7 +122,7 @@ form.addEventListener('submit', async e => {
   if (!rating)                     return setMsg('Scegli un voto da 1 a 5 stelle.', 'err');
   if (name.length < 2)             return setMsg('Inserisci il nome da mostrare sul sito.', 'err');
   if (!tipo)                       return setMsg('Indica che tipo di cliente sei.', 'err');
-  if (RI.words(body) < 5)          return setMsg('La recensione deve contenere almeno 5 parole.', 'err');
+  if (RI.words(body) < 3)          return setMsg('La recensione deve contenere almeno 3 parole.', 'err');
   if (!form.consenso.checked)      return setMsg('Serve il consenso per inviare la recensione.', 'err');
 
   btn.disabled = true; setMsg('Invio in corso…');
