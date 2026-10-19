@@ -41,7 +41,7 @@
 
   /* Hero: pulsante audio del video showreel */
   (function () {
-    const v = document.getElementById('hero-video'), b = document.getElementById('audio-toggle-btn');
+    const v = document.getElementById('hero-video') || document.querySelector('.hero video, .hero-video-wrapper video'), b = document.getElementById('audio-toggle-btn');
     if (!v || !b) return;
     const set = on => {
       v.muted = !on; b.setAttribute('aria-pressed', on ? 'true' : 'false');
