@@ -753,3 +753,20 @@ dialog.modal.gal-modal .modal-x{background:#fff;color:#0b1d36}
 @media (max-width:399px){.gl-grid{grid-template-columns:1fr}}
 @media (max-width:640px){.gl-grid{gap:12px}}
 .gal-nav #galNum{white-space:nowrap}
+/* Correzione pulsante audio homepage */
+.hero-video-wrapper {
+  position: relative;
+}
+
+.hero-video-wrapper .audio-btn {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  z-index: 100;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.hero-video-wrapper video {
+  pointer-events: none;
+}
