@@ -966,7 +966,7 @@ PROMOZIONI = [
         'descrizione': 'Impianto fotovoltaico "chiavi in mano". Inclusi progettazione, installazione, collaudo, pratiche di allaccio e GSE.',
         'prezzo': '€ 5.500 + IVA',
         'note': 'Incentivi statali con detrazione fiscale del 50%. Da applicare € 3.025',
-        'note': 'Con possibilità di finanziamenti a tasso agevolato',
+        'note': 'Possibilità di finanziamento a tasso agevolato',
         'icona': '⚡🔋'
     },
     {
@@ -975,7 +975,7 @@ PROMOZIONI = [
         'descrizione': 'Impianto fotovoltaico "chiavi in mano". Inclusi progettazione, installazione, collaudo, pratiche di allaccio e GSE.',
         'prezzo': '€ 7.900 + IVA',
         'note': 'Incentivi statali con detrazione fiscale del 50%. Da applicare € 4.345',
-        'note': 'Con possibilità di finanziamenti a tasso agevolato',
+        'note': 'Possibilità di finanziamento a tasso agevolato',
         'icona': '⚡🔋'
     },
     {
@@ -984,7 +984,7 @@ PROMOZIONI = [
         'descrizione': 'Impianto fotovoltaico "chiavi in mano". Inclusi progettazione, installazione, collaudo, pratiche di allaccio e GSE.',
         'prezzo': '€ 9.500 + IVA',
         'note': 'Incentivi statali con detrazione fiscale del 50%. Da applicare € 5.225',
-        'note': 'Con possibilità di finanziamenti agevolati',
+        'note': 'Possibilità di finanziamento a tasso agevolato',
         'icona': '⚡🔋'
     },
     {
@@ -993,6 +993,7 @@ PROMOZIONI = [
         'descrizione': 'Fornitura, installazione e certificazione di climatizzatori inverter ad alta efficienza energetica (A+++) con funzione di riscaldamento e raffrescamento rapido. TUTTO INCLUSO',
         'prezzo': '10.000 BTU €420,00 - 13.000 BTU 440,00 - 18.000 BTU € 590,00 TUTTO IVA INCLUSA',
         'note': 'Incluso primo controllo e sanificazione',
+        'note': 'Possibilità di finanziamento a tasso agevolato',
         'icona': '❄️'
     },
     {
@@ -1001,6 +1002,7 @@ PROMOZIONI = [
         'descrizione': 'Sostituzione vecchia caldaia con modello a condensazione di ultima generazione.',
         'prezzo': 'A partire da € 990,00 + IVA',
         'note': 'Rendimento termico elevato e consumi ridotti fino al 30%',
+        'note': 'Possibilità di finanziamento a tasso agevolato',
         'icona': '🔥'
     },
     {
@@ -1009,6 +1011,7 @@ PROMOZIONI = [
         'descrizione': 'Pulizia professionale dei moduli fotovoltaici con acqua demineralizzata, ispezione termografica e verifica parametri inverter per ripristinare il 100% della produzione.',
         'prezzo': 'A partire da € 79,00 + IVA',
         'note': 'Consigliato almeno una volta l\'anno',
+        'note': 'Possibilità di finanziamento a tasso agevolato',
         'icona': '🧼'
     }
 ]
