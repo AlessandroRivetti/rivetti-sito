@@ -965,38 +965,41 @@ PROMOZIONI = [
         'badge': 'Un buon inizio!',
         'descrizione': 'Impianto fotovoltaico "chiavi in mano". Inclusi progettazione, installazione, collaudo, pratiche di allaccio e GSE.',
         'prezzo': '€ 5.500 + IVA',
-        'note': 'Incentivi statali con detrazione fiscale del 50%, da applicare',
-        'icona': '⚡'
+        'note': 'Incentivi statali con detrazione fiscale del 50%. Da applicare € 3.025',
+        'note': 'Con possibilità di finanziamenti a tasso agevolato',
+        'icona': '⚡🔋'
     },
     {
         'titolo': 'Fotovoltaico 6 kWp + Accumulo da 10 kWh',
         'badge': 'Più Venduto!',
-        'descrizione': 'Soluzione ideale per la massima indipendenza energetica della tua abitazione. Sistema inverter ibrido e accumulo modulare da 10 kWh.',
-        'prezzo': 'A partire da € 8.900 + IVA',
-        'note': 'Possibilità di finanziamento a tasso agevolato',
-        'icona': '🔋'
+        'descrizione': 'Impianto fotovoltaico "chiavi in mano". Inclusi progettazione, installazione, collaudo, pratiche di allaccio e GSE.',
+        'prezzo': '€ 7.900 + IVA',
+        'note': 'Incentivi statali con detrazione fiscale del 50%. Da applicare € 4.345',
+        'note': 'Con possibilità di finanziamenti a tasso agevolato',
+        'icona': '⚡🔋'
     },
     {
         'titolo': 'Fotovoltaico 9 kWp + Accumulo da 15 kWh',
         'badge': 'Per una maggiore efficienza',
-        'descrizione': 'Soluzione ideale per la massima indipendenza energetica della tua abitazione. Sistema inverter ibrido e accumulo modulare da 10 kWh.',
-        'prezzo': 'A partire da € 8.900 + IVA',
-        'note': 'Possibilità di finanziamento a tasso agevolato',
-        'icona': '📊'
+        'descrizione': 'Impianto fotovoltaico "chiavi in mano". Inclusi progettazione, installazione, collaudo, pratiche di allaccio e GSE.',
+        'prezzo': '€ 9.500 + IVA',
+        'note': 'Incentivi statali con detrazione fiscale del 50%. Da applicare € 5.225',
+        'note': 'Con possibilità di finanziamenti agevolati',
+        'icona': '⚡🔋'
     },
     {
-        'titolo': 'Climatizzazione & Pompe di Calore',
+        'titolo': 'Climatizzazione',
         'badge': 'Comfort Tutto l\'Anno',
-        'descrizione': 'Installazione condizionatori inverter ad alta efficienza energetica (A+++) con funzione di riscaldamento e raffrescamento rapido.',
-        'prezzo': 'A partire da € 890 + IVA',
+        'descrizione': 'Fornitura, installazione e certificazione di climatizzatori inverter ad alta efficienza energetica (A+++) con funzione di riscaldamento e raffrescamento rapido. TUTTO INCLUSO',
+        'prezzo': '10.000 BTU €420,00 - 13.000 BTU 440,00 - 18.000 BTU € 590,00 TUTTO IVA INCLUSA',
         'note': 'Incluso primo controllo e sanificazione',
         'icona': '❄️'
     },
     {
         'titolo': 'Sostituzione Caldaia a Condensazione',
         'badge': 'Risparmio Gas',
-        'descrizione': 'Sostituzione vecchia caldaia con modello a condensazione di ultima generazione, valvole termostatiche e lavaggio impianto termico incluso.',
-        'prezzo': 'A partire da € 1.850 + IVA',
+        'descrizione': 'Sostituzione vecchia caldaia con modello a condensazione di ultima generazione.',
+        'prezzo': 'A partire da € 990,00 + IVA',
         'note': 'Rendimento termico elevato e consumi ridotti fino al 30%',
         'icona': '🔥'
     },
@@ -1004,8 +1007,8 @@ PROMOZIONI = [
         'titolo': 'Lavaggio & Check-Up Impianto Fotovoltaico',
         'badge': 'Manutenzione',
         'descrizione': 'Pulizia professionale dei moduli fotovoltaici con acqua demineralizzata, ispezione termografica e verifica parametri inverter per ripristinare il 100% della produzione.',
-        'prezzo': 'A partire da € 150 + IVA',
-        'note': 'Consigliato almeno una volta all\'anno',
+        'prezzo': 'A partire da € 79,00 + IVA',
+        'note': 'Consigliato almeno una volta l\'anno',
         'icona': '🧼'
     }
 ]
