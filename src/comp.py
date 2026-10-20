@@ -145,9 +145,6 @@ def head(p, root_rel=True):
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{pre}site.css">
 <link rel="stylesheet" href="{pre}pagine.css">
-<link rel="icon" type="image/png" sizes="32x32" href="{pre}assets/favicon.png">
-<link rel="icon" type="image/png" sizes="16x16" href="{pre}assets/favicon.png">
-<link rel="apple-touch-icon" sizes="180x180" href="{pre}assets/favicon.png">
 {ld}</head>
 '''
 
@@ -179,15 +176,14 @@ def nav(p, pre=''):
     if ha_realizzazioni():
         items.append(f'<a href="{pre}realizzazioni.html"{act("realizzazioni")}{cur("realizzazioni")}>Realizzazioni</a>')
     items += [
-        f'<div class="dropdown"><a class="dd-trigger" href="{H("incentivi")}" aria-haspopup="true" aria-expanded="false" data-spy="incentivi">Bonus &amp; Incentivi</a>',
+        f'<div class="dropdown"><a class="dd-trigger" href="{H("incentivi")}" aria-haspopup="true" aria-expanded="false" data-spy="incentivi">Bonus &amp; Incentivi &#9662;</a>'
         f'<div class="dropdown-menu dropdown-3-col">{bon}</div></div>',
         f'<a href="{H("informazioni")}" data-spy="informazioni">Chi siamo</a>',
         f'<a href="{H("lavora")}" data-spy="lavora">Lavora con noi</a>',
-        f'<a href="{pre}offerte.html" style="color: #22c55e; font-weight: 700;" data-spy="Offerte"{act("Offerte")}>Offerte</a>',
-        f'<a href="{H("contatti")}" data-spy="contatti"{act("contatti")}>Contatti</a>',
+        f'<a class="nav-offerte{" active" if p["key"] == "offerte" else ""}" href="{pre}offerte.html" data-spy="offerte"{cur("offerte")}>Offerte</a>',
+        f'<a href="{"#contatti" if home else pre + "contatti.html"}" data-spy="contatti"{act("contatti")}{cur("contatti")}>Contatti</a>',
         f'<a href="{H("recensioni")}" data-spy="recensioni" data-rev hidden>Cosa dicono di noi</a>',
     ]
-
     brand_href = '#home' if home else f'{pre}index.html'
     logo = f'{pre}{D.SITO["logo_chiaro"]}'
     return f'''<a class="skip" href="#main">Vai ai contenuti</a>
@@ -210,61 +206,54 @@ PRINC = '<small class="princ">Numero principale</small>'
 
 
 def footer(p, pre=''):
-    S = D.SOCIETA
+    s = D.SOCIETA
     home = p['key'] == 'home'
     H = (lambda a: f'#{a}') if home else (lambda a: f'{pre}index.html#{a}')
     phones = ''.join(
-        f'<div class="fphone"><b>{PRINC if n == D.TELEFONO_PRINCIPALE else ""}</b><div class="acts"><a href="{tel_url(n)}">{_fmt_tel(n) if "_fmt_tel" in globals() else n}</a> · '
+        f'<div class="fphone"><b>{n}{PRINC if n == D.TELEFONO_PRINCIPALE else ""}</b><div class="acts"><a href="{tel_url(n)}" aria-label="Chiama {n}">{PH}Chiama</a>'
         f'<a class="w" href="{qa(wa_url(n))}" target="_blank" rel="noopener" aria-label="WhatsApp {n}">{WA}WhatsApp</a></div></div>'
-        for n in D.TELEFONI
-    )
+        for n in D.TELEFONI)
     nav_links = [('Privati', f'{pre}privati.html'), ('Imprese', f'{pre}imprese.html'), ('Pubblica Amministrazione', f'{pre}pubblica-amministrazione.html')]
     if ha_realizzazioni():
         nav_links.append(('Realizzazioni', f'{pre}realizzazioni.html'))
-    nav_links.append(('<span style="color: #22c55e; font-weight: 600;">Promozioni</span>', f'{pre}offerte.html'))
-    links = ' · '.join(f'<a href="{h}"{" data-rev hidden" if h.endswith("#recensioni") else ""}>{l}</a>' for l, h in nav_links)
+    nav_links += [('Offerte', f'{pre}offerte.html'), ('Bonus &amp; Incentivi', H('incentivi')), ('Chi siamo', H('informazioni')), ('Lavora con noi', H('lavora')),
+                  ('Contatti', f'{pre}contatti.html'), ('Cosa dicono di noi', H('recensioni'))]
+    links = ''.join(f'<a href="{h}"{" data-rev hidden" if h.endswith("#recensioni") else ""}>{l}</a>' for l, h in nav_links)
     logo = f'{pre}{D.SITO["logo_chiaro"]}'
-    return f'''<footer class="foot-grid">
+    return f'''<footer>
+  <div class="foot-grid">
     <div>
-      <a href="{"#" if home else pre + "index.html"}" class="brand" aria-label="{qa(D.SITO['nome_esteso'])}">
-        <img src="{logo}" alt="{qa(D.SITO['nome_esteso'])}" loading="lazy" onerror="this.parentNode.classList.add('no-logo')">
-        <span class="brand-fallback"><b>RIVETTI</b> <em>IMPIANTI</em><small>TECHNICAL ENGINEERING</small></span>
+      <a href="{'#home' if home else pre + 'index.html'}" class="brand" aria-label="{qa(D.SITO['nome_esteso'])}">
+        <img src="{logo}" alt="{qa(D.SITO['nome_esteso'].replace('—', '–'))}" loading="lazy" onerror="this.parentNode.classList.add('nologo')">
+        <span class="brand-fallback"><b>RIVETTI <em>IMPIANTI</em></b><small>TECHNICAL ENGINEERING</small></span>
       </a>
       <p>{esc(D.SITO['slogan'])}.<br>Al servizio di Privati, Aziende e Pubbliche Amministrazioni.</p>
     </div>
     <div>
       <h2>Azienda</h2>
-      <p>{esc(D.SITO.get('ragione_sociale', D.SITO['nome_esteso']))}<br>{esc(D.SITO['nome_esteso'])}</p>
+      <p>{esc(s['ragione_sociale'])}<br>{esc(D.SITO['nome_esteso'])}</p>
+      <p>{esc(indirizzo())}</p>
+      <p>P.IVA / C.F. {s['piva_cf']} · REA {s['rea']}</p>
+      <a href="mailto:{s['email']}">{s['email']}</a>
+      <a href="mailto:{s['pec']}">PEC: {s['pec']}</a>
     </div>
     <div>
       <h2>Telefono &amp; WhatsApp</h2>
       {phones}
     </div>
     <div>
-      <h2>Esplora</h2>
-      <p>{links}</p>
+      <h2>Navigazione</h2>
+      {links}
     </div>
-    <div class="fcopy">
-      <p>&copy; 2026 {esc(D.SITO.get('ragione_sociale', D.SITO['nome_esteso']))} · Tutti i diritti riservati.</p>
-      <p class="counter-text"><span id="visits-count">...</span> visite totali</p>
-    </div>
-    <script>
-      (function() {{
-        fetch("https://api.counterapi.dev/v1/rivetti-impianti-official/visite/up")
-          .then(function(res) {{ return res.json(); }})
-          .then(function(data) {{
-            if (data && data.count !== undefined) {{
-              document.getElementById("visits-count").innerText = Number(data.count).toLocaleString("it-IT");
-            }} else {{
-              document.getElementById("visits-count").innerText = "1";
-            }}
-          }})
-          .catch(function(err) {{
-            document.getElementById("visits-count").innerText = "124";
-          }});
-      }})();
-    </script>
-</footer>'''
+  </div>
+  <div class="copy">
+    <span>© <span id="y">{ANNO}</span> Rivetti Impianti — {esc(s['ragione_sociale_breve'])} · P. IVA/C.F. {s['piva_cf']} · REA {s['rea']} — Tutti i diritti riservati</span>
+    <span class="legal"><a href="{pre}privacy.html">Privacy Policy</a> · <a href="{pre}cookie.html">Cookie Policy</a> · <a href="{pre}note-legali.html">Note legali</a></span>
+  </div>
+</footer>
+'''
+
+
 # ---------------------------------------------------------------- blocchi comuni
 def sec_head(eyebrow, titolo, testo=None, h='h2', extra=''):
     t = f'<p>{testo}</p>' if testo else ''

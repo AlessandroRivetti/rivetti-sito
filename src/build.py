@@ -18,8 +18,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import dati as D
 import gallerie as G
 import progetti as P
-import promozioni
 import comp as C
+import offerte as OF
 from art import ART, DEFS
 
 ROOT = C.ROOT
@@ -28,7 +28,7 @@ esc, qa = C.esc, C.qa
 # ----------------------------------------------------------------------------- pagine: metadati SEO
 PAGINE = {
     'home': dict(path='/', file='index.html',
-                 title='Rivetti Impianti | Fotovoltaico, Termoidraulica e Manutenzione',
+                 title='Impianti Fotovoltaici e Termoidraulici | Rivetti Impianti',
                  desc='Dal 2008 progettiamo, realizziamo e manteniamo impianti fotovoltaici, termoidraulici e sistemi energetici per privati, imprese ed enti pubblici.'),
     'privati': dict(path='/privati.html', file='privati.html', crumbs=[('Privati', '/privati.html')],
                     title='Fotovoltaico e Climatizzazione Casa | Rivetti Impianti',
@@ -42,12 +42,12 @@ PAGINE = {
     'realizzazioni': dict(path='/realizzazioni.html', file='realizzazioni.html', crumbs=[('Realizzazioni', '/realizzazioni.html')],
                           title='Realizzazioni | Rivetti Impianti',
                           desc='I lavori realizzati da Rivetti Impianti per privati, imprese e Pubblica Amministrazione: impianti fotovoltaici, termoidraulici e manutenzione.'),
+    'offerte': dict(path='/offerte.html', file='offerte.html', crumbs=[('Offerte', '/offerte.html')],
+                    title='Offerte Speciali | Rivetti Impianti',
+                    desc='Offerte per fotovoltaico con accumulo, climatizzazione, caldaie e manutenzione: prezzi chiari, detrazione fiscale 50% e finanziamento a tasso agevolato.'),
     'contatti': dict(path='/contatti.html', file='contatti.html', crumbs=[('Contatti', '/contatti.html')],
                      title='Contatti e Richiesta di Sopralluogo | Rivetti Impianti',
                      desc='Contatta Rivetti Impianti: telefono, WhatsApp, email e modulo per richiedere un sopralluogo o un preventivo.'),
-    'promozioni': dict(path='promozioni.html', file='promozioni.html', crumbs=[('Promozioni', 'promozioni.html')],
-                       title='Promozioni e Offerte Speciali | Rivetti Impianti',
-                       desc='Scopri tutte le offerte attive per fotovoltaico, accumulo, climatizzazione, caldaie e manutenzione impianti.'),
     '404': dict(path='/404.html', file='404.html', title='Pagina non trovata | Rivetti Impianti',
                 desc='La pagina richiesta non esiste o è stata spostata.', noindex=True),
 }
@@ -69,8 +69,6 @@ def pagina(key):
     p['schema'] = schema
     return p
 
-promozioni.build()
-
 
 def doc(p, body, dialoghi=True, pre='', scripts=('ri.js', 'site.js')):
     root_rel = (pre == '')
@@ -83,20 +81,28 @@ def doc(p, body, dialoghi=True, pre='', scripts=('ri.js', 'site.js')):
 
 def home():
     p = pagina('home')
-    hero = f'''<section class="sec hero" id="home">
-  <video autoplay muted loop playsinline poster="{D.HERO_HOME['poster']}">
-    <source src="{D.HERO_HOME['video']}" type="video/mp4">
-    Il tuo browser non supporta il tag video.
-  </video>
-  <button id="audio-toggle-btn" class="audio-btn" type="button" aria-label="{D.HERO_HOME['audio_on']}" aria-pressed="false" data-on="{D.HERO_HOME['audio_on']}" data-off="{D.HERO_HOME['audio_off']}">
-    <svg class="icon-mute" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" style="display:block"><path fill="currentColor" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.42.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-    <svg class="icon-unmute" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" style="display:none"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-  </button>
-  <div class="hero-content">
-    <span class="hero-tag">{D.HERO_HOME['tag']}</span>
-    <h1 class="hero-title">{D.HERO_HOME['titolo']}</h1>
-    <p class="hero-subtitle">{D.HERO_HOME['testo']}</p>
-    <div class="hero-actions cta">{C.cta_pair('home')}</div>
+    H = D.HERO_HOME
+    if not os.path.exists(os.path.join(ROOT, H['video'])):
+        print('NOTA: manca %s — la Hero mostra solo il poster finché il video non viene caricato.' % H['video'])
+    hero = f'''<!-- HERO SECTION CON VIDEO SHOWREEL -->
+<section class="hero-section" id="home">
+  <div class="hero-container">
+    <div class="hero-video-wrapper">
+      <video id="hero-video" autoplay loop muted playsinline poster="{H['poster']}">
+        <source src="{H['video']}" type="video/mp4">
+        Il tuo browser non supporta il tag video.
+      </video>
+      <button id="audio-toggle-btn" class="audio-btn" type="button" aria-label="{H['audio_on']}" aria-pressed="false" data-on="{H['audio_on']}" data-off="{H['audio_off']}">
+        <svg class="icon-mute" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+        <svg class="icon-unmute" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" style="display:none;"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+      </button>
+    </div>
+    <div class="hero-content">
+      <span class="hero-tag">{H['tag']}</span>
+      <h1 class="hero-title">{H['titolo']}</h1>
+      <p class="hero-subtitle">{H['testo']}</p>
+      <div class="hero-actions cta">{C.cta_pair('home')}</div>
+    </div>
   </div>
 </section>'''
 
@@ -109,56 +115,24 @@ def home():
   </div>
 </section>'''
 
-    about = '''<section class="sec about" id="informazioni">
-<div class="sec-head">
-<span class="eyebrow">Chi siamo</span>
-<h2>Dal 2008, una storia di passione, radici e futuro energetico</h2>
-</div>
-<div class="about-wrap">
-<div class="about-text">
-<p style="font-weight: 700; font-size: 1.15rem; color: #16a34a; margin-bottom: 15px;">Una storia fatta di energia, coraggio e visione.</p>
-
-<p>Ogni grande storia nasce da una scintilla. La nostra, nel 2008, è diventata una promessa: trasformare il lavoro in valore, le competenze in soluzioni e l'energia in futuro.</p>
-
-<p>Ci sono storie che non nascono negli uffici, né tra le righe di un progetto. Nascono sul campo, dove le mani costruiscono, la fatica insegna, gli imprevisti mettono alla prova e ogni dettaglio fa la differenza. Nascono dalla determinazione di chi non cerca scorciatoie, ma sceglie ogni giorno la strada più difficile: quella fatta di impegno, precisione e responsabilità.</p>
-
-<p>È da questa visione che, nel 2008, <strong>Michele Rivetti</strong> dà vita a Rivetti Impianti.</p>
-
-<p>All'inizio c'è una convinzione semplice, ma destinata a diventare il fondamento di tutto: un lavoro ben fatto non è soltanto un risultato da consegnare. È una promessa da mantenere. Una responsabilità verso chi si affida a noi. Un nome, quello della nostra famiglia e della nostra azienda, da difendere attraverso ogni scelta, ogni installazione, ogni intervento.</p>
-
-<p>Gli anni passano. Le sfide cambiano. Le tecnologie evolvono. E noi scegliamo di evolvere con loro. Senza dimenticare da dove siamo partiti. Senza smettere di guardare avanti.</p>
-
-<p>Con costanza, studio e investimenti, <strong>Rivetti Impianti</strong> amplia le proprie competenze e consolida la propria presenza nel settore energetico, sviluppando soluzioni che spaziano dagli impianti fotovoltaici ai sistemi di accumulo, dalla termoidraulica ai servizi di manutenzione. Ogni nuova sfida diventa un'occasione per crescere. Ogni esperienza aggiunge conoscenza. Ogni progetto rafforza una convinzione: l'eccellenza non si improvvisa, si costruisce giorno dopo giorno.</p>
-
-<p>Ma crescere, per noi, non significa soltanto realizzare impianti più complessi o affrontare progetti più ambiziosi. Significa essere pronti ad assumerci responsabilità maggiori. Significa investire nelle persone, affinare i processi, scegliere soluzioni affidabili e mantenere sempre al centro ciò che conta davvero: la qualità del lavoro, la sicurezza degli interventi e la fiducia dei nostri clienti.</p>
-
-<p>Oggi lavoriamo al fianco di privati, imprese ed enti pubblici, affrontando esigenze diverse con lo stesso approccio: ascoltare, analizzare, progettare e realizzare soluzioni concrete, con attenzione a ogni fase del percorso. Dalla prima valutazione alla messa in opera, fino alla manutenzione, mettiamo in campo competenza tecnica, organizzazione e una visione orientata alla durata nel tempo.</p>
-
-<p>Perché la professionalità non si misura soltanto da ciò che si realizza, ma anche da come lo si realizza. Nella chiarezza delle informazioni, nella trasparenza dei rapporti, nella cura dei dettagli e nella capacità di esserci anche dopo la conclusione di un lavoro.</p>
-
-<p>La fiducia non si chiede. Si conquista. E si conferma ogni giorno.</p>
-
-<p>In un mondo in cui l'energia è diventata una delle grandi sfide del nostro tempo, sentiamo la responsabilità di contribuire a un cambiamento concreto. Crediamo nell'efficienza energetica, nelle fonti rinnovabili e nelle tecnologie capaci di ridurre gli sprechi e valorizzare le risorse. Crediamo in un progresso che non insegua soltanto l'innovazione, ma sappia metterla al servizio delle persone, delle imprese e dell'ambiente.</p>
-
-<p>La sostenibilità, per noi, non è una parola da esibire. È una direzione da seguire. È la scelta di progettare pensando al domani, di lavorare con consapevolezza e di costruire soluzioni che sappiano generare valore nel tempo.</p>
-
-<p>Eppure, dopo ogni traguardo, c'è sempre una nuova sfida. Una tecnologia da conoscere, un'esigenza da comprendere, un progetto da trasformare in realtà. È questa tensione verso il miglioramento a tenerci in movimento. È la stessa determinazione che ci ha accompagnati nel 2008 e che continua a guidarci oggi.</p>
-
-<p>Perché l'energia più importante non è soltanto quella che produciamo o trasformiamo. È quella che mettiamo nel nostro lavoro.</p>
-
-<p>È l'energia delle persone che ogni giorno scelgono di fare la differenza. Della competenza che diventa affidabilità. Della costanza che diventa esperienza. Della passione che si trasforma in qualità. Della fiducia che, progetto dopo progetto, diventa una relazione destinata a durare.</p>
-
-<p>Questa è <strong>Rivetti Impianti</strong>. Una storia nata dal lavoro, cresciuta attraverso le sfide e proiettata verso il futuro. Una realtà che guarda all'innovazione senza rinnegare le proprie radici, che affronta il cambiamento con determinazione e che riconosce in ogni progetto un impegno preciso: fare le cose per bene, con serietà, trasparenza e rispetto per chi ci sceglie.</p>
-
-<p>Dal 2008, continuiamo a costruire il nostro percorso con la stessa convinzione: il futuro non si aspetta. Si progetta. Si realizza. Si alimenta, ogni giorno, con le scelte giuste.</p>
-
-<p class="motto" style="background: rgba(34, 197, 94, 0.08); border-left: 4px solid #16a34a; padding: 18px 22px; border-radius: 0 10px 10px 0; color: #15803d; font-weight: 700; font-size: 1.05rem; margin-top: 25px;">
-  «Nati dal lavoro. Cresciuti con passione. Proiettati verso il futuro.»
-</p>
-</div>
-<div class="facts">
-</div>
-</div>
+    about = f'''<section class="sec about" id="informazioni">
+  <div class="sec-head">
+    <span class="eyebrow">Chi siamo</span>
+    <h2>Dal 2008 lavoriamo su impianti energetici per privati, imprese ed enti pubblici</h2>
+  </div>
+  <div class="about-wrap">
+    <div class="about-text">
+      <p>Rivetti Impianti nasce nel 2008 per iniziativa di <strong>{D.SOCIETA['fondatore']}</strong>. Nel tempo l’attività si è sviluppata nel fotovoltaico, nella termoidraulica e nei servizi di manutenzione, seguendo interventi di diversa tipologia e dimensione.</p>
+      <p>Il lavoro viene seguito da un team tecnico che coordina le fasi di valutazione, progettazione, realizzazione e manutenzione, coinvolgendo quando necessario imprese partner per le attività complementari.</p>
+      <p class="motto">Competenza tecnica, continuità del servizio e attenzione alla sicurezza.</p>
+    </div>
+    <div class="facts">
+      <div class="fact"><span>Anno di fondazione</span><b>{D.SITO['anno_inizio']}</b></div>
+      <div class="fact wide"><span>Competenze</span><b>Fotovoltaico, termoidraulica e manutenzione</b></div>
+      <div class="fact wide"><span>Sede</span><b>{esc(C.indirizzo())}</b></div>
+      <div class="fact wide"><span>P.IVA</span><b>{D.SOCIETA['piva_cf']}</b></div>
+    </div>
+  </div>
 </section>'''
 
     lavora = f'''<section class="sec lavora" id="lavora">
@@ -184,15 +158,15 @@ def home():
   </div>
 </section>'''
 
-    body = '\n'.join(x for x in [
+    body = '\n\n'.join(x for x in [
         hero, C.stats_section(), intro, C.real_home_section(),
         C.perche_section(), C.come_section(), C.incentivi_section(), about, C.qualifiche_section(), C.marchi_section(), lavora,
         C.reviews_section(), C.faq_section('home', 'Domande frequenti', 'FAQ'),
-        C.contact_section(p, 'Parliamo del tuo impianto', 'Descrivici ciò di cui hai bisogno. Puoi chiamarci, scriverci su WhatsApp oppure utilizzare il modulo: raccoglieremo le informazioni necessarie e, quando serve, organizzeremo un sopralluogo.')
-    ] if x)
+        C.contact_section(p, 'Parliamo del tuo impianto', 'Descrivici ciò di cui hai bisogno. Puoi chiamarci, scriverci su WhatsApp oppure utilizzare il modulo: raccoglieremo le informazioni necessarie e, quando serve, organizzeremo un sopralluogo.')] if x)
     return p, doc(p, body, scripts=('ri.js', 'recensioni.js', 'site.js'))
 
 
+# ----------------------------------------------------------------------------- PRIVATI / IMPRESE / PA
 def _j(parti):
     """Unisce i blocchi della pagina saltando quelli vuoti (es. la Galleria lavori quando non è pubblicata)."""
     return '\n'.join(x for x in parti if x)
@@ -257,6 +231,15 @@ def pa():
         C.pa_finale(p),
         C.faq_section('pa', 'Domande frequenti per la Pubblica Amministrazione', 'FAQ'),
         C.contact_section(p, 'Richiedi un confronto tecnico', tipo='Pubblica Amministrazione')])
+    return p, doc(p, body)
+
+
+def offerte():
+    p = pagina('offerte')
+    body = '\n'.join([
+        C.phero(p, 'Offerte Speciali', 'Soluzioni complete per la tua casa a condizioni chiare: energia dal sole, comfort tutto l&rsquo;anno e impianti sempre efficienti. Con detrazione fiscale e finanziamento agevolato.',
+                tags=['Prezzi chiari', 'Detrazione fiscale 50%', 'Finanziamento agevolato']),
+        OF.sezioni(p), C.contact_section(p)])
     return p, doc(p, body)
 
 
@@ -428,7 +411,7 @@ def main():
     if attivi:
         funzioni.append(realizzazioni)
         funzioni += [(lambda r=r: progetto(r)) for r in attivi]
-    funzioni += [contatti, pagina_404]
+    funzioni += [offerte, contatti, pagina_404]
     # niente file orfani: pagine di dettaglio o elenco di build precedenti che ora non devono esistere
     voluti = {'realizzazioni.html'} if attivi else set()
     voluti |= {P.pagina_progetto(r) for r in attivi}

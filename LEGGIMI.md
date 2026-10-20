@@ -49,3 +49,6 @@ Vedi `serverless/contatto.js` (funzione per Cloudflare Pages con Resend): impost
 
 ## Hero della Home (video showreel)
 La Hero usa `assets/rivetti-showreel.mp4` (poster: `assets/servizi/pa-hero.jpg`), con pulsante audio. Testi in `src/dati.py` (`HERO_HOME`). Copia il video in `assets/` con quel nome: finché manca, il build stampa una NOTA e la Hero mostra solo il poster. Il globo 3D è stato rimosso.
+
+## Pagina Offerte
+`offerte.html` è generata da `src/offerte.py`. I **prezzi** si cambiano solo lì (`FOTOVOLTAICO`, `ALTRE`); la detrazione fiscale delle tre offerte fotovoltaiche è **calcolata** dagli stessi prezzi: 50% di (prezzo + IVA), in 10 quote annuali. L'IVA usata è `IVA_FV_PERCENTUALE` (10): verificarla con il commercialista. La voce «Offerte» compare nel menu e nel footer di tutte le pagine.
