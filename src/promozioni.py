@@ -14,6 +14,7 @@ def build():
     # Generazione delle card delle promozioni
     cards_html = ""
     for promo in D.PROMOZIONI:
+        note_html = f'<div style="font-size: 0.8rem; color: #64748b; margin-bottom: 20px;">*{promo["note"]}</div>' if promo.get('note') else ''
         cards_html += f'''
         <div class="promo-card" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 30px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); transition: transform 0.2s;">
             <div>
@@ -26,8 +27,8 @@ def build():
             </div>
             <div>
                 <div style="font-size: 1.2rem; font-weight: 700; color: #0284c7; margin-bottom: 8px;">{promo['prezzo']}</div>
-                <div style="font-size: 0.8rem; color: #64748b; margin-bottom: 20px;">*{promo['note']}</div>
-                <a href="contatti.html" style="display: block; text-align: center; background: #22c55e; color: #fff; padding: 10px 20px; border-radius: 6px; font-weight: 600; text-decoration: none; transition: background 0.2s;">Aderisci all'Offerta</a>
+                {note_html}
+                <a href="contatti.html" style="display: block; text-align: center; background: #22c55e; color: #fff; padding: 10px 20px; border-radius: 6px; font-weight: 600; text-decoration: none; transition: background 0.2s;">Chiedimi maggiori info</a>
             </div>
         </div>
         '''
