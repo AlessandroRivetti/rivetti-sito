@@ -84,6 +84,7 @@ def home():
     H = D.HERO_HOME
     if not os.path.exists(os.path.join(ROOT, H['video'])):
         print('NOTA: manca %s — la Hero mostra solo il poster finché il video non viene caricato.' % H['video'])
+    
     hero = f'''<!-- HERO SECTION CON VIDEO SHOWREEL -->
 <section class="hero-section" id="home">
   <div class="hero-container">
@@ -105,6 +106,33 @@ def home():
     </div>
   </div>
 </section>'''
+
+    intro = f'''<section class="sec intro" id="servizi">
+{C.sec_head('Cosa facciamo', 'Impianti e servizi tecnici per privati, imprese ed enti pubblici', 'Operiamo nel fotovoltaico, nella termoidraulica, nella climatizzazione e nella manutenzione, su nuovi impianti e su sistemi già esistenti. Ogni intervento viene definito in base alle esigenze del cliente e alle caratteristiche tecniche del progetto.')}
+</section>'''
+
+    # Nuova sezione Lavori Effettuati
+    lavori_effettuati = f'''<section class="sec lavori-effettuati" id="lavori">
+{C.sec_head('Lavori effettuati', 'Interventi recenti e realizzazioni sul campo', 'Una panoramica degli impianti fotovoltaici, termoidraulici e dei sistemi energetici installati per i nostri clienti.')}
+</section>'''
+
+    about = '''<section class="sec about" id="informazioni">
+    <!-- Sezione informazioni -->
+</section>'''
+
+    lavora = f'''<section class="sec lavora" id="lavora">
+    <!-- Sezione lavora con noi -->
+</section>'''
+
+    body = '\n'.join(x for x in [
+        hero, C.stats_section(), intro, C.real_home_section(),
+        lavori_effettuati,
+        C.perche_section(), C.come_section(), C.incentivi_section(), about, C.qualifiche_section(), C.marchi_section(), lavora,
+        C.reviews_section(), C.faq_section('home', 'Domande frequenti', 'FAQ'),
+        C.contact_section(p, 'Parliamo del tuo impianto', 'Descrivici ciò di cui hai bisogno. Puoi chiamarci, scriverci su WhatsApp oppure utilizzare il modulo: raccoglieremo le informazioni necessarie e, quando serve, organizzeremo un sopralluogo.')
+    ] if x)
+    
+    return p, doc(p, body, scripts=('ri.js', 'recensioni.js', 'site.js'))
 
     intro = f'''<section class="sec intro" id="servizi">
   {C.sec_head('Cosa facciamo', 'Impianti e servizi tecnici per privati, imprese ed enti pubblici', 'Operiamo nel fotovoltaico, nella termoidraulica, nella climatizzazione e nella manutenzione, su nuovi impianti e su sistemi già esistenti. Ogni intervento viene definito in base alle esigenze del cliente e alle caratteristiche tecniche del progetto.')}
