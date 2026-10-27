@@ -342,7 +342,7 @@ HERO_HOME = dict(
     video='assets/rivetti-showreel.mp4',
     poster='assets/servizi/pa-hero.jpg',
     tag='Rivetti Impianti &bull; Technical Engineering',
-    titolo='Impianti fotovoltaici, elettrici e termoidraulici dal 2008',
+    titolo='Perché continuare a PAGARE quando puoi RISPARMIARE da SUBITO!',
     testo='Progettiamo, realizziamo e manteniamo impianti tecnologici per abitazioni, imprese ed enti pubblici, seguendo ogni intervento dalla valutazione tecnica all&rsquo;assistenza.',
     audio_on='Attiva audio', audio_off='Disattiva audio',
 )
