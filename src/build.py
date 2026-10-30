@@ -111,7 +111,6 @@ def home():
 {C.sec_head('Cosa facciamo', 'Impianti e servizi tecnici per privati, imprese ed enti pubblici', 'Operiamo nel fotovoltaico, nella termoidraulica, nella climatizzazione e nella manutenzione, su nuovi impianti e su sistemi già esistenti. Ogni intervento viene definito in base alle esigenze del cliente e alle caratteristiche tecniche del progetto.')}
 </section>'''
 
-    # Nuova sezione Lavori Effettuati
     lavori_effettuati = f'''<section class="sec lavori-effettuati" id="lavori">
 {C.sec_head('Lavori effettuati', 'Interventi recenti e realizzazioni sul campo', 'Una panoramica degli impianti fotovoltaici, termoidraulici e dei sistemi energetici installati per i nostri clienti.')}
 </section>'''
@@ -125,10 +124,23 @@ def home():
 </section>'''
 
     body = '\n'.join(x for x in [
-        hero, C.stats_section(), intro, C.real_home_section(),
+        hero, 
+        '<div class="geo-divider"></div>',
+        C.stats_section(), 
+        intro, 
+        C.real_home_section(),
+        '<div class="geo-divider"></div>',
         lavori_effettuati,
-        C.perche_section(), C.come_section(), C.incentivi_section(), about, C.qualifiche_section(), C.marchi_section(), lavora,
-        C.reviews_section(), C.faq_section('home', 'Domande frequenti', 'FAQ'),
+        C.perche_section(), 
+        C.come_section(), 
+        C.incentivi_section(), 
+        about, 
+        '<div class="geo-divider"></div>',
+        C.qualifiche_section(), 
+        C.marchi_section(), 
+        lavora,
+        C.reviews_section(), 
+        C.faq_section('home', 'Domande frequenti', 'FAQ'),
         C.contact_section(p, 'Parliamo del tuo impianto', 'Descrivici ciò di cui hai bisogno. Puoi chiamarci, scriverci su WhatsApp oppure utilizzare il modulo: raccoglieremo le informazioni necessarie e, quando serve, organizzeremo un sopralluogo.')
     ] if x)
     
