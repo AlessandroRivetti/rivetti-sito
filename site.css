@@ -151,3 +151,53 @@ body.modal-open{overflow:hidden}
 .sfoot p{margin-bottom:6px}
 .sfoot a{color:#fff;text-decoration:underline;margin:0 4px}
 @media (max-width:640px){.legal-wrap article{padding:24px 20px}.legal-wrap ol.toc{columns:1}}
+
+/* ===== Geometrie e Linee Tecniche Rivetti Impianti ===== */
+
+/* Linea divisoria geometrica con gradiente aziendale (Blu -> Verde) */
+.geo-divider {
+  height: 4px;
+  width: 100%;
+  background: var(--grad);
+  margin: 40px 0;
+  border-radius: 2px;
+  position: relative;
+}
+
+/* Tacche tecniche geometriche agli estremi della linea */
+.geo-divider::before,
+.geo-divider::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  width: 12px;
+  height: 12px;
+  background: var(--blue);
+  transform: rotate(45deg);
+}
+.geo-divider::before { left: 10px; }
+.geo-divider::after { right: 10px; background: var(--green); }
+
+/* Cornici e box con angoli geometrici tagliati (stile tecnico) */
+.geo-box {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  padding: 30px;
+  clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+}
+
+.geo-box:hover {
+  border-color: var(--green);
+  transform: translateY(-3px);
+}
+
+/* Sfondo con griglia geometrica tecnica leggera */
+.geo-grid-bg {
+  background-image: 
+    linear-gradient(to right, rgba(31, 111, 209, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(31, 111, 209, 0.04) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
