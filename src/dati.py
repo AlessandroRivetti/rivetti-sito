@@ -114,7 +114,7 @@ SERVIZI_PRIVATI = [
          ('Assistenza', 'Restiamo a disposizione anche dopo la realizzazione.'),
      ],
      'art': 'fv', 'foto': 'fotovoltaico-domestico.jpg', 'foto_alt': 'Impianto fotovoltaico domestico',
-     'opzione': 'Fotovoltaico domestico'},
+     'opzione': 'Fotovoltaico domestico', 'filename': 'fotovoltaico-residenziale.html'},
     {'id': 'accumulo', 'titolo': 'Sistemi di accumulo', 'tag': 'Produzione e autoconsumo',
      'testo': "Uso serale dell'energia prodotta.",
      'serve': 'Conserva parte dell’energia prodotta dall’impianto fotovoltaico per renderla disponibile quando serve, ad esempio quando i moduli producono meno.',
@@ -122,7 +122,7 @@ SERVIZI_PRIVATI = [
      'sistema': 'Si collega all’impianto fotovoltaico e fa da “serbatoio” tra ciò che la casa produce e ciò che consuma.',
      'punti': ['Insieme a un nuovo impianto fotovoltaico', 'Come integrazione di un impianto esistente, quando tecnicamente possibile'],
      'art': 'acc', 'foto': 'accumulo.jpg', 'foto_alt': 'Sistema di accumulo',
-     'opzione': 'Sistema di accumulo'},
+     'opzione': 'Sistema di accumulo', 'filename': 'sistemi-di-accumulo.html'},
     {'id': 'climatizzazione', 'titolo': 'Climatizzazione e pompe di calore', 'tag': 'Comfort ed efficienza',
      'testo': 'Riscaldamento, pompe di calore, impianti idrosanitari.',
      'serve': 'Raffresca gli ambienti in estate e li riscalda in inverno, anche con pompe di calore: tecnologie che usano l’energia elettrica in modo efficiente.',
@@ -130,14 +130,14 @@ SERVIZI_PRIVATI = [
      'sistema': 'Alimentata a energia elettrica, la climatizzazione può essere integrata con la produzione dell’impianto fotovoltaico.',
      'punti': ['Comfort in estate e in inverno', 'Pompe di calore', 'Corretta progettazione e dimensionamento', 'Integrazione con la produzione fotovoltaica'],
      'art': 'clima', 'foto': 'termoidraulica-climatizzazione.jpg', 'foto_alt': 'Climatizzazione e pompe di calore',
-     'opzione': 'Termoidraulica e Climatizzazione'},
+     'opzione': 'Termoidraulica e Climatizzazione', 'filename': 'climatizzazione.html'},
     {'id': 'solare-termico', 'titolo': 'Solare termico', 'tag': 'Comfort ed efficienza',
      'testo': 'Acqua calda sanitaria dall’energia solare.',
      'serve': 'Sfrutta l’energia solare per la produzione di acqua calda sanitaria.',
      'esigenza': 'Produrre l’acqua calda di casa anche con una fonte rinnovabile, in funzione della configurazione dell’impianto.',
      'sistema': 'Si affianca all’impianto termico dell’abitazione e, a seconda di come è configurato, può contribuire all’efficienza energetica complessiva. La soluzione adatta si valuta caso per caso.',
      'art': 'solterm', 'foto': 'solare-termico.jpg', 'foto_alt': 'Impianto solare termico',
-     'opzione': 'Solare termico'},
+     'opzione': 'Solare termico', 'filename': 'solare-termico.html'},
     {'id': 'manutenzione', 'titolo': 'Manutenzione impianti fotovoltaici', 'tag': 'Controllo nel tempo',
      'testo': 'Verifiche su inverter, collegamenti e sicurezza.',
      'serve': 'Verifica lo stato dell’impianto e dei suoi componenti e interviene quando serve, per mantenerlo correttamente funzionante.',
@@ -145,60 +145,22 @@ SERVIZI_PRIVATI = [
      'sistema': 'È l’attività che mantiene efficiente nel tempo il resto del sistema.',
      'punti': ['Controlli e manutenzione ordinaria e straordinaria', 'Verifica dello stato dei componenti, inverter e collegamenti compresi', 'Individuazione di eventuali anomalie', 'Attività necessarie al corretto funzionamento dell’impianto'],
      'art': 'manut', 'foto': 'manutenzione-inverter.jpg', 'foto_alt': "Manutenzione dell'inverter",
-     'opzione': 'Manutenzione ordinaria e straordinaria'},
+     'opzione': 'Manutenzione ordinaria e straordinaria', 'filename': 'manutenzione-impianti.html'},
     {'id': 'lavaggio', 'titolo': 'Lavaggio moduli fotovoltaici', 'tag': 'Controllo nel tempo',
      'testo': 'Pulizia professionale.',
      'serve': 'Rimuove sporco, polvere e depositi dalla superficie dei moduli, come attività di manutenzione dell’impianto.',
      'esigenza': 'Sporco, polvere e depositi possono influire sulle condizioni operative dei moduli: se e quando intervenire dipende dall’impianto e dal contesto in cui si trova.',
      'sistema': 'Rientra nel piano di manutenzione dell’impianto e può essere abbinato a controlli e termografia.',
      'art': 'lav', 'foto': 'lavaggio-pannelli.jpg', 'foto_alt': 'Lavaggio moduli fotovoltaici',
-     'opzione': 'Lavaggio moduli fotovoltaici'},
+     'opzione': 'Lavaggio moduli fotovoltaici', 'filename': 'lavaggio-moduli.html'},
     {'id': 'termografia', 'titolo': 'Termografia impianti fotovoltaici', 'tag': 'Controllo nel tempo',
      'testo': 'Analisi per individuare anomalie e guasti.',
      'serve': 'È un controllo non invasivo: una camera termica mostra le differenze di temperatura su moduli e componenti e permette di individuare eventuali anomalie termiche.',
      'esigenza': 'Avere un’indicazione in più sullo stato dell’impianto, senza smontare nulla, a supporto di manutenzione e verifiche.',
      'sistema': 'È uno strumento di verifica nel controllo nel tempo: l’esito indica dove approfondire con ulteriori controlli.',
      'art': 'termo', 'foto': 'termografia.jpg', 'foto_alt': 'Termografia di un impianto fotovoltaico',
-     'opzione': 'Termografia impianti fotovoltaici'},
+     'opzione': 'Termografia impianti fotovoltaici', 'filename': 'termografia.html'},
 ]
-
-# Pagina Privati: titoli di sezione e blocchi dedicati
-PRIVATI_HERO = {
-    'h1': 'Energia, comfort ed efficienza per la tua casa',
-    'lead': 'Soluzioni integrate per produrre energia, migliorare il comfort e mantenere efficienti gli impianti nel tempo.',
-}
-
-SISTEMA_INTEGRATO = {
-    'eyebrow': 'Soluzione completa per la casa',
-    'titolo': 'Pensiamo al sistema, non al singolo componente',
-    'testo': 'Fotovoltaico, accumulo, climatizzazione, solare termico e manutenzione non vanno necessariamente considerati come elementi separati. '
-             'Valutiamo la tua abitazione e le tue esigenze per costruire, quando opportuno, una soluzione coordinata.',
-    'aree': [
-        {'icona': 'sole', 'titolo': 'Produzione e autoconsumo', 'sotto': 'Fotovoltaico e sistemi di accumulo',
-         'concetto': 'Produrre energia direttamente dall’abitazione e utilizzare in modo più efficace l’energia prodotta.',
-         'link': [('Fotovoltaico', 'fotovoltaico'), ('Accumulo', 'accumulo')]},
-        {'icona': 'comfort', 'titolo': 'Comfort ed efficienza', 'sotto': 'Climatizzazione e soluzioni termiche',
-         'concetto': 'Gestire riscaldamento, raffrescamento e produzione di acqua calda con tecnologie efficienti e coerenti con il sistema energetico dell’abitazione.',
-         'link': [('Climatizzazione', 'climatizzazione'), ('Solare termico', 'solare-termico')]},
-        {'icona': 'controllo', 'titolo': 'Controllo nel tempo', 'sotto': 'Manutenzione, lavaggio e termografia',
-         'concetto': 'Mantenere l’impianto controllato ed efficiente nel tempo attraverso attività di verifica e manutenzione.',
-         'link': [('Manutenzione', 'manutenzione'), ('Lavaggio', 'lavaggio'), ('Termografia', 'termografia')]},
-    ],
-}
-
-IMPIANTO_ESISTENTE = {
-    'id': 'impianto-esistente',
-    'eyebrow': 'Per chi ha già un impianto fotovoltaico',
-    'titolo': 'Hai già un impianto?',
-    'testo': 'Non è necessario che l’impianto sia stato realizzato da Rivetti Impianti. Possiamo valutare anche impianti già esistenti per verificarne lo stato e definire, quando necessario, le attività più appropriate.',
-    'voci_intro': 'Possiamo intervenire per:',
-    'voci': ['Verifica tecnica', 'Manutenzione', 'Lavaggio moduli', 'Termografia', 'Ricerca di anomalie',
-             'Controllo dei principali componenti', 'Valutazione di eventuali interventi di adeguamento',
-             'Valutazione di sistemi di accumulo o altre integrazioni, quando tecnicamente possibili'],
-    'cta': 'Richiedi una verifica del tuo impianto',
-    'servizio': 'Manutenzione ordinaria e straordinaria',
-    'whatsapp': 'Buongiorno, possiedo già un impianto fotovoltaico e vorrei ricevere informazioni per una verifica e un eventuale intervento di manutenzione.',
-}
 
 SERVIZI_IMPRESE = [
     {'id': 'fotovoltaico-industriale', 'livello': 'principale', 'tag': 'Aziende e attività produttive', 'titolo': 'Fotovoltaico industriale',
