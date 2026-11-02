@@ -170,11 +170,9 @@ def nav(p, pre=''):
     serv_cls = ' active' if p['key'] in ('privati', 'imprese', 'pa') else ''
     items = [
         f'<a href="{home_href}" data-spy="home"{home_cls}>Home</a>',
-        f'<div class="dropdown"><a class="dd-trigger{serv_cls}" href="{H("servizi")}" aria-haspopup="true" aria-expanded="false" data-spy="servizi">Servizi &#9662;</a>'
+        f'<div class="dropdown"><a class="dd-trigger{serv_cls}" href="javascript:void(0);" aria-haspopup="true" aria-expanded="false" data-spy="servizi">Servizi &#9662;</a>',
         f'<div class="dropdown-menu dropdown-3-col">{serv}</div></div>',
     ]
-    if ha_realizzazioni():
-        items.append(f'<a href="{pre}realizzazioni.html"{act("realizzazioni")}{cur("realizzazioni")}>Realizzazioni</a>')
     items += [
         f'<div class="dropdown"><a class="dd-trigger" href="{H("incentivi")}" aria-haspopup="true" aria-expanded="false" data-spy="incentivi">Bonus &amp; Incentivi &#9662;</a>'
         f'<div class="dropdown-menu dropdown-3-col">{bon}</div></div>',
