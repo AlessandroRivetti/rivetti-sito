@@ -254,72 +254,51 @@ SERVIZI_IMPRESE = [
     }
 ]
 
-SERVIZI_PA = {
-    'tag': 'I servizi per la PA',
-    'titolo': 'Interventi per l’efficienza energetica, il fotovoltaico, le Comunità Energetiche e la gestione degli impianti pubblici.',
-    'testo': 'In funzione dell’intervento possono essere valutati incentivi, contributi e strumenti di finanziamento disponibili.',
-    'art': 'pa_hero', 'foto': 'pubblica-amministrazione.jpg', 'foto_alt': 'Edificio pubblico con impianto fotovoltaico',
-}
-
-# Copertine illustrative delle tre macroarea: assets/servizi/<chiave>-hero.jpg (immagini IA fotorealistiche, NON lavori
-# eseguiti: per questo il testo alternativo le descrive come immagini generiche). Se il file manca resta l'illustrazione SVG.
-# Hero della Home: video showreel (con pulsante audio). Il file video va in assets/ (vedi LEGGIMI.md).
-# Hero della Home: video showreel (con pulsante audio). Il file video va in assets/ (vedi LEGGIMI.md).
-HERO_HOME = dict(
-    video='assets/rivetti-showreel.mp4',
-    poster='assets/servizi/pa-hero.jpg',
-    tag='Rivetti Impianti &bull; Technical Engineering',
-    titolo="Smetti di subire i costi dell'energia. Inizia a investire nel tuo futuro.",
-    testo="Riduci la dipendenza energetica e valorizza il tuo immobile con soluzioni efficienti, affidabili e progettate per durare.<br><br><strong>La fiducia si costruisce con i fatti, non con le promesse.</strong> In Rivetti Impianti crediamo che ogni investimento debba essere chiaro, sicuro e sostenibile. Per questo offriamo consulenza tecnica, preventivi trasparenti, componenti di qualità e un servizio di assistenza che continua anche dopo la realizzazione.",
-    audio_on='Attiva audio', audio_off='Disattiva audio',
-)
-
-HERO_FOTO = {
-    'privati': ('privati-hero.png', 'Abitazione con impianto fotovoltaico'),
-    'imprese': ('imprese-hero.png', 'Impianto fotovoltaico su copertura industriale'),
-    'pa': ('pa-hero.png', 'Edificio pubblico con impianto fotovoltaico'),
-}
-
-# ----------------------------------------------------------------------------- PAGINA PUBBLICA AMMINISTRAZIONE
-PA_HERO = {
-    'h1': 'Soluzioni energetiche per la Pubblica Amministrazione',
-    'lead': 'Progettiamo, realizziamo e gestiamo interventi energetici per edifici e strutture pubbliche, dal fotovoltaico alla riqualificazione impiantistica, fino alla manutenzione degli impianti nel tempo.',
-}
-
-# Testi della pagina PA: tono istituzionale; nessun numero, percentuale, promessa economica o riferimento geografico.
-PA_INTRO = {
-    'eyebrow': 'Edifici e strutture pubbliche',
-    'titolo': 'Ogni edificio pubblico consuma energia. Il punto è come utilizzarla meglio.',
-    'paragrafi': [
-        'Scuole, uffici, strutture sportive e altri edifici pubblici presentano esigenze energetiche differenti.',
-        'Intervenire in modo efficace significa partire dallo stato reale dell’edificio, dagli impianti presenti e dai consumi, per individuare gli interventi tecnicamente più appropriati.',
-    ],
-    'frase': 'Riqualificare non significa sostituire un singolo componente: significa migliorare il modo in cui edificio e impianti utilizzano l’energia.',
-}
-
-SISTEMA_PA = {
-    'eyebrow': 'Approccio coordinato',
-    'titolo': 'Un progetto energetico coordinato',
-    'testo': None,
-    'aree': [
-        {'icona': 'progetto', 'titolo': 'Analisi e progettazione',
-         'concetto': 'Raccogliamo dati, analizziamo gli impianti esistenti e valutiamo le condizioni tecniche dell’intervento prima di definire la soluzione.',
-         'link': [('Riqualificazione energetica', 'riqualificazione')]},
-        {'icona': 'sole', 'titolo': 'Realizzazione',
-         'concetto': 'Coordiniamo le attività tecniche previste dal progetto, dall’installazione alla configurazione e al collaudo degli impianti.',
-         'link': [('Fotovoltaico', 'fotovoltaico-pa'), ('Comunità Energetiche', 'cer')]},
-        {'icona': 'gestione', 'titolo': 'Gestione nel tempo',
-         'concetto': 'Manutenzione, verifiche e interventi tecnici permettono di continuare a seguire gli impianti anche dopo la messa in esercizio.',
-         'link': [('Gestione e manutenzione', 'gestione')]},
-    ],
-    'conclusione': 'L’obiettivo non è soltanto realizzare un nuovo impianto, ma inserirlo correttamente nel sistema energetico dell’edificio.',
-}
-
-PA_AREE_HEAD = {
-    'eyebrow': 'Aree di intervento',
-    'titolo': 'Gli ambiti di intervento',
-    'testo': 'Per ogni intervento si parte da una valutazione tecnica delle caratteristiche dell’Ente e delle strutture interessate.',
-}
+SERVIZI_PA = [
+    {
+        'id': 'fotovoltaico-pa',
+        'titolo': 'Fotovoltaico PA',
+        'tag': 'Pubblica Amministrazione ed Enti',
+        'principale': True,
+        'testo': 'Impianti fotovoltaici per l’efficienza energetica del patrimonio pubblico.',
+        'serve': 'Produce energia pulita per scuole, municipi, impianti sportivi e strutture comunali, riducendo le spese correnti dell’ente.',
+        'esigenza': 'Sviluppare soluzioni energetiche sostenibili e conformi alle normative sugli appalti pubblici e alla transizione ecologica.',
+        'sistema': 'Progettazione e installazione su misura con rilascio di tutte le certificazioni di conformità e supporto agli adempimenti normativi.',
+        'art': 'fv_pa',
+        'foto': 'fotovoltaico-pa.jpg',
+        'foto_alt': 'Impianto fotovoltaico Pubblica Amministrazione',
+        'opzione': 'Fotovoltaico PA',
+        'filename': 'fotovoltaico-pa.html'
+    },
+    {
+        'id': 'riqualificazione-energetica',
+        'titolo': 'Riqualificazione Energetica PA',
+        'tag': 'Efficienza del patrimonio pubblico',
+        'testo': 'Interventi di efficientamento integrato per edifici pubblici e strutture comunali.',
+        'serve': 'Riduce i consumi complessivi degli immobili pubblici attraverso l’integrazione di tecnologie rinnovabili e sistemi ad alta efficienza.',
+        'esigenza': 'Riqualificare il patrimonio edilizio pubblico ottimizzando le risorse economiche e migliorando il comfort per i cittadini.',
+        'sistema': 'Interventi coordinati come unico referente (General Contractor) nel rispetto dei Requisiti Minimi Ambientali (CAM).',
+        'art': 'riq_pa',
+        'foto': 'riqualificazione-pa.jpg',
+        'foto_alt': 'Riqualificazione energetica edifici pubblici',
+        'opzione': 'Riqualificazione Energetica PA',
+        'filename': 'riqualificazione-energetica-pa.html'
+    },
+    {
+        'id': 'manutenzione-pa',
+        'titolo': 'Manutenzione e Assistenza PA',
+        'tag': 'Sicurezza e operatività costante',
+        'testo': 'Assistenza continuativa e manutenzione programmata su impianti pubblici.',
+        'serve': 'Mantiene costantemente efficienti e in sicurezza gli impianti tecnologici ed energetici degli enti pubblici.',
+        'esigenza': 'Garantire la continuità operativa dei servizi pubblici ed evitare guasti con un piano di controlli periodici.',
+        'sistema': 'Verifiche periodiche, diagnostica e interventi di manutenzione ordinaria e straordinaria tempestivi.',
+        'art': 'manut_pa',
+        'foto': 'manutenzione-pa.jpg',
+        'foto_alt': 'Manutenzione impianti Pubblica Amministrazione',
+        'opzione': 'Manutenzione e Assistenza PA',
+        'filename': 'manutenzione-pa.html'
+    }
+]
 
 SERVIZI_PA_PAGINA = [
     {'id': 'riqualificazione', 'nav': 'Riqualificazione energetica', 'tag': 'Edifici pubblici',
