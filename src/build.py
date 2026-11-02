@@ -545,58 +545,71 @@ def imprese():
 def pubblica_amministrazione():
     return genera_pagina_settore('pa', 'Pubblica Amministrazione', 'Progetti di riqualificazione energetica, fotovoltaico e assistenza continua per gli enti pubblici.')
 def genera_pagine_singole_servizi():
-    """Genera una pagina HTML dedicata e indipendente per ogni singola voce del menu Servizi."""
+    """Genera una pagina HTML dedicata e indipendente per ogni singola voce del menu Servizi, predisposta per l'inserimento futuro di foto e immagini."""
     for cat in D.MENU_SERVIZI:
         for titolo_voce, filename_voce in cat['voci']:
             # Ignoriamo link non validi o javascript
             if not filename_voce or 'javascript' in filename_voce:
                 continue
             
-            # Creiamo la struttura della pagina dedicata per la singola voce
+            # Struttura Hero dedicata
             hero_html = f'''
             <section class="hero-section hero-servizi">
               <div class="hero-container">
                 <div class="hero-content" style="max-width: 800px; margin: 0 auto; text-align: center; padding: 60px 20px;">
                   <span class="hero-tag">RIVETTI IMPIANTI</span>
                   <h1 class="hero-title">{titolo_voce}</h1>
-                  <p class="hero-subtitle">Soluzioni professionali certificate e progettate su misura.</p>
+                  <p class="hero-subtitle">Soluzioni impiantistiche professionali, certificate e progettate su misura per garantire efficienza e sicurezza.</p>
                 </div>
               </div>
             </section>
             '''
             
+            # Contenuti approfonditi e spaziatura per le future foto/dashboard
             contenuto_speciale = f'''
-            <section class="sec servizio-dettaglio" style="padding: 80px 0;">
-              <div class="container" style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+            <section class="sec servizio-dettaglio" style="padding: 60px 0;">
+              <div class="container" style="max-width: 1000px; margin: 0 auto; padding: 0 20px;">
+                
+                <!-- Intestazione Servizio -->
                 <div class="servizio-header" style="margin-bottom: 40px;">
-                  <span style="color: var(--accent-color, #ff6600); font-weight: 700; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Servizio Dedicato</span>
-                  <h2 style="font-size: 2.5rem; margin-top: 10px; margin-bottom: 15px;">{titolo_voce}</h2>
-                  <p style="font-size: 1.2rem; color: #555; line-height: 1.6;">Soluzioni impiantistiche avanzate per garantire la massima efficienza e conformità normativa.</p>
+                  <span style="color: var(--accent-color, #ff6600); font-weight: 700; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Eccellenza e Conformità</span>
+                  <h2 style="font-size: 2.3rem; margin-top: 10px; margin-bottom: 15px;">{titolo_voce}</h2>
+                  <p style="font-size: 1.15rem; color: #555; line-height: 1.6;">
+                    Affidati all'esperienza di Rivetti Impianti per la gestione completa dell'intervento: dalla consulenza iniziale fino al collaudo e alla documentazione finale a norma di legge.
+                  </p>
                 </div>
                 
                 <div class="geo-divider" style="margin: 30px 0;"></div>
                 
-                <div class="servizio-contenuto" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-bottom: 50px;">
+                <!-- Sezione Testo e Spiegazione -->
+                <div class="servizio-contenuto" style="display: grid; grid-template-columns: 1fr; gap: 40px; margin-bottom: 50px;">
                   <div class="testo-spiegazione">
-                    <h3 style="font-size: 1.5rem; margin-bottom: 20px;">Perché scegliere questo servizio</h3>
+                    <h3 style="font-size: 1.4rem; margin-bottom: 15px; color: #0d2d58;">Il nostro metodo e i vantaggi</h3>
+                    <p style="font-size: 1.05rem; line-height: 1.8; color: #444; margin-bottom: 15px;">
+                      Eseguiamo direttamente le lavorazioni per le quali siamo abilitati e coordiniamo con massima precisione le attività affidate a imprese partner specializzate, garantendo un unico referente tecnico e commerciale.
+                    </p>
                     <p style="font-size: 1.05rem; line-height: 1.8; color: #444;">
-                      Eseguiamo direttamente le lavorazioni per le quali siamo abilitati e coordiniamo le attività con imprese partner specializzate, garantendo un unico referente qualificato dalla progettazione al collaudo e rilascio delle dichiarazioni di conformità.
+                      Ogni installazione è pensata per ottimizzare i consumi energetici, valorizzare l'immobile e assicurare il pieno rispetto delle normative vigenti (D.M. 37/08), con rilascio della relativa documentazione di conformità.
                     </p>
                   </div>
-                  <div class="box-immagine-copertina" style="background: #f4f4f4; border-radius: 12px; padding: 40px; text-align: center; border: 2px dashed #ddd;">
-                    <p style="color: #777; font-weight: 600;">[ Foto / Copertina: {titolo_voce} ]</p>
+                  
+                  <!-- Box Predisposto per Dashboard / Foto Impianto (inseribili in seguito) -->
+                  <div class="box-multimediale-futuro" style="background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: 16px; padding: 40px; text-align: center;">
+                    <p style="color: #64748b; font-weight: 600; font-size: 1rem; margin-bottom: 8px;">🖼️ Spazio riservato a Dashboard / Foto Installazione reale</p>
+                    <p style="color: #94a3b8; font-size: 0.9rem;">(Le immagini e la galleria delle installazioni verranno integrate prossimamente in questo spazio)</p>
                   </div>
                 </div>
                 
-                <!-- Galleria Foto Reali -->
-                <div class="foto-lavori-eseguiti" style="background: #fafafa; padding: 30px; border-radius: 12px; border: 1px solid #eee;">
-                  <h4 style="font-size: 1.2rem; margin-bottom: 15px; color: #222;">📸 Galleria Realizzazioni</h4>
-                  <p style="font-size: 0.95rem; color: #666; margin-bottom: 20px;">Alcuni dei nostri interventi sul campo correlati a questo servizio.</p>
-                  <div class="grid-foto-reali" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
-                    <div style="background: #e5e5e5; height: 160px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #888; font-size: 0.85rem;">Cantiere 1</div>
-                    <div style="background: #e5e5e5; height: 160px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #888; font-size: 0.85rem;">Cantiere 2</div>
+                <!-- Sezione Galleria Futura -->
+                <div class="foto-lavori-eseguiti" style="background: #f1f5f9; padding: 30px; border-radius: 14px; border: 1px solid #e2e8f0;">
+                  <h4 style="font-size: 1.15rem; margin-bottom: 10px; color: #0d2d58;">📸 Galleria Realizzazioni sul Campo</h4>
+                  <p style="font-size: 0.92rem; color: #64748b; margin-bottom: 20px;">Galleria fotografica dedicata agli interventi di {titolo_voce} eseguiti dai nostri tecnici.</p>
+                  <div class="grid-foto-reali" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <div style="background: #e2e8f0; height: 140px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #64748b; font-size: 0.85rem;">Foto cantiere (In arrivo)</div>
+                    <div style="background: #e2e8f0; height: 140px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #64748b; font-size: 0.85rem;">Foto dettaglio (In arrivo)</div>
                   </div>
                 </div>
+
               </div>
             </section>
             '''
@@ -608,9 +621,9 @@ def genera_pagine_singole_servizi():
             
             with open(filename_voce, 'w', encoding='utf-8') as f:
                 f.write(html_finale)
-            print(f"Generata pagina dedicata: {filename_voce}")
+            print(f"Generata pagina dedicata predisposta: {filename_voce}")
 
 if __name__ == '__main__':
     main()
     genera_pagine_singole_servizi()
-    print("Tutte le pagine dei servizi dedicate sono state generate con successo!")
+    print("Tutte le pagine dei servizi dedicate e predisposte sono state generate con successo!")
