@@ -338,12 +338,13 @@ SERVIZI_PA = {
 # Copertine illustrative delle tre macroarea: assets/servizi/<chiave>-hero.jpg (immagini IA fotorealistiche, NON lavori
 # eseguiti: per questo il testo alternativo le descrive come immagini generiche). Se il file manca resta l'illustrazione SVG.
 # Hero della Home: video showreel (con pulsante audio). Il file video va in assets/ (vedi LEGGIMI.md).
+# Hero della Home: video showreel (con pulsante audio). Il file video va in assets/ (vedi LEGGIMI.md).
 HERO_HOME = dict(
     video='assets/rivetti-showreel.mp4',
     poster='assets/servizi/pa-hero.jpg',
     tag='Rivetti Impianti &bull; Technical Engineering',
-    titolo='Perché continuare a PAGARE quando puoi RISPARMIARE da SUBITO!',
-    testo='Progettiamo, realizziamo e manteniamo impianti tecnologici per abitazioni, imprese ed enti pubblici, seguendo ogni intervento dalla valutazione tecnica all&rsquo;assistenza.',
+    titolo="Smetti di subire i costi dell'energia. Inizia a investire nel tuo futuro.",
+    testo="Riduci la dipendenza energetica e valorizza il tuo immobile con soluzioni efficienti, affidabili e progettate per durare.<br><br><strong>La fiducia si costruisce con i fatti, non con le promesse.</strong> In Rivetti Impianti crediamo che ogni investimento debba essere chiaro, sicuro e sostenibile. Per questo offriamo consulenza tecnica, preventivi trasparenti, componenti di qualità e un servizio di assistenza che continua anche dopo la realizzazione.",
     audio_on='Attiva audio', audio_off='Disattiva audio',
 )
 
