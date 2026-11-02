@@ -544,3 +544,73 @@ def imprese():
 
 def pubblica_amministrazione():
     return genera_pagina_settore('pa', 'Pubblica Amministrazione', 'Progetti di riqualificazione energetica, fotovoltaico e assistenza continua per gli enti pubblici.')
+def genera_pagine_singole_servizi():
+    """Genera una pagina HTML dedicata e indipendente per ogni singola voce del menu Servizi."""
+    for cat in D.MENU_SERVIZI:
+        for titolo_voce, filename_voce in cat['voci']:
+            # Ignoriamo link non validi o javascript
+            if not filename_voce or 'javascript' in filename_voce:
+                continue
+            
+            # Creiamo la struttura della pagina dedicata per la singola voce
+            hero_html = f'''
+            <section class="hero-section hero-servizi">
+              <div class="hero-container">
+                <div class="hero-content" style="max-width: 800px; margin: 0 auto; text-align: center; padding: 60px 20px;">
+                  <span class="hero-tag">RIVETTI IMPIANTI</span>
+                  <h1 class="hero-title">{titolo_voce}</h1>
+                  <p class="hero-subtitle">Soluzioni professionali certificate e progettate su misura.</p>
+                </div>
+              </div>
+            </section>
+            '''
+            
+            contenuto_speciale = f'''
+            <section class="sec servizio-dettaglio" style="padding: 80px 0;">
+              <div class="container" style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+                <div class="servizio-header" style="margin-bottom: 40px;">
+                  <span style="color: var(--accent-color, #ff6600); font-weight: 700; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Servizio Dedicato</span>
+                  <h2 style="font-size: 2.5rem; margin-top: 10px; margin-bottom: 15px;">{titolo_voce}</h2>
+                  <p style="font-size: 1.2rem; color: #555; line-height: 1.6;">Soluzioni impiantistiche avanzate per garantire la massima efficienza e conformità normativa.</p>
+                </div>
+                
+                <div class="geo-divider" style="margin: 30px 0;"></div>
+                
+                <div class="servizio-contenuto" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-bottom: 50px;">
+                  <div class="testo-spiegazione">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 20px;">Perché scegliere questo servizio</h3>
+                    <p style="font-size: 1.05rem; line-height: 1.8; color: #444;">
+                      Eseguiamo direttamente le lavorazioni per le quali siamo abilitati e coordiniamo le attività con imprese partner specializzate, garantendo un unico referente qualificato dalla progettazione al collaudo e rilascio delle dichiarazioni di conformità.
+                    </p>
+                  </div>
+                  <div class="box-immagine-copertina" style="background: #f4f4f4; border-radius: 12px; padding: 40px; text-align: center; border: 2px dashed #ddd;">
+                    <p style="color: #777; font-weight: 600;">[ Foto / Copertina: {titolo_voce} ]</p>
+                  </div>
+                </div>
+                
+                <!-- Galleria Foto Reali -->
+                <div class="foto-lavori-eseguiti" style="background: #fafafa; padding: 30px; border-radius: 12px; border: 1px solid #eee;">
+                  <h4 style="font-size: 1.2rem; margin-bottom: 15px; color: #222;">📸 Galleria Realizzazioni</h4>
+                  <p style="font-size: 0.95rem; color: #666; margin-bottom: 20px;">Alcuni dei nostri interventi sul campo correlati a questo servizio.</p>
+                  <div class="grid-foto-reali" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
+                    <div style="background: #e5e5e5; height: 160px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #888; font-size: 0.85rem;">Cantiere 1</div>
+                    <div style="background: #e5e5e5; height: 160px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #888; font-size: 0.85rem;">Cantiere 2</div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            '''
+            
+            p_fake = {'filename': filename_voce, 'titolo': titolo_voce}
+            body_content = '\n'.join([hero_html, contenuto_speciale, C.contact_section(p_fake, 'Richiedi una consulenza', 'Contattaci per maggiori informazioni o per un sopralluogo tecnico.')])
+            
+            html_finale = doc(p_fake, body_content, scripts=('ri.js', 'site.js'))
+            
+            with open(filename_voce, 'w', encoding='utf-8') as f:
+                f.write(html_finale)
+            print(f"Generata pagina dedicata: {filename_voce}")
+
+if __name__ == '__main__':
+    main()
+    genera_pagine_singole_servizi()
+    print("Tutte le pagine dei servizi dedicate sono state generate con successo!")

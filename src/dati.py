@@ -514,29 +514,35 @@ OPZIONI_EXTRA = ['Bonus e incentivi', 'Sopralluogo', 'Altro']
 # (etichetta, pagina#ancora). Le voci senza ancora puntano all'inizio della pagina.
 MENU_SERVIZI = [
     {
-        'titolo': 'Privati', 'href': 'privati.html', 'voci': [
-            ('Fotovoltaico Residenziale', 'privati.html#fotovoltaico'),
-            ('Solare Termico', 'privati.html#solare-termico'),
-            ('Lavaggio Moduli', 'privati.html#lavaggio'),
-            ('Termografia', 'privati.html#termografia'),
-            ('Manutenzione e Assistenza', 'privati.html#manutenzione'),
-            ('Monitoraggio', 'privati.html#monitoraggio'),
+        'titolo': 'Privati',
+        'href': 'javascript:void(0);',
+        'voci': [
+            ('Fotovoltaico Residenziale', 'fotovoltaico-residenziale.html'),
+            ('Solare Termico', 'solare-termico.html'),
+            ('Lavaggio Moduli', 'lavaggio-moduli.html'),
+            ('Termografia', 'termografia.html'),
+            ('Manutenzione e Assistenza', 'manutenzione-assistenza.html'),
+            ('Monitoraggio', 'monitoraggio.html'),
         ]
     },
     {
-        'titolo': 'Imprese', 'href': 'imprese.html', 'voci': [
-            ('Fotovoltaico Industriale', 'imprese.html#fotovoltaico-industriale'),
-            ('Operation e Maintenance (O&M)', 'imprese.html#om'),
-            ('Lavaggio Moduli', 'imprese.html#lavaggio'),
-            ('Termografia', 'imprese.html#termografia'),
-            ('Comunità Energetiche Rinnovabili (CER)', 'imprese.html#cer'),
+        'titolo': 'Imprese',
+        'href': 'javascript:void(0);',
+        'voci': [
+            ('Fotovoltaico Industriale', 'fotovoltaico-industriale.html'),
+            ('Operation e Maintenance (O&M)', 'operation-maintenance.html'),
+            ('Lavaggio Moduli', 'lavaggio-moduli-imprese.html'),
+            ('Termografia', 'termografia-imprese.html'),
+            ('Comunità Energetiche Rinnovabili (CER)', 'comunita-energetiche.html'),
         ]
     },
     {
-        'titolo': 'Pubblica Amministrazione', 'href': 'pubblica-amministrazione.html', 'voci': [
-            ('Fotovoltaico PA', 'pubblica-amministrazione.html#fotovoltaico-pa'),
-            ('Riqualificazione Energetica', 'pubblica-amministrazione.html#riqualificazione'),
-            ('Manutenzione e Assistenza', 'pubblica-amministrazione.html#manutenzione'),
+        'titolo': 'Pubblica Amministrazione',
+        'href': 'javascript:void(0);',
+        'voci': [
+            ('Fotovoltaico PA', 'fotovoltaico-pa.html'),
+            ('Riqualificazione Energetica', 'riqualificazione-energetica.html'),
+            ('Manutenzione e Assistenza', 'manutenzione-assistenza-pa.html'),
         ]
     }
 ]
