@@ -512,34 +512,32 @@ OPZIONI_EXTRA = ['Bonus e incentivi', 'Sopralluogo', 'Altro']
 # ----------------------------------------------------------------------------- MENU "SERVIZI"
 # (etichetta, pagina#ancora). Le voci senza ancora puntano all'inizio della pagina.
 MENU_SERVIZI = [
-    {'titolo': 'Privati', 'href': 'privati.html', 'voci': [
-        ('Fotovoltaico Residenziale', 'privati.html#fotovoltaico'),
-        ('Sistemi di Accumulo', 'privati.html#accumulo'),
-        ('Climatizzazione e Pompe di Calore', 'privati.html#climatizzazione'),
-        ('Solare Termico', 'privati.html#solare-termico'),
-        ('Manutenzione & Assistenza', 'privati.html#manutenzione'),
-        ('Lavaggio Moduli', 'privati.html#lavaggio'),
-        ('Termografia', 'privati.html#termografia'),
-        ('Hai già un impianto?', 'privati.html#impianto-esistente'),
-    ]},
-    {'titolo': 'Imprese', 'href': 'imprese.html', 'voci': [
-        ('Fotovoltaico Industriale', 'imprese.html#fotovoltaico-industriale'),
-        ('Utility Scale', 'imprese.html#utility-scale'),
-        ('Operation & Maintenance (O&M)', 'imprese.html#om'),
-        ('Lavaggio Moduli', 'imprese.html#lavaggio'),
-        ('Termografia', 'imprese.html#termografia'),
-        ('Agrivoltaico', 'imprese.html#agrivoltaico'),
-        ('Comunità Energetiche Rinnovabili (CER)', 'imprese.html#cer'),
-        ('Efficienza Energetica e Impianti', 'imprese.html#efficienza'),
-        ('Hai già un impianto?', 'imprese.html#impianto-esistente'),
-    ]},
-    {'titolo': 'Pubblica Amministrazione', 'href': 'pubblica-amministrazione.html', 'voci': [
-        ('Riqualificazione Energetica', 'pubblica-amministrazione.html#riqualificazione'),
-        ('Fotovoltaico PA', 'pubblica-amministrazione.html#fotovoltaico-pa'),
-        ('Comunità Energetiche', 'pubblica-amministrazione.html#cer'),
-        ('Gestione e Manutenzione', 'pubblica-amministrazione.html#gestione'),
-        ('Impianti esistenti', 'pubblica-amministrazione.html#impianti-esistenti'),
-    ]},
+    {
+        'titolo': 'Privati', 'href': 'privati.html', 'voci': [
+            ('Fotovoltaico Residenziale', 'privati.html#fotovoltaico'),
+            ('Solare Termico', 'privati.html#solare-termico'),
+            ('Lavaggio Moduli', 'privati.html#lavaggio'),
+            ('Termografia', 'privati.html#termografia'),
+            ('Manutenzione e Assistenza', 'privati.html#manutenzione'),
+            ('Monitoraggio', 'privati.html#monitoraggio'),
+        ]
+    },
+    {
+        'titolo': 'Imprese', 'href': 'imprese.html', 'voci': [
+            ('Fotovoltaico Industriale', 'imprese.html#fotovoltaico-industriale'),
+            ('Operation e Maintenance (O&M)', 'imprese.html#om'),
+            ('Lavaggio Moduli', 'imprese.html#lavaggio'),
+            ('Termografia', 'imprese.html#termografia'),
+            ('Comunità Energetiche Rinnovabili (CER)', 'imprese.html#cer'),
+        ]
+    },
+    {
+        'titolo': 'Pubblica Amministrazione', 'href': 'pubblica-amministrazione.html', 'voci': [
+            ('Fotovoltaico PA', 'pubblica-amministrazione.html#fotovoltaico-pa'),
+            ('Riqualificazione Energetica', 'pubblica-amministrazione.html#riqualificazione'),
+            ('Manutenzione e Assistenza', 'pubblica-amministrazione.html#manutenzione'),
+        ]
+    }
 ]
 
 # ----------------------------------------------------------------------------- INCENTIVI

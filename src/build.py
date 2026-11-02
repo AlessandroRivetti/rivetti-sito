@@ -31,14 +31,14 @@ PAGINE = {
                  title='Impianti Fotovoltaici e Termoidraulici | Rivetti Impianti',
                  desc='Dal 2008 progettiamo, realizziamo e manteniamo impianti fotovoltaici, termoidraulici e sistemi energetici per privati, imprese ed enti pubblici.'),
     'privati': dict(path='/privati.html', file='privati.html', crumbs=[('Privati', '/privati.html')],
-                    title='Fotovoltaico e Climatizzazione Casa | Rivetti Impianti',
-                    desc='Impianti fotovoltaici, sistemi di accumulo, climatizzazione e solare termico per la casa, con manutenzione, lavaggio moduli e termografia per impianti fotovoltaici.'),
+                    title='Fotovoltaico, Solare Termico e Servizi per Privati | Rivetti Impianti',
+                    desc='Impianti fotovoltaici, solare termico, lavaggio moduli, termografia, manutenzione e monitoraggio per la tua casa.'),
     'imprese': dict(path='/imprese.html', file='imprese.html', crumbs=[('Imprese', '/imprese.html')],
-                    title='Fotovoltaico Industriale e O&M | Rivetti Impianti',
-                    desc='Fotovoltaico industriale e Utility Scale, O&M e manutenzione, termografia, lavaggio moduli, agrivoltaico e CER per aziende e operatori del settore fotovoltaico.'),
+                    title='Fotovoltaico Industriale, O&M e CER per Imprese | Rivetti Impianti',
+                    desc='Fotovoltaico industriale, O&M, lavaggio moduli, termografia e Comunità Energetiche Rinnovabili (CER) per le aziende.'),
     'pa': dict(path='/pubblica-amministrazione.html', file='pubblica-amministrazione.html', crumbs=[('Pubblica Amministrazione', '/pubblica-amministrazione.html')],
-               title='Energia per la Pubblica Amministrazione | Rivetti Impianti',
-               desc='Riqualificazione energetica di edifici pubblici, fotovoltaico, Comunità Energetiche e manutenzione degli impianti: supporto tecnico per Enti e Pubblica Amministrazione.'),
+               title='Fotovoltaico e Riqualificazione per la PA | Rivetti Impianti',
+               desc='Fotovoltaico PA, riqualificazione energetica, manutenzione e assistenza per la Pubblica Amministrazione.'),
     'realizzazioni': dict(path='/realizzazioni.html', file='realizzazioni.html', crumbs=[('Realizzazioni', '/realizzazioni.html')],
                           title='Realizzazioni | Rivetti Impianti',
                           desc='I lavori realizzati da Rivetti Impianti per privati, imprese e Pubblica Amministrazione: impianti fotovoltaici, termoidraulici e manutenzione.'),
@@ -52,7 +52,7 @@ PAGINE = {
                 desc='La pagina richiesta non esiste o è stata spostata.', noindex=True),
 }
 LEGALI = ['privacy.html', 'cookie.html', 'note-legali.html']          # generate da legal.py
-ALTRE = {'recensione.html'}                                            # pagina a parte (noindex)
+ALTRE = {'recensione.html'}                                          # pagina a parte (noindex)
 
 
 def pagina(key):
@@ -480,3 +480,67 @@ def main():
 
 if __name__ == '__main__':
     main()
+def genera_pagina_settore(settore_key, titolo_pagina, sottotitolo_pagina):
+    p = pagina(settore_key)
+    lista_servizi = D.SERVIZI.get(settore_key, [])
+    
+    hero_html = f'''
+    <section class="hero-section hero-servizi">
+      <div class="hero-container">
+        <div class="hero-content" style="max-width: 800px; margin: 0 auto; text-align: center; padding: 60px 20px;">
+          <span class="hero-tag">RIVETTI IMPIANTI</span>
+          <h1 class="hero-title">{titolo_pagina}</h1>
+          <p class="hero-subtitle">{sottotitolo_pagina}</p>
+        </div>
+      </div>
+    </section>
+    '''
+    
+    servizi_html = []
+    for s in lista_servizi:
+        servizio_block = f'''
+        <section class="sec servizio-dettaglio" id="{s['slug']}" style="padding: 80px 0; border-bottom: 1px solid rgba(0,0,0,0.08);">
+          <div class="container" style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+            <div class="servizio-header" style="margin-bottom: 40px;">
+              <span style="color: var(--accent-color, #ff6600); font-weight: 700; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Settore {titolo_pagina}</span>
+              <h2 style="font-size: 2.5rem; margin-top: 10px; margin-bottom: 15px;">{s['titolo']}</h2>
+              <p style="font-size: 1.2rem; color: #555; line-height: 1.6;">{s['desc_breve']}</p>
+            </div>
+            
+            <div class="geo-divider" style="margin: 30px 0;"></div>
+            
+            <div class="servizio-contenuto" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-bottom: 50px;">
+              <div class="testo-spiegazione">
+                <h3 style="font-size: 1.5rem; margin-bottom: 20px;">Perché è importante</h3>
+                <p style="font-size: 1.05rem; line-height: 1.8; color: #444;">{s['spiegazione']}</p>
+              </div>
+              <div class="box-immagine-copertina" style="background: #f4f4f4; border-radius: 12px; padding: 40px; text-align: center; border: 2px dashed #ddd;">
+                <p style="color: #777; font-weight: 600;">[ Anteprima / Foto Copertina: {s['titolo']} ]</p>
+              </div>
+            </div>
+            
+            <!-- Sezione Foto Reali Lavori Eseguiti -->
+            <div class="foto-lavori-eseguiti" style="background: #fafafa; padding: 30px; border-radius: 12px; border: 1px solid #eee;">
+              <h4 style="font-size: 1.2rem; margin-bottom: 15px; color: #222;">📸 Foto reali di lavori eseguiti</h4>
+              <p style="font-size: 0.95rem; color: #666; margin-bottom: 20px;">Galleria fotografica dei nostri interventi sul campo per questo servizio.</p>
+              <div class="grid-foto-reali" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
+                <div style="background: #e5e5e5; height: 160px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #888; font-size: 0.85rem;">Foto cantiere 1 (Presto online)</div>
+                <div style="background: #e5e5e5; height: 160px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #888; font-size: 0.85rem;">Foto cantiere 2 (Presto online)</div>
+              </div>
+            </div>
+          </div>
+        </section>
+        '''
+        servizi_html.append(servizio_block)
+        
+    body_content = '\n'.join([hero_html, ''.join(servizi_html), C.contact_section(p, 'Richiedi una consulenza', 'Contattaci per maggiori informazioni o per un sopralluogo tecnico.')])
+    return p, doc(p, body_content, scripts=('ri.js', 'site.js'))
+
+def privati():
+    return genera_pagina_settore('privati', 'Soluzioni per Privati', 'Impianti e tecnologie su misura per l’efficienza e l’indipendenza energetica della tua abitazione.')
+
+def imprese():
+    return genera_pagina_settore('imprese', 'Soluzioni per Imprese', 'Sistemi avanzati, fotovoltaico industriale e servizi O&M per ottimizzare i costi e la sostenibilità aziendale.')
+
+def pubblica_amministrazione():
+    return genera_pagina_settore('pa', 'Pubblica Amministrazione', 'Progetti di riqualificazione energetica, fotovoltaico e assistenza continua per gli enti pubblici.')
