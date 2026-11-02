@@ -159,7 +159,7 @@ def nav(p, pre=''):
     serv = ''
     for col in D.MENU_SERVIZI:
         voci = ''.join(f'<a href="{pre}{qa(h)}">{esc(l)}</a>' for l, h in col['voci'])
-        serv += f'<div class="dropdown-category"><a class="category-title" href="{pre}{qa(col["href"])}">{esc(col["titolo"])}</a>{voci}</div>'
+        serv += f'<div class="dropdown-category"><span class="category-title">{esc(col["titolo"])}</span>{voci}</div>'
     bon = ''
     for col in D.INCENTIVI['menu']:
         voci = ''.join(f'<a href="{H("incentivi")}" data-modal="{col["modale"]}">{esc(v)}</a>' for v in col['voci'])
