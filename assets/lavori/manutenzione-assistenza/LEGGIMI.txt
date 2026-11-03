@@ -1,0 +1,3 @@
+Foto reali per la pagina manutenzione-assistenza.html
+Copia qui le foto degli interventi (.jpg, .jpeg, .png o .webp, max 9) e lancia:  python3 src/build.py
+Le foto compaiono nella griglia «Foto dei nostri interventi» della pagina. Solo foto reali dei lavori.

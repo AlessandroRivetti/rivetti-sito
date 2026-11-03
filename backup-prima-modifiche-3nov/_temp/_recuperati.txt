@@ -1,0 +1,127 @@
+PRIVATI_HERO = {
+    'h1': 'Energia, comfort ed efficienza per la tua casa',
+    'lead': 'Soluzioni integrate per produrre energia, migliorare il comfort e mantenere efficienti gli impianti nel tempo.',
+}
+
+SISTEMA_INTEGRATO = {
+    'eyebrow': 'Soluzione completa per la casa',
+    'titolo': 'Pensiamo al sistema, non al singolo componente',
+    'testo': 'Fotovoltaico, accumulo, climatizzazione, solare termico e manutenzione non vanno necessariamente considerati come elementi separati. '
+             'Valutiamo la tua abitazione e le tue esigenze per costruire, quando opportuno, una soluzione coordinata.',
+    'aree': [
+        {'icona': 'sole', 'titolo': 'Produzione e autoconsumo', 'sotto': 'Fotovoltaico e sistemi di accumulo',
+         'concetto': 'Produrre energia direttamente dall’abitazione e utilizzare in modo più efficace l’energia prodotta.',
+         'link': [('Fotovoltaico', 'fotovoltaico'), ('Accumulo', 'accumulo')]},
+        {'icona': 'comfort', 'titolo': 'Comfort ed efficienza', 'sotto': 'Climatizzazione e soluzioni termiche',
+         'concetto': 'Gestire riscaldamento, raffrescamento e produzione di acqua calda con tecnologie efficienti e coerenti con il sistema energetico dell’abitazione.',
+         'link': [('Climatizzazione', 'climatizzazione'), ('Solare termico', 'solare-termico')]},
+        {'icona': 'controllo', 'titolo': 'Controllo nel tempo', 'sotto': 'Manutenzione, lavaggio e termografia',
+         'concetto': 'Mantenere l’impianto controllato ed efficiente nel tempo attraverso attività di verifica e manutenzione.',
+         'link': [('Manutenzione', 'manutenzione'), ('Lavaggio', 'lavaggio'), ('Termografia', 'termografia')]},
+    ],
+}
+
+IMPIANTO_ESISTENTE = {
+    'id': 'impianto-esistente',
+    'eyebrow': 'Per chi ha già un impianto fotovoltaico',
+    'titolo': 'Hai già un impianto?',
+    'testo': 'Non è necessario che l’impianto sia stato realizzato da Rivetti Impianti. Possiamo valutare anche impianti già esistenti per verificarne lo stato e definire, quando necessario, le attività più appropriate.',
+    'voci_intro': 'Possiamo intervenire per:',
+    'voci': ['Verifica tecnica', 'Manutenzione', 'Lavaggio moduli', 'Termografia', 'Ricerca di anomalie',
+             'Controllo dei principali componenti', 'Valutazione di eventuali interventi di adeguamento',
+             'Valutazione di sistemi di accumulo o altre integrazioni, quando tecnicamente possibili'],
+    'cta': 'Richiedi una verifica del tuo impianto',
+    'servizio': 'Manutenzione ordinaria e straordinaria',
+    'whatsapp': 'Buongiorno, possiedo già un impianto fotovoltaico e vorrei ricevere informazioni per una verifica e un eventuale intervento di manutenzione.',
+}
+
+IMPRESE_HERO = {
+    'h1': 'Energia e servizi tecnici per imprese e grandi impianti',
+    'lead': 'Progettiamo, realizziamo e gestiamo impianti fotovoltaici e sistemi energetici per aziende, attività produttive e operatori del settore, seguendo l’intervento dalla valutazione tecnica alla gestione nel tempo.',
+    'tags': ['Nuovi impianti', 'Ampliamenti', 'Revamping', 'Manutenzione', 'Attività specialistiche', 'Impianti di grande potenza'],
+}
+
+SISTEMA_IMPRESE = {
+    'eyebrow': 'Continuità del servizio',
+    'titolo': 'Un unico interlocutore per l’impianto',
+    'testo': 'Dalla progettazione alla gestione: un unico riferimento tecnico per seguire l’impianto in tutte le sue fasi, con continuità nel tempo.',
+    'aree': [
+        {'icona': 'progetto', 'titolo': 'Progettazione e realizzazione', 'concetto': 'Dai consumi e dalle caratteristiche del sito alla progettazione e alla realizzazione dell’impianto.',
+         'link': [('Fotovoltaico industriale', 'fotovoltaico-industriale'), ('Utility Scale', 'utility-scale')]},
+        {'icona': 'gestione', 'titolo': 'Gestione e manutenzione', 'concetto': 'Dalla messa in esercizio alla manutenzione programmata e agli interventi tecnici.',
+         'link': [('Operation & Maintenance', 'om')]},
+        {'icona': 'controllo', 'titolo': 'Controllo specialistico', 'concetto': 'Termografia, verifiche elettriche, lavaggio e attività di controllo per conoscere lo stato dell’impianto.',
+         'link': [('Termografia', 'termografia'), ('Lavaggio moduli', 'lavaggio')]},
+    ],
+}
+
+IMPIANTO_ESISTENTE_IMPRESE = {
+    'id': 'impianto-esistente',
+    'eyebrow': 'Per chi gestisce già un impianto',
+    'titolo': 'Hai già un impianto fotovoltaico?',
+    'testo': 'Possiamo partire dallo stato attuale dell’impianto per valutarne condizioni operative, necessità di manutenzione e possibili interventi. Non è necessario che l’impianto sia stato realizzato da Rivetti Impianti.',
+    'voci_intro': 'Possiamo intervenire per:',
+    'voci': ['Verifica tecnica iniziale', 'Manutenzione', 'O&M', 'Termografia', 'Lavaggio', 'Ricerca anomalie', 'Revamping',
+             'Valutazione di ampliamenti', 'Integrazione di sistemi di accumulo, quando tecnicamente possibile'],
+    'cta': 'Richiedi una valutazione dell’impianto',
+    'servizio': 'Operation & Maintenance fotovoltaico',
+    'whatsapp': 'Buongiorno, vorrei ricevere una valutazione tecnica per la gestione, manutenzione o verifica di un impianto fotovoltaico esistente.',
+}
+
+COME_LAVORIAMO_IMPRESE = {
+    'eyebrow': 'Come lavoriamo',
+    'titolo': 'Un percorso tecnico, dalla prima analisi alla gestione',
+    'passi': [
+        ('Analisi preliminare', 'Raccogliamo esigenze, consumi e obiettivi dell’attività o dell’impianto.'),
+        ('Sopralluogo e raccolta dati', 'Verifichiamo sul posto struttura, impianti e dati necessari.'),
+        ('Progettazione e proposta tecnica', 'Definiamo la soluzione e la proposta tecnica.'),
+        ('Realizzazione e collaudo', 'Eseguiamo le lavorazioni nell’ambito delle attività tecniche di nostra competenza, coordiniamo le attività affidate a imprese partner e verifichiamo il funzionamento.'),
+        ('Gestione e manutenzione', 'Attività programmate, interventi tecnici e verifiche nel tempo.'),
+    ],
+    'nota': 'Per gli impianti esistenti il percorso può partire direttamente dalla verifica tecnica.',
+}
+
+HERO_FOTO = {
+    'privati': ('privati-hero.png', 'Abitazione con impianto fotovoltaico'),
+    'imprese': ('imprese-hero.png', 'Impianto fotovoltaico su copertura industriale'),
+    'pa': ('pa-hero.png', 'Edificio pubblico con impianto fotovoltaico'),
+}
+
+PA_HERO = {
+    'h1': 'Soluzioni energetiche per la Pubblica Amministrazione',
+    'lead': 'Progettiamo, realizziamo e gestiamo interventi energetici per edifici e strutture pubbliche, dal fotovoltaico alla riqualificazione impiantistica, fino alla manutenzione degli impianti nel tempo.',
+}
+
+PA_INTRO = {
+    'eyebrow': 'Edifici e strutture pubbliche',
+    'titolo': 'Ogni edificio pubblico consuma energia. Il punto è come utilizzarla meglio.',
+    'paragrafi': [
+        'Scuole, uffici, strutture sportive e altri edifici pubblici presentano esigenze energetiche differenti.',
+        'Intervenire in modo efficace significa partire dallo stato reale dell’edificio, dagli impianti presenti e dai consumi, per individuare gli interventi tecnicamente più appropriati.',
+    ],
+    'frase': 'Riqualificare non significa sostituire un singolo componente: significa migliorare il modo in cui edificio e impianti utilizzano l’energia.',
+}
+
+SISTEMA_PA = {
+    'eyebrow': 'Approccio coordinato',
+    'titolo': 'Un progetto energetico coordinato',
+    'testo': None,
+    'aree': [
+        {'icona': 'progetto', 'titolo': 'Analisi e progettazione',
+         'concetto': 'Raccogliamo dati, analizziamo gli impianti esistenti e valutiamo le condizioni tecniche dell’intervento prima di definire la soluzione.',
+         'link': [('Riqualificazione energetica', 'riqualificazione')]},
+        {'icona': 'sole', 'titolo': 'Realizzazione',
+         'concetto': 'Coordiniamo le attività tecniche previste dal progetto, dall’installazione alla configurazione e al collaudo degli impianti.',
+         'link': [('Fotovoltaico', 'fotovoltaico-pa'), ('Comunità Energetiche', 'cer')]},
+        {'icona': 'gestione', 'titolo': 'Gestione nel tempo',
+         'concetto': 'Manutenzione, verifiche e interventi tecnici permettono di continuare a seguire gli impianti anche dopo la messa in esercizio.',
+         'link': [('Gestione e manutenzione', 'gestione')]},
+    ],
+    'conclusione': 'L’obiettivo non è soltanto realizzare un nuovo impianto, ma inserirlo correttamente nel sistema energetico dell’edificio.',
+}
+
+PA_AREE_HEAD = {
+    'eyebrow': 'Aree di intervento',
+    'titolo': 'Gli ambiti di intervento',
+    'testo': 'Per ogni intervento si parte da una valutazione tecnica delle caratteristiche dell’Ente e delle strutture interessate.',
+}

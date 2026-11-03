@@ -157,9 +157,10 @@ def nav(p, pre=''):
     act = lambda *keys: ' class="active"' if p['key'] in keys else ''
 
     serv = ''
-    for col in D.MENU_SERVIZI:
-        voci = ''.join(f'<a href="{pre}{qa(h)}">{esc(l)}</a>' for l, h in col['voci'])
-        serv += f'<div class="dropdown-category"><span class="category-title">{esc(col["titolo"])}</span>{voci}</div>'
+    import servizi_pagine as SP      # import locale: servizi_pagine importa comp
+    for col in SP.menu():
+        voci = ''.join('<a href="%s%s"%s>%s</a>' % (pre, qa(h), ' aria-current="page"' if p['key'] == 'sv-' + h[:-5] else '', esc(l)) for l, h in col['voci'])
+        serv += f'<div class="dropdown-category"><a class="category-title" href="{pre}{qa(col["pagina"])}">{esc(col["titolo"])}</a>{voci}</div>'
     bon = ''
     for col in D.INCENTIVI['menu']:
         voci = ''.join(f'<a href="{H("incentivi")}" data-modal="{col["modale"]}">{esc(v)}</a>' for v in col['voci'])
@@ -167,7 +168,7 @@ def nav(p, pre=''):
 
     home_cls = ' class="active"' if home else ''
     home_href = '#home' if home else pre + 'index.html'
-    serv_cls = ' active' if p['key'] in ('privati', 'imprese', 'pa') else ''
+    serv_cls = ' active' if p['key'] in ('privati', 'imprese', 'pa') or p['key'].startswith('sv-') else ''
     items = [
         f'<a href="{home_href}" data-spy="home"{home_cls}>Home</a>',
         f'<div class="dropdown"><a class="dd-trigger{serv_cls}" href="javascript:void(0);" aria-haspopup="true" aria-expanded="false" data-spy="servizi">Servizi &#9662;</a>',
@@ -177,7 +178,7 @@ def nav(p, pre=''):
         f'<div class="dropdown"><a class="dd-trigger" href="{H("incentivi")}" aria-haspopup="true" aria-expanded="false" data-spy="incentivi">Bonus &amp; Incentivi &#9662;</a>'
         f'<div class="dropdown-menu dropdown-3-col">{bon}</div></div>',
         f'<a href="{H("informazioni")}" data-spy="informazioni">Chi siamo</a>',
-        f'<a href="{H("lavora")}" data-spy="lavora">Lavora con noi</a>',
+        f'<a href="{pre}lavora-con-noi.html"{act("lavora-con-noi")}{cur("lavora-con-noi")}>Lavora con noi</a>',
         f'<a class="nav-offerte{" active" if p["key"] == "offerte" else ""}" href="{pre}offerte.html" data-spy="offerte"{cur("offerte")}>Offerte</a>',
         f'<a href="{"#contatti" if home else pre + "contatti.html"}" data-spy="contatti"{act("contatti")}{cur("contatti")}>Contatti</a>',
         f'<a href="{H("recensioni")}" data-spy="recensioni" data-rev hidden>Cosa dicono di noi</a>',
@@ -214,7 +215,7 @@ def footer(p, pre=''):
     nav_links = [('Privati', f'{pre}privati.html'), ('Imprese', f'{pre}imprese.html'), ('Pubblica Amministrazione', f'{pre}pubblica-amministrazione.html')]
     if ha_realizzazioni():
         nav_links.append(('Realizzazioni', f'{pre}realizzazioni.html'))
-    nav_links += [('Offerte', f'{pre}offerte.html'), ('Bonus &amp; Incentivi', H('incentivi')), ('Chi siamo', H('informazioni')), ('Lavora con noi', H('lavora')),
+    nav_links += [('Offerte', f'{pre}offerte.html'), ('Bonus &amp; Incentivi', H('incentivi')), ('Chi siamo', H('informazioni')), ('Lavora con noi', f'{pre}lavora-con-noi.html'),
                   ('Contatti', f'{pre}contatti.html'), ('Cosa dicono di noi', H('recensioni'))]
     links = ''.join(f'<a href="{h}"{" data-rev hidden" if h.endswith("#recensioni") else ""}>{l}</a>' for l, h in nav_links)
     logo = f'{pre}{D.SITO["logo_chiaro"]}'
@@ -372,9 +373,9 @@ def faq_section(chiave, titolo='Domande frequenti', eyebrow='FAQ', sid='faq'):
 # ---------------------------------------------------------------- incentivi
 def incentivi_cards():
     out = ''
-    for s in D.INCENTIVI['schede']:
+    for n, s in enumerate(D.INCENTIVI['schede']):
         tit, testo = D.INCENTIVI_HOME['schede'][s['id']]
-        out += f'''    <article class="bcard">
+        out += f'''    <article class="bcard rv" style="--i:{n}">
       <div class="sticker">{sticker(s['sticker'])}</div>
       <span class="bdg">{esc(s['badge'])}</span>
       <h3>{esc(tit)}</h3>
@@ -387,11 +388,11 @@ def incentivi_cards():
 
 def incentivi_section():
     I = D.INCENTIVI_HOME
-    return f'''<section class="sec bonus" id="incentivi">
+    return f'''<section class="sec bonus bonus-live" id="incentivi">
   {sec_head(I['eyebrow'], esc(I['titolo']), esc(I['intro']))}
   <div class="bgrid">
 {incentivi_cards()}  </div>
-  <div class="bonus-foot">
+  <div class="bonus-foot rv" style="--i:3">
     <span>{esc(I['nota_foot'])}</span>
     <a href="#contatti" data-service="Bonus e incentivi">Richiedi informazioni &rarr;</a>
   </div>

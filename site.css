@@ -154,30 +154,6 @@ body.modal-open{overflow:hidden}
 
 /* ===== Geometrie e Linee Tecniche Rivetti Impianti ===== */
 
-/* Linea divisoria geometrica con gradiente aziendale (Blu -> Verde) */
-.geo-divider {
-  height: 4px;
-  width: 100%;
-  background: var(--grad);
-  margin: 40px 0;
-  border-radius: 2px;
-  position: relative;
-}
-
-/* Tacche tecniche geometriche agli estremi della linea */
-.geo-divider::before,
-.geo-divider::after {
-  content: '';
-  position: absolute;
-  top: -4px;
-  width: 12px;
-  height: 12px;
-  background: var(--blue);
-  transform: rotate(45deg);
-}
-.geo-divider::before { left: 10px; }
-.geo-divider::after { right: 10px; background: var(--green); }
-
 /* Cornici e box con angoli geometrici tagliati (stile tecnico) */
 .geo-box {
   position: relative;

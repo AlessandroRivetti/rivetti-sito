@@ -114,7 +114,7 @@ SERVIZI_PRIVATI = [
          ('Assistenza', 'Restiamo a disposizione anche dopo la realizzazione.'),
      ],
      'art': 'fv', 'foto': 'fotovoltaico-domestico.jpg', 'foto_alt': 'Impianto fotovoltaico domestico',
-     'opzione': 'Fotovoltaico domestico', 'filename': 'fotovoltaico-residenziale.html'},
+     'opzione': 'Fotovoltaico domestico'},
     {'id': 'accumulo', 'titolo': 'Sistemi di accumulo', 'tag': 'Produzione e autoconsumo',
      'testo': "Uso serale dell'energia prodotta.",
      'serve': 'Conserva parte dell’energia prodotta dall’impianto fotovoltaico per renderla disponibile quando serve, ad esempio quando i moduli producono meno.',
@@ -122,7 +122,7 @@ SERVIZI_PRIVATI = [
      'sistema': 'Si collega all’impianto fotovoltaico e fa da “serbatoio” tra ciò che la casa produce e ciò che consuma.',
      'punti': ['Insieme a un nuovo impianto fotovoltaico', 'Come integrazione di un impianto esistente, quando tecnicamente possibile'],
      'art': 'acc', 'foto': 'accumulo.jpg', 'foto_alt': 'Sistema di accumulo',
-     'opzione': 'Sistema di accumulo', 'filename': 'sistemi-di-accumulo.html'},
+     'opzione': 'Sistema di accumulo'},
     {'id': 'climatizzazione', 'titolo': 'Climatizzazione e pompe di calore', 'tag': 'Comfort ed efficienza',
      'testo': 'Riscaldamento, pompe di calore, impianti idrosanitari.',
      'serve': 'Raffresca gli ambienti in estate e li riscalda in inverno, anche con pompe di calore: tecnologie che usano l’energia elettrica in modo efficiente.',
@@ -130,14 +130,14 @@ SERVIZI_PRIVATI = [
      'sistema': 'Alimentata a energia elettrica, la climatizzazione può essere integrata con la produzione dell’impianto fotovoltaico.',
      'punti': ['Comfort in estate e in inverno', 'Pompe di calore', 'Corretta progettazione e dimensionamento', 'Integrazione con la produzione fotovoltaica'],
      'art': 'clima', 'foto': 'termoidraulica-climatizzazione.jpg', 'foto_alt': 'Climatizzazione e pompe di calore',
-     'opzione': 'Termoidraulica e Climatizzazione', 'filename': 'climatizzazione.html'},
+     'opzione': 'Termoidraulica e Climatizzazione'},
     {'id': 'solare-termico', 'titolo': 'Solare termico', 'tag': 'Comfort ed efficienza',
      'testo': 'Acqua calda sanitaria dall’energia solare.',
      'serve': 'Sfrutta l’energia solare per la produzione di acqua calda sanitaria.',
      'esigenza': 'Produrre l’acqua calda di casa anche con una fonte rinnovabile, in funzione della configurazione dell’impianto.',
      'sistema': 'Si affianca all’impianto termico dell’abitazione e, a seconda di come è configurato, può contribuire all’efficienza energetica complessiva. La soluzione adatta si valuta caso per caso.',
      'art': 'solterm', 'foto': 'solare-termico.jpg', 'foto_alt': 'Impianto solare termico',
-     'opzione': 'Solare termico', 'filename': 'solare-termico.html'},
+     'opzione': 'Solare termico'},
     {'id': 'manutenzione', 'titolo': 'Manutenzione impianti fotovoltaici', 'tag': 'Controllo nel tempo',
      'testo': 'Verifiche su inverter, collegamenti e sicurezza.',
      'serve': 'Verifica lo stato dell’impianto e dei suoi componenti e interviene quando serve, per mantenerlo correttamente funzionante.',
@@ -145,160 +145,111 @@ SERVIZI_PRIVATI = [
      'sistema': 'È l’attività che mantiene efficiente nel tempo il resto del sistema.',
      'punti': ['Controlli e manutenzione ordinaria e straordinaria', 'Verifica dello stato dei componenti, inverter e collegamenti compresi', 'Individuazione di eventuali anomalie', 'Attività necessarie al corretto funzionamento dell’impianto'],
      'art': 'manut', 'foto': 'manutenzione-inverter.jpg', 'foto_alt': "Manutenzione dell'inverter",
-     'opzione': 'Manutenzione ordinaria e straordinaria', 'filename': 'manutenzione-impianti.html'},
+     'opzione': 'Manutenzione ordinaria e straordinaria'},
     {'id': 'lavaggio', 'titolo': 'Lavaggio moduli fotovoltaici', 'tag': 'Controllo nel tempo',
      'testo': 'Pulizia professionale.',
      'serve': 'Rimuove sporco, polvere e depositi dalla superficie dei moduli, come attività di manutenzione dell’impianto.',
      'esigenza': 'Sporco, polvere e depositi possono influire sulle condizioni operative dei moduli: se e quando intervenire dipende dall’impianto e dal contesto in cui si trova.',
      'sistema': 'Rientra nel piano di manutenzione dell’impianto e può essere abbinato a controlli e termografia.',
      'art': 'lav', 'foto': 'lavaggio-pannelli.jpg', 'foto_alt': 'Lavaggio moduli fotovoltaici',
-     'opzione': 'Lavaggio moduli fotovoltaici', 'filename': 'lavaggio-moduli.html'},
+     'opzione': 'Lavaggio moduli fotovoltaici'},
     {'id': 'termografia', 'titolo': 'Termografia impianti fotovoltaici', 'tag': 'Controllo nel tempo',
      'testo': 'Analisi per individuare anomalie e guasti.',
      'serve': 'È un controllo non invasivo: una camera termica mostra le differenze di temperatura su moduli e componenti e permette di individuare eventuali anomalie termiche.',
      'esigenza': 'Avere un’indicazione in più sullo stato dell’impianto, senza smontare nulla, a supporto di manutenzione e verifiche.',
      'sistema': 'È uno strumento di verifica nel controllo nel tempo: l’esito indica dove approfondire con ulteriori controlli.',
      'art': 'termo', 'foto': 'termografia.jpg', 'foto_alt': 'Termografia di un impianto fotovoltaico',
-     'opzione': 'Termografia impianti fotovoltaici', 'filename': 'termografia.html'},
+     'opzione': 'Termografia impianti fotovoltaici'},
 ]
 
 SERVIZI_IMPRESE = [
-    {
-        'id': 'fotovoltaico-industriale',
-        'titolo': 'Fotovoltaico Industriale',
-        'tag': 'Aziende e attività produttive',
-        'principale': True,
-        'testo': 'Grandi impianti su tetto o a terra per la transizione energetica aziendale.',
-        'serve': 'Produce grandi volumi di energia pulita direttamente a servizio delle attività produttive, riducendo drasticamente i costi fissi energetici.',
-        'esigenza': 'Affrontare i costi energetici aziendali con un investimento mirato, dimensionato sui consumi effettivi dell’attività e con un rapido ammortamento.',
-        'sistema': 'Progettato su misura per coperture industriali o aree di pertinenza, integrabile con sistemi di accumulo e monitoraggio avanzato.',
-        'passi': [
-            ('Analisi dei consumi', 'Studio approfondito delle bollette e dei profili di carico aziendali.'),
-            ('Progettazione preliminare', 'Dimensionamento dell’impianto in base allo spazio disponibile e al fabbisogno.'),
-            ('Gestione autorizzativa', 'Disbrigo di tutte le pratiche burocratiche, edilizie e di connessione in rete.'),
-            ('Installazione e montaggio', 'Realizzazione dell’opera nel rispetto delle tempistiche aziendali e della sicurezza.'),
-            ('Collaudo e messa in servizio', 'Verifiche finali e rilascio delle dichiarazioni di conformità (D.M. 37/08).'),
-        ],
-        'art': 'fv_ind',
-        'foto': 'fotovoltaico-industriale.jpg',
-        'foto_alt': 'Impianto fotovoltaico industriale',
-        'opzione': 'Fotovoltaico Industriale',
-        'filename': 'fotovoltaico-industriale.html'
-    },
-    {
-        'id': 'operation-maintenance',
-        'titolo': 'Operation e Maintenance (O&M)',
-        'tag': 'Gestione e manutenzione impianti',
-        'testo': 'Controllo avanzato e manutenzione programmata per impianti industriali.',
-        'serve': 'Garantisce la massima operatività dell’impianto nel tempo, prevenendo fermi macchina e cali di produzione energetica.',
-        'esigenza': 'Proteggere il valore dell’investimento fotovoltaico nel lungo periodo attraverso una gestione tecnica professionale e continua.',
-        'sistema': 'Servizio strutturato di monitoraggio remoto, interventi ordinari e straordinari programmati.',
-        'punti': [
-            'Monitoraggio attivo dei parametri di produzione',
-            'Manutenzione preventiva programmata',
-            'Interventi rapidi in caso di guasto o anomalie',
-            'Report periodici sullo stato di salute dell’impianto'
-        ],
-        'art': 'om',
-        'foto': 'operation-maintenance.jpg',
-        'foto_alt': 'Operation e Maintenance impianti industriali',
-        'opzione': 'Operation e Maintenance (O&M)',
-        'filename': 'operation-maintenance.html'
-    },
-    {
-        'id': 'lavaggio-moduli-industriali',
-        'titolo': 'Lavaggio Moduli Industriali',
-        'tag': 'Manutenzione e pulizia',
-        'testo': 'Pulizia professionale per grandi estensioni di pannelli fotovoltaici.',
-        'serve': 'Rimuove polvere, smog, guano e depositi accumulati sui moduli industriali, ripristinando la massima resa energetica.',
-        'esigenza': 'Evitare perdite di produzione dovute all’imbrattamento delle superfici esposte su ampie coperture industriali.',
-        'sistema': 'Utilizzo di attrezzature professionali dedicate e acqua osmotica per preservare l’integrità dei moduli.',
-        'art': 'lav_ind',
-        'foto': 'lavaggio-industriale.jpg',
-        'foto_alt': 'Lavaggio moduli fotovoltaici industriali',
-        'opzione': 'Lavaggio Moduli Industriali',
-        'filename': 'lavaggio-moduli-industriali.html'
-    },
-    {
-        'id': 'termografia-industriale',
-        'titolo': 'Termografia Impianti Industriali',
-        'tag': 'Verifiche e diagnostica',
-        'testo': 'Analisi termografica avanzata con termocamera o drone.',
-        'serve': 'Individua con precisione micro-rotture, celle calde (hot spot), guasti o anomalie di connessione non visibili a occhio nudo.',
-        'esigenza': 'Prevenire guasti critici e blocchi dell’impianto industriale prima che compromettano la produzione.',
-        'sistema': 'Diagnostica non invasiva a supporto dei piani di manutenzione programmata.',
-        'art': 'termo_ind',
-        'foto': 'termografia-industriale.jpg',
-        'foto_alt': 'Termografia impianto fotovoltaico industriale',
-        'opzione': 'Termografia Impianti Industriali',
-        'filename': 'termografia-industriale.html'
-    },
-    {
-        'id': 'comunita-energetiche',
-        'titolo': 'Comunità Energetiche Rinnovabili (CER)',
-        'tag': 'Condivisione energetica',
-        'testo': 'Progettazione e sviluppo di configurazioni di autoconsumo diffuso.',
-        'serve': 'Permette a imprese, enti e territorio di condividere energia rinnovabile, generando benefici ambientali ed economici.',
-        'esigenza': 'Sfruttare le opportunità normative delle CER per valorizzare l’energia prodotta e favorire la sostenibilità collettiva.',
-        'sistema': 'Modello aggregato di condivisione energetica basato su cabine primarie e incentivi dedicati.',
-        'punti': [
-            'Studio di fattibilità tecnico-economica per la CER',
-            'Coordinamento tra i soggetti produttori e consumatori',
-            'Supporto nella gestione delle pratiche e degli incentivi statali'
-        ],
-        'art': 'cer',
-        'foto': 'comunita-energetiche.jpg',
-        'foto_alt': 'Comunità Energetiche Rinnovabili',
-        'opzione': 'Comunità Energetiche Rinnovabili (CER)',
-        'filename': 'comunita-energetiche.html'
-    }
+    {'id': 'fotovoltaico-industriale', 'livello': 'principale', 'tag': 'Aziende e attività produttive', 'titolo': 'Fotovoltaico industriale',
+     'testo': 'Un impianto industriale deve partire dai consumi dell’azienda, non soltanto dallo spazio disponibile.',
+     'frase': 'Dimensionare correttamente significa progettare l’impianto intorno al modo in cui l’azienda utilizza l’energia.',
+     'destinatari': ['Aziende', 'Capannoni', 'Attività produttive', 'Strutture commerciali', 'Realtà con consumi energetici significativi'],
+     'passi': [
+         ('Analisi dei consumi', 'Studiamo come e quando l’attività utilizza energia.'),
+         ('Sopralluogo', 'Rileviamo sul posto lo stato dell’edificio e degli impianti.'),
+         ('Verifica delle superfici', 'Valutiamo coperture e aree disponibili.'),
+         ('Verifica delle caratteristiche elettriche', 'Controlliamo l’impianto elettrico esistente e i punti di connessione.'),
+         ('Progettazione', 'Definiamo la soluzione tecnica più adatta.'),
+         ('Dimensionamento', 'Calibriamo la potenza sulle esigenze dell’attività.'),
+         ('Realizzazione', 'Eseguiamo le lavorazioni nell’ambito delle attività tecniche di nostra competenza e coordiniamo le attività affidate a imprese partner.'),
+         ('Configurazione e collaudo', 'Mettiamo in servizio l’impianto e ne verifichiamo il corretto funzionamento.'),
+         ('Gestione e manutenzione', 'Programmiamo controlli e interventi per mantenerlo efficiente nel tempo.'),
+     ],
+     'integrazioni_titolo': 'Quando tecnicamente opportuno, l’impianto può essere integrato con:',
+     'integrazioni': ['Sistemi di accumulo', 'Infrastrutture di ricarica', 'Altri sistemi energetici'],
+     'art': 'industriale', 'foto': 'fotovoltaico-industriale.jpg', 'foto_alt': 'Impianto fotovoltaico su capannone industriale',
+     'opzione': 'Fotovoltaico industriale'},
+    {'id': 'utility-scale', 'livello': 'principale', 'tag': 'Impianti a terra e di grande potenza', 'titolo': 'Fotovoltaico Utility Scale',
+     'testo': 'Nei grandi impianti, progettazione, esecuzione e gestione devono essere affrontate come parti dello stesso sistema.',
+     'punti_intro': 'Rivetti Impianti può intervenire, in funzione della commessa, su:',
+     'punti': ['Progettazione', 'Realizzazione', 'Coordinamento delle lavorazioni', 'Componentistica elettrica',
+               'Quadri e collegamenti', 'Infrastrutture elettriche', 'Cabine, quando previste', 'Commissioning', 'Manutenzione', 'Attività O&M'],
+     'frase': 'Un grande impianto non termina con la messa in esercizio. Da quel momento inizia la fase in cui produzione, disponibilità e manutenzione devono essere controllate nel tempo.',
+     'art': 'utility', 'foto': 'utility-scale.jpg', 'foto_alt': 'Parco fotovoltaico Utility Scale',
+     'opzione': 'Fotovoltaico Utility Scale'},
+    {'id': 'om', 'livello': 'om', 'tag': 'Gestione e manutenzione', 'titolo': 'Operation & Maintenance', 'nav': 'Operation & Maintenance',
+     'sottotitolo': 'Produrre energia non basta. Bisogna continuare a produrla bene.',
+     'paragrafi': ['Un impianto fotovoltaico lavora ogni giorno e il suo valore dipende anche dalla capacità di mantenere nel tempo condizioni operative adeguate.',
+                   'Per questo l’O&M non deve essere considerato un intervento da effettuare soltanto quando compare un guasto.'],
+     'frase': 'L’energia che l’impianto non produce è energia che non può essere utilizzata, valorizzata o immessa in rete.',
+     'aggiunta': 'Individuare tempestivamente anomalie, degradi o condizioni operative non ottimali permette di programmare gli interventi prima che una criticità possa incidere più a lungo sulla produzione.',
+     'proteggere': {
+         'titolo': 'Proteggere la produzione significa proteggere l’investimento',
+         'paragrafi': ['Su impianti industriali e di grande potenza, anche una condizione apparentemente limitata può interessare una parte della produzione per periodi prolungati se non viene rilevata.',
+                       'Monitoraggio, verifiche periodiche e manutenzione permettono di conoscere lo stato dell’impianto nel tempo.'],
+         'frase': 'Un impianto che risulta acceso non è necessariamente un impianto che sta producendo come dovrebbe.'},
+     'programmato': {
+         'titolo': 'Non aspettare il guasto',
+         'testo': 'La manutenzione correttiva resta necessaria quando si verifica un problema, ma un servizio O&M efficace deve prevedere anche attività preventive e programmate.',
+         'intro': 'Possibili attività:',
+         'punti': ['Controlli visivi', 'Verifiche elettriche', 'Controllo inverter', 'Verifica quadri', 'Controllo delle connessioni',
+                   'Serraggi, quando previsti', 'Verifiche meccaniche', 'Termografia', 'Lavaggio moduli',
+                   'Gestione della vegetazione, dove necessaria', 'Analisi delle anomalie', 'Interventi correttivi'],
+         'nota': 'Attività e frequenze vengono definite in funzione della tipologia, della dimensione e delle caratteristiche dell’impianto.',
+         'vegetazione': 'Negli impianti a terra, la gestione della vegetazione contribuisce a mantenere accessibilità, condizioni operative e controllo dell’area.'},
+     'art': 'om', 'foto': 'om-fotovoltaico.jpg', 'foto_alt': 'Operation & Maintenance di un impianto fotovoltaico',
+     'opzione': 'Operation & Maintenance fotovoltaico'},
+    {'id': 'lavaggio', 'livello': 'standard', 'tag': 'Manutenzione', 'titolo': 'Lavaggio moduli fotovoltaici', 'nav': 'Lavaggio moduli',
+     'titolo_sez': 'La superficie dei moduli fa parte dell’impianto',
+     'testo': ['Polvere, depositi e contaminanti possono accumularsi sulla superficie dei moduli e influire sulle condizioni operative dell’impianto.',
+               'La necessità del lavaggio deve essere valutata in funzione del sito, delle condizioni ambientali, dell’inclinazione dei moduli e dello stato effettivo dell’impianto.'],
+     'forte': 'Il lavaggio non deve essere una routine eseguita senza criterio: deve essere un’attività di manutenzione valutata sulle reali condizioni del campo fotovoltaico.',
+     'art': 'lav_az', 'foto': 'lavaggio-azienda.jpg', 'foto_alt': 'Lavaggio moduli fotovoltaici su capannone',
+     'opzione': 'Lavaggio moduli fotovoltaici (impresa)'},
+    {'id': 'termografia', 'livello': 'standard', 'tag': 'Controllo specialistico', 'titolo': 'Termografia', 'nav': 'Termografia',
+     'titolo_sez': 'Vedere ciò che un controllo visivo può non mostrare',
+     'testo': ['La termografia consente di analizzare la distribuzione delle temperature e può contribuire all’individuazione di comportamenti anomali su moduli, connessioni, quadri e componenti elettrici.',
+               'Integrata in un programma di manutenzione, rappresenta uno strumento utile per approfondire condizioni che potrebbero non essere immediatamente visibili.'],
+     'art': 'termo_az', 'foto': 'termografia-azienda.jpg', 'foto_alt': 'Termografia di un campo fotovoltaico',
+     'opzione': 'Termografia impianti fotovoltaici (impresa)'},
+    {'id': 'agrivoltaico', 'livello': 'standard', 'tag': 'Fotovoltaico e agricoltura', 'titolo': 'Agrivoltaico',
+     'testo': ['L’agrivoltaico richiede di progettare produzione energetica e utilizzo agricolo del terreno come elementi dello stesso intervento.',
+               'Configurazione, strutture e caratteristiche dell’impianto devono essere valutate in relazione all’attività agricola, al sito e alla normativa applicabile.'],
+     'art': 'agri', 'foto': 'agrivoltaico.jpg', 'foto_alt': 'Impianto agrivoltaico',
+     'opzione': 'Agrivoltaico'},
+    {'id': 'cer', 'livello': 'standard', 'tag': 'Condivisione dell’energia', 'titolo': 'Comunità Energetiche Rinnovabili', 'nav': 'Comunità Energetiche (CER)',
+     'testo': ['Le imprese possono valutare la partecipazione a configurazioni di condivisione dell’energia quando sussistono i requisiti previsti.',
+               'Rivetti Impianti può supportare gli aspetti tecnici ed energetici legati agli impianti e alla configurazione del progetto.'],
+     'art': 'cer', 'foto': 'cer.jpg', 'foto_alt': 'Comunità energetica rinnovabile',
+     'opzione': 'Comunità Energetiche Rinnovabili'},
+    {'id': 'efficienza', 'livello': 'standard', 'tag': 'Sistema energetico dell’attività', 'titolo': 'Efficienza energetica e impianti tecnologici', 'nav': 'Efficienza energetica',
+     'titolo_sez': 'Non guardare soltanto a quanto produci. Guarda anche a come consumi.',
+     'testo': ['Un progetto energetico efficace non considera solamente la produzione fotovoltaica, ma anche il modo in cui l’azienda utilizza l’energia.',
+               'Analizzare i consumi consente di valutare in modo coordinato fotovoltaico, accumulo, climatizzazione, pompe di calore e altri interventi di efficientamento.'],
+     'forte': 'Produrre meglio e consumare meglio sono due parti dello stesso progetto.',
+     'art': 'termici', 'foto': 'impianti-termici.jpg', 'foto_alt': 'Impianti termici e tecnologici',
+     'opzione': 'Efficienza energetica e impianti tecnologici'},
 ]
 
-SERVIZI_PA = [
-    {
-        'id': 'fotovoltaico-pa',
-        'titolo': 'Fotovoltaico PA',
-        'tag': 'Pubblica Amministrazione ed Enti',
-        'principale': True,
-        'testo': 'Impianti fotovoltaici per l’efficienza energetica del patrimonio pubblico.',
-        'serve': 'Produce energia pulita per scuole, municipi, impianti sportivi e strutture comunali, riducendo le spese correnti dell’ente.',
-        'esigenza': 'Sviluppare soluzioni energetiche sostenibili e conformi alle normative sugli appalti pubblici e alla transizione ecologica.',
-        'sistema': 'Progettazione e installazione su misura con rilascio di tutte le certificazioni di conformità e supporto agli adempimenti normativi.',
-        'art': 'fv_pa',
-        'foto': 'fotovoltaico-pa.jpg',
-        'foto_alt': 'Impianto fotovoltaico Pubblica Amministrazione',
-        'opzione': 'Fotovoltaico PA',
-        'filename': 'fotovoltaico-pa.html'
-    },
-    {
-        'id': 'riqualificazione-energetica',
-        'titolo': 'Riqualificazione Energetica PA',
-        'tag': 'Efficienza del patrimonio pubblico',
-        'testo': 'Interventi di efficientamento integrato per edifici pubblici e strutture comunali.',
-        'serve': 'Riduce i consumi complessivi degli immobili pubblici attraverso l’integrazione di tecnologie rinnovabili e sistemi ad alta efficienza.',
-        'esigenza': 'Riqualificare il patrimonio edilizio pubblico ottimizzando le risorse economiche e migliorando il comfort per i cittadini.',
-        'sistema': 'Interventi coordinati come unico referente (General Contractor) nel rispetto dei Requisiti Minimi Ambientali (CAM).',
-        'art': 'riq_pa',
-        'foto': 'riqualificazione-pa.jpg',
-        'foto_alt': 'Riqualificazione energetica edifici pubblici',
-        'opzione': 'Riqualificazione Energetica PA',
-        'filename': 'riqualificazione-energetica-pa.html'
-    },
-    {
-        'id': 'manutenzione-pa',
-        'titolo': 'Manutenzione e Assistenza PA',
-        'tag': 'Sicurezza e operatività costante',
-        'testo': 'Assistenza continuativa e manutenzione programmata su impianti pubblici.',
-        'serve': 'Mantiene costantemente efficienti e in sicurezza gli impianti tecnologici ed energetici degli enti pubblici.',
-        'esigenza': 'Garantire la continuità operativa dei servizi pubblici ed evitare guasti con un piano di controlli periodici.',
-        'sistema': 'Verifiche periodiche, diagnostica e interventi di manutenzione ordinaria e straordinaria tempestivi.',
-        'art': 'manut_pa',
-        'foto': 'manutenzione-pa.jpg',
-        'foto_alt': 'Manutenzione impianti Pubblica Amministrazione',
-        'opzione': 'Manutenzione e Assistenza PA',
-        'filename': 'manutenzione-pa.html'
-    }
-]
+SERVIZI_PA = {
+    'tag': 'I servizi per la PA',
+    'titolo': 'Interventi per l’efficienza energetica, il fotovoltaico, le Comunità Energetiche e la gestione degli impianti pubblici.',
+    'testo': 'In funzione dell’intervento possono essere valutati incentivi, contributi e strumenti di finanziamento disponibili.',
+    'art': 'pa_hero', 'foto': 'pubblica-amministrazione.jpg', 'foto_alt': 'Edificio pubblico con impianto fotovoltaico',
+}
 
 SERVIZI_PA_PAGINA = [
     {'id': 'riqualificazione', 'nav': 'Riqualificazione energetica', 'tag': 'Edifici pubblici',
@@ -925,3 +876,149 @@ PROMOZIONI = [
         'icona': '🧼'
     }
 ]
+
+# ----------------------------------------------------------------------------- HERO HOME (video showreel)
+# Ripristinato il 3 novembre: il blocco mancava da dati.py (build.py lo richiede). Testi = quelli pubblicati in index.html
+# (commit f80435f «Aggiornati titolo e sottotitolo della home page»).
+HERO_HOME = dict(
+    video='assets/rivetti-showreel.mp4',
+    poster='assets/servizi/pa-hero.png',
+    tag='Rivetti Impianti &bull; Technical Engineering',
+    titolo="Smetti di subire i costi dell'energia. Inizia a investire nel tuo futuro.",
+    testo=("Riduci la dipendenza energetica e valorizza il tuo immobile con soluzioni efficienti, affidabili e progettate per durare."
+           "<br><br><strong>La fiducia si costruisce con i fatti, non con le promesse.</strong> In Rivetti Impianti crediamo che ogni investimento "
+           "debba essere chiaro, sicuro e sostenibile. Per questo offriamo consulenza tecnica, preventivi trasparenti, componenti di qualità e un "
+           "servizio di assistenza che continua anche dopo la realizzazione."),
+    audio_on='Attiva audio', audio_off='Disattiva audio',
+)
+
+
+# ----------------------------------------------------------------------------- BLOCCHI RIPRISTINATI (3 novembre)
+# Mancavano da dati.py dal commit 2112713 (la build si fermava con AttributeError): recuperati dal commit f80435f.
+PRIVATI_HERO = {
+    'h1': 'Energia, comfort ed efficienza per la tua casa',
+    'lead': 'Soluzioni integrate per produrre energia, migliorare il comfort e mantenere efficienti gli impianti nel tempo.',
+}
+
+SISTEMA_INTEGRATO = {
+    'eyebrow': 'Soluzione completa per la casa',
+    'titolo': 'Pensiamo al sistema, non al singolo componente',
+    'testo': 'Fotovoltaico, accumulo, climatizzazione, solare termico e manutenzione non vanno necessariamente considerati come elementi separati. '
+             'Valutiamo la tua abitazione e le tue esigenze per costruire, quando opportuno, una soluzione coordinata.',
+    'aree': [
+        {'icona': 'sole', 'titolo': 'Produzione e autoconsumo', 'sotto': 'Fotovoltaico e sistemi di accumulo',
+         'concetto': 'Produrre energia direttamente dall’abitazione e utilizzare in modo più efficace l’energia prodotta.',
+         'link': [('Fotovoltaico', 'fotovoltaico'), ('Accumulo', 'accumulo')]},
+        {'icona': 'comfort', 'titolo': 'Comfort ed efficienza', 'sotto': 'Climatizzazione e soluzioni termiche',
+         'concetto': 'Gestire riscaldamento, raffrescamento e produzione di acqua calda con tecnologie efficienti e coerenti con il sistema energetico dell’abitazione.',
+         'link': [('Climatizzazione', 'climatizzazione'), ('Solare termico', 'solare-termico')]},
+        {'icona': 'controllo', 'titolo': 'Controllo nel tempo', 'sotto': 'Manutenzione, lavaggio e termografia',
+         'concetto': 'Mantenere l’impianto controllato ed efficiente nel tempo attraverso attività di verifica e manutenzione.',
+         'link': [('Manutenzione', 'manutenzione'), ('Lavaggio', 'lavaggio'), ('Termografia', 'termografia')]},
+    ],
+}
+
+IMPIANTO_ESISTENTE = {
+    'id': 'impianto-esistente',
+    'eyebrow': 'Per chi ha già un impianto fotovoltaico',
+    'titolo': 'Hai già un impianto?',
+    'testo': 'Non è necessario che l’impianto sia stato realizzato da Rivetti Impianti. Possiamo valutare anche impianti già esistenti per verificarne lo stato e definire, quando necessario, le attività più appropriate.',
+    'voci_intro': 'Possiamo intervenire per:',
+    'voci': ['Verifica tecnica', 'Manutenzione', 'Lavaggio moduli', 'Termografia', 'Ricerca di anomalie',
+             'Controllo dei principali componenti', 'Valutazione di eventuali interventi di adeguamento',
+             'Valutazione di sistemi di accumulo o altre integrazioni, quando tecnicamente possibili'],
+    'cta': 'Richiedi una verifica del tuo impianto',
+    'servizio': 'Manutenzione ordinaria e straordinaria',
+    'whatsapp': 'Buongiorno, possiedo già un impianto fotovoltaico e vorrei ricevere informazioni per una verifica e un eventuale intervento di manutenzione.',
+}
+
+IMPRESE_HERO = {
+    'h1': 'Energia e servizi tecnici per imprese e grandi impianti',
+    'lead': 'Progettiamo, realizziamo e gestiamo impianti fotovoltaici e sistemi energetici per aziende, attività produttive e operatori del settore, seguendo l’intervento dalla valutazione tecnica alla gestione nel tempo.',
+    'tags': ['Nuovi impianti', 'Ampliamenti', 'Revamping', 'Manutenzione', 'Attività specialistiche', 'Impianti di grande potenza'],
+}
+
+SISTEMA_IMPRESE = {
+    'eyebrow': 'Continuità del servizio',
+    'titolo': 'Un unico interlocutore per l’impianto',
+    'testo': 'Dalla progettazione alla gestione: un unico riferimento tecnico per seguire l’impianto in tutte le sue fasi, con continuità nel tempo.',
+    'aree': [
+        {'icona': 'progetto', 'titolo': 'Progettazione e realizzazione', 'concetto': 'Dai consumi e dalle caratteristiche del sito alla progettazione e alla realizzazione dell’impianto.',
+         'link': [('Fotovoltaico industriale', 'fotovoltaico-industriale'), ('Utility Scale', 'utility-scale')]},
+        {'icona': 'gestione', 'titolo': 'Gestione e manutenzione', 'concetto': 'Dalla messa in esercizio alla manutenzione programmata e agli interventi tecnici.',
+         'link': [('Operation & Maintenance', 'om')]},
+        {'icona': 'controllo', 'titolo': 'Controllo specialistico', 'concetto': 'Termografia, verifiche elettriche, lavaggio e attività di controllo per conoscere lo stato dell’impianto.',
+         'link': [('Termografia', 'termografia'), ('Lavaggio moduli', 'lavaggio')]},
+    ],
+}
+
+IMPIANTO_ESISTENTE_IMPRESE = {
+    'id': 'impianto-esistente',
+    'eyebrow': 'Per chi gestisce già un impianto',
+    'titolo': 'Hai già un impianto fotovoltaico?',
+    'testo': 'Possiamo partire dallo stato attuale dell’impianto per valutarne condizioni operative, necessità di manutenzione e possibili interventi. Non è necessario che l’impianto sia stato realizzato da Rivetti Impianti.',
+    'voci_intro': 'Possiamo intervenire per:',
+    'voci': ['Verifica tecnica iniziale', 'Manutenzione', 'O&M', 'Termografia', 'Lavaggio', 'Ricerca anomalie', 'Revamping',
+             'Valutazione di ampliamenti', 'Integrazione di sistemi di accumulo, quando tecnicamente possibile'],
+    'cta': 'Richiedi una valutazione dell’impianto',
+    'servizio': 'Operation & Maintenance fotovoltaico',
+    'whatsapp': 'Buongiorno, vorrei ricevere una valutazione tecnica per la gestione, manutenzione o verifica di un impianto fotovoltaico esistente.',
+}
+
+COME_LAVORIAMO_IMPRESE = {
+    'eyebrow': 'Come lavoriamo',
+    'titolo': 'Un percorso tecnico, dalla prima analisi alla gestione',
+    'passi': [
+        ('Analisi preliminare', 'Raccogliamo esigenze, consumi e obiettivi dell’attività o dell’impianto.'),
+        ('Sopralluogo e raccolta dati', 'Verifichiamo sul posto struttura, impianti e dati necessari.'),
+        ('Progettazione e proposta tecnica', 'Definiamo la soluzione e la proposta tecnica.'),
+        ('Realizzazione e collaudo', 'Eseguiamo le lavorazioni nell’ambito delle attività tecniche di nostra competenza, coordiniamo le attività affidate a imprese partner e verifichiamo il funzionamento.'),
+        ('Gestione e manutenzione', 'Attività programmate, interventi tecnici e verifiche nel tempo.'),
+    ],
+    'nota': 'Per gli impianti esistenti il percorso può partire direttamente dalla verifica tecnica.',
+}
+
+HERO_FOTO = {
+    'privati': ('privati-hero.png', 'Abitazione con impianto fotovoltaico'),
+    'imprese': ('imprese-hero.png', 'Impianto fotovoltaico su copertura industriale'),
+    'pa': ('pa-hero.png', 'Edificio pubblico con impianto fotovoltaico'),
+}
+
+PA_HERO = {
+    'h1': 'Soluzioni energetiche per la Pubblica Amministrazione',
+    'lead': 'Progettiamo, realizziamo e gestiamo interventi energetici per edifici e strutture pubbliche, dal fotovoltaico alla riqualificazione impiantistica, fino alla manutenzione degli impianti nel tempo.',
+}
+
+PA_INTRO = {
+    'eyebrow': 'Edifici e strutture pubbliche',
+    'titolo': 'Ogni edificio pubblico consuma energia. Il punto è come utilizzarla meglio.',
+    'paragrafi': [
+        'Scuole, uffici, strutture sportive e altri edifici pubblici presentano esigenze energetiche differenti.',
+        'Intervenire in modo efficace significa partire dallo stato reale dell’edificio, dagli impianti presenti e dai consumi, per individuare gli interventi tecnicamente più appropriati.',
+    ],
+    'frase': 'Riqualificare non significa sostituire un singolo componente: significa migliorare il modo in cui edificio e impianti utilizzano l’energia.',
+}
+
+SISTEMA_PA = {
+    'eyebrow': 'Approccio coordinato',
+    'titolo': 'Un progetto energetico coordinato',
+    'testo': None,
+    'aree': [
+        {'icona': 'progetto', 'titolo': 'Analisi e progettazione',
+         'concetto': 'Raccogliamo dati, analizziamo gli impianti esistenti e valutiamo le condizioni tecniche dell’intervento prima di definire la soluzione.',
+         'link': [('Riqualificazione energetica', 'riqualificazione')]},
+        {'icona': 'sole', 'titolo': 'Realizzazione',
+         'concetto': 'Coordiniamo le attività tecniche previste dal progetto, dall’installazione alla configurazione e al collaudo degli impianti.',
+         'link': [('Fotovoltaico', 'fotovoltaico-pa'), ('Comunità Energetiche', 'cer')]},
+        {'icona': 'gestione', 'titolo': 'Gestione nel tempo',
+         'concetto': 'Manutenzione, verifiche e interventi tecnici permettono di continuare a seguire gli impianti anche dopo la messa in esercizio.',
+         'link': [('Gestione e manutenzione', 'gestione')]},
+    ],
+    'conclusione': 'L’obiettivo non è soltanto realizzare un nuovo impianto, ma inserirlo correttamente nel sistema energetico dell’edificio.',
+}
+
+PA_AREE_HEAD = {
+    'eyebrow': 'Aree di intervento',
+    'titolo': 'Gli ambiti di intervento',
+    'testo': 'Per ogni intervento si parte da una valutazione tecnica delle caratteristiche dell’Ente e delle strutture interessate.',
+}

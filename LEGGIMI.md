@@ -52,3 +52,13 @@ La Hero usa `assets/rivetti-showreel.mp4` (poster: `assets/servizi/pa-hero.jpg`)
 
 ## Pagina Offerte
 `offerte.html` è generata da `src/offerte.py`. I **prezzi** si cambiano solo lì (`FOTOVOLTAICO`, `ALTRE`); la detrazione fiscale delle tre offerte fotovoltaiche è **calcolata** dagli stessi prezzi: 50% di (prezzo + IVA), in 10 quote annuali. L'IVA usata è `IVA_FV_PERCENTUALE` (10): verificarla con il commercialista. La voce «Offerte» compare nel menu e nel footer di tutte le pagine.
+
+
+## Novità del 3 novembre
+
+- **Pagine servizio**: le 14 sottovoci del menu «Servizi» sono generate da `src/servizi_pagine.py` (unica fonte: lista `PAGINE_SERVIZI`; da lì derivano menu, pagina, sitemap, controlli). Per aggiungerne una basta aggiungere un dizionario.
+- **Foto reali**: copia le foto in `assets/lavori/<nome-pagina>/` (es. `assets/lavori/solare-termico/`) e lancia `python3 src/build.py`. Sfondo hero facoltativo: `assets/servizi/<nome-pagina>-hero.jpg`.
+- **Lavora con noi**: `lavora-con-noi.html` (`src/lavora.py` + `lavora.js`). Il modulo invia a rivettiimpianti@gmail.com tramite FormSubmit, con CV allegato (max 5 MB; PDF/DOC/DOCX/ODT). Se l'invio automatico fallisce si apre la posta.
+- Home: rimossi divisori, «Lavori effettuati» e «Il nostro approccio»; Incentivi con effetti hover/ingresso (rispettano «riduci movimento»).
+- Ripristinati in `src/dati.py` blocchi mancanti dal commit 2112713 (Hero Home/Privati/Imprese/PA ecc.) e gli schemi `SERVIZI_PRIVATI/IMPRESE/PA` usati da `comp.py`.
+- Copia di sicurezza pre-modifiche: `backup-prima-modifiche-3nov/`.

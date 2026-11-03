@@ -22,6 +22,16 @@ window.RI = (function () {
       return true;
     } finally { clearTimeout(t); }
   }
+  /* Invia un modulo con allegato (FormData, multipart): usato dalla pagina «Lavora con noi». Stesso endpoint di send(). */
+  async function sendForm(fd) {
+    const ctrl = new AbortController(), t = setTimeout(() => ctrl.abort(), 45000);
+    try {
+      const r = await fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Accept': 'application/json' }, body: fd, signal: ctrl.signal });
+      let j = {}; try { j = await r.json(); } catch (e) {}
+      if (!r.ok || j.success === false || j.success === 'false') throw new Error('invio non confermato');
+      return true;
+    } finally { clearTimeout(t); }
+  }
   /* Ripiego: apre la posta del visitatore con il messaggio già pronto. */
   function mailto(subject, body) {
     location.href = 'mailto:' + MAIL_TO + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
@@ -47,5 +57,5 @@ window.RI = (function () {
     o.referrer = (document.referrer || '').split('#')[0].slice(0, 300);
     return o;
   }
-  return { send, mailto, esc, words, stars, now, context, MAIL_TO };
+  return { send, sendForm, mailto, esc, words, stars, now, context, MAIL_TO };
 })();

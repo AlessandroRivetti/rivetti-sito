@@ -202,4 +202,16 @@
       } finally { sendBtn.disabled = false; }
     });
   }
+
+  /* Comparsa progressiva degli elementi .rv (sezione Incentivi): solo con JS, senza JS tutto resta visibile. */
+  (function () {
+    var els = document.querySelectorAll('.rv');
+    if (!els.length) return;
+    if (!('IntersectionObserver' in window) || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+    document.documentElement.classList.add('js-reveal');
+    var io = new IntersectionObserver(function (en) {
+      en.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function (el) { io.observe(el); });
+  })();
 })();
