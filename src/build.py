@@ -480,74 +480,9 @@ def main():
 
 if __name__ == '__main__':
     main()
-def genera_pagina_settore(settore_key, titolo_pagina, sottotitolo_pagina):
-    p = pagina(settore_key)
-    lista_servizi = D.SERVIZI.get(settore_key, [])
-    
-    hero_html = f'''
-    <section class="hero-section hero-servizi">
-      <div class="hero-container">
-        <div class="hero-content" style="max-width: 800px; margin: 0 auto; text-align: center; padding: 60px 20px;">
-          <span class="hero-tag">RIVETTI IMPIANTI</span>
-          <h1 class="hero-title">{titolo_pagina}</h1>
-          <p class="hero-subtitle">{sottotitolo_pagina}</p>
-        </div>
-      </div>
-    </section>
-    '''
-    
-    servizi_html = []
-    for s in lista_servizi:
-        servizio_block = f'''
-        <section class="sec servizio-dettaglio" id="{s['slug']}" style="padding: 80px 0; border-bottom: 1px solid rgba(0,0,0,0.08);">
-          <div class="container" style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
-            <div class="servizio-header" style="margin-bottom: 40px;">
-              <span style="color: var(--accent-color, #ff6600); font-weight: 700; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">Settore {titolo_pagina}</span>
-              <h2 style="font-size: 2.5rem; margin-top: 10px; margin-bottom: 15px;">{s['titolo']}</h2>
-              <p style="font-size: 1.2rem; color: #555; line-height: 1.6;">{s['desc_breve']}</p>
-            </div>
-            
-            <div class="geo-divider" style="margin: 30px 0;"></div>
-            
-            <div class="servizio-contenuto" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-bottom: 50px;">
-              <div class="testo-spiegazione">
-                <h3 style="font-size: 1.5rem; margin-bottom: 20px;">Perché è importante</h3>
-                <p style="font-size: 1.05rem; line-height: 1.8; color: #444;">{s['spiegazione']}</p>
-              </div>
-              <div class="box-immagine-copertina" style="background: #f4f4f4; border-radius: 12px; padding: 40px; text-align: center; border: 2px dashed #ddd;">
-                <p style="color: #777; font-weight: 600;">[ Anteprima / Foto Copertina: {s['titolo']} ]</p>
-              </div>
-            </div>
-            
-            <!-- Sezione Foto Reali Lavori Eseguiti -->
-            <div class="foto-lavori-eseguiti" style="background: #fafafa; padding: 30px; border-radius: 12px; border: 1px solid #eee;">
-              <h4 style="font-size: 1.2rem; margin-bottom: 15px; color: #222;">📸 Foto reali di lavori eseguiti</h4>
-              <p style="font-size: 0.95rem; color: #666; margin-bottom: 20px;">Galleria fotografica dei nostri interventi sul campo per questo servizio.</p>
-              <div class="grid-foto-reali" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
-                <div style="background: #e5e5e5; height: 160px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #888; font-size: 0.85rem;">Foto cantiere 1 (Presto online)</div>
-                <div style="background: #e5e5e5; height: 160px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #888; font-size: 0.85rem;">Foto cantiere 2 (Presto online)</div>
-              </div>
-            </div>
-          </div>
-        </section>
-        '''
-        servizi_html.append(servizio_block)
-        
-    body_content = '\n'.join([hero_html, ''.join(servizi_html), C.contact_section(p, 'Richiedi una consulenza', 'Contattaci per maggiori informazioni o per un sopralluogo tecnico.')])
-    return p, doc(p, body_content, scripts=('ri.js', 'site.js'))
-
-def privati():
-    return genera_pagina_settore('privati', 'Soluzioni per Privati', 'Impianti e tecnologie su misura per l’efficienza e l’indipendenza energetica della tua abitazione.')
-
-def imprese():
-    return genera_pagina_settore('imprese', 'Soluzioni per Imprese', 'Sistemi avanzati, fotovoltaico industriale e servizi O&M per ottimizzare i costi e la sostenibilità aziendale.')
-
-def pubblica_amministrazione():
-    return genera_pagina_settore('pa', 'Pubblica Amministrazione', 'Progetti di riqualificazione energetica, fotovoltaico e assistenza continua per gli enti pubblici.')
 def genera_pagine_singole_servizi():
     """Genera le pagine HTML dedicate per ciascuna sottovoce attingendo ai dati strutturati in dati.py."""
     
-    # 1. Raccogliamo tutti i blocchi dati definiti in dati.py
     liste_servizi = [
         (getattr(D, 'SERVIZI_PRIVATI', []), 'Privati'),
         (getattr(D, 'SERVIZI_IMPRESE', []), 'Imprese'),
@@ -568,7 +503,7 @@ def genera_pagine_singole_servizi():
             foto_copertina = s.get('foto', '')
             foto_alt = s.get('foto_alt', titolo)
             
-            # --- A. HERO E SFONDO PERSONALIZZATO ---
+            # 1. Hero e Sfondo personalizzato con immagine o gradiente
             bg_style = f"background: linear-gradient(rgba(13, 45, 88, 0.85), rgba(13, 45, 88, 0.9)), url('img/{foto_copertina}') center/cover no-repeat;" if foto_copertina else "background: linear-gradient(135deg, #0d2d58 0%, #1e40af 100%);"
             
             hero_html = f'''
@@ -581,7 +516,7 @@ def genera_pagine_singole_servizi():
             </section>
             '''
             
-            # --- B. TESTI MIRATI (ESIGENZA, IMPORTANZA E SISTEMA) ---
+            # 2. Testi mirati: importanza, esigenze e vantaggi
             passi_o_punti_html = ""
             if 'passi' in s:
                 items = "".join([f"<li style='margin-bottom: 10px;'><strong>{tit}:</strong> {desc}</li>" for tit, desc in s['passi']])
@@ -608,18 +543,16 @@ def genera_pagine_singole_servizi():
                   {passi_o_punti_html}
                 </div>
                 
-                <!-- --- C. SPASSIO E GRIGLIA FOTO REALI DELLE REALIZZAZIONI --- -->
+                <!-- 3. Box e griglia predisposti per le foto reali delle realizzazioni -->
                 <div class="foto-lavori-eseguiti" style="background: #ffffff; padding: 35px; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin-bottom: 50px;">
                   <h3 style="font-size: 1.4rem; margin-bottom: 10px; color: #0d2d58;">📸 Foto reali dei nostri interventi</h3>
                   <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 25px;">Esempi di realizzazioni e installazioni effettuate sul campo per {titolo}.</p>
                   
                   <div class="grid-foto-reali" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                    <!-- Foto Principale dal Dati -->
                     <div style="border-radius: 10px; overflow: hidden; border: 1px solid #cbd5e1; height: 200px; background: #e2e8f0;">
                       <img src="img/{foto_copertina}" alt="{foto_alt}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                       <div style="display: none; height: 100%; align-items: center; justify-content: center; color: #64748b; font-weight: 600;">Foto {titolo}</div>
                     </div>
-                    <!-- Box Predisposti per Foto Future -->
                     <div style="background: #f8fafc; height: 200px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px dashed #cbd5e1; color: #64748b; text-align: center; padding: 15px;">
                       <span style="font-size: 1.8rem; margin-bottom: 8px;">📷</span>
                       <span style="font-size: 0.85rem; font-weight: 600;">Dettaglio Installazione Cantiere</span>
@@ -631,7 +564,7 @@ def genera_pagine_singole_servizi():
             </section>
             '''
             
-            # --- D. CALL TO ACTION / FORM PER PREVENTIVO GRATUITO ---
+            # 4. Call to action finale per consulenza o preventivo gratuito
             p_page = {'filename': filename, 'titolo': f"{titolo} - Rivetti Impianti"}
             body_content = '\n'.join([
                 hero_html,
@@ -647,4 +580,4 @@ def genera_pagine_singole_servizi():
             
             with open(filename, 'w', encoding='utf-8') as f:
                 f.write(html_finale)
-            print(f"✅ Pagina generata con dati reali: {filename}")
+            print(f"✅ Pagina generata con successo: {filename}")
