@@ -160,7 +160,7 @@ def nav(p, pre=''):
     import servizi_pagine as SP      # import locale: servizi_pagine importa comp
     for col in SP.menu():
         voci = ''.join('<a href="%s%s"%s>%s</a>' % (pre, qa(h), ' aria-current="page"' if p['key'] == 'sv-' + h[:-5] else '', esc(l)) for l, h in col['voci'])
-        serv += f'<div class="dropdown-category"><a class="category-title" href="{pre}{qa(col["pagina"])}">{esc(col["titolo"])}</a>{voci}</div>'
+        serv += f'<div class="dropdown-category"><span class="category-title">{esc(col["titolo"])}</span></div>'
     bon = ''
     for col in D.INCENTIVI['menu']:
         voci = ''.join(f'<a href="{H("incentivi")}" data-modal="{col["modale"]}">{esc(v)}</a>' for v in col['voci'])
