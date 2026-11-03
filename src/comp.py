@@ -159,7 +159,7 @@ def nav(p, pre=''):
     serv = ''
     import servizi_pagine as SP  # import locale: servizi_pagine importa comp
     for col in SP.menu():
-        voci = ''.join(f'<a href="{H(l["pagina"])}">{esc(l["titolo"])}</a>' for l, h in col["voci"])
+        voci = ''.join(f'<a href="{H(h)}">{esc(l)}</a>' for l, h in col["voci"])
         serv += f'''
         <div class="dropdown-category">
             <span class="category-title">{esc(col["titolo"])}</span>
