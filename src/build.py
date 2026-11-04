@@ -87,7 +87,7 @@ def doc(p, body, dialoghi=True, pre='', scripts=('ri.js', 'site.js')):
 def home():
     hero_html = f'''<section class="hero" id="home">
     <div class="hero-content">
-        <span class="hero-tag">{esc(D.SITO['tagline_principale'])}</span>
+       <span class="hero-tag">Soluzioni Energetiche Avanzate</span>
         <h1 class="hero-title">{esc(D.SITO['titolo_principale'])}</h1>
         <p class="hero-subtitle">{esc(D.SITO['sottotitolo'])}</p>
         <a href="#contatti" class="btn btn-primary">Richiedi un sopralluogo &rarr;</a>
