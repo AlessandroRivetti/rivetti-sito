@@ -85,7 +85,7 @@ def doc(p, body, dialoghi=True, pre='', scripts=('ri.js', 'site.js')):
 
 
 def home():
-    hero_html = f'''<section class="hero" id="home">
+    hero_html = '''<section class="hero" id="home">
     <div class="hero-content">
         <span class="hero-tag">Soluzioni Energetiche Avanzate</span>
         <h1 class="hero-title">Smetti di subire i costi dell'energia. Inizia a investire nel tuo futuro.</h1>
@@ -102,22 +102,21 @@ def home():
     </div>
 </section>'''
 
-    about = f'''<section class="sec about" id="informazioni">
+    about = '''<section class="sec about" id="informazioni">
     <div class="sec-head">
         <span class="eyebrow">Chi siamo</span>
         <h2>Dal 2008 lavoriamo su impianti energetici per privati, imprese ed enti pubblici</h2>
     </div>
     <div class="about-wrap">
         <div class="about-text">
-            <p>Rivetti Impianti nasce nel 2008 per iniziativa di <strong>{esc(D.SOCIETA['fondatore'])}</strong>. Nel tempo l'attività si è sviluppata nel fotovoltaico, nel solare termico, nella termoidraulica civile e industriale, nella climatizzazione avanzata e nella manutenzione programmata.</p>
+            <p>Rivetti Impianti nasce nel 2008 per iniziativa di Alessandro Rivetti. Nel tempo l'attività si è sviluppata nel fotovoltaico, nel solare termico, nella termoidraulica civile e industriale, nella climatizzazione avanzata e nella manutenzione programmata.</p>
             <p>Il lavoro viene seguito da un team tecnico che coordina le fasi di valutazione, progettazione, realizzazione e manutenzione, coinvolgendo quando necessario collaboratori specializzati.</p>
             <p class="motto">Competenza tecnica, continuità del servizio e attenzione alla sicurezza.</p>
         </div>
         <div class="facts">
-            <div class="fact"><span>Anno di fondazione</span><b>{esc(D.SITO['anno_inizio'])}</b></div>
+            <div class="fact"><span>Anno di fondazione</span><b>2008</b></div>
             <div class="fact"><span>Competenze</span><b>Fotovoltaico, termoidraulica e manutenzione</b></div>
             <div class="fact"><span>Sede</span><b>Via Landolfo, Mondragone (CE)</b></div>
-            <div class="fact"><span>P.IVA</span><b>{esc(D.SOCIETA['piva_cf'])}</b></div>
         </div>
     </div>
 </section>'''
@@ -154,7 +153,7 @@ def home():
 </section>'''
     ])
     
-    p = dict(key='home', title=D.SITO['titolo'], desc=D.SITO['descrizione'])
+    p = dict(key='home', title="Impianti Fotovoltaici e Termoidraulici | Rivetti Impianti", desc="Dal 2008 progettiamo, realizziamo e manteniamo impianti fotovoltaici, termoidraulici e sistemi energetici per privati, imprese ed enti pubblici.")
     doc = dict(
         nav=C.nav(p),
         body=body,
@@ -275,7 +274,7 @@ def pagina_404():
   <div class="paths">
     <a class="path p1" href="/privati.html"><div><b>Privati · Residenziale</b><span>Per la tua casa e il tuo condominio</span></div><i aria-hidden="true">&rarr;</i></a>
     <a class="path p2" href="/imprese.html"><div><b>Imprese · Industriale</b><span>Per capannoni, industrie e grandi impianti</span></div><i aria-hidden="true">&rarr;</i></a>
-    <a class="path p3" href="/pubblica-amministrazione.html"><div><b>PA · Pubblica Amministrazione</b><span>For enti e strutture comunali</span></div><i aria-hidden="true">&rarr;</i></a>
+    <a class="path p3" href="/pubblica-amministrazione.html"><div><b>PA · Pubblica Amministrazione</b><span>Per enti e strutture comunali</span></div><i aria-hidden="true">&rarr;</i></a>
   </div>
 </section>'''
     return p, doc(p, body, dialoghi=False, pre='/', scripts=('ri.js', 'site.js'))
