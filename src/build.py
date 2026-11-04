@@ -88,8 +88,8 @@ def home():
     hero_html = f'''<section class="hero" id="home">
     <div class="hero-content">
        <span class="hero-tag">Soluzioni Energetiche Avanzate</span>
-        <h1 class="hero-title">{esc(D.SITO['titolo_principale'])}</h1>
-        <p class="hero-subtitle">{esc(D.SITO['sottotitolo'])}</p>
+        <h1 class="hero-title">{esc(D.SITO['titolo'])}</h1>
+        <p class="hero-subtitle">{esc(D.SITO['descrizione'])}</p>
         <a href="#contatti" class="btn btn-primary">Richiedi un sopralluogo &rarr;</a>
         <a href="#contatti" class="btn btn-secondary">Parla con un tecnico</a>
     </div>
@@ -275,7 +275,7 @@ def pagina_404():
   <div class="paths">
     <a class="path p1" href="/privati.html"><div><b>Privati · Residenziale</b><span>Per la tua casa e il tuo condominio</span></div><i aria-hidden="true">&rarr;</i></a>
     <a class="path p2" href="/imprese.html"><div><b>Imprese · Industriale</b><span>Per capannoni, industrie e grandi impianti</span></div><i aria-hidden="true">&rarr;</i></a>
-    <a class="path p3" href="/pubblica-amministrazione.html"><div><b>PA · Pubblica Amministrazione</b><span>Per enti e strutture comunali</span></div><i aria-hidden="true">&rarr;</i></a>
+    <a class="path p3" href="/pubblica-amministrazione.html"><div><b>PA · Pubblica Amministrazione</b><span>For enti e strutture comunali</span></div><i aria-hidden="true">&rarr;</i></a>
   </div>
 </section>'''
     return p, doc(p, body, dialoghi=False, pre='/', scripts=('ri.js', 'site.js'))
