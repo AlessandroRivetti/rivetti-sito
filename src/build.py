@@ -116,7 +116,7 @@ def home():
         <div class="facts">
             <div class="fact"><span>Anno di fondazione</span><b>{esc(D.SITO['anno_inizio'])}</b></div>
             <div class="fact"><span>Competenze</span><b>Fotovoltaico, termoidraulica e manutenzione</b></div>
-            <div class="fact"><span>Sede</span><b>{esc(D.indirizzo)}</b></div>
+            <div class="fact"><span>Sede</span><b>Via Landolfo, Mondragone (CE)</b></div>
             <div class="fact"><span>P.IVA</span><b>{esc(D.SOCIETA['piva_cf'])}</b></div>
         </div>
     </div>
