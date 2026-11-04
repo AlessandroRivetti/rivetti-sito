@@ -78,10 +78,11 @@ def pagina(key):
 def doc(p, body, dialoghi=True, pre='', scripts=('ri.js', 'site.js')):
     root_rel = (pre == '')
     sc = ''.join(f'<script src="{pre}{s}" defer></script>\n' for s in scripts)
+    footer_html = '<footer class="footer"><div class="footer-in"><p>&copy; 2008-2026 Rivetti Impianti - Tutti i diritti riservati.</p></div></footer>'
     return (C.head(p, root_rel=root_rel) +
             f'<body data-page="{p["key"]}">\n{DEFS}\n{C.SPRITE}\n' + C.nav(p, pre) +
-            f'<main id="main">\n{body}\n</main>\n' + (C.incentivi_dialogs() if dialoghi else '') +
-            C.footer(p, pre) + sc + '</body>\n</html>\n')
+            f'<main id="main">\n{body}\n</main>\n' +
+            footer_html + sc + '</body>\n</html>\n')
 
 
 def home():
@@ -155,6 +156,8 @@ def home():
     
     p = dict(key='home', path='/', file='index.html', title="Impianti Fotovoltaici e Termoidraulici | Rivetti Impianti", desc="Dal 2008 progettiamo, realizziamo e manteniamo impianti fotovoltaici, termoidraulici e sistemi energetici per privati, imprese ed enti pubblici.")
     return p, doc(p, body, dialoghi=False)
+
+
 # ----------------------------------------------------------------------------- PRIVATI / IMPRESE / PA
 def _j(parti):
     """Unisce i blocchi della pagina saltando quelli vuoti (es. la Galleria lavori quando non è pubblicata)."""
