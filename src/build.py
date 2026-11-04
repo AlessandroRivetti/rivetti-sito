@@ -153,7 +153,7 @@ def home():
 </section>'''
     ])
     
-    p = dict(key='home', title=D.SITO['titolo'], desc=D.SITO['descrizione'])
+    p = dict(key='home', title="Impianti Fotovoltaici e Termoidraulici | Rivetti Impianti", desc="Dal 2008 progettiamo, realizziamo e manteniamo impianti fotovoltaici, termoidraulici e sistemi energetici per privati, imprese ed enti pubblici.")
     doc = dict(
         nav=C.nav(p),
         body=body,
