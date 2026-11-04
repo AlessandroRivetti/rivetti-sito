@@ -154,7 +154,7 @@ def home():
     ])
     
     p = dict(key='home', path='/', file='index.html', title="Impianti Fotovoltaici e Termoidraulici | Rivetti Impianti", desc="Dal 2008 progettiamo, realizziamo e manteniamo impianti fotovoltaici, termoidraulici e sistemi energetici per privati, imprese ed enti pubblici.")
-    return p, doc(p, body)
+    return p, doc(p, body, dialoghi=False)
 # ----------------------------------------------------------------------------- PRIVATI / IMPRESE / PA
 def _j(parti):
     """Unisce i blocchi della pagina saltando quelli vuoti (es. la Galleria lavori quando non è pubblicata)."""
