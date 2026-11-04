@@ -87,9 +87,9 @@ def doc(p, body, dialoghi=True, pre='', scripts=('ri.js', 'site.js')):
 def home():
     hero_html = f'''<section class="hero" id="home">
     <div class="hero-content">
-       <span class="hero-tag">Soluzioni Energetiche Avanzate</span>
-        <h1 class="hero-title">Impianti Fotovoltaici e Termoidraulici Avanzati</h1>
-        <p class="hero-subtitle">{esc(D.SITO['descrizione'])}</p>
+        <span class="hero-tag">Soluzioni Energetiche Avanzate</span>
+        <h1 class="hero-title">Smetti di subire i costi dell'energia. Inizia a investire nel tuo futuro.</h1>
+        <p class="hero-subtitle">Riduci la dipendenza energetica e valorizza il tuo immobile con soluzioni efficienti, affidabili e progettate per durare.</p>
         <a href="#contatti" class="btn btn-primary">Richiedi un sopralluogo &rarr;</a>
         <a href="#contatti" class="btn btn-secondary">Parla con un tecnico</a>
     </div>
