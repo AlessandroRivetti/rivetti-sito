@@ -371,7 +371,7 @@ def scrivi(out, funzioni):
     for fn in funzioni:
         p, html = fn()
         nome_file = p.get('file') or p.get('filename') or 'index.html'
-open(os.path.join(out, nome_file), 'w', encoding='utf-8').write(html)
+        open(os.path.join(out, nome_file), 'w', encoding='utf-8').write(html)
         risultati.append(p)
     return risultati
 
