@@ -156,15 +156,32 @@ def nav(p, pre=''):
     cur = lambda *keys: ' aria-current="page"' if p['key'] in keys else ''
     act = lambda *keys: ' class="active"' if p['key'] in keys else ''
 
-    serv = ''
-    for col in D.MENU_SERVIZI:
-        voci = ''.join(f'<a href="{pre}{qa(h)}">{esc(l)}</a>' for l, h in col['voci'])
-        serv += f'''
+    # Elenco completo ed esatto dei servizi divisi per colonna
+    serv = '''
         <div class="dropdown-category">
-            <span class="category-title">{esc(col["titolo"])}</span>
-            <div class="dropdown-sub-items">{voci}</div>
+            <span class="category-title">Privati</span>
+            <a href="privati.html#fotovoltaico">Fotovoltaico Residenziale</a>
+            <a href="privati.html#solare-termico">Solare Termico</a>
+            <a href="privati.html#lavaggio">Lavaggio Moduli</a>
+            <a href="privati.html#termografia">Termografia</a>
+            <a href="privati.html#manutenzione">Manutenzione e Assistenza</a>
+            <a href="privati.html#monitoraggio">Monitoraggio</a>
         </div>
-        '''
+        <div class="dropdown-category">
+            <span class="category-title">Imprese</span>
+            <a href="imprese.html#fotovoltaico-industriale">Fotovoltaico Industriale</a>
+            <a href="imprese.html#om">Operation e Maintenance (O&M)</a>
+            <a href="imprese.html#lavaggio">Lavaggio Moduli</a>
+            <a href="imprese.html#termografia">Termografia</a>
+            <a href="imprese.html#cer">Comunità Energetiche (CER)</a>
+        </div>
+        <div class="dropdown-category">
+            <span class="category-title">Pubblica Amministrazione</span>
+            <a href="pubblica-amministrazione.html#fotovoltaico-pa">Fotovoltaico PA</a>
+            <a href="pubblica-amministrazione.html#riqualificazione">Riqualificazione Energetica</a>
+            <a href="pubblica-amministrazione.html#manutenzione">Manutenzione e Assistenza</a>
+        </div>
+    '''
 
     bon = ''
     for col in D.INCENTIVI['menu']:
