@@ -112,8 +112,11 @@ def home():
   </div>
 </section>'''
 
-    intro = f'''<section class="sec intro" id="servizi">
-  {C.sec_head('Cosa facciamo', 'Impianti e servizi tecnici per privati, imprese ed enti pubblici', 'Operiamo nel fotovoltaico, nella termoidraulica, nella climatizzazione e nella manutenzione, su nuovi impianti e su sistemi già esistenti. Ogni intervento viene definito in base alle esigenze del cliente e alle caratteristiche tecniche del progetto.')}
+    intro = '''<section class="sec intro" id="servizi">
+    <div class="sec-head">
+        <h2>Cosa facciamo</h2>
+        <p>Impianti e servizi tecnici per privati, imprese ed enti pubblici. Operiamo nel fotovoltaico, nella termoidraulica, nella climatizzazione e nella manutenzione, su nuovi impianti e su sistemi già esistenti. Ogni intervento viene definito in base alle esigenze del cliente e alle caratteristiche tecniche del progetto.</p>
+    </div>
 </section>'''
 
     about = f'''<section class="sec about" id="informazioni">
