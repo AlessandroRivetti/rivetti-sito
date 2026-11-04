@@ -85,11 +85,11 @@ def doc(p, body, dialoghi=True, pre='', scripts=('ri.js', 'site.js')):
 
 
 def home():
-    hero_html = f'''<section class="hero" id="home">
+    hero_html = '''<section class="hero" id="home">
     <div class="hero-content">
-       <span class="hero-tag">Soluzioni Energetiche Avanzate</span>
-        <h1 class="hero-title">{esc(D.SITO['titolo_principale'])}</h1>
-        <p class="hero-subtitle">{esc(D.SITO['sottotitolo'])}</p>
+        <span class="hero-tag">Soluzioni Energetiche Avanzate</span>
+        <h1 class="hero-title">Smetti di subire i costi dell'energia. Inizia a investire nel tuo futuro.</h1>
+        <p class="hero-subtitle">Riduci la dipendenza energetica e valorizza il tuo immobile con soluzioni efficienti, affidabili e progettate per durare.</p>
         <a href="#contatti" class="btn btn-primary">Richiedi un sopralluogo &rarr;</a>
         <a href="#contatti" class="btn btn-secondary">Parla con un tecnico</a>
     </div>
@@ -102,22 +102,21 @@ def home():
     </div>
 </section>'''
 
-    about = f'''<section class="sec about" id="informazioni">
+    about = '''<section class="sec about" id="informazioni">
     <div class="sec-head">
         <span class="eyebrow">Chi siamo</span>
         <h2>Dal 2008 lavoriamo su impianti energetici per privati, imprese ed enti pubblici</h2>
     </div>
     <div class="about-wrap">
         <div class="about-text">
-            <p>Rivetti Impianti nasce nel 2008 per iniziativa di <strong>{esc(D.SOCIETA['fondatore'])}</strong>. Nel tempo l'attività si è sviluppata nel fotovoltaico, nel solare termico, nella termoidraulica civile e industriale, nella climatizzazione avanzata e nella manutenzione programmata.</p>
+            <p>Rivetti Impianti nasce nel 2008 per iniziativa di Alessandro Rivetti. Nel tempo l'attività si è sviluppata nel fotovoltaico, nel solare termico, nella termoidraulica civile e industriale, nella climatizzazione avanzata e nella manutenzione programmata.</p>
             <p>Il lavoro viene seguito da un team tecnico che coordina le fasi di valutazione, progettazione, realizzazione e manutenzione, coinvolgendo quando necessario collaboratori specializzati.</p>
             <p class="motto">Competenza tecnica, continuità del servizio e attenzione alla sicurezza.</p>
         </div>
         <div class="facts">
-            <div class="fact"><span>Anno di fondazione</span><b>{esc(D.SITO['anno_inizio'])}</b></div>
+            <div class="fact"><span>Anno di fondazione</span><b>2008</b></div>
             <div class="fact"><span>Competenze</span><b>Fotovoltaico, termoidraulica e manutenzione</b></div>
-            <div class="fact"><span>Sede</span><b>{esc(D.indirizzo)}</b></div>
-            <div class="fact"><span>P.IVA</span><b>{esc(D.SOCIETA['piva_cf'])}</b></div>
+            <div class="fact"><span>Sede</span><b>Via Landolfo, Mondragone (CE)</b></div>
         </div>
     </div>
 </section>'''
