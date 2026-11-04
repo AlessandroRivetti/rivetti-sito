@@ -88,7 +88,7 @@ def home():
     hero_html = f'''<section class="hero" id="home">
     <div class="hero-content">
        <span class="hero-tag">Soluzioni Energetiche Avanzate</span>
-        <h1 class="hero-title">{esc(D.SITO['titolo'])}</h1>
+        <h1 class="hero-title">Impianti Fotovoltaici e Termoidraulici Avanzati</h1>
         <p class="hero-subtitle">{esc(D.SITO['descrizione'])}</p>
         <a href="#contatti" class="btn btn-primary">Richiedi un sopralluogo &rarr;</a>
         <a href="#contatti" class="btn btn-secondary">Parla con un tecnico</a>
