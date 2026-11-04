@@ -107,7 +107,7 @@ def home():
       <span class="hero-tag">{H['tag']}</span>
       <h1 class="hero-title">{H['titolo']}</h1>
       <p class="hero-subtitle">{H['testo']}</p>
-      <div class="hero-actions cta">{C.cta_pair('home')}</div>
+      '<a href="#contatti" class="btn btn-primary">Richiedi un sopralluogo &rarr;</a> <a href="#contatti" class="btn btn-secondary">Parla con un tecnico</a>'
     </div>
   </div>
 </section>'''
