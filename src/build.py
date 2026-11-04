@@ -85,31 +85,14 @@ def doc(p, body, dialoghi=True, pre='', scripts=('ri.js', 'site.js')):
 
 
 def home():
-    p = pagina('home')
-    H = D.HERO_HOME
-    if not os.path.exists(os.path.join(ROOT, H['video'])):
-        print('NOTA: manca %s — la Hero mostra solo il poster finché il video non viene caricato.' % H['video'])
-    
-    hero = f'''<!-- HERO SECTION CON VIDEO SHOWREEL -->
-<section class="hero-section" id="home">
-  <div class="hero-container">
-    <div class="hero-video-wrapper">
-      <video id="hero-video" autoplay loop muted playsinline poster="{H['poster']}">
-        <source src="{H['video']}" type="video/mp4">
-        Il tuo browser non supporta il tag video.
-      </video>
-      <button id="audio-toggle-btn" class="audio-btn" type="button" aria-label="{H['audio_on']}" aria-pressed="false" data-on="{H['audio_on']}" data-off="{H['audio_off']}">
-        <svg class="icon-mute" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-        <svg class="icon-unmute" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" style="display:none;"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-      </button>
-    </div>
+    hero_html = f'''<section class="hero" id="home">
     <div class="hero-content">
-      <span class="hero-tag">{H['tag']}</span>
-      <h1 class="hero-title">{H['titolo']}</h1>
-      <p class="hero-subtitle">{H['testo']}</p>
-      '<a href="#contatti" class="btn btn-primary">Richiedi un sopralluogo &rarr;</a> <a href="#contatti" class="btn btn-secondary">Parla con un tecnico</a>'
+        <span class="hero-tag">{esc(D.SITO['tagline_principale'])}</span>
+        <h1 class="hero-title">{esc(D.SITO['titolo_principale'])}</h1>
+        <p class="hero-subtitle">{esc(D.SITO['sottotitolo'])}</p>
+        <a href="#contatti" class="btn btn-primary">Richiedi un sopralluogo &rarr;</a>
+        <a href="#contatti" class="btn btn-secondary">Parla con un tecnico</a>
     </div>
-  </div>
 </section>'''
 
     intro = '''<section class="sec intro" id="servizi">
@@ -120,33 +103,64 @@ def home():
 </section>'''
 
     about = f'''<section class="sec about" id="informazioni">
-  <div class="sec-head">
-    <span class="eyebrow">Chi siamo</span>
-    <h2>Dal 2008 lavoriamo su impianti energetici per privati, imprese ed enti pubblici</h2>
-  </div>
-  <div class="about-wrap">
-    <div class="about-text">
-      <p>Rivetti Impianti nasce nel 2008 per iniziativa di <strong>{D.SOCIETA['fondatore']}</strong>. Nel tempo l’attività si è sviluppata nel fotovoltaico, nella termoidraulica e nei servizi di manutenzione, seguendo interventi di diversa tipologia e dimensione.</p>
-      <p>Il lavoro viene seguito da un team tecnico che coordina le fasi di valutazione, progettazione, realizzazione e manutenzione, coinvolgendo quando necessario imprese partner per le attività complementari.</p>
-      <p class="motto">Competenza tecnica, continuità del servizio e attenzione alla sicurezza.</p>
+    <div class="sec-head">
+        <span class="eyebrow">Chi siamo</span>
+        <h2>Dal 2008 lavoriamo su impianti energetici per privati, imprese ed enti pubblici</h2>
     </div>
-    <div class="facts">
-      <div class="fact"><span>Anno di fondazione</span><b>{D.SITO['anno_inizio']}</b></div>
-      <div class="fact wide"><span>Competenze</span><b>Fotovoltaico, termoidraulica e manutenzione</b></div>
-      <div class="fact wide"><span>Sede</span><b>{esc(C.indirizzo())}</b></div>
-      <div class="fact wide"><span>P.IVA</span><b>{D.SOCIETA['piva_cf']}</b></div>
+    <div class="about-wrap">
+        <div class="about-text">
+            <p>Rivetti Impianti nasce nel 2008 per iniziativa di <strong>{esc(D.SOCIETA['fondatore'])}</strong>. Nel tempo l'attività si è sviluppata nel fotovoltaico, nel solare termico, nella termoidraulica civile e industriale, nella climatizzazione avanzata e nella manutenzione programmata.</p>
+            <p>Il lavoro viene seguito da un team tecnico che coordina le fasi di valutazione, progettazione, realizzazione e manutenzione, coinvolgendo quando necessario collaboratori specializzati.</p>
+            <p class="motto">Competenza tecnica, continuità del servizio e attenzione alla sicurezza.</p>
+        </div>
+        <div class="facts">
+            <div class="fact"><span>Anno di fondazione</span><b>{esc(D.SITO['anno_inizio'])}</b></div>
+            <div class="fact"><span>Competenze</span><b>Fotovoltaico, termoidraulica e manutenzione</b></div>
+            <div class="fact"><span>Sede</span><b>{esc(D.indirizzo)}</b></div>
+            <div class="fact"><span>P.IVA</span><b>{esc(D.SOCIETA['piva_cf'])}</b></div>
+        </div>
     </div>
-  </div>
 </section>'''
 
-    body = '\n\n'.join(x for x in [
-        hero, C.stats_section(), intro, C.real_home_section(),
-        C.come_section(), C.incentivi_section(), about, C.qualifiche_section(), C.marchi_section(),
-        C.reviews_section(), C.faq_section('home', 'Domande frequenti', 'FAQ'),
-        C.contact_section(p, 'Parliamo del tuo impianto', 'Descrivici ciò di cui hai bisogno. Puoi chiamarci, scriverci su WhatsApp oppure utilizzare il modulo: raccoglieremo le informazioni necessarie e, quando serve, organizzeremo un sopralluogo.')] if x)
-    return p, doc(p, body, scripts=('ri.js', 'recensioni.js', 'site.js'))
-
-
+    body = '\n'.join([
+        hero_html,
+        intro,
+        about,
+        '''<section class="sec reviews" id="recensioni">
+    <div class="sec-head">
+        <h2>Cosa dicono di noi</h2>
+        <p>La soddisfazione dei nostri clienti è il nostro traguardo migliore.</p>
+    </div>
+    <div class="reviews-grid">
+        <div class="review-card">
+            <div class="review-author">Marco V. (Proprietario di casa)</div>
+            <p class="review-text">"Installazione del fotovoltaico impeccabile! L'impianto gira a pieno regime e ho visto una netta miglioria sui consumi domestici. Team professionale, puntuale e disponibilissimo."</p>
+        </div>
+        <div class="review-card">
+            <div class="review-author">Ing. Salvatore R. (Referente Aziendale)</div>
+            <p class="review-text">"Ci siamo affidati a Rivetti Impianti per la termoidraulica e il coordinamento impiantistico industriale. Competenza tecnica straordinaria e totale trasparenza nella gestione dei lavori."</p>
+        </div>
+        <div class="review-card">
+            <div class="review-author">Giuseppe M. (Condominio)</div>
+            <p class="review-text">"Lavori eseguiti a regola d'arte e grande cortesia. Hanno gestito tutto loro dalla progettazione alla documentazione finale. Consigliatissimi in tutta la Campania!"</p>
+        </div>
+    </div>
+</section>''',
+        '''<section class="sec contact" id="contatti">
+    <div class="sec-head">
+        <h2>Parliamo del tuo impianto</h2>
+        <p>Descrivici ciò di cui hai bisogno. Puoi chiamarci, scriverci su WhatsApp oppure utilizzare il modulo di contatto per richiedere informazioni o un sopralluogo gratuito.</p>
+    </div>
+</section>'''
+    ])
+    
+    p = dict(key='home', title=D.SITO['titolo'], desc=D.SITO['descrizione'])
+    doc = dict(
+        nav=C.nav(p),
+        body=body,
+        scripts=['ri.js', 'recensioni.js', 'site.js']
+    )
+    return p, doc
 # ----------------------------------------------------------------------------- PRIVATI / IMPRESE / PA
 def _j(parti):
     """Unisce i blocchi della pagina saltando quelli vuoti (es. la Galleria lavori quando non è pubblicata)."""
