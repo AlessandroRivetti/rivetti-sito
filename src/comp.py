@@ -170,14 +170,12 @@ def nav(p, pre=''):
     serv_cls = ' active' if p['key'] in ('privati', 'imprese', 'pa') else ''
     items = [
         f'<a href="{home_href}" data-spy="home"{home_cls}>Home</a>',
-        f'<div class="dropdown"><a class="dd-trigger{serv_cls}" href="javascript:void(0);" aria-haspopup="true" aria-expanded="false" data-spy="servizi">Servizi &#9662;</a>',
-        f'<div class="dropdown-menu dropdown-3-col">{serv}</div></div>',
+        f'<div class="dropdown"><a class="dd-trigger{serv_cls}" href="javascript:void(0);" aria-haspopup="true" aria-expanded="false" data-spy="servizi">Servizi &#9662;</a><div class="dropdown-menu dropdown-3-col">{serv}</div></div>',
     ]
     items += [
-        f'<div class="dropdown"><a class="dd-trigger" href="{H("incentivi")}" aria-haspopup="true" aria-expanded="false" data-spy="incentivi">Bonus &amp; Incentivi &#9662;</a>'
-        f'<div class="dropdown-menu dropdown-3-col">{bon}</div></div>',
+        f'<div class="dropdown"><a class="dd-trigger" href="{H("incentivi")}" aria-haspopup="true" aria-expanded="false" data-spy="incentivi">Bonus &amp; Incentivi &#9662;</a><div class="dropdown-menu dropdown-3-col">{bon}</div></div>',
         f'<a href="{H("informazioni")}" data-spy="informazioni">Chi siamo</a>',
-        f'<a href="{H("lavora")}" data-spy="lavora">Lavora con noi</a>',
+        f'<a href="{pre}lavora.html" data-spy="lavora">Lavora con noi</a>',
         f'<a class="nav-offerte{" active" if p["key"] == "offerte" else ""}" href="{pre}offerte.html" data-spy="offerte"{cur("offerte")}>Offerte</a>',
         f'<a href="{"#contatti" if home else pre + "contatti.html"}" data-spy="contatti"{act("contatti")}{cur("contatti")}>Contatti</a>',
         f'<a href="{H("recensioni")}" data-spy="recensioni" data-rev hidden>Cosa dicono di noi</a>',
