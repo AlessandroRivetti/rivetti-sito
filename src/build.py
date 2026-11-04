@@ -154,12 +154,7 @@ def home():
     ])
     
     p = dict(key='home', path='/', file='index.html', title="Impianti Fotovoltaici e Termoidraulici | Rivetti Impianti", desc="Dal 2008 progettiamo, realizziamo e manteniamo impianti fotovoltaici, termoidraulici e sistemi energetici per privati, imprese ed enti pubblici.")
-    doc = dict(
-        nav=C.nav(p),
-        body=body,
-        scripts=['ri.js', 'recensioni.js', 'site.js']
-    )
-    return p, doc
+    return p, doc(p, body)
 # ----------------------------------------------------------------------------- PRIVATI / IMPRESE / PA
 def _j(parti):
     """Unisce i blocchi della pagina saltando quelli vuoti (es. la Galleria lavori quando non è pubblicata)."""
