@@ -157,9 +157,8 @@ def nav(p, pre=''):
     act = lambda *keys: ' class="active"' if p['key'] in keys else ''
 
     serv = ''
-    import servizi_pagine as SP  # import locale: servizi_pagine importa comp
-    for col in SP.menu():
-        voci = ''.join(f'<a href="{H(h)}">{esc(l)}</a>' for l, h in col["voci"])
+    for col in D.MENU_SERVIZI:
+        voci = ''.join(f'<a href="{pre}{qa(h)}">{esc(l)}</a>' for l, h in col['voci'])
         serv += f'''
         <div class="dropdown-category">
             <span class="category-title">{esc(col["titolo"])}</span>
@@ -174,7 +173,7 @@ def nav(p, pre=''):
 
     home_cls = ' class="active"' if home else ''
     home_href = '#home' if home else pre + 'index.html'
-    serv_cls = ' active' if p['key'] in ('privati', 'imprese', 'pa') or p['key'].startswith('sv-') else ''
+    serv_cls = ' active' if p['key'] in ('privati', 'imprese', 'pa') else ''
     items = [
         f'<a href="{home_href}" data-spy="home"{home_cls}>Home</a>',
         f'<div class="dropdown"><a class="dd-trigger{serv_cls}" href="javascript:void(0);" aria-haspopup="true" aria-expanded="false" data-spy="servizi">Servizi &#9662;</a>',
