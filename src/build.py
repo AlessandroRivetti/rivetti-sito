@@ -1,583 +1,759 @@
 # -*- coding: utf-8 -*-
-"""
-Genera il sito: index, privati, imprese, pubblica-amministrazione, contatti, (realizzazioni), 404, sitemap.xml, robots.txt.
-
-    python3 src/build.py            # genera i file definitivi nella cartella del sito
-    python3 src/build.py --demo     # anteprima di Realizzazioni con dati FITTIZI (da dev/, se presente) in _demo/ (NON da pubblicare)
-
-I contenuti si modificano in src/dati.py; il codice delle pagine è in src/comp.py e in questo file.
-Ogni build esegue anche i controlli automatici (link, titoli, H1, SVG, TODO): se qualcosa non va, si ferma.
-"""
-import math
+"""Componenti HTML condivisi dalle pagine (testata, menu, moduli, schede, footer, SEO)."""
+import html as _h
+import json
 import os
 import re
-import shutil
-import sys
+from datetime import date
+from urllib.parse import quote
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import dati as D
 import gallerie as G
 import progetti as P
-import comp as C
-import offerte as OF
+import qualifiche as Q
 from art import ART, DEFS
 
-ROOT = C.ROOT
-esc, qa = C.esc, C.qa
-
-# ----------------------------------------------------------------------------- pagine: metadati SEO
-PAGINE = {
-    'home': dict(path='/', file='index.html',
-                 title='Impianti Fotovoltaici e Termoidraulici | Rivetti Impianti',
-                 desc='Dal 2008 progettiamo, realizziamo e manteniamo impianti fotovoltaici, termoidraulici e sistemi energetici per privati, imprese ed enti pubblici.'),
-    'privati': dict(path='/privati.html', file='privati.html', crumbs=[('Privati', '/privati.html')],
-                    title='Fotovoltaico, Solare Termico e Servizi per Privati | Rivetti Impianti',
-                    desc='Impianti fotovoltaici, solare termico, lavaggio moduli, termografia, manutenzione e monitoraggio per la tua casa.'),
-    'imprese': dict(path='/imprese.html', file='imprese.html', crumbs=[('Imprese', '/imprese.html')],
-                    title='Fotovoltaico Industriale, O&M e CER per Imprese | Rivetti Impianti',
-                    desc='Fotovoltaico industriale, O&M, lavaggio moduli, termografia e Comunità Energetiche Rinnovabili (CER) per le aziende.'),
-    'pa': dict(path='/pubblica-amministrazione.html', file='pubblica-amministrazione.html', crumbs=[('Pubblica Amministrazione', '/pubblica-amministrazione.html')],
-               title='Fotovoltaico e Riqualificazione per la PA | Rivetti Impianti',
-               desc='Fotovoltaico PA, riqualificazione energetica, manutenzione e assistenza per la Pubblica Amministrazione.'),
-    'realizzazioni': dict(path='/realizzazioni.html', file='realizzazioni.html', crumbs=[('Realizzazioni', '/realizzazioni.html')],
-                          title='Realizzazioni | Rivetti Impianti',
-                          desc='I lavori realizzati da Rivetti Impianti per privati, imprese e Pubblica Amministrazione: impianti fotovoltaici, termoidraulici e manutenzione.'),
-    'offerte': dict(path='/offerte.html', file='offerte.html', crumbs=[('Offerte', '/offerte.html')],
-                    title='Offerte Speciali | Rivetti Impianti',
-                    desc='Offerte per fotovoltaico con accumulo, climatizzazione, caldaie e manutenzione: prezzi chiari, detrazione fiscale 50% e finanziamento a tasso agevolato.'),
-    'contatti': dict(path='/contatti.html', file='contatti.html', crumbs=[('Contatti', '/contatti.html')],
-                     title='Contatti e Richiesta di Sopralluogo | Rivetti Impianti',
-                     desc='Contatta Rivetti Impianti: telefono, WhatsApp, email e modulo per richiedere un sopralluogo o un preventivo.'),
-    '404': dict(path='/404.html', file='404.html', title='Pagina non trovata | Rivetti Impianti',
-                desc='La pagina richiesta non esiste o è stata spostata.', noindex=True),
-}
-LEGALI = ['privacy.html', 'cookie.html', 'note-legali.html']          # generate da legal.py
-ALTRE = {'recensione.html'}                                          # pagina a parte (noindex)
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ANNO = date.today().year
+ANNI_ESPERIENZA = ANNO - D.SITO['anno_inizio']
+SERVIZI_DIR = os.path.join(ROOT, 'assets', 'servizi')   # la modalità --demo lo sposta in _demo/
 
 
-def pagina(key):
-    p = dict(PAGINE[key], key=key)
-    schema = []
-    if key == 'home':
-        schema = [C.schema_azienda()]
-    elif key == 'contatti':
-        schema = [C.schema_azienda(), C.schema_briciole(p)]
-    elif key in ('privati', 'imprese', 'pa'):
-        schema = [C.schema_briciole(p), C.schema_faq(key)]
-    elif 'crumbs' in p:
-        schema = [C.schema_briciole(p)]
-    p['schema'] = schema
-    return p
+def esc(s):
+    return _h.escape(str(s), quote=False)
 
 
-def doc(p, body, dialoghi=True, pre='', scripts=('ri.js', 'site.js')):
-    root_rel = (pre == '')
-    sc = ''.join(f'<script src="{pre}{s}" defer></script>\n' for s in scripts)
-    return (C.head(p, root_rel=root_rel) +
-            f'<body data-page="{p["key"]}">\n{DEFS}\n{C.SPRITE}\n' + C.nav(p, pre) +
-            f'<main id="main">\n{body}\n</main>\n' + (C.incentivi_dialogs() if dialoghi else '') +
-            C.footer(p, pre) + sc + '</body>\n</html>\n')
+def qa(s):
+    return _h.escape(str(s), quote=True)
 
 
-def home():
-    p = pagina('home')
-    H = D.HERO_HOME
-    if not os.path.exists(os.path.join(ROOT, H['video'])):
-        print('NOTA: manca %s — la Hero mostra solo il poster finché il video non viene caricato.' % H['video'])
-    
-    hero = f'''<!-- HERO SECTION CON VIDEO SHOWREEL -->
-<section class="hero-section" id="home">
-  <div class="hero-container">
-    <div class="hero-video-wrapper">
-      <video id="hero-video" autoplay loop muted playsinline poster="{H['poster']}">
-        <source src="{H['video']}" type="video/mp4">
-        Il tuo browser non supporta il tag video.
-      </video>
-      <button id="audio-toggle-btn" class="audio-btn" type="button" aria-label="{H['audio_on']}" aria-pressed="false" data-on="{H['audio_on']}" data-off="{H['audio_off']}">
-        <svg class="icon-mute" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-        <svg class="icon-unmute" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false" style="display:none;"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-      </button>
+def digits(n):
+    return re.sub(r'\D', '', n)
+
+
+def tel_url(n):
+    return 'tel:+39' + digits(n)
+
+
+def wa_url(n=None, testo=None):
+    n = n or D.WHATSAPP['numero']
+    testo = testo or D.WHATSAPP['testo']
+    return f'https://wa.me/39{digits(n)}?text={quote(testo, safe="")}'
+
+
+def wa_for(page_key):
+    return wa_url(testo=D.WHATSAPP['testi_pagina'].get(page_key))
+
+
+def indirizzo(con_regione=False):
+    s = D.SOCIETA
+    base = f"{s['via']}, {s['cap']} {s['comune']} ({s['provincia']})"
+    return base + (f" — {s['regione']}" if con_regione else '')
+
+
+# ---------------------------------------------------------------- icone (tutte decorative: aria-hidden)
+SPRITE = '''<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></symbol>
+  <symbol id="i-ph" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2Z"/></symbol>
+</svg>'''
+
+WA = '<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-wa"/></svg>'
+PH = '<svg class="ic" aria-hidden="true" focusable="false"><use href="#i-ph"/></svg>'
+
+
+def ico(inner):
+    return f'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">{inner}</svg>'
+
+
+ICO_MAIL = ico('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>')
+ICO_PEC = ico('<rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>')
+ICO_PIN = ico('<path d="M12 21s7-6.2 7-11a7 7 0 0 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/>')
+ICO_IVA = ico('<path d="M7 3h10v18l-2.5-1.5L12 21l-2.5-1.5L7 21z"/><path d="M10 8h4M10 12h4"/>')
+ICO_TEC = ico('<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/>')
+ICO_INS = ico('<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h4M7 14h10"/>')
+ICO_PRO = ico('<path d="M12 3l9 4-9 4-9-4z"/><path d="M7 10v5c0 1.5 2.2 3 5 3s5-1.5 5-3v-5"/>')
+
+
+# ---------------------------------------------------------------- pagine pubblicate
+def realizzazioni_pubblicate():
+    return P.attivi()
+
+
+def ha_realizzazioni():
+    return bool(realizzazioni_pubblicate())
+
+
+# ---------------------------------------------------------------- <head> + SEO
+def canonical(path):
+    return D.SITO['url'].rstrip('/') + path
+
+
+def schema_azienda():
+    s = D.SOCIETA
+    return {
+        '@context': 'https://schema.org', '@type': 'HomeAndConstructionBusiness',
+        'name': D.SITO['nome'], 'legalName': s['ragione_sociale'], 'alternateName': D.SITO['nome_esteso'],
+        'url': canonical('/'), 'logo': canonical('/' + D.SITO['logo_og']),
+        'slogan': D.SITO['slogan'], 'foundingDate': str(D.SITO['anno_inizio']),
+        'founder': {'@type': 'Person', 'name': s['fondatore']},
+        'vatID': 'IT' + s['piva_cf'], 'taxID': s['piva_cf'], 'email': s['email'],
+        'telephone': '+39' + digits(D.TELEFONI[0]),
+        'address': {'@type': 'PostalAddress', 'streetAddress': s['via'], 'postalCode': s['cap'],
+                    'addressLocality': s['comune'], 'addressRegion': s['provincia'], 'addressCountry': 'IT'},
+    }
+
+
+def schema_briciole(p):
+    items = [{'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': canonical('/')}]
+    for i, (nome, path) in enumerate(p.get('crumbs', []), 2):
+        items.append({'@type': 'ListItem', 'position': i, 'name': nome, 'item': canonical(path) if path else canonical(p['path'])})
+    return {'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': items}
+
+
+def schema_faq(chiave):
+    """FAQPage: stesse domande e risposte mostrate nella pagina (testo senza tag HTML)."""
+    voci = D.FAQ.get(chiave) or []
+    return {'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': [
+        {'@type': 'Question', 'name': q, 'acceptedAnswer': {'@type': 'Answer', 'text': _h.unescape(re.sub(r'<[^>]+>', '', a))}} for q, a in voci]}
+
+
+def head(p, root_rel=True):
+    """p: dict con key, path, title, desc, noindex, schema (lista di dict)."""
+    pre = '' if root_rel else '/'         # la 404 usa percorsi dalla radice
+    url = canonical(p['path'])
+    og_img = canonical(p['og_image']) if p.get('og_image') else canonical('/' + D.SITO['logo_og'])
+    robots = '<meta name="robots" content="noindex">\n' if p.get('noindex') else ''
+    can = '' if p.get('noindex') else f'<link rel="canonical" href="{qa(url)}">\n'
+    ld = ''.join(f'<script type="application/ld+json">\n{json.dumps(x, ensure_ascii=False, separators=(",", ":"))}\n</script>\n' for x in p.get('schema', []))
+    return f'''<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{esc(p['title'])}</title>
+<meta name="description" content="{qa(p['desc'])}">
+{robots}{can}<meta name="theme-color" content="#0d2d58">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="it_IT">
+<meta property="og:site_name" content="{qa(D.SITO['nome_esteso'])}">
+<meta property="og:title" content="{qa(p['title'])}">
+<meta property="og:description" content="{qa(p['desc'])}">
+<meta property="og:url" content="{qa(url)}">
+<meta property="og:image" content="{qa(og_img)}">
+<meta name="twitter:card" content="{'summary_large_image' if p.get('og_image') else 'summary'}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{pre}site.css">
+<link rel="stylesheet" href="{pre}pagine.css">
+{ld}</head>
+'''
+
+
+# ---------------------------------------------------------------- testata e menu
+def nav(p, pre=''):
+    home = p['key'] == 'home'
+    H = (lambda a: f'#{a}') if home else (lambda a: f'{pre}index.html#{a}')
+    cur = lambda *keys: ' aria-current="page"' if p['key'] in keys else ''
+    act = lambda *keys: ' class="active"' if p['key'] in keys else ''
+
+    serv = ''
+    for col in D.MENU_SERVIZI:
+        voci = ''.join(f'<a href="{pre}{qa(h)}">{esc(l)}</a>' for l, h in col['voci'])
+        serv += f'<div class="dropdown-category"><span class="category-title">{esc(col["titolo"])}</span>{voci}</div>'
+    bon = ''
+    for col in D.INCENTIVI['menu']:
+        voci = ''.join(f'<a href="{H("incentivi")}" data-modal="{col["modale"]}">{esc(v)}</a>' for v in col['voci'])
+        bon += f'<div class="dropdown-category"><a class="category-title" href="{H("incentivi")}" data-modal="{col["modale"]}">{esc(col["titolo"])}</a>{voci}</div>'
+
+    home_cls = ' class="active"' if home else ''
+    home_href = '#home' if home else pre + 'index.html'
+    serv_cls = ' active' if p['key'] in ('privati', 'imprese', 'pa') else ''
+    items = [
+        f'<a href="{home_href}" data-spy="home"{home_cls}>Home</a>',
+        f'<div class="dropdown"><a class="dd-trigger{serv_cls}" href="javascript:void(0);" aria-haspopup="true" aria-expanded="false" data-spy="servizi">Servizi &#9662;</a><div class="dropdown-menu dropdown-3-col">{serv}</div></div>',
+    ]
+    items += [
+        f'<div class="dropdown"><a class="dd-trigger" href="{H("incentivi")}" aria-haspopup="true" aria-expanded="false" data-spy="incentivi">Bonus &amp; Incentivi &#9662;</a><div class="dropdown-menu dropdown-3-col">{bon}</div></div>',
+        f'<a href="{H("informazioni")}" data-spy="informazioni">Chi siamo</a>',
+        f'<a href="{pre}lavora-con-noi.html" data-spy="lavora"{cur("lavora")}>Lavora con noi</a>',
+        f'<a class="nav-offerte{" active" if p["key"] == "offerte" else ""}" href="{pre}offerte.html" data-spy="offerte"{cur("offerte")}>Offerte</a>',
+        f'<a href="{"#contatti" if home else pre + "contatti.html"}" data-spy="contatti"{act("contatti")}{cur("contatti")}>Contatti</a>',
+        f'<a href="{H("recensioni")}" data-spy="recensioni" data-rev hidden>Cosa dicono di noi</a>',
+    ]
+    brand_href = '#home' if home else f'{pre}index.html'
+    logo = f'{pre}{D.SITO["logo_chiaro"]}'
+    return f'''<a class="skip" href="#main">Vai ai contenuti</a>
+<header class="site-head" id="siteHead">
+  <nav aria-label="Navigazione principale">
+    <a href="{brand_href}" class="brand" aria-label="{qa(D.SITO['nome_esteso'])}">
+      <img src="{logo}" alt="{qa(D.SITO['nome_esteso'].replace('—', '–'))}" width="140" height="78" onerror="this.parentNode.classList.add('nologo')">
+      <span class="brand-fallback"><b>RIVETTI <em>IMPIANTI</em></b><small>TECHNICAL ENGINEERING</small></span>
+    </a>
+    <div class="menu" id="menu">
+      {chr(10).join("      " + i for i in items).strip()}
     </div>
-    <div class="hero-content">
-      <span class="hero-tag">{H['tag']}</span>
-      <h1 class="hero-title">{H['titolo']}</h1>
-      <p class="hero-subtitle">{H['testo']}</p>
-      <div class="hero-actions cta">{C.cta_pair('home')}</div>
-    </div>
-  </div>
-</section>'''
+    <button class="burger" id="burger" aria-label="Apri il menu" aria-expanded="false" aria-controls="menu"><span></span></button>
+  </nav>
+</header>
+'''
 
-    intro = f'''<section class="sec intro" id="servizi">
-{C.sec_head('Cosa facciamo', 'Impianti e servizi tecnici per privati, imprese ed enti pubblici', 'Operiamo nel fotovoltaico, nella termoidraulica, nella climatizzazione e nella manutenzione, su nuovi impianti e su sistemi già esistenti. Ogni intervento viene definito in base alle esigenze del cliente e alle caratteristiche tecniche del progetto.')}
-</section>'''
 
-    lavori_effettuati = f'''<section class="sec lavori-effettuati" id="lavori">
-{C.sec_head('Lavori effettuati', 'Interventi recenti e realizzazioni sul campo', 'Una panoramica degli impianti fotovoltaici, termoidraulici e dei sistemi energetici installati per i nostri clienti.')}
-</section>'''
+PRINC = '<small class="princ">Numero principale</small>'
 
-    about = '''<section class="sec about" id="informazioni">
-    <!-- Sezione informazioni -->
-</section>'''
 
-    lavora = f'''<section class="sec lavora" id="lavora">
-    <!-- Sezione lavora con noi -->
-</section>'''
-
-    body = '\n'.join(x for x in [
-        hero, 
-        '<div class="geo-divider"></div>',
-        C.stats_section(), 
-        intro, 
-        C.real_home_section(),
-        '<div class="geo-divider"></div>',
-        lavori_effettuati,
-        C.perche_section(), 
-        C.come_section(), 
-        C.incentivi_section(), 
-        about, 
-        '<div class="geo-divider"></div>',
-        C.qualifiche_section(), 
-        C.marchi_section(), 
-        lavora,
-        C.reviews_section(), 
-        C.faq_section('home', 'Domande frequenti', 'FAQ'),
-        C.contact_section(p, 'Parliamo del tuo impianto', 'Descrivici ciò di cui hai bisogno. Puoi chiamarci, scriverci su WhatsApp oppure utilizzare il modulo: raccoglieremo le informazioni necessarie e, quando serve, organizzeremo un sopralluogo.')
-    ] if x)
-    
-    return p, doc(p, body, scripts=('ri.js', 'recensioni.js', 'site.js'))
-
-    intro = f'''<section class="sec intro" id="servizi">
-  {C.sec_head('Cosa facciamo', 'Impianti e servizi tecnici per privati, imprese ed enti pubblici', 'Operiamo nel fotovoltaico, nella termoidraulica, nella climatizzazione e nella manutenzione, su nuovi impianti e su sistemi già esistenti. Ogni intervento viene definito in base alle esigenze del cliente e alle caratteristiche tecniche del progetto.')}
-  <div class="paths">
-    <a class="path p1" href="privati.html"><div><b>Privati</b><span>Fotovoltaico, accumulo, climatizzazione e manutenzione per la casa</span></div><i aria-hidden="true">&rarr;</i></a>
-    <a class="path p2" href="imprese.html"><div><b>Imprese</b><span>Fotovoltaico industriale, Utility Scale, O&amp;M e servizi tecnici</span></div><i aria-hidden="true">&rarr;</i></a>
-    <a class="path p3" href="pubblica-amministrazione.html"><div><b>Pubblica Amministrazione</b><span>Efficienza energetica, fotovoltaico, Comunità Energetiche e gestione degli impianti</span></div><i aria-hidden="true">&rarr;</i></a>
-  </div>
-</section>'''
-
-    about = f'''<section class="sec about" id="informazioni">
-  <div class="sec-head">
-    <span class="eyebrow">Chi siamo</span>
-    <h2>Dal 2008 lavoriamo su impianti energetici per privati, imprese ed enti pubblici</h2>
-  </div>
-  <div class="about-wrap">
-    <div class="about-text">
-      <p>Rivetti Impianti nasce nel 2008 per iniziativa di <strong>{D.SOCIETA['fondatore']}</strong>. Nel tempo l’attività si è sviluppata nel fotovoltaico, nella termoidraulica e nei servizi di manutenzione, seguendo interventi di diversa tipologia e dimensione.</p>
-      <p>Il lavoro viene seguito da un team tecnico che coordina le fasi di valutazione, progettazione, realizzazione e manutenzione, coinvolgendo quando necessario imprese partner per le attività complementari.</p>
-      <p class="motto">Competenza tecnica, continuità del servizio e attenzione alla sicurezza.</p>
-    </div>
-    <div class="facts">
-      <div class="fact"><span>Anno di fondazione</span><b>{D.SITO['anno_inizio']}</b></div>
-      <div class="fact wide"><span>Competenze</span><b>Fotovoltaico, termoidraulica e manutenzione</b></div>
-      <div class="fact wide"><span>Sede</span><b>{esc(C.indirizzo())}</b></div>
-      <div class="fact wide"><span>P.IVA</span><b>{D.SOCIETA['piva_cf']}</b></div>
-    </div>
-  </div>
-</section>'''
-
-    lavora = f'''<section class="sec lavora" id="lavora">
-  <div class="sec-head">
-    <span class="eyebrow">Candidature</span>
-    <h2>Lavora con noi</h2>
-    <p>Valutiamo candidature di tecnici, installatori e professionisti interessati a collaborare con Rivetti Impianti nei settori fotovoltaico, termoidraulico e impiantistico.</p>
-  </div>
-  <div class="lav-wrap">
-    <div class="lav-profiles">
-      <div class="lprof"><div class="ico">{C.ICO_TEC}</div><div><b>Tecnici</b><span>Impiantisti e specialisti di fotovoltaico e termoidraulica</span></div></div>
-      <div class="lprof"><div class="ico">{C.ICO_INS}</div><div><b>Installatori</b><span>Squadre e singoli installatori, per cantieri residenziali e industriali</span></div></div>
-      <div class="lprof"><div class="ico">{C.ICO_PRO}</div><div><b>Professionisti</b><span>Progettisti, ingegneri, periti e consulenti tecnici</span></div></div>
+def footer(p, pre=''):
+    s = D.SOCIETA
+    home = p['key'] == 'home'
+    H = (lambda a: f'#{a}') if home else (lambda a: f'{pre}index.html#{a}')
+    phones = ''.join(
+        f'<div class="fphone"><b>{n}{PRINC if n == D.TELEFONO_PRINCIPALE else ""}</b><div class="acts"><a href="{tel_url(n)}" aria-label="Chiama {n}">{PH}Chiama</a>'
+        f'<a class="w" href="{qa(wa_url(n))}" target="_blank" rel="noopener" aria-label="WhatsApp {n}">{WA}WhatsApp</a></div></div>'
+        for n in D.TELEFONI)
+    nav_links = [('Privati', f'{pre}privati.html'), ('Imprese', f'{pre}imprese.html'), ('Pubblica Amministrazione', f'{pre}pubblica-amministrazione.html')]
+    if ha_realizzazioni():
+        nav_links.append(('Realizzazioni', f'{pre}realizzazioni.html'))
+    nav_links += [('Offerte', f'{pre}offerte.html'), ('Bonus &amp; Incentivi', H('incentivi')), ('Chi siamo', H('informazioni')), ('Lavora con noi', f'{pre}lavora-con-noi.html'),
+                  ('Contatti', f'{pre}contatti.html'), ('Cosa dicono di noi', H('recensioni'))]
+    links = ''.join(f'<a href="{h}"{" data-rev hidden" if h.endswith("#recensioni") else ""}>{l}</a>' for l, h in nav_links)
+    logo = f'{pre}{D.SITO["logo_chiaro"]}'
+    return f'''<footer>
+  <div class="foot-grid">
+    <div>
+      <a href="{'#home' if home else pre + 'index.html'}" class="brand" aria-label="{qa(D.SITO['nome_esteso'])}">
+        <img src="{logo}" alt="{qa(D.SITO['nome_esteso'].replace('—', '–'))}" loading="lazy" onerror="this.parentNode.classList.add('nologo')">
+        <span class="brand-fallback"><b>RIVETTI <em>IMPIANTI</em></b><small>TECHNICAL ENGINEERING</small></span>
+      </a>
+      <p>{esc(D.SITO['slogan'])}.<br>Al servizio di Privati, Aziende e Pubbliche Amministrazioni.</p>
     </div>
     <div>
-      <p class="lav-intro">Se vuoi presentarti, inviaci il tuo curriculum e una breve descrizione delle tue competenze ed esperienze. Ti ricontatteremo qualora il profilo sia in linea con le nostre esigenze.</p>
-      <div class="lav-cta">
-        <a class="btn btn-primary" id="jobMail" href="mailto:{D.SOCIETA['email']}">Invia la tua candidatura &rarr;</a>
-      </div>
-      <p class="lav-privacy">Prima di inviare il curriculum consulta l'<a href="privacy.html">Informativa Privacy</a>.</p>
-      <p class="lav-mail">Candidature a: <a href="mailto:{D.SOCIETA['email']}">{D.SOCIETA['email']}</a></p>
+      <h2>Azienda</h2>
+      <p>{esc(s['ragione_sociale'])}<br>{esc(D.SITO['nome_esteso'])}</p>
+      <p>{esc(indirizzo())}</p>
+      <p>P.IVA / C.F. {s['piva_cf']} · REA {s['rea']}</p>
+      <a href="mailto:{s['email']}">{s['email']}</a>
+      <a href="mailto:{s['pec']}">PEC: {s['pec']}</a>
+    </div>
+    <div>
+      <h2>Telefono &amp; WhatsApp</h2>
+      {phones}
+    </div>
+    <div>
+      <h2>Navigazione</h2>
+      {links}
     </div>
   </div>
-</section>'''
-
-    body = '\n\n'.join(x for x in [
-        hero, C.stats_section(), intro, C.real_home_section(),
-        C.perche_section(), C.come_section(), C.incentivi_section(), about, C.qualifiche_section(), C.marchi_section(), lavora,
-        C.reviews_section(), C.faq_section('home', 'Domande frequenti', 'FAQ'),
-        C.contact_section(p, 'Parliamo del tuo impianto', 'Descrivici ciò di cui hai bisogno. Puoi chiamarci, scriverci su WhatsApp oppure utilizzare il modulo: raccoglieremo le informazioni necessarie e, quando serve, organizzeremo un sopralluogo.')] if x)
-    return p, doc(p, body, scripts=('ri.js', 'recensioni.js', 'site.js'))
+  <div class="copy">
+    <span>© <span id="y">{ANNO}</span> Rivetti Impianti — {esc(s['ragione_sociale_breve'])} · P. IVA/C.F. {s['piva_cf']} · REA {s['rea']} — Tutti i diritti riservati</span>
+    <span class="legal"><a href="{pre}privacy.html">Privacy Policy</a> · <a href="{pre}cookie.html">Cookie Policy</a> · <a href="{pre}note-legali.html">Note legali</a></span>
+  </div>
+</footer>
+'''
 
 
-# ----------------------------------------------------------------------------- PRIVATI / IMPRESE / PA
-def _j(parti):
-    """Unisce i blocchi della pagina saltando quelli vuoti (es. la Galleria lavori quando non è pubblicata)."""
-    return '\n'.join(x for x in parti if x)
+# ---------------------------------------------------------------- blocchi comuni
+def sec_head(eyebrow, titolo, testo=None, h='h2', extra=''):
+    t = f'<p>{testo}</p>' if testo else ''
+    return f'<div class="sec-head"><span class="eyebrow">{esc(eyebrow)}</span><{h}>{titolo}</{h}>{t}{extra}</div>'
 
 
-def privati():
-    p = pagina('privati')
-    H = D.PRIVATI_HERO
-    body = _j([
-        C.phero(p, H['h1'], H['lead'], C.hero_visual('fv', 'privati')),
-        C.quicknav_privati(),
-        C.privati_fv_sections(),
-        C.sistema_section(),
-        C.servizi_privati_section(),
-        C.privati_man_sections(),
-        C.impianto_esistente_section(p, cta=False),
-        C.privati_man_finale(p),
-        C.galleria_section('privati'),
-        C.incentivo_singolo('m-priv', 'Bonus e detrazioni per la tua casa'),
-        C.come_section(D.COME_LAVORIAMO_PRIVATI),
-        C.faq_section('privati', 'Domande frequenti sulle soluzioni per la casa', 'FAQ'),
-        C.contact_section(p, 'Richiedi un sopralluogo', tipo='Privato')])
-    return p, doc(p, body)
+def sticker(chiave, suf=''):
+    """Sticker SVG decorativo; gli id dei clipPath sono resi unici per evitare duplicati nella pagina."""
+    return re.sub(r'(id="|url\(#)(cp\w+)', lambda m: m.group(1) + m.group(2) + suf, ART[chiave])
 
 
-def imprese():
-    p = pagina('imprese')
-    H = D.IMPRESE_HERO
-    body = _j([
-        C.phero(p, H['h1'], H['lead'], C.hero_visual('utility', 'imprese'), tags=H['tags']),
-        C.quicknav(D.SERVIZI_IMPRESE, D.IMPIANTO_ESISTENTE_IMPRESE),
-        C.imprese_fv_sections(),
-        C.sistema_section(D.SISTEMA_IMPRESE),
-        C.imprese_principali_section(),
-        C.om_section(),
-        C.imprese_specialistici_section(),
-        C.impianto_esistente_section(p, D.IMPIANTO_ESISTENTE_IMPRESE),
-        C.imprese_revamping_section(),
-        C.imprese_finale(p),
-        C.galleria_section('imprese'),
-        C.incentivo_singolo('m-imp', 'Bandi e agevolazioni per la tua impresa'),
-        C.come_section(D.COME_LAVORIAMO_IMPRESE),
-        C.faq_section('imprese', 'Domande frequenti per le imprese', 'FAQ'),
-        C.contact_section(p, 'Richiedi una valutazione tecnica', tipo='Impresa')])
-    return p, doc(p, body)
+def servizio_foto(item, prefer=None):
+    """Prima foto disponibile in assets/servizi/ tra i file preferiti e quello del servizio: (file, alt) oppure None."""
+    for f, alt in list(prefer or []) + [(item.get('foto'), item.get('foto_alt'))]:
+        if f and os.path.isfile(os.path.join(SERVIZI_DIR, f)):
+            return f, alt
+    return None
 
 
-def pa():
-    p = pagina('pa')
-    H = D.PA_HERO
-    body = _j([
-        C.phero(p, H['h1'], H['lead'], C.hero_visual('pa_hero', 'pa')),
-        C.quicknav(D.SERVIZI_PA_PAGINA, D.IMPIANTO_ESISTENTE_PA),
-        C.pa_intro_section(),
-        C.sistema_section(D.SISTEMA_PA),
-        C.pa_aree_section(),
-        C.impianto_esistente_section(p, D.IMPIANTO_ESISTENTE_PA),
-        C.galleria_section('pa'),
-        C.pa_incentivi_section(),
-        C.come_section(D.COME_LAVORIAMO_PA),
-        C.pa_riepilogo_section(),
-        C.pa_finale(p),
-        C.faq_section('pa', 'Domande frequenti per la Pubblica Amministrazione', 'FAQ'),
-        C.contact_section(p, 'Richiedi un confronto tecnico', tipo='Pubblica Amministrazione')])
-    return p, doc(p, body)
+def vis(item, classe='vis', prefer=None):
+    """Illustrazione SVG (decorativa, aria-hidden) + eventuale foto (con alt) se il file esiste in assets/servizi/.
+    Senza file l'HTML resta quello della sola illustrazione."""
+    img = ''
+    sel = servizio_foto(item, prefer)
+    if sel:
+        img = img_responsive(sel[0], sel[1], SERVIZI_DIR, 'assets/servizi/', sizes='(max-width:900px) 100vw, 560px')
+    return f'<figure class="{classe}">{ART[item["art"]]}{img}</figure>'
 
 
-def offerte():
-    p = pagina('offerte')
-    body = '\n'.join([
-        C.phero(p, 'Offerte Speciali', 'Soluzioni complete per la tua casa a condizioni chiare: energia dal sole, comfort tutto l&rsquo;anno e impianti sempre efficienti. Con detrazione fiscale e finanziamento agevolato.',
-                tags=['Prezzi chiari', 'Detrazione fiscale 50%', 'Finanziamento agevolato']),
-        OF.sezioni(p), C.contact_section(p)])
-    return p, doc(p, body)
+def hero_visual(art_key, chiave):
+    """Visual dell'hero di una macroarea: copertina illustrativa assets/servizi/<chiave>-hero.jpg se esiste (immagine
+    principale: niente lazy loading, priorità alta), altrimenti l'illustrazione SVG di prima."""
+    f, alt = D.HERO_FOTO[chiave]
+    if os.path.isfile(os.path.join(SERVIZI_DIR, f)):
+        return ART[art_key] + img_responsive(f, alt, SERVIZI_DIR, 'assets/servizi/', sizes='(max-width:900px) 100vw, 560px', eager=True)
+    return ART[art_key]
 
 
-def contatti():
-    p = pagina('contatti')
-    body = '\n'.join([
-        C.phero(p, 'Parla con Rivetti Impianti', 'Per privati, imprese e Pubbliche Amministrazioni: scegli come contattarci e un tecnico ti risponderà.'),
-        C.contact_section(p)])
-    return p, doc(p, body)
+def cta_pair(page_key, dove='#contatti', servizio='Sopralluogo', luce=True):
+    """I due CTA principali: Richiedi un sopralluogo + Parla con un tecnico (WhatsApp)."""
+    b1 = 'btn-light' if luce else 'btn-primary'
+    b2 = 'btn-wa'
+    c1, c2 = D.CTA_PAGINE.get(page_key, (D.CTA_PRIMARIA, D.CTA_SECONDARIA))
+    return (f'<a class="btn {b1}" href="{dove}" data-service="{qa(servizio)}">{esc(c1)} &rarr;</a>'
+            f'<a class="btn {b2}" href="{qa(wa_for(page_key))}" target="_blank" rel="noopener">{WA}{esc(c2)}</a>')
 
 
-def pagina_404():
-    p = pagina('404')
-    body = f'''<section class="phero"><div class="phero-in"><div class="phero-text">
-  <h1>Pagina non trovata</h1>
-  <p class="lead">La pagina che cerchi non esiste o è stata spostata. Puoi ripartire da qui:</p>
-  <div class="cta"><a class="btn btn-light" href="/index.html">Torna alla Home</a><a class="btn btn-outline-light" href="/contatti.html">Contatti</a></div>
-</div></div></section>
-<section class="sec intro">
-  {C.sec_head('Dove vuoi andare?', 'I nostri percorsi')}
-  <div class="paths">
-    <a class="path p1" href="/privati.html"><div><b>Privati · Residenziale</b><span>Per la tua casa e il tuo condominio</span></div><i aria-hidden="true">&rarr;</i></a>
-    <a class="path p2" href="/imprese.html"><div><b>Imprese · Industriale</b><span>Per capannoni, industrie e grandi impianti</span></div><i aria-hidden="true">&rarr;</i></a>
-    <a class="path p3" href="/pubblica-amministrazione.html"><div><b>PA · Pubblica Amministrazione</b><span>Per enti e strutture comunali</span></div><i aria-hidden="true">&rarr;</i></a>
+def phero(p, h1, lead, visual=None, crumbs=True, tags=None, cta=True):
+    bc = ''
+    if crumbs:
+        bc = ('<nav class="crumbs" aria-label="Percorso di navigazione"><ol><li><a href="index.html">Home</a></li>'
+              + ''.join(f'<li><a href="{qa(path.lstrip(chr(47)))}">{esc(n)}</a></li>' if path and i < len(p['crumbs']) - 1 else f'<li aria-current="page">{esc(n)}</li>'
+                        for i, (n, path) in enumerate(p['crumbs']))
+              + '</ol></nav>')
+    vis_html = f'<div class="phero-vis">{visual}</div>' if visual else ''
+    tag_html = ('<ul class="phero-tags">' + ''.join(f'<li>{esc(t)}</li>' for t in tags) + '</ul>') if tags else ''
+    return f'''<section class="phero{' has-vis' if visual else ''}">
+  <div class="phero-in">
+    <div class="phero-text">
+      {bc}
+      <h1>{h1}</h1>
+      <p class="lead">{lead}</p>
+      {tag_html}
+      {('<div class="cta">' + cta_pair(p['key']) + '</div>') if cta else ''}
+    </div>
+    {vis_html}
   </div>
 </section>'''
-    return p, doc(p, body, dialoghi=False, pre='/', scripts=('ri.js', 'site.js'))
 
 
-# ----------------------------------------------------------------------------- sitemap, robots
-def sitemap(percorsi, out):
-    base = D.SITO['url'].rstrip('/')
-    urls = [base + x for x in percorsi] + [f'{base}/{f}' for f in LEGALI if os.path.exists(os.path.join(out, f))]
-    x = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-    x += ''.join(f'  <url><loc>{u}</loc></url>\n' for u in urls) + '</urlset>\n'
-    return x
-
-
-def robots():
-    return f"User-agent: *\nAllow: /\n\nSitemap: {D.SITO['url'].rstrip('/')}/sitemap.xml\n"
-
-
-# ----------------------------------------------------------------------------- controlli automatici
-def controlla(out, files):
-    errori = []
-    titoli, descr = {}, {}
-    ids_per_file = {}
-    for f in files + LEGALI + sorted(ALTRE):
-        path = os.path.join(out, f)
-        if os.path.exists(path):
-            ids_per_file[f] = set(re.findall(r'\sid="([^"]+)"', open(path, encoding='utf-8').read()))
-    for f in files:
-        h = open(os.path.join(out, f), encoding='utf-8').read()
-        if re.findall(r'\{\{|\}\}', re.sub(r'<script type="application/ld\+json">.*?</script>', '', h, flags=re.S)):
-            errori.append(f'{f}: segnaposto non sostituito')
-        if re.search(r'\bTODO\b|DA COMPLETARE|DA CONFERMARE|lorem ipsum', h):
-            errori.append(f'{f}: testo provvisorio visibile (TODO/lorem)')
-        if len(re.findall(r'<h1[\s>]', h)) != 1:
-            errori.append(f'{f}: deve avere esattamente un H1')
-        t = re.search(r'<title>(.*?)</title>', h, re.S).group(1)
-        d = re.search(r'<meta name="description" content="(.*?)">', h).group(1)
-        if t in titoli:
-            errori.append(f'{f}: title duplicato con {titoli[t]}')
-        if d in descr:
-            errori.append(f'{f}: description duplicata con {descr[d]}')
-        titoli[t], descr[d] = f, f
-        if len(d) > 170:
-            errori.append(f'{f}: description troppo lunga ({len(d)})')
-        for tag in re.findall(r'<svg\b[^>]*>', h):
-            if 'aria-hidden="true"' not in tag and 'role="img"' not in tag:
-                errori.append(f'{f}: SVG senza aria-hidden né role="img": {tag[:80]}')
-        ids = re.findall(r'\sid="([^"]+)"', h)
-        dup = {i for i in ids if ids.count(i) > 1}
-        if dup:
-            errori.append(f'{f}: id duplicati {sorted(dup)}')
-        # niente salti di livello tra i titoli
-        lvl = [int(x) for x in re.findall(r'<h([1-6])[\s>]', h)]
-        for a, b in zip(lvl, lvl[1:]):
-            if b > a + 1:
-                errori.append(f'{f}: salto di livello H{a} → H{b}')
-                break
-        # link interni
-        if f == '404.html':
+def stats_section():
+    voci = []
+    for v in D.NUMERI['voci']:
+        val = v['valore']
+        if val == 'auto':
+            val = str(ANNI_ESPERIENZA)
+        if not val:           # None / '' = indicatore non pubblicato
             continue
-        for href in re.findall(r'<a [^>]*href="([^"]+)"', h):
-            if re.match(r'(https?:|mailto:|tel:|javascript:)', href):
-                continue
-            pth, _, frag = href.partition('#')
-            target = pth or f
-            if pth and not os.path.exists(os.path.join(out, pth)):
-                errori.append(f'{f}: link a file inesistente {href}')
-                continue
-            if frag and frag not in ids_per_file.get(target, set()):
-                errori.append(f'{f}: ancora inesistente {href}')
-    return errori
+        d = f'<span class="d">{esc(v["descrizione"])}</span>' if v.get('descrizione') else ''
+        voci.append(f'<li class="stat"><span class="n">{esc(val)}</span><b class="l">{esc(v["etichetta"])}</b>{d}</li>')
+    if not voci:
+        return ''
+    return f'''<section class="sec stats-sec" id="numeri" aria-labelledby="numeri-t">
+  <div class="sec-head"><span class="eyebrow">{esc(D.NUMERI['eyebrow'])}</span><h2 id="numeri-t">{esc(D.NUMERI['titolo'])}</h2></div>
+  <ul class="stats">{''.join(voci)}</ul>
+</section>'''
 
 
-# ----------------------------------------------------------------------------- realizzazioni (elenco e dettaglio)
-def realizzazioni():
-    p = pagina('realizzazioni')
-    body = '\n'.join([
-        C.phero(p, 'Le nostre realizzazioni', 'Progetti realizzati per privati, imprese e Pubblica Amministrazione: impianti fotovoltaici, termoidraulici e attività di manutenzione.', cta=False),
-        C.realizzazioni_section(),
-        C.contact_section(p, 'Hai un progetto simile? Parliamone')])
-    return p, doc(p, body)
+def perche_section():
+    v = ''.join(f'<li class="why"><h3>{esc(t)}</h3><p>{esc(x)}</p></li>' for t, x in D.PERCHE['voci'])
+    return f'''<section class="sec why-sec" id="perche">
+  {sec_head(D.PERCHE['eyebrow'], esc(D.PERCHE['titolo']))}
+  <ul class="why-grid">{v}</ul>
+</section>'''
 
 
-def progetto(r):
-    p = C.progetto_page(r)
-    p['schema'] = [C.schema_briciole(p)]
-    return p, doc(p, C.progetto_body(p, r))
+def come_section(dati=None):
+    dati = dati or D.COME_LAVORIAMO
+    v = ''.join(f'<li class="step"><h3>{esc(t)}</h3><p>{esc(x)}</p></li>' for t, x in dati['passi'])
+    nota = f'<p class="how-note">{esc(dati["nota"])}</p>' if dati.get('nota') else ''
+    return f'''<section class="sec how-sec" id="come-lavoriamo">
+  {sec_head(dati['eyebrow'], esc(dati['titolo']))}
+  <ol class="steps">{v}</ol>{nota}
+</section>'''
 
 
-# ----------------------------------------------------------------------------- main
-def scrivi(out, funzioni):
-    """Scrive le pagine e restituisce l'elenco (metadati, file)."""
-    risultati = []
-    for fn in funzioni:
-        p, html = fn()
-        open(os.path.join(out, p['file']), 'w', encoding='utf-8').write(html)
-        risultati.append(p)
-    return risultati
+def faq_section(chiave, titolo='Domande frequenti', eyebrow='FAQ', sid='faq'):
+    voci = D.FAQ.get(chiave) or []
+    if not voci:
+        return ''
+    v = ''.join(f'<details class="faq-i"><summary>{esc(q)}</summary><p>{a}</p></details>' for q, a in voci)
+    return f'''<section class="sec faq-sec" id="{sid}">
+  {sec_head(eyebrow, esc(titolo))}
+  <div class="faq">{v}</div>
+</section>'''
 
 
-def carica_demo(out):
-    """Dati di PROVA (cartella dev/, fuori dal sito): servono solo per l'anteprima in _demo/."""
-    import importlib.util
-    f = os.path.join(ROOT, 'dev', 'fixture_progetti.py')
-    if not os.path.exists(f):
-        sys.exit('Anteprima non disponibile: manca dev/fixture_progetti.py')
-    spec = importlib.util.spec_from_file_location('fixture_progetti', f)
-    m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
-    P.FOTO_DIR = os.path.join(out, 'assets', 'realizzazioni')
-    C_FOTO = P.FOTO_DIR
-    os.makedirs(C_FOTO, exist_ok=True)
-    m.crea_foto(C_FOTO)
-    P.PROGETTI[:] = m.PROGETTI
-    P.HOME_ATTIVA = True
-    # gallerie e copertine di PROVA (solo in _demo/): privati sopra soglia, imprese esattamente alla soglia, PA sotto soglia
-    gm = importlib.util.module_from_spec(importlib.util.spec_from_file_location('fixture_gallerie', os.path.join(ROOT, 'dev', 'fixture_gallerie.py')))
-    gm.__spec__.loader.exec_module(gm)
-    G.DIR = os.path.join(out, 'assets', 'gallerie')
-    C.SERVIZI_DIR = os.path.join(out, 'assets', 'servizi')
-    gm.crea(G.DIR, C.SERVIZI_DIR)
-    for k in G.FOTO:
-        G.FOTO[k][:] = gm.FOTO[k]
+# ---------------------------------------------------------------- incentivi
+def incentivi_cards():
+    out = ''
+    for s in D.INCENTIVI['schede']:
+        tit, testo = D.INCENTIVI_HOME['schede'][s['id']]
+        out += f'''    <article class="bcard">
+      <div class="sticker">{sticker(s['sticker'])}</div>
+      <span class="bdg">{esc(s['badge'])}</span>
+      <h3>{esc(tit)}</h3>
+      <p>{esc(testo)}</p>
+      <button type="button" class="bcard-open" data-modal="{s['id']}">Scopri di più &rarr;</button>
+    </article>
+'''
+    return out
 
 
-def main():
-    demo = '--demo' in sys.argv
-    out = ROOT
-    if demo:
-        out = os.path.join(ROOT, '_demo')
-        shutil.rmtree(out, ignore_errors=True)
-        os.makedirs(out)
-        for f in ['site.css', 'pagine.css', 'ri.js', 'site.js', 'recensioni.js', 'recensione.html'] + LEGALI:
-            if os.path.exists(os.path.join(ROOT, f)):
-                shutil.copy(os.path.join(ROOT, f), out)
-        shutil.copytree(os.path.join(ROOT, 'assets'), os.path.join(out, 'assets'))
-        carica_demo(out)
-        # legal.py non viene rieseguito: si usano le copie già generate
+def incentivi_section():
+    I = D.INCENTIVI_HOME
+    return f'''<section class="sec bonus" id="incentivi">
+  {sec_head(I['eyebrow'], esc(I['titolo']), esc(I['intro']))}
+  <div class="bgrid">
+{incentivi_cards()}  </div>
+  <div class="bonus-foot">
+    <span>{esc(I['nota_foot'])}</span>
+    <a href="#contatti" data-service="Bonus e incentivi">Richiedi informazioni &rarr;</a>
+  </div>
+</section>'''
+
+
+def incentivo_singolo(modale_id, titolo):
+    """Riquadro compatto per le pagine Privati/Imprese/PA: un'unica scheda che apre la finestra con i dettagli."""
+    s = next(x for x in D.INCENTIVI['schede'] if x['id'] == modale_id)
+    return f'''<section class="sec bonus" id="incentivi">
+  {sec_head('Agevolazioni', titolo, D.INCENTIVI['nota_foot'])}
+  <div class="bgrid one">
+    <article class="bcard">
+      <div class="sticker">{sticker(s['sticker'])}</div>
+      <span class="bdg">{esc(s['badge'])}</span>
+      <h3>{esc(s['titolo'])}</h3>
+      <p>{esc(s['testo'])}</p>
+      <button type="button" class="bcard-open" data-modal="{s['id']}">Scopri di più &rarr;</button>
+    </article>
+  </div>
+</section>'''
+
+
+def incentivi_dialogs():
+    out = ''
+    nota = D.INCENTIVI['nota_modale']
+    for s in D.INCENTIVI['schede']:
+        voci = ''.join(f'     <div class="opp"><b>{t}<i>{tag}</i></b><p>{x}</p></div>\n' for t, tag, x in s['voci'])
+        fonti = ''.join(f'<a href="{qa(u)}" target="_blank" rel="noopener">{esc(n)}</a>' for n, u in s['fonti'])
+        out += f'''<dialog class="modal" id="{s['id']}" aria-labelledby="{s['id']}-t">
+  <button type="button" class="modal-x" data-close aria-label="Chiudi">&times;</button>
+  <div class="modal-head"><div class="m-ico">{sticker(s['sticker'], 'm')}</div><div><small>{esc(s['modale_kicker'])}</small><h2 id="{s['id']}-t">{s['modale_titolo']}</h2></div></div>
+  <div class="modal-body">
+{voci}  </div>
+  <p class="modal-note">{nota}</p>
+  <p class="modal-fonti">Fonti ufficiali per approfondire: {fonti}</p>
+  <div class="modal-foot"><span>Valutiamo insieme gli strumenti applicabili al tuo intervento.</span><a class="btn btn-primary" href="#contatti" data-service="Bonus e incentivi" data-close>Richiedi informazioni &rarr;</a></div>
+</dialog>
+'''
+    return out
+
+
+# ---------------------------------------------------------------- contatti + modulo
+def phone_cards():
+    return ''.join(
+        f'<div class="pcard{" main" if n == D.TELEFONO_PRINCIPALE else ""}"><b>{n}{PRINC if n == D.TELEFONO_PRINCIPALE else ""}</b><div class="acts">'
+        f'<a class="pill call" href="{tel_url(n)}" aria-label="Chiama {n}">{PH}Chiama</a>'
+        f'<a class="pill wapill" href="{qa(wa_url(n))}" target="_blank" rel="noopener" aria-label="Scrivi su WhatsApp al {n}">{WA}WhatsApp</a>'
+        f'</div></div>' for n in D.TELEFONI)
+
+
+def info_list():
+    s = D.SOCIETA
+    row = lambda i, t, body: f'<li><div class="ico">{i}</div><div><b>{t}</b>{body}</div></li>'
+    return '<ul class="info-list">' + ''.join([
+        row(ICO_MAIL, 'Email', f'<a href="mailto:{s["email"]}">{s["email"]}</a>'),
+        row(ICO_PEC, 'PEC', f'<a href="mailto:{s["pec"]}">{s["pec"]}</a>'),
+        row(ICO_PIN, 'Sede', f'<span>{esc(indirizzo())}</span>'),
+        row(ICO_IVA, 'P.IVA / Codice Fiscale · REA', f'<span>{s["piva_cf"]} · REA {s["rea"]}</span>'),
+    ]) + '</ul>'
+
+
+def opzioni_servizio():
+    g = lambda label, items: f'<optgroup label="{qa(label)}">' + ''.join(f'<option>{esc(i)}</option>' for i in items) + '</optgroup>'
+    return ''.join([
+        g('Privati / Residenziale', [x['opzione'] for x in D.SERVIZI_PRIVATI]),
+        g('Imprese / Industriale', [x['opzione'] for x in D.SERVIZI_IMPRESE]),
+        g('Pubblica Amministrazione', D.OPZIONI_PA),
+        g('Altro', D.OPZIONI_EXTRA),
+    ])
+
+
+def quote_form(tipo=''):
+    sel = lambda v: ' selected' if v == tipo else ''
+    return f'''<form id="quoteForm" method="post" novalidate data-tipo="{qa(tipo)}">
+      <div class="field"><label for="nome">Nome e cognome *</label><input id="nome" name="nome" type="text" autocomplete="name" minlength="2" maxlength="80" required></div>
+      <div class="field"><label for="tel">Telefono *</label><input id="tel" name="telefono" type="tel" autocomplete="tel" inputmode="tel" pattern="[0-9+\\s.\\-\\(\\)]{{6,20}}" title="Inserisci un numero di telefono valido" maxlength="20" required></div>
+      <div class="field"><label for="email">Email <span class="opt">(facoltativa)</span></label><input id="email" name="email" type="email" autocomplete="email" maxlength="120"></div>
+      <div class="field">
+        <label for="tipo">Tipo cliente *</label>
+        <select id="tipo" name="tipo" required>
+          <option value="" disabled{' selected' if not tipo else ''}>Seleziona…</option>
+          <option{sel('Privato')}>Privato</option>
+          <option{sel('Impresa')}>Impresa</option>
+          <option{sel('Pubblica Amministrazione')}>Pubblica Amministrazione</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="servizio">Servizio di interesse *</label>
+        <select id="servizio" name="servizio" required>
+          <option value="" disabled selected>Seleziona…</option>
+          {opzioni_servizio()}
+        </select>
+      </div>
+      <div class="field"><label for="comune">Comune o CAP *</label><input id="comune" name="comune" type="text" autocomplete="postal-code" maxlength="60" required></div>
+      <div class="field full"><label for="msg">Messaggio</label><textarea id="msg" name="messaggio" maxlength="2000" placeholder="Tipo di immobile, tempistiche, eventuali esigenze particolari…"></textarea></div>
+      <div class="field full hp" aria-hidden="true"><label>Non compilare<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+      <input type="hidden" name="pagina"><input type="hidden" name="referrer">
+      <input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign"><input type="hidden" name="utm_content"><input type="hidden" name="utm_term">
+      <div class="field full check">
+        <input id="privacy" type="checkbox" name="privacy" required>
+        <label for="privacy">Dichiaro di aver letto l'<a href="privacy.html" target="_blank" rel="noopener">Informativa Privacy</a> relativa al trattamento dei dati personali. *</label>
+      </div>
+      <button class="btn btn-primary full" type="submit" id="sendBtn">Invia richiesta &rarr;</button>
+      <p class="form-msg full" id="formMsg" role="status" aria-live="polite"></p>
+    </form>'''
+
+
+def contact_section(p, titolo='Richiedi un preventivo o un sopralluogo', lead=None, tipo=''):
+    lead = lead or 'Chiamaci, scrivici su WhatsApp o compila il modulo: ti ricontatteremo per un sopralluogo e un preventivo dettagliato.'
+    tel_noscript = ' · '.join(D.TELEFONI)
+    return f'''<section class="sec contact" id="contatti">
+  {sec_head('Contatti', titolo, lead)}
+  <div class="contact-wrap">
+    <div>
+      <div class="phone-cards">{phone_cards()}</div>
+      {info_list()}
+    </div>
+    {quote_form(tipo)}
+  </div>
+</section>'''
+
+
+# ---------------------------------------------------------------- recensioni
+def reviews_section():
+    """Pubblicata solo se ci sono recensioni reali in recensioni.js (decisione costruita in build.py)."""
+    return '''<section class="sec reviews" id="recensioni" data-rev hidden>
+  <div class="sec-head">
+    <span class="eyebrow">Recensioni</span>
+    <h2>Cosa dicono di noi</h2>
+    <p>La fiducia dei nostri clienti è il motore del nostro lavoro quotidiano. Ogni recensione rappresenta per noi uno stimolo concreto al miglioramento continuo e alla trasparenza.</p>
+  </div>
+  <div class="rev-grid" id="revGrid"></div>
+  <div class="invite">
+    <div><h3>Hai scelto Rivetti Impianti?</h3><p>Condividi la tua esperienza con la nostra squadra. Il tuo feedback ci aiuta a crescere e orienta chi cerca un partner affidabile per l'energia e l'efficienza.</p></div>
+    <a class="btn btn-light" href="recensione.html">Lascia una recensione &rarr;</a>
+  </div>
+</section>'''
+
+
+# ---------------------------------------------------------------- realizzazioni (dati in src/progetti.py)
+WIDTHS = (480, 800, 1200, 1600)
+
+
+def _dims(rel, root=None):
+    """Larghezza e altezza della foto, se Pillow è disponibile (altrimenti None)."""
     try:
-        attivi = P.attivi()
-        for area in G.MACROAREE:
-            G.pubblicate(area)                      # ferma la build se una foto pubblicata è incompleta o non è una foto reale
-    except (P.ErroreProgetto, G.ErroreGalleria) as e:
-        sys.exit(f'\nBUILD FERMATA: {e}')
-    funzioni = [home, privati, imprese, pa]
-    if attivi:
-        funzioni.append(realizzazioni)
-        funzioni += [(lambda r=r: progetto(r)) for r in attivi]
-    funzioni += [offerte, contatti, pagina_404]
-    # niente file orfani: pagine di dettaglio o elenco di build precedenti che ora non devono esistere
-    voluti = {'realizzazioni.html'} if attivi else set()
-    voluti |= {P.pagina_progetto(r) for r in attivi}
-    for f in os.listdir(out):
-        if (f == 'realizzazioni.html' or re.fullmatch(r'progetto-[a-z0-9-]+\.html', f)) and f not in voluti:
-            os.remove(os.path.join(out, f))
-    pagine = scrivi(out, funzioni)
-    files = [p['file'] for p in pagine]
-    percorsi = [p['path'] for p in pagine if not p.get('noindex')]
-    open(os.path.join(out, 'sitemap.xml'), 'w', encoding='utf-8').write(sitemap(percorsi, out))
-    open(os.path.join(out, 'robots.txt'), 'w', encoding='utf-8').write(robots())
-    err = controlla(out, files)
-    for f in files:
-        print(f'{f:32s}{os.path.getsize(os.path.join(out, f)) // 1024:4d} KB')
-    for a in P.avvisi() + G.avvisi():
-        print('NOTA:', a)
-    if err:
-        print('\nCONTROLLI FALLITI:')
-        for e in err:
-            print(' -', e)
-        sys.exit(1)
-    print('\nControlli automatici superati (link, ancore, titoli, H1, SVG, id, TODO).')
-    if demo:
-        print('Anteprima con dati FITTIZI creata in _demo/ — NON pubblicare questa cartella.')
+        from PIL import Image
+        with Image.open(os.path.join(root or P.FOTO_DIR, rel)) as im:
+            return im.size
+    except Exception:
+        return None
 
 
-if __name__ == '__main__':
-    main()
-def genera_pagine_singole_servizi():
-    """Genera le pagine HTML dedicate per ciascuna sottovoce attingendo ai dati strutturati in dati.py."""
-    
-    liste_servizi = [
-        (getattr(D, 'SERVIZI_PRIVATI', []), 'Privati'),
-        (getattr(D, 'SERVIZI_IMPRESE', []), 'Imprese'),
-        (getattr(D, 'SERVIZI_PA', []), 'Pubblica Amministrazione')
-    ]
-    
-    for lista, macro_categoria in liste_servizi:
-        for s in lista:
-            filename = s.get('filename')
-            if not filename:
-                continue
-                
-            titolo = s.get('titolo', 'Servizio')
-            tag = s.get('tag', macro_categoria)
-            serve = s.get('serve', '')
-            esigenza = s.get('esigenza', '')
-            sistema = s.get('sistema', '')
-            foto_copertina = s.get('foto', '')
-            foto_alt = s.get('foto_alt', titolo)
-            
-            # 1. Hero e Sfondo personalizzato con immagine o gradiente
-            bg_style = f"background: linear-gradient(rgba(13, 45, 88, 0.85), rgba(13, 45, 88, 0.9)), url('img/{foto_copertina}') center/cover no-repeat;" if foto_copertina else "background: linear-gradient(135deg, #0d2d58 0%, #1e40af 100%);"
-            
-            hero_html = f'''
-            <section class="hero-section hero-servizi" style="{bg_style} color: #fff; padding: 90px 20px; text-align: center;">
-              <div class="container" style="max-width: 900px; margin: 0 auto;">
-                <span class="hero-tag" style="background: rgba(255,255,255,0.2); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">RIVETTI IMPIANTI · {macro_categoria.upper()}</span>
-                <h1 class="hero-title" style="font-size: 2.8rem; margin: 20px 0 15px; font-weight: 700;">{titolo}</h1>
-                <p class="hero-subtitle" style="font-size: 1.2rem; opacity: 0.95; max-width: 750px; margin: 0 auto; line-height: 1.6;">{serve}</p>
-              </div>
-            </section>
-            '''
-            
-            # 2. Testi mirati: importanza, esigenze e vantaggi
-            passi_o_punti_html = ""
-            if 'passi' in s:
-                items = "".join([f"<li style='margin-bottom: 10px;'><strong>{tit}:</strong> {desc}</li>" for tit, desc in s['passi']])
-                passi_o_punti_html = f"<div style='margin-top: 25px;'><strong>Fasi operative:</strong><ul style='margin-top: 10px; padding-left: 20px;'>{items}</ul></div>"
-            elif 'punti' in s:
-                items = "".join([f"<li style='margin-bottom: 8px;'>{pt}</li>" for pt in s['punti']])
-                passi_o_punti_html = f"<div style='margin-top: 25px;'><strong>Punti chiave:</strong><ul style='margin-top: 10px; padding-left: 20px;'>{items}</ul></div>"
+def img_responsive(rel, alt, root, base, sizes='100vw', eager=False, cls=''):
+    """<img> responsive: srcset con le versioni -480/-800/-1200/-1600 (JPG e WebP) se esistono, lazy loading (tranne le
+    immagini principali), dimensioni intrinseche per evitare salti di layout."""
+    stem, ext = os.path.splitext(rel)
+    ex = lambda f: os.path.isfile(os.path.join(root, f))
+    dims = _dims(rel, root)
+    jp = [(w, f'{stem}-{w}{ext}') for w in WIDTHS if ex(f'{stem}-{w}{ext}')]
+    wp = [(w, f'{stem}-{w}.webp') for w in WIDTHS if ex(f'{stem}-{w}.webp')]
+    if dims:
+        jp.append((dims[0], rel))
+    srcset = lambda l: ', '.join(f'{base}{qa(f)} {w}w' for w, f in l)
+    wh = f' width="{dims[0]}" height="{dims[1]}"' if dims else ''
+    load = ' fetchpriority="high" decoding="async"' if eager else ' loading="lazy" decoding="async"'
+    c = f' class="{cls}"' if cls else ''
+    tag = (f'<img src="{base}{qa(rel)}"'
+           + (f' srcset="{srcset(jp)}" sizes="{sizes}"' if len(jp) > 1 else '')
+           + f' alt="{qa(alt)}"{wh}{load}{c}>')
+    if wp:
+        return f'<picture><source type="image/webp" srcset="{srcset(wp)}" sizes="{sizes}">{tag}</picture>'
+    return tag
 
-            contenuto_html = f'''
-            <section class="sec servizio-dettaglio" style="padding: 60px 0;">
-              <div class="container" style="max-width: 1000px; margin: 0 auto; padding: 0 20px;">
-                
-                <div class="servizio-header" style="margin-bottom: 40px;">
-                  <span style="color: #ff6600; font-weight: 700; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px;">{tag}</span>
-                  <h2 style="font-size: 2.2rem; margin-top: 10px; margin-bottom: 15px; color: #0d2d58;">L'importanza di questo intervento</h2>
-                  <p style="font-size: 1.15rem; color: #333; line-height: 1.7;">
-                    {esigenza}
-                  </p>
-                </div>
-                
-                <div style="background: #f8fafc; border-left: 5px solid #0d2d58; padding: 30px; border-radius: 0 12px 12px 0; margin-bottom: 50px; box-shadow: 0 2px 10px rgba(0,0,0,0.03);">
-                  <h3 style="font-size: 1.35rem; margin-bottom: 12px; color: #0d2d58;">Come interveniamo</h3>
-                  <p style="font-size: 1.05rem; color: #444; line-height: 1.7; margin: 0;">{sistema}</p>
-                  {passi_o_punti_html}
-                </div>
-                
-                <!-- 3. Box e griglia predisposti per le foto reali delle realizzazioni -->
-                <div class="foto-lavori-eseguiti" style="background: #ffffff; padding: 35px; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin-bottom: 50px;">
-                  <h3 style="font-size: 1.4rem; margin-bottom: 10px; color: #0d2d58;">📸 Foto reali dei nostri interventi</h3>
-                  <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 25px;">Esempi di realizzazioni e installazioni effettuate sul campo per {titolo}.</p>
-                  
-                  <div class="grid-foto-reali" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                    <div style="border-radius: 10px; overflow: hidden; border: 1px solid #cbd5e1; height: 200px; background: #e2e8f0;">
-                      <img src="img/{foto_copertina}" alt="{foto_alt}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                      <div style="display: none; height: 100%; align-items: center; justify-content: center; color: #64748b; font-weight: 600;">Foto {titolo}</div>
-                    </div>
-                    <div style="background: #f8fafc; height: 200px; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px dashed #cbd5e1; color: #64748b; text-align: center; padding: 15px;">
-                      <span style="font-size: 1.8rem; margin-bottom: 8px;">📷</span>
-                      <span style="font-size: 0.85rem; font-weight: 600;">Dettaglio Installazione Cantiere</span>
-                    </div>
-                  </div>
-                </div>
 
-              </div>
-            </section>
-            '''
-            
-            # 4. Call to action finale per consulenza o preventivo gratuito
-            p_page = {'filename': filename, 'titolo': f"{titolo} - Rivetti Impianti"}
-            body_content = '\n'.join([
-                hero_html,
-                contenuto_html,
-                C.contact_section(
-                    p_page, 
-                    'Richiedi una consulenza o preventivo gratuito', 
-                    f'Contattaci senza impegno per studiare la soluzione migliore per {titolo.lower()}.'
-                )
-            ])
-            
-            html_finale = doc(p_page, body_content, scripts=('ri.js', 'site.js'))
-            
-            with open(filename, 'w', encoding='utf-8') as f:
-                f.write(html_finale)
-            print(f"✅ Pagina generata con successo: {filename}")
+def foto_img(item, sizes='100vw', eager=False, cls=''):
+    """<img> responsive di una foto reale delle Realizzazioni (assets/realizzazioni/)."""
+    return img_responsive(item['file'], item['alt'], P.FOTO_DIR, 'assets/realizzazioni/', sizes, eager, cls)
+
+
+def _orient(item):
+    d = _dims(item['file'])
+    if d:
+        return 'v' if d[1] > d[0] * 1.1 else 'o'
+    return 'v' if item.get('orientamento') == 'verticale' else 'o'
+
+
+def _tec(r, n=2):
+    """Una o due informazioni tecniche per la scheda: solo quelle presenti."""
+    voci = []
+    if r.get('potenza'):
+        voci.append(('Potenza', r['potenza']))
+    if r.get('intervento'):
+        voci.append(('Intervento', r['intervento']))
+    if r.get('anno'):
+        voci.append(('Anno', str(r['anno'])))
+    return voci[:n]
+
+
+def real_card(r):
+    cat = P.CATEGORIE[r['categoria']][0]
+    info = ''.join(f'<li><b>{esc(a)}</b> {esc(b)}</li>' for a, b in _tec(r))
+    info = f'<ul class="r-info">{info}</ul>' if info else ''
+    url = P.pagina_progetto(r)
+    return f'''<article class="r-card" data-cliente="{r['cliente_tipo']}" data-tipo="{' '.join(P.tipologie_di(r))}">
+  <figure class="r-foto">{foto_img(r['immagine'], sizes='(max-width:700px) 100vw, (max-width:1100px) 50vw, 380px') if r.get('immagine') else ''}</figure>
+  <div class="r-body">
+    <span class="r-cat">{esc(cat)}</span>
+    <h3>{esc(r['titolo'])}</h3>
+    {info}
+    <a class="more" href="{url}">Scopri il progetto<span class="sr-only">: {esc(r['titolo'])}</span> &rarr;</a>
+  </div>
+</article>'''
+
+
+def real_filters(rs=None):
+    """Due righe di filtri semplici (cliente e tipologia), mostrate solo se c'è più di una scelta e solo con JavaScript."""
+    rs = rs if rs is not None else realizzazioni_pubblicate()
+    clienti = [(k, v) for k, v in P.CLIENTI.items() if any(r['cliente_tipo'] == k for r in rs)]
+    tip = [(k, v) for k, v in P.TIPOLOGIE.items() if any(k in P.tipologie_di(r) for r in rs)]
+    gruppi = ''
+    for chiave, etichetta, voci in (('cliente', 'Cliente', clienti), ('tipo', 'Tipologia', tip)):
+        if len(voci) < 2:
+            continue
+        b = '<button type="button" class="chip on" data-filter="*" aria-pressed="true">Tutti</button>' + ''.join(
+            f'<button type="button" class="chip" data-filter="{k}" aria-pressed="false">{esc(v)}</button>' for k, v in voci)
+        gruppi += f'<div class="r-fgroup" role="group" aria-label="Filtra per {etichetta.lower()}" data-group="{chiave}"><span class="r-flabel">{etichetta}</span><div class="chips">{b}</div></div>'
+    return f'<div class="r-filters filters" hidden>{gruppi}</div>' if gruppi else ''
+
+
+def real_home_section():
+    """Blocco «Alcuni dei nostri progetti»: in evidenza nella home."""
+    ev = P.in_evidenza()
+    if not ev:
+        return ''
+    cards = ''.join(real_card(r) for r in ev)
+    return f'''<section class="sec real-sec" id="realizzazioni" aria-labelledby="real-home-t">
+  <div class="sec-head"><span class="eyebrow">Realizzazioni</span><h2 id="real-home-t">Alcuni dei nostri progetti</h2></div>
+  <div class="r-grid">{cards}</div>
+  <p class="r-all"><a class="btn btn-ghost" href="realizzazioni.html">Tutte le realizzazioni &rarr;</a></p>
+</section>'''
+
+
+# ---------------------------------------------------------------- pagina Privati: manutenzione fotovoltaico
+def _man_par(l):
+    return ''.join(f'<p>{esc(x)}</p>' for x in l)
+
+
+def _man_ul(l):
+    return '<ul class="man-list">' + ''.join(f'<li>{esc(x)}</li>' for x in l) + '</ul>'
+
+
+def privati_man_sections():
+    M = D.PRIVATI_MAN
+    a = M['intro']
+    s1 = f'''<section class="sec man-sec man-intro" id="manutenzione" aria-labelledby="man-t">
+  <div class="fv-head"><span class="eyebrow">{esc(a['eyebrow'])}</span><h2 id="man-t">{esc(a['titolo'])}</h2>{_man_par(a['paragrafi'])}</div>
+  <p class="fv-quote">{esc(a['frase'])}</p>
+</section>'''
+    b = M['perche']
+    s2 = f'''<section class="sec man-sec man-alt" id="{b['id']}" aria-labelledby="man-b-t">
+  <div class="man-2">
+    <div class="man-col"><h2 id="man-b-t">{esc(b['titolo'])}</h2>{_man_par(b['paragrafi'])}</div>
+    <div class="man-principio"><span class="eyebrow">{esc(b['principio'])}</span><p class="man-big">{esc(b['frase'])}</p><p>{esc(b['chiusura'])}</p></div>
+  </div>
+</section>'''
+    c_ = M['aspettare']
+    s3 = f'''<section class="sec man-sec" id="{c_['id']}" aria-labelledby="man-c-t">
+  <div class="man-2">
+    <div class="man-col"><h2 id="man-c-t">{esc(c_['titolo'])}</h2>{_man_par(c_['intro'])}{_man_ul(c_['voci'])}</div>
+    <div class="man-col"><p>{esc(c_['chiusura'])}</p><p class="fv-strong man-strong">{esc(c_['frase'])}</p></div>
+  </div>
+</section>'''
+    d_ = M['controlli']
+    cards = ''.join(f'<li class="fv-card"><h3>{esc(t)}</h3><p>{esc(x)}</p></li>' for t, x in d_['voci'])
+    s4 = f'''<section class="sec man-sec man-alt" id="{d_['id']}" aria-labelledby="man-d-t">
+  <div class="fv-head wide"><h2 id="man-d-t">{esc(d_['titolo'])}</h2><p>{esc(d_['intro'])}</p></div>
+  <ul class="fv-cards c3">{cards}</ul>
+</section>'''
+    e = M['lavaggio']
+    s5 = f'''<section class="sec man-sec" id="{e['id']}" aria-labelledby="man-e-t">
+  <div class="man-2">
+    <div class="man-col"><span class="eyebrow">{esc(e['eyebrow'])}</span><h2 id="man-e-t">{esc(e['titolo'])}</h2>{_man_par(e['paragrafi'][:2])}</div>
+    <div class="man-col">{_man_par(e['paragrafi'][2:])}<p class="fv-strong man-strong">{esc(e['frase'])}</p><p class="man-cta"><a class="btn btn-primary btn-sm" href="#contatti" data-service="{qa('Lavaggio moduli fotovoltaici')}">{esc(D.IMPIANTO_ESISTENTE['cta'])} &rarr;</a></p></div>
+  </div>
+</section>'''
+    f = M['termografia']
+    s6 = f'''<section class="sec man-sec man-alt" id="{f['id']}" aria-labelledby="man-f-t">
+  <div class="man-2">
+    <div class="man-col"><span class="eyebrow">{esc(f['eyebrow'])}</span><h2 id="man-f-t">{esc(f['titolo'])}</h2>{_man_par(f['paragrafi'])}{_man_ul(f['voci'])}</div>
+    <div class="man-col"><p>{esc(f['chiusura'])}</p><p class="man-cta"><a class="btn btn-primary btn-sm" href="#contatti" data-service="{qa('Termografia impianti fotovoltaici')}">{esc(D.IMPIANTO_ESISTENTE['cta'])} &rarr;</a></p></div>
+  </div>
+</section>'''
+    g = M['investimento']
+    s7 = f'''<section class="sec man-sec" id="{g['id']}" aria-labelledby="man-g-t">
+  <div class="man-2">
+    <div class="man-col"><h2 id="man-g-t">{esc(g['titolo'])}</h2>{_man_par(g['paragrafi'])}<p class="fv-strong man-strong">{esc(g['frase'])}</p></div>
+    <div class="man-col"><p>{esc(g['intro_voci'])}</p>{_man_ul(g['voci'])}</div>
+  </div>
+</section>'''
+    return '\n'.join([s1, s2, s3, s4, s5, s6, s7])
+
+
+def privati_man_finale(p):
+    F = D.PRIVATI_MAN['finale']
+    E = D.IMPIANTO_ESISTENTE
+    return f'''<section class="sec fv-fin" id="{F['id']}" aria-labelledby="man-fin-t">
+  <div class="fv-fin-in">
+    <h2 id="man-fin-t">{esc(F['titolo'])}</h2>
+    {_man_par(F['paragrafi'])}
+    <p class="fv-fin-q">{esc(F['frase'])}</p>
+    <div class="cta"><a class="btn btn-light" href="#contatti" data-service="{qa(E['servizio'])}">{esc(E['cta'])} &rarr;</a>
+    <a class="btn btn-wa" href="{qa(wa_url(testo=E['whatsapp']))}" target="_blank" rel="noopener">{WA}{esc(D.CTA_SECONDARIA)}</a></div>
+  </div>
+</section>'''
+
+
+# ---------------------------------------------------------------- pagina Imprese: perché produrre energia
+def imprese_fv_sections():
+    F = D.IMPRESE_FV
+    P_ = F['perche']
+    carte = ''.join(
+        f'<li class="fv-card"><h3>{esc(x["titolo"])}</h3>{_fv_par(x["paragrafi"])}'
+        + (f'<p class="fv-strong">{esc(x["forte"])}</p>' if x.get('forte') else '') + '</li>' for x in P_['carte'])
+    s1 = f'''<section class="sec fv-sec fv-perche" id="perche-energia" aria-labelledby="ifp-t">
+  <div class="fv-head"><span class="eyebrow">{esc(P_['eyebrow'])}</span><h2 id="ifp-t">{esc(P_['titolo'])}</h2>{_fv_par(P_['paragrafi'])}</div>
+  <p class="fv-quote">{esc(P_['frase'])}</p>
+  <ul class="fv-cards c3">{carte}</ul>
+</section>'''
+    A = F['accumulo']
+    s2 = f'''<section class="sec man-sec man-alt" id="{A['id']}" aria-labelledby="ifa-t">
+  <div class="man-2">
+    <div class="man-col"><span class="eyebrow">{esc(A['eyebrow'])}</span><h2 id="ifa-t">{esc(A['titolo'])}</h2>{_fv_par(A['paragrafi'])}</div>
+    <div class="man-col"><p class="fv-strong man-strong">{esc(A['intro'])}</p>{_man_ul(A['voci'])}</div>
+  </div>
+</section>'''
+    Cm = F['cambia']
+    voci = ''.join(f'<li class="fv-ch"><div class="fv-ic">{ICO_FV[i]}</div><h3>{esc(t)}</h3><p>{esc(x)}</p></li>' for i, t, x in Cm['voci'])
+    s3 = f'''<section class="sec fv-sec fv-cambia" id="cosa-cambia-impresa" aria-labelledby="ifc-t">
+  <div class="fv-head wide"><span class="eyebrow">{esc(Cm['eyebrow'])}</span><h2 id="ifc-t">{esc(Cm['titolo'])}</h2></div>
+  <ul class="fv-chs">{voci}</ul>
+</section>'''
+    return '\n'.join([s1, s2, s3])
+
+
+def imprese_revamping_section():
+    R = D.IMPRESE_FV['revamping']
+    return f'''<section class="sec man-sec man-alt" id="{R['id']}" aria-labelledby="rev-t">
+  <div class="man-2">
+    <div class="man-col"><span class="eyebrow">{esc(R['eyebrow'])}</span><h2 id="rev-t">{esc(R['titolo'])}</h2></div>
+    <div class="man-col">{_fv_par(R['paragrafi'])}</div>
+  </div>
+</section>'''
+
+
+def imprese_finale(p):
+    F = D.IMPRESE_FV['finale']
+    c1, c2 = D.CTA_PAGINE['imprese']
+    return f'''<section class="sec fv-fin fv-fin-imp" id="{F['id']}" aria-labelledby="imf-t">
+  <div class="fv-fin-in">
+    <h2 id="imf-t">{esc(F['titolo'])}</h2>
+    <p class="fv-fin-q big">{esc(F['frase'])}</p>
+    <div class="cta"><a class="btn btn-light" href="#contatti" data-service="Fotovoltaico industriale">{esc(c1)} &rarr;</a>
+    <a class="btn btn-wa" href="{qa(wa_for('imprese'))}" target="_blank" rel="noopener">{WA}{esc(c2)}</a></div>
+  </div>
+</section>'''
