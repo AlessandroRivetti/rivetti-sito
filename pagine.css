@@ -947,3 +947,40 @@ dialog.modal.gal-modal .modal-x{background:#fff;color:#0b1d36}
 .lav-hint{color:var(--ink2);font-size:.82rem}
 .lav-form .hp{position:absolute;left:-9999px;height:0;overflow:hidden}
 @media (max-width:860px){.lav-grid{grid-template-columns:1fr}.lav-form{grid-template-columns:1fr;padding:22px}}
+
+/* ===== 9 novembre: titolo Hero rosso/verde, storia, widget bolletta ===== */
+.hero-title .hl{display:inline-block;margin:0 0 8px;padding:.04em .42em .08em;border-radius:10px;background:#fff;box-shadow:0 10px 24px -14px rgba(6,30,70,.55)}
+.hero-title .hl-rosso{color:red}
+.hero-title .hl-verde{color:green}
+.hero-chiusura{max-width:520px;margin:-12px 0 26px;font-weight:700;font-size:1.08rem;color:#fff}
+@media (max-width:900px){.hero-chiusura{margin:-6px 0 18px;font-size:1rem}}
+.about-text .about-lead{font-weight:700;font-size:1.15rem;color:var(--green-d);margin-bottom:6px}
+.about-text .motto{background:rgba(35,163,106,.09);border-left:4px solid var(--green);padding:18px 22px;border-radius:0 12px 12px 0;color:var(--green-d);font-weight:700;font-size:1.05rem;margin-top:26px}
+
+.bol{background:linear-gradient(180deg,#fff,var(--paper))}
+.bol-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:22px;align-items:stretch;max-width:1040px;margin:0 auto}
+.bol-card{border-radius:24px;padding:30px 30px 26px;background:#fff;border:2px solid var(--line);box-shadow:var(--shadow);transition:transform .35s,box-shadow .35s}
+.bol-card:hover{transform:translateY(-5px)}
+.bol-senza{border-color:#f3b8b3;background:linear-gradient(180deg,#fff,#fff5f4)}
+.bol-con{border-color:#9edbbd;background:linear-gradient(180deg,#fff,#effaf4)}
+.bol-tag{display:inline-block;padding:5px 14px;border-radius:999px;font:600 .74rem var(--f-display);letter-spacing:.08em;text-transform:uppercase}
+.bol-senza .bol-tag{background:#fde4e1;color:#b83227}
+.bol-con .bol-tag{background:#d8f3e5;color:var(--green-d)}
+.bol-prezzo{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;margin:16px 0 14px}
+.bol-prezzo b{font:700 clamp(2.1rem,4.4vw,3rem) var(--f-display)}
+.bol-senza .bol-prezzo b{color:#b83227}
+.bol-con .bol-prezzo b{color:var(--green-d)}
+.bol-prezzo small{color:var(--ink2);font-size:1rem}
+.bol-badge{flex-basis:100%;display:inline-block;width:fit-content;margin-top:6px;padding:6px 14px;border-radius:999px;background:var(--green);color:#fff;font:700 .85rem var(--f-display)}
+.bol-voci{list-style:none;display:grid;gap:10px;color:var(--ink2);font-size:.95rem}
+.bol-voci li{position:relative;padding-left:22px}
+.bol-voci li::before{content:"";position:absolute;left:0;top:.5em;width:9px;height:9px;border-radius:50%}
+.bol-senza .bol-voci li::before{background:#e0675d}
+.bol-con .bol-voci li::before{background:var(--green)}
+.bol-freccia{display:grid;place-items:center;color:var(--blue)}
+.bol-freccia svg{width:42px;height:42px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.bol-nota{max-width:780px;margin:24px auto 0;text-align:center;color:var(--ink2);font-size:.86rem}
+.bol-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:22px}
+.bol-compatto .bol-card{padding:24px}
+@media (max-width:820px){.bol-grid{grid-template-columns:1fr}.bol-freccia svg{transform:rotate(90deg)}}
+@media (prefers-reduced-motion:reduce){.bol-card:hover{transform:none}}

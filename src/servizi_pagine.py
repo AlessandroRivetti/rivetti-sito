@@ -438,4 +438,5 @@ def corpo(s, p):
     contatto = C.contact_section(p, 'Parliamo del tuo progetto',
                                  'Chiamaci, scrivici su WhatsApp o compila il modulo: ti ricontatteremo per una consulenza e un preventivo senza impegno.',
                                  tipo=MACRO[s['macro']]['opz_tipo'])
-    return '\n'.join(x for x in [_hero(s), _perche(s), _come(s), _foto(s), _cta(s), contatto, _altri(s)] if x)
+    bol = C.bolletta_widget() if s['file'] == 'fotovoltaico-residenziale.html' else ''
+    return '\n'.join(x for x in [_hero(s), _perche(s), bol, _come(s), _foto(s), _cta(s), contatto, _altri(s)] if x)

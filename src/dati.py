@@ -450,7 +450,7 @@ INCENTIVI = {
 INCENTIVI_HOME = {
     'eyebrow': 'Agevolazioni',
     'titolo': 'Incentivi e strumenti di sostegno',
-    'intro': 'Alcuni interventi possono beneficiare di incentivi, detrazioni, contributi o strumenti di finanziamento. Disponibilità, requisiti e condizioni dipendono dalla normativa vigente e dal singolo caso.',
+    'intro': 'Valorizza il tuo investimento con gli strumenti giusti: molti dei nostri interventi possono accedere a detrazioni fiscali, incentivi o formule di sostegno dedicate. Le opportunità variano in base alla normativa vigente e alle caratteristiche specifiche del tuo progetto: ti affianchiamo per orientarti al meglio e valutare tutte le opzioni applicabili al tuo caso.',
     'nota_foot': 'Disponibilità, requisiti e condizioni cambiano nel tempo e devono essere verificati per il singolo intervento.',
     'schede': {
         'm-priv': ('Detrazioni fiscali', 'Per alcuni interventi sull’abitazione possono essere previste detrazioni e altre agevolazioni, da verificare in base alla normativa applicabile.'),
@@ -884,11 +884,14 @@ HERO_HOME = dict(
     video='assets/rivetti-showreel.mp4',
     poster='assets/servizi/pa-hero.png',
     tag='Rivetti Impianti &bull; Technical Engineering',
-    titolo="Smetti di subire i costi dell'energia. Inizia a investire nel tuo futuro.",
+    titolo_rosso="Smetti di subire i costi dell'energia.",      # in ROSSO
+    titolo_verde="Inizia a investire nel tuo futuro.",           # in VERDE
     testo=("Riduci la dipendenza energetica e valorizza il tuo immobile con soluzioni efficienti, affidabili e progettate per durare."
            "<br><br><strong>La fiducia si costruisce con i fatti, non con le promesse.</strong> In Rivetti Impianti crediamo che ogni investimento "
            "debba essere chiaro, sicuro e sostenibile. Per questo offriamo consulenza tecnica, preventivi trasparenti, componenti di qualità e un "
            "servizio di assistenza che continua anche dopo la realizzazione."),
+    chiusura="Chiedi subito un preventivo e smetti di preoccuparti della bolletta elettrica, ci pensiamo noi!",
+    cta1='Richiedi un preventivo Gratuito', cta2='Parla direttamente con un Tecnico',
     audio_on='Attiva audio', audio_off='Disattiva audio',
 )
 
@@ -1022,3 +1025,50 @@ PA_AREE_HEAD = {
     'titolo': 'Gli ambiti di intervento',
     'testo': 'Per ogni intervento si parte da una valutazione tecnica delle caratteristiche dell’Ente e delle strutture interessate.',
 }
+
+
+# ----------------------------------------------------------------------------- STORIA AZIENDALE («Chi siamo», #informazioni)
+# Testo ufficiale completo. **testo** = grassetto. Una riga = un paragrafo; l'ultimo è il motto.
+STORIA_TITOLO = 'Dal 2008 lavoriamo su impianti energetici per privati, imprese ed enti pubblici'
+STORIA = [
+    "**Rivetti Impianti** — Una storia fatta di energia, coraggio e visione.",
+    "Ogni grande storia nasce da una scintilla. La nostra, nel 2008, è diventata una promessa: trasformare il lavoro in valore, le competenze in soluzioni e l'energia in futuro.",
+    "Ci sono storie che non nascono negli uffici, né tra le righe di un progetto. Nascono sul campo, dove le mani costruiscono, la fatica insegna, gli imprevisti mettono alla prova e ogni dettaglio fa la differenza. Nascono dalla determinazione di chi non cerca scorciatoie, ma sceglie ogni giorno la strada più difficile: quella fatta di impegno, precisione e responsabilità.",
+    "È da questa visione che, nel 2008, **Michele Rivetti** dà vita a Rivetti Impianti.",
+    "All'inizio c'è una convinzione semplice, ma destinata a diventare il fondamento di tutto: un lavoro ben fatto non è soltanto un risultato da consegnare. È una promessa da mantenere. Una responsabilità verso chi si affida a noi. Un nome, quello della nostra famiglia e della nostra azienda, da difendere attraverso ogni scelta, ogni installazione, ogni intervento.",
+    "Gli anni passano, le sfide cambiano e le tecnologie evolvono. A raccogliere questa preziosa eredità e guidare l'azienda verso nuovi orizzonti è oggi la **seconda generazione**: una continuità familiare che unisce i valori tradizionali del lavoro ben fatto a una visione moderna, tecnica e manageriale, indispensabile per affrontare la transizione energetica e continuare a crescere.",
+    "Con costanza, studio e investimenti, Rivetti Impianti amplia le proprie competenze e consolida la propria presenza nel settore energetico, sviluppando soluzioni che spaziano dagli impianti fotovoltaici ai sistemi di accumulo, dalla termoidraulica ai servizi di manutenzione. Ogni nuova sfida diventa un'occasione per crescere. Ogni esperienza aggiunge conoscenza. Ogni progetto rafforza una convinzione: l'eccellenza non si improvvisa, si costruisce giorno dopo giorno.",
+    "Ma crescere, per noi, non significa soltanto realizzare impianti più complessi o affrontare progetti più ambiziosi. Significa essere pronti ad assumerci responsabilità maggiori. Significa investire nelle persone, affinare i processi, scegliere soluzioni affidabili e mantenere sempre al centro ciò che conta davvero: la qualità del lavoro, la sicurezza degli interventi e la fiducia dei nostri clienti.",
+    "Oggi lavoriamo al fianco di privati, imprese ed enti pubblici, affrontando esigenze diverse con lo stesso approccio: ascoltare, analizzare, progettare e realizzare soluzioni concrete, con attenzione a ogni fase del percorso. Dalla prima valutazione alla messa in opera, fino alla manutenzione, mettiamo in campo competenza tecnica, organizzazione e una visione orientata alla durata nel tempo.",
+    "Perché la professionalità non si misura soltanto da ciò che si realizza, ma anche da come lo si realizza. Nella chiarezza delle informazioni, nella trasparenza dei rapporti, nella cura dei dettagli e nella capacità di esserci anche dopo la conclusione di un lavoro.",
+    "La fiducia non si chiede. Si conquista. E si conferma ogni giorno.",
+    "In un mondo in cui l'energia è diventata una delle grandi sfide del nostro tempo, sentiamo la responsabilità di contribuire a un cambiamento concreto. Crediamo nell'efficienza energetica, nelle fonti rinnovabili e nelle tecnologie capaci di ridurre gli sprechi e valorizzare le risorse. Crediamo in un progresso che non insegua soltanto l'innovazione, ma sappia metterla al servizio delle persone, delle imprese e dell'ambiente.",
+    "La sostenibilità, per noi, non è una parola da esibire. È una direzione da seguire. È la scelta di progettare pensando al domani, di lavorare con consapevolezza e di costruire soluzioni che sappiano generare valore nel tempo.",
+    "Eppure, dopo ogni traguardo, c'è sempre una nuova sfida. Una tecnologia da conoscere, un'esigenza da comprendere, un progetto da trasformare in realtà. È questa tensione verso il miglioramento a tenerci in movimento. È la stessa determinazione che ci ha accompagnati nel 2008 e che continua a guidarci oggi.",
+    "Perché l'energia più importante non è soltanto quella che produciamo o trasformiamo. È quella che mettiamo nel nostro lavoro.",
+    "È l'energia delle persone che ogni giorno scelgono di fare la differenza. Della competenza che diventa affidabilità. Della costanza che diventa esperienza. Della passione che si trasforma in qualità. Della fiducia che, progetto dopo progetto, diventa una relazione destinata a durare.",
+    "Questa è **Rivetti Impianti**. Una storia nata dal lavoro, cresciuta attraverso le sfide e proiettata verso il futuro. Una realtà che guarda all'innovazione senza rinnegare le proprie radici, che affronta il cambiamento con determinazione e che riconosce in ogni progetto un impegno preciso: fare le cose per bene, con serietà, trasparenza e rispetto per chi ci sceglie.",
+    "Dal 2008, continuiamo a costruire il nostro percorso con la stessa convinzione: il futuro non si aspetta. Si progetta. Si realizza. Si alimenta, ogni giorno, con le scelte giuste.",
+]
+STORIA_MOTTO = "«Nati dal lavoro. Cresciuti con passione. Proiettati verso il futuro.»"
+
+
+# ----------------------------------------------------------------------------- WIDGET RISPARMIO BOLLETTA
+# Importi forniti dal titolare (esempio mensile). Le voci di spesa sono descrittive, senza importi.
+BOLLETTA = dict(
+    eyebrow='Risparmio in bolletta',
+    titolo='Quanto pesa la bolletta, con e senza fotovoltaico',
+    lead='Un confronto mensile per capire la differenza che può fare produrre da soli una parte dell’energia che consumi.',
+    senza=dict(etichetta='Senza impianto fotovoltaico', importo='156,97', voci=[
+        'Tutta l’energia consumata acquistata dalla rete',
+        'Trasporto, gestione del contatore e oneri di sistema sull’intero consumo',
+        'Imposte e IVA calcolate sull’importo più alto',
+    ]),
+    con=dict(etichetta='Con impianto fotovoltaico', importo='31,39', voci=[
+        'Gran parte dell’energia prodotta e consumata in casa',
+        'Acquisti dalla rete ridotti al fabbisogno residuo',
+        'Imposte e oneri calcolati su un importo molto più basso',
+    ], risparmio='-80%'),
+    nota='Esempio indicativo basato sugli importi mensili indicati: il risparmio effettivo dipende da consumi, dimensionamento dell’impianto, quota di autoconsumo e tariffe in vigore, e viene valutato dal nostro tecnico caso per caso.',
+    cta='Scrivici su WhatsApp',
+)
