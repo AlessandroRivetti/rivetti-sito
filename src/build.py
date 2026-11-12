@@ -362,6 +362,36 @@ def carica_demo(out):
         G.FOTO[k][:] = gm.FOTO[k]
 
 
+def controlla_indicizzazione(out, pagine):
+    """Coerenza SEO: noindex solo dove previsto, canonical corretto su ogni pagina indicizzabile, sitemap = pagine indicizzabili."""
+    NOINDEX_OK = {'404.html', 'recensione.html'}
+    base = D.SITO['url'].rstrip('/')
+    err, attese = [], set()
+    elenco = [(p['file'], p['path'], bool(p.get('noindex'))) for p in pagine]
+    elenco += [(f, '/' + f, False) for f in LEGALI] + [(f, '/' + f, True) for f in sorted(ALTRE)]
+    for f, path, noidx in elenco:
+        fp = os.path.join(out, f)
+        if not os.path.exists(fp):
+            continue
+        h = open(fp, encoding='utf-8').read()
+        has_noindex = bool(re.search(r'<meta name="robots" content="[^"]*noindex', h))
+        can = re.findall(r'<link rel="canonical" href="([^"]+)"', h)
+        if has_noindex and f not in NOINDEX_OK:
+            err.append(f'{f}: noindex non previsto')
+        if not has_noindex:
+            if can != [base + path]:
+                err.append(f'{f}: canonical {can} invece di {base + path}')
+            attese.add(base + path)
+        elif can:
+            err.append(f'{f}: pagina noindex con canonical')
+    sm = set(re.findall(r'<loc>([^<]+)</loc>', open(os.path.join(out, 'sitemap.xml'), encoding='utf-8').read()))
+    for u in sorted(attese - sm):
+        err.append(f'sitemap: manca {u}')
+    for u in sorted(sm - attese):
+        err.append(f'sitemap: URL non previsto {u}')
+    return err
+
+
 def main():
     demo = '--demo' in sys.argv
     out = ROOT
@@ -400,7 +430,7 @@ def main():
     percorsi = [p['path'] for p in pagine if not p.get('noindex')]
     open(os.path.join(out, 'sitemap.xml'), 'w', encoding='utf-8').write(sitemap(percorsi, out))
     open(os.path.join(out, 'robots.txt'), 'w', encoding='utf-8').write(robots())
-    err = controlla(out, files)
+    err = controlla(out, files) + controlla_indicizzazione(out, pagine)
     for f in files:
         print(f'{f:32s}{os.path.getsize(os.path.join(out, f)) // 1024:4d} KB')
     for a in P.avvisi() + G.avvisi():

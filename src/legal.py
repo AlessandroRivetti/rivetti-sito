@@ -1,5 +1,10 @@
 """Genera privacy.html, cookie.html, note-legali.html (stesso stile del sito)."""
 import re
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import dati as D
+
+FILE = {'privacy': 'privacy.html', 'cookie': 'cookie.html', 'note': 'note-legali.html'}
 
 UPD = '2 ottobre 2026'
 OWNER_IDS = '''<div class="ids">
@@ -25,6 +30,7 @@ def page(title, desc, h1, sections, intro, current):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} | Rivetti Impianti</title>
 <meta name="description" content="{desc}">
+<link rel="canonical" href="{D.SITO['url'].rstrip('/')}/{FILE[current]}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
@@ -211,5 +217,5 @@ note = page('Note legali', 'Note legali e condizioni di utilizzo del sito Rivett
 
 if __name__ == '__main__':
     for name, html in (('privacy', privacy), ('cookie', cookie), ('note-legali', note)):
-        open(f'/home/claude/{name}.html', 'w', encoding='utf-8').write(html)
+        open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), f'{name}.html'), 'w', encoding='utf-8').write(html)
         print(name, len(html) // 1024, 'KB')
