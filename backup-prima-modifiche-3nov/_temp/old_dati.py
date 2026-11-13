@@ -972,8 +972,8 @@ PROMOZIONI = [
         'titolo': 'Fotovoltaico 6 kWp + Accumulo da 10 kWh',
         'badge': 'Più Venduto!',
         'descrizione': 'Impianto fotovoltaico "chiavi in mano". Inclusi progettazione, installazione, collaudo, pratiche di allaccio e GSE.',
-        'prezzo': '€ 7.900 + IVA',
-        'note': 'Incentivi statali con detrazione fiscale del 50%. Da applicare € 4.345',
+        'prezzo': '€ 8.000 + IVA',
+        'note': 'Incentivi statali con detrazione fiscale del 50%. Da applicare € 4.400',
         'note': 'Possibilità di finanziamento a tasso agevolato',
         'icona': '⚡🔋'
     },
