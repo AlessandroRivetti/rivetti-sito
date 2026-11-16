@@ -155,3 +155,27 @@ def sezioni(p):
   <div class="cta">{C.cta_pair('offerte')}</div>
   <p class="of-legal">Prezzi di listino dell&rsquo;offerta in corso. Disponibilità, condizioni e requisiti degli incentivi e dei finanziamenti vanno verificati per il singolo intervento.</p>
 </section>'''
+
+
+def vetrina():
+    """Card a vetro nell'Hero: riassume le offerte con i PREZZI e i dati già presenti in questa pagina (nessun numero nuovo)."""
+    fv = next(x for x in FOTOVOLTAICO if x['evidenza'])
+    clima = next(x for x in ALTRE if x['id'] == 'clima')
+    caldaia = next(x for x in ALTRE if x['id'] == 'caldaia')
+    righe = [
+        ('sun', 'Fotovoltaico residenziale', fv['titolo'].replace('Fotovoltaico ', ''), fv['prezzo'], fv['badge']),
+        ('snow', 'Climatizzazione', 'Climatizzatori inverter A+++', 'da ' + clima['prezzi'][0][1], 'IVA inclusa'),
+        ('fire', 'Caldaia a condensazione', 'Sostituzione completa', caldaia['prezzi'][0][1].replace('€', 'da €', 1), ''),
+    ]
+    li = ''.join(f'''<li class="ofv-row"><span class="ofv-ic">{ico(i, 'ofv-svg')}</span>
+      <div class="ofv-t"><b>{esc(t)}</b><span>{esc(s)}</span></div>
+      <div class="ofv-p"><b>{esc(p)}</b>{('<em>' + esc(n) + '</em>') if n else ''}</div></li>''' for i, t, s, p, n in righe)
+    pt = ''.join(f'<li>{ico("check", "ofv-ck")}{esc(x)}</li>' for x in
+                 ['Prezzi chiari, tutto incluso', f'Detrazione fiscale {DETRAZIONE_PERCENTUALE:.0f}% sul fotovoltaico*',
+                  'Finanziamento a tasso agevolato**'])
+    return f'''<div class="ofv" role="group" aria-label="Le offerte in evidenza">
+  <span class="ofv-eyebrow">Le offerte in evidenza</span>
+  <ul class="ofv-list">{li}</ul>
+  <ul class="ofv-pts">{pt}</ul>
+  <p class="ofv-note">* Per l&rsquo;abitazione principale, secondo normativa e requisiti dell&rsquo;intervento. ** Soggetto a valutazione della società finanziaria.</p>
+</div>'''

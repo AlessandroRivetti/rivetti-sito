@@ -199,7 +199,7 @@ def offerte():
     p = pagina('offerte')
     body = '\n'.join([
         C.phero(p, 'Offerte Speciali', 'Soluzioni complete per la tua casa a condizioni chiare: energia dal sole, comfort tutto l&rsquo;anno e impianti sempre efficienti. Con detrazione fiscale e finanziamento agevolato.',
-                tags=['Prezzi chiari', 'Detrazione fiscale 50%', 'Finanziamento agevolato']),
+                visual=OF.vetrina(), tags=['Prezzi chiari', 'Detrazione fiscale 50%', 'Finanziamento agevolato']),
         OF.sezioni(p), C.contact_section(p)])
     return p, doc(p, body)
 
