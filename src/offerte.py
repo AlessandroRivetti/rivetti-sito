@@ -32,10 +32,10 @@ def detrazione(prezzo_imponibile):
 # ---------------------------------------------------------------------------- DATI (prezzi invariati)
 FOTOVOLTAICO = [
     dict(id='fv-3', badge='Un buon inizio!', kwp='3 kWp', acc='5 kWh', titolo='Fotovoltaico 3 kWp + Accumulo da 5 kWh',
-         imponibile=5500, prezzo='€ 5.500 + IVA', evidenza=False,
+         imponibile=5500, prezzo='€ 5.990 + IVA', evidenza=False,
          intro='La soluzione di partenza per iniziare a produrre e a usare la tua energia.'),
     dict(id='fv-6', badge='Più Venduto!', kwp='6 kWp', acc='10 kWh', titolo='Fotovoltaico 6 kWp + Accumulo da 10 kWh',
-         imponibile=7900, prezzo='€ 7.900 + IVA', evidenza=True,
+         imponibile=7900, prezzo='€ 8.490 + IVA', evidenza=True,
          intro='Il giusto equilibrio tra potenza, accumulo e investimento per la famiglia.'),
     dict(id='fv-9', badge='Per una maggiore efficienza', kwp='9 kWp', acc='15 kWh', titolo='Fotovoltaico 9 kWp + Accumulo da 15 kWh',
          imponibile=9500, prezzo='€ 9.500 + IVA', evidenza=False,
