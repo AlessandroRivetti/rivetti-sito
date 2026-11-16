@@ -149,9 +149,19 @@
   if (grid && window.RI) {
     const list = (window.RECENSIONI_APPROVATE || []).filter(r => r && r.testo && r.nome);
     if (list.length) { $$('[data-rev]').forEach(n => { n.hidden = false; });
-      grid.innerHTML = list.map(r => `<figure class="rev">${RI.stars(r.stelle || 5)}
-      <blockquote>“${RI.esc(r.testo)}”</blockquote>
-      <figcaption><b>${RI.esc(r.nome)}</b><span>${RI.esc(r.tipo || 'Cliente')}${r.data ? ' · ' + RI.esc(r.data) : ''}</span></figcaption></figure>`).join(''); }
+      const G = '<svg class="rev-g" viewBox="0 0 48 48" width="22" height="22" aria-label="Recensione Google" role="img"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.600 13.200l7.900 6.100C12.400 13.600 17.700 9.500 24 9.500z"/><path fill="#4285F4" d="M46.500 24.500c0-1.600-.1-3.100-.4-4.500H24v9h12.700c-.6 3-2.300 5.500-4.800 7.200l7.600 5.900c4.400-4.100 7-10.100 7-17.600z"/><path fill="#FBBC05" d="M10.500 28.700A14.500 14.500 0 0 1 9.500 24c0-1.600.3-3.200.8-4.700l-7.900-6.100A24 24 0 0 0 0 24c0 3.900.9 7.500 2.600 10.800l7.900-6.100z"/><path fill="#34A853" d="M24 48c6.500 0 11.900-2.100 15.900-5.800l-7.600-5.900c-2.100 1.400-4.900 2.300-8.300 2.300-6.300 0-11.600-4.100-13.500-9.800l-7.900 6.100C6.500 42.600 14.600 48 24 48z"/></svg>';
+      const col = ['#0284c7', '#10b981', '#0f172a', '#1f6fd1'];
+      grid.innerHTML = list.map((r, k) => { const long = String(r.testo).length > 220;
+        const ini = RI.esc(String(r.nome).trim().charAt(0).toUpperCase());
+        return `<figure class="rev"><div class="rev-top"><span class="rev-av" style="background:${col[k % col.length]}" aria-hidden="true">${ini}</span>
+        <div class="rev-who"><b>${RI.esc(r.nome)}</b><span>${RI.esc(r.tipo || 'Cliente')}${r.data ? ' · ' + RI.esc(r.data) : ''}</span></div>${r.fonte === 'google' ? G : ''}</div>
+        ${RI.stars(r.stelle || 5)}
+        <blockquote class="${long ? 'rev-clamp' : ''}">“${RI.esc(r.testo)}”</blockquote>
+        ${long ? '<button class="rev-more" type="button" aria-expanded="false">Leggi di più</button>' : ''}
+        ${r.link ? `<a class="rev-link" href="${RI.esc(r.link)}" target="_blank" rel="noopener">Vedi su Google</a>` : ''}</figure>`; }).join('');
+      grid.addEventListener('click', e => { const b = e.target.closest('.rev-more'); if (!b) return;
+        const q = b.previousElementSibling, open = q.classList.toggle('rev-clamp') === false;
+        b.textContent = open ? 'Mostra meno' : 'Leggi di più'; b.setAttribute('aria-expanded', open); }); }
   }
 
   /* ============ LAVORA CON NOI ============ */

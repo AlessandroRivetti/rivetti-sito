@@ -1097,3 +1097,16 @@ dialog.modal.gal-modal .modal-x{background:#fff;color:#0b1d36}
 .hero-bg .hero-actions .btn{padding:16px 30px;font-size:1rem}
 .hero-bg .hero-actions .btn-light{color:var(--navy)}
 @media (max-width:700px){.hero-bg .hero-actions .btn{width:100%}.hero-bg .hero-title{font-size:clamp(1.7rem,7.4vw,2.3rem)}}
+
+/* ===== Recensioni stile Google ===== */
+.rev-top{display:flex;align-items:center;gap:12px}
+.rev-av{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#fff;font:700 1.1rem var(--f-display);flex:none}
+.rev-who{flex:1;min-width:0}
+.rev-who b{display:block;font:600 .98rem var(--f-display);color:var(--navy)}
+.rev-who span{font-size:.8rem;color:var(--ink2)}
+.rev-g{flex:none}
+.rev .stars{color:#f5b301;letter-spacing:2px;font-size:1.1rem}
+.rev .stars .off{color:#d6dde7}
+.rev-clamp{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.rev-more{align-self:flex-start;background:none;border:0;padding:0;font:600 .88rem var(--f-display);color:var(--blue);cursor:pointer;text-decoration:underline}
+.rev-link{font-size:.82rem;color:var(--ink2)}

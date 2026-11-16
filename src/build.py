@@ -146,9 +146,10 @@ def privati():
         C.galleria_section('privati'),
         C.incentivo_singolo('m-priv', 'Bonus e detrazioni per la tua casa'),
         C.come_section(D.COME_LAVORIAMO_PRIVATI),
+        C.reviews_section(),
         C.faq_section('privati', 'Domande frequenti sulle soluzioni per la casa', 'FAQ'),
         C.contact_section(p, 'Richiedi un sopralluogo', tipo='Privato')])
-    return p, doc(p, body)
+    return p, doc(p, body, scripts=('ri.js', 'recensioni.js', 'site.js'))
 
 
 def imprese():
@@ -168,9 +169,10 @@ def imprese():
         C.galleria_section('imprese'),
         C.incentivo_singolo('m-imp', 'Bandi e agevolazioni per la tua impresa'),
         C.come_section(D.COME_LAVORIAMO_IMPRESE),
+        C.reviews_section(),
         C.faq_section('imprese', 'Domande frequenti per le imprese', 'FAQ'),
         C.contact_section(p, 'Richiedi una valutazione tecnica', tipo='Impresa')])
-    return p, doc(p, body)
+    return p, doc(p, body, scripts=('ri.js', 'recensioni.js', 'site.js'))
 
 
 def pa():
