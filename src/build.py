@@ -115,7 +115,7 @@ def home():
 </section>'''
 
     body = '\n\n'.join(x for x in [
-        hero, C.stats_section(), C.simulatore_widget(), C.finanziamenti_section(), C.real_home_section(),
+        hero, C.stats_section(), C.impatto_section(), C.simulatore_widget(), C.finanziamenti_section(), C.real_home_section(),
         C.perche_sceglierci_section(), C.come_section(), C.incentivi_section(), C.about_section(), C.qualifiche_section(), C.marchi_section(),
         C.reviews_section(), C.faq_section('home', 'Domande frequenti', 'FAQ'),
         C.contact_section(p, 'Parliamo del tuo impianto', 'Descrivici ciò di cui hai bisogno. Puoi chiamarci, scriverci su WhatsApp oppure utilizzare il modulo: raccoglieremo le informazioni necessarie e, quando serve, organizzeremo un sopralluogo.')] if x)
@@ -137,6 +137,7 @@ def privati():
         C.privati_fv_sections(),
         C.simulatore_widget(),
         C.finanziamenti_section(),
+        C.impatto_section(),
         C.sistema_section(),
         C.servizi_privati_section(),
         C.privati_man_sections(),

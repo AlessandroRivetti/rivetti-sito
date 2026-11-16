@@ -81,7 +81,7 @@ NUMERI = {
     'eyebrow': 'Rivetti Impianti',
     'titolo': 'Esperienza costruita sul campo',
     'voci': [
-        {'id': 'clienti', 'valore': '1.000+', 'etichetta': 'Clienti',
+        {'id': 'clienti', 'valore': '5.000+', 'etichetta': 'Clienti',
          'descrizione': 'Privati, imprese ed enti che hanno scelto Rivetti Impianti.'},
         # DA COMPLETARE quando avrai il dato verificato (es. '120', con la sua descrizione):
         {'id': 'lavori', 'valore': None, 'etichetta': 'Impianti realizzati',
@@ -1100,4 +1100,18 @@ FINANZIAMENTI = dict(
     nota='Finanziamenti, leasing e noleggio sono soggetti a valutazione e approvazione da parte dell’istituto erogante; condizioni, importi e durata vengono definiti caso per caso. Il risparmio in bolletta dipende da consumi e impianto.',
     cta='Richiedi una consulenza finanziaria',
     messaggio='Richiesta consulenza finanziaria: vorrei informazioni su finanziamento / leasing / noleggio per un impianto fotovoltaico.',
+)
+
+
+# ----------------------------------------------------------------------------- IMPATTO (potenza installata ed effetti ambientali)
+# Dato fornito dal titolare: 5 MW totali. I valori derivati si calcolano da qui (vedi comp.impatto_section).
+IMPATTO = dict(
+    eyebrow='Il nostro impatto',
+    titolo='Energia pulita prodotta dai nostri impianti',
+    lead='I numeri complessivi degli impianti realizzati, con le stime di energia e ambiente che ne derivano.',
+    potenza_mw=5,
+    kwh_per_mw=140000,         # produzione annua stimata per MW installato
+    kg_co2_per_kwh=0.55,       # emissioni evitate per kWh (stima)
+    kg_co2_per_albero=22,      # CO2 assorbita da un albero in un anno (stima)
+    nota='Valori stimati: energia calcolata su 140.000 kWh/anno per ogni MW installato; CO2 evitata stimata in 0,55 kg per kWh prodotto; alberi equivalenti calcolati su 22 kg di CO2 assorbiti da un albero in un anno. La produzione reale varia in base a località, esposizione e condizioni meteo.',
 )

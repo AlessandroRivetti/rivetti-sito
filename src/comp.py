@@ -1414,3 +1414,33 @@ def finanziamenti_section(sid='finanziamenti'):
   <div class="fin-cta"><a class="btn btn-primary" href="#contatti" data-service="Fotovoltaico domestico" data-msg="{qa(F['messaggio'])}">{esc(F['cta'])} &rarr;</a>
     <a class="btn btn-wa" href="{qa(wa_url(testo=F['messaggio']))}" target="_blank" rel="noopener">{WA}Scrivici su WhatsApp</a></div>
 </section>'''
+
+
+# ---------------------------------------------------------------- impatto ambientale (dati in dati.IMPATTO)
+ICO_IMP = {
+    'potenza': '<rect x="3" y="6" width="18" height="11" rx="1.5"/><path d="M3 11.5h18M9 6v11M15 6v11M8 21h8M12 17v4"/>',
+    'energia': '<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
+    'co2': '<path d="M7 18a4 4 0 0 1-.5-7.9A5.5 5.5 0 0 1 17 8.5 3.5 3.5 0 0 1 17.5 18z"/>',
+    'alberi': '<path d="M12 21v-6M12 15c-4 0-6-2.5-6-5.5 0-1.5 1-3 2.5-3.5C9 4 10.5 3 12 3s3 1 3.5 3c1.5.5 2.5 2 2.5 3.5 0 3-2 5.5-6 5.5z"/>',
+}
+
+
+def impatto_section(sid='impatto'):
+    I = D.IMPATTO
+    it = lambda n: f'{round(n):,}'.replace(',', '.')
+    kwh = I['potenza_mw'] * I['kwh_per_mw']
+    t_co2 = kwh * I['kg_co2_per_kwh'] / 1000
+    alberi = kwh * I['kg_co2_per_kwh'] / I['kg_co2_per_albero']
+    voci = [
+        ('potenza', f"{I['potenza_mw']} MW", 'Potenza installata', 'Impianti realizzati nel complesso.'),
+        ('energia', it(kwh), 'kWh all’anno', 'Energia pulita prodotta (stima).'),
+        ('co2', f'~{it(t_co2)} t', 'di CO2 evitata ogni anno', 'Emissioni non immesse in atmosfera (stima).'),
+        ('alberi', f'~{it(round(alberi, -2))}', 'alberi equivalenti', 'Alberi che assorbirebbero la stessa CO2 in un anno (stima).'),
+    ]
+    li = ''.join(f'<li class="imp-card"><div class="imp-ic">{ico(ICO_IMP[i])}</div><b class="imp-n">{esc(n)}</b>'
+                 f'<span class="imp-l">{esc(l)}</span><span class="imp-d">{esc(x)}</span></li>' for i, n, l, x in voci)
+    return f'''<section class="sec imp" id="{sid}" aria-labelledby="{sid}-t">
+  {sec_head(I['eyebrow'], esc(I['titolo']), esc(I['lead'])).replace('<h2>', f'<h2 id="{sid}-t">', 1)}
+  <ul class="imp-grid">{li}</ul>
+  <p class="imp-nota">{esc(I['nota'])}</p>
+</section>'''
