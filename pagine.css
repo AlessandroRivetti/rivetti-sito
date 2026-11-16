@@ -1065,3 +1065,24 @@ dialog.modal.gal-modal .modal-x{background:#fff;color:#0b1d36}
 @media (max-width:980px){.imp-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:520px){.imp-grid{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){.imp-card:hover{transform:none}}
+
+/* ===== Hero con video a tutta larghezza (overlay nei colori del logo) ===== */
+.hero-bg{background:#0f172a;min-height:min(100vh,860px)}
+.hero-media{position:absolute;inset:0;z-index:0}
+.hero-media video{width:100%;height:100%;object-fit:cover;display:block}
+.hero-overlay{position:absolute;inset:0;z-index:1;
+  background:radial-gradient(circle at 92% 108%,rgba(16,185,129,.38),transparent 46%),
+    linear-gradient(100deg,rgba(15,23,42,.9) 0%,rgba(13,45,88,.76) 46%,rgba(2,132,199,.38) 100%)}
+.hero-bg .hero-container{position:relative;z-index:2;grid-template-columns:1fr;max-width:1320px}
+.hero-bg .hero-content{max-width:640px}
+.hero-bg .audio-btn{z-index:3;right:24px;bottom:24px}
+.hero-bg .hero-tag{border-color:rgba(16,185,129,.6);background:rgba(16,185,129,.18)}
+.hero-bg .hero-actions .btn-light{box-shadow:0 12px 28px -12px rgba(2,132,199,.8)}
+.hero-bg .hero-subtitle,.hero-bg .hero-chiusura{text-shadow:0 1px 14px rgba(15,23,42,.5)}
+@media (max-width:700px){
+  .hero-media video{display:none}      /* su telefono niente video: risparmio di dati, resta il fondo con il poster */
+  .hero-media{background:center/cover url(assets/servizi/pa-hero.png)}
+  .hero-bg .audio-btn{display:none}
+  .hero-bg .hero-container{padding:100px 20px 40px}
+}
+@media (prefers-reduced-motion:reduce){.hero-media video{display:none}.hero-media{background:center/cover url(assets/servizi/pa-hero.png)}}

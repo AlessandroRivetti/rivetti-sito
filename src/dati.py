@@ -882,10 +882,12 @@ PROMOZIONI = [
 # (commit f80435f «Aggiornati titolo e sottotitolo della home page»).
 HERO_HOME = dict(
     video='assets/rivetti-showreel.mp4',
+    # Se esiste, questo file (riprese REALI da drone di impianti installati) sostituisce il video sopra. Formato mp4 H.264, meglio sotto i 15 MB.
+    video_drone='assets/hero-drone.mp4',
     poster='assets/servizi/pa-hero.png',
     tag='Rivetti Impianti &bull; Technical Engineering',
-    titolo_rosso="Smetti di subire i costi dell'energia.",      # in ROSSO
-    titolo_verde="Inizia a investire nel tuo futuro.",           # in VERDE
+    titolo_rosso="Smetti di subire i costi energetici",      # in ROSSO
+    titolo_verde="e inizia a risparmiare da subito",           # in VERDE
     testo=("Riduci la dipendenza energetica e valorizza il tuo immobile con soluzioni efficienti, affidabili e progettate per durare."
            "<br><br><strong>La fiducia si costruisce con i fatti, non con le promesse.</strong> In Rivetti Impianti crediamo che ogni investimento "
            "debba essere chiaro, sicuro e sostenibile. Per questo offriamo consulenza tecnica, preventivi trasparenti, componenti di qualità e un "
