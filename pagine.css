@@ -1148,8 +1148,10 @@ dialog.modal.gal-modal .modal-x{background:#fff;color:#0b1d36}
 .phero-vis .ofv .ofv-ck{width:20px;height:20px;flex:none}
 
 /* ===== Solo pagina Fotovoltaico Residenziale: foto reale dell'impianto + overlay navy 70% ===== */
-.sv-hero.sv-foto{background:linear-gradient(rgba(13,35,70,.7),rgba(13,35,70,.7)),url(assets/fv-residenziale-sfondo.jpg) 70% 55%/cover no-repeat,#0d2d58}
+.sv-hero.sv-foto{background:linear-gradient(rgba(13,35,70,.7),rgba(13,35,70,.7)),var(--sv-foto) var(--sv-pos,50% 50%)/cover no-repeat,#0d2d58}
 .sv-hero.sv-foto::before{display:none}
 .sv-hero.sv-foto .sv-hero-vis{display:none}
 .sv-hero.sv-foto .sv-hero-in{grid-template-columns:1fr}
 .sv-hero.sv-foto h1,.sv-hero.sv-foto .sv-lead{text-shadow:0 2px 18px rgba(8,20,45,.45)}
+
+.sv-hero .sv-crumbs{padding:0;position:static;background:none}

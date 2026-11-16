@@ -337,13 +337,26 @@ def _svg(nome, cls):
     return f'<svg class="{cls}" viewBox="0 0 24 24" aria-hidden="true" focusable="false">{ICONE[nome]}</svg>'
 
 
+# pagina -> (foto di sfondo, posizione). Solo le pagine elencate hanno la foto reale nella Hero.
+SFONDI_FOTO = {
+    'fotovoltaico-residenziale.html': ('assets/fv-residenziale-sfondo.jpg', '70% 55%'),
+    'lavaggio-moduli.html': ('assets/sfondi/lavaggio-prima-dopo.jpg', '50% 50%'),
+    'solare-termico.html': ('assets/sfondi/solare-termico-sfondo.jpg', '40% 65%'),
+    'manutenzione-assistenza.html': ('assets/sfondi/manutenzione-assistenza-sfondo.jpg', '50% 50%'),
+    'termografia.html': ('assets/sfondi/termografia-confronto.jpg', '50% 50%'),
+}
+
+
 def _hero(s):
     m = MACRO[s['macro']]
     hf = hero_file(s)
     sfondo = f' style="--sv-img:url(\'assets/servizi/{qa(hf)}\')"' if hf else ''
+    if s['file'] in SFONDI_FOTO:                           # foto reale come sfondo (overlay navy 70% da CSS)
+        img, pos = SFONDI_FOTO[s['file']]
+        sfondo = f' style="--sv-foto:url(\'{img}\');--sv-pos:{pos}"'
     cls = 'sv-hero sv-' + s['macro'] + (' has-img' if hf else '')
-    if s['file'] == 'fotovoltaico-residenziale.html':
-        cls += ' sv-foto'                       # foto reale dell'impianto come sfondo (solo questa pagina)
+    if s['file'] in SFONDI_FOTO:
+        cls += ' sv-foto'
     bc = ('<nav class="sv-crumbs" aria-label="Percorso di navigazione"><ol><li><a href="index.html">Home</a></li>'
           f'<li><a href="{m["pagina"]}">{esc(m["nome"])}</a></li><li aria-current="page">{esc(s["menu"])}</li></ol></nav>')
     wa = qa(C.wa_for(s['macro']))
