@@ -340,10 +340,12 @@ def _svg(nome, cls):
 # pagina -> (foto di sfondo, posizione). Solo le pagine elencate hanno la foto reale nella Hero.
 SFONDI_FOTO = {
     'fotovoltaico-residenziale.html': ('assets/fv-residenziale-sfondo.jpg', '70% 55%'),
-    'lavaggio-moduli.html': ('assets/sfondi/lavaggio-prima-dopo.jpg', '50% 50%'),
+    'monitoraggio.html': ('assets/sfondi/monitoraggio-grafico-v2.jpg', '85% 50%'),
+    # due foto: PC una a sinistra e una a destra; MOBILE una sopra e una sotto
+    'lavaggio-moduli.html': [('assets/sfondi/lavaggio-prima.jpg', '50% 40%'), ('assets/sfondi/lavaggio-dopo.jpg', '40% 50%')],
+    'termografia.html': [('assets/sfondi/termografia-visibile.jpg', '45% 55%'), ('assets/sfondi/termografia-termica.jpg', '50% 50%')],
+    'manutenzione-assistenza.html': [('assets/sfondi/manutenzione-batterie.jpg', '50% 25%'), ('assets/sfondi/manutenzione-cavi.jpg', '50% 40%')],
     'solare-termico.html': ('assets/sfondi/solare-termico-sfondo.jpg', '40% 65%'),
-    'manutenzione-assistenza.html': ('assets/sfondi/manutenzione-assistenza-sfondo.jpg', '50% 50%'),
-    'termografia.html': ('assets/sfondi/termografia-confronto.jpg', '50% 50%'),
 }
 
 
@@ -352,11 +354,15 @@ def _hero(s):
     hf = hero_file(s)
     sfondo = f' style="--sv-img:url(\'assets/servizi/{qa(hf)}\')"' if hf else ''
     if s['file'] in SFONDI_FOTO:                           # foto reale come sfondo (overlay navy 70% da CSS)
-        img, pos = SFONDI_FOTO[s['file']]
-        sfondo = f' style="--sv-foto:url(\'{img}\');--sv-pos:{pos}"'
+        v = SFONDI_FOTO[s['file']]
+        if isinstance(v, list):                             # coppia di foto
+            (i1, p1), (i2, p2) = v
+            sfondo = (f' style="--sv-f1:url(\'{i1}\');--sv-p1:{p1};--sv-f2:url(\'{i2}\');--sv-p2:{p2}"')
+        else:
+            sfondo = f' style="--sv-foto:url(\'{v[0]}\');--sv-pos:{v[1]}"'
     cls = 'sv-hero sv-' + s['macro'] + (' has-img' if hf else '')
     if s['file'] in SFONDI_FOTO:
-        cls += ' sv-foto'
+        cls += ' sv-foto' + (' sv-foto2' if isinstance(SFONDI_FOTO[s['file']], list) else '')
     bc = ('<nav class="sv-crumbs" aria-label="Percorso di navigazione"><ol><li><a href="index.html">Home</a></li>'
           f'<li><a href="{m["pagina"]}">{esc(m["nome"])}</a></li><li aria-current="page">{esc(s["menu"])}</li></ol></nav>')
     wa = qa(C.wa_for(s['macro']))

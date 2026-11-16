@@ -1148,10 +1148,20 @@ dialog.modal.gal-modal .modal-x{background:#fff;color:#0b1d36}
 .phero-vis .ofv .ofv-ck{width:20px;height:20px;flex:none}
 
 /* ===== Solo pagina Fotovoltaico Residenziale: foto reale dell'impianto + overlay navy 70% ===== */
-.sv-hero.sv-foto{background:linear-gradient(rgba(13,35,70,.7),rgba(13,35,70,.7)),var(--sv-foto) var(--sv-pos,50% 50%)/cover no-repeat,#0d2d58}
+.sv-hero.sv-foto{background:linear-gradient(rgba(13,35,70,.8),rgba(13,35,70,.8)),var(--sv-foto) var(--sv-pos,50% 50%)/cover no-repeat,#0d2d58}
 .sv-hero.sv-foto::before{display:none}
 .sv-hero.sv-foto .sv-hero-vis{display:none}
 .sv-hero.sv-foto .sv-hero-in{grid-template-columns:1fr}
 .sv-hero.sv-foto h1,.sv-hero.sv-foto .sv-lead{text-shadow:0 2px 18px rgba(8,20,45,.45)}
 
 .sv-hero .sv-crumbs{padding:0;position:static;background:none}
+
+/* ===== Hero con DUE foto: PC sinistra/destra, MOBILE sopra/sotto (overlay navy 70% su ciascuna) ===== */
+.sv-hero.sv-foto2{background:#0d2d58}
+.sv-hero.sv-foto2::before,.sv-hero.sv-foto2::after{content:"";display:block;position:absolute;top:0;bottom:0;pointer-events:none;z-index:0}
+.sv-hero.sv-foto2::before{left:0;right:50%;background:linear-gradient(rgba(13,35,70,.8),rgba(13,35,70,.8)),var(--sv-f1) var(--sv-p1)/cover no-repeat}
+.sv-hero.sv-foto2::after{left:50%;right:0;background:linear-gradient(rgba(13,35,70,.8),rgba(13,35,70,.8)),var(--sv-f2) var(--sv-p2)/cover no-repeat}
+@media (max-width:700px){
+  .sv-hero.sv-foto2::before{left:0;right:0;top:0;bottom:50%}
+  .sv-hero.sv-foto2::after{left:0;right:0;top:50%;bottom:0}
+}
