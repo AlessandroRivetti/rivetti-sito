@@ -88,7 +88,7 @@
 <rect x="290" y="170" width="36" height="56" rx="7" fill="#e7f8ef" stroke="#23a36a" stroke-width="2.5" stroke-dasharray="5 4"/>
 <path d="M310 186l-9 15h8l-3 14 11-17h-8z" fill="#23a36a"/>
 <path d="M276 118C300 120 308 140 308 168" fill="none" stroke="#23a36a" stroke-width="2" stroke-dasharray="4 4"/>
-<rect x="246" y="229" width="124" height="17" rx="8.5" fill="#fff" fill-opacity=".92"/><text x="308" y="241" text-anchor="middle" font-size="11" font-weight="600" font-family="Inter,sans-serif" fill="#17804f">Accumulo opzionale</text></svg><img src="assets/servizi/privati-hero.png" alt="Abitazione con impianto fotovoltaico" fetchpriority="high" decoding="async"></div>
+<rect x="246" y="229" width="124" height="17" rx="8.5" fill="#fff" fill-opacity=".92"/><text x="308" y="241" text-anchor="middle" font-size="11" font-weight="600" font-family="Inter,sans-serif" fill="#17804f">Accumulo opzionale</text></svg><img src="assets/servizi/privati-hero.png" alt="Abitazione con impianto fotovoltaico" width="1586" height="992" fetchpriority="high" decoding="async"></div>
   </div>
 </section>
 <section class="qn-wrap" aria-label="Navigazione rapida">
@@ -124,24 +124,38 @@
     <a class="btn btn-wa" href="https://wa.me/393278781998?text=Buongiorno%2C%20vorrei%20ricevere%20informazioni%20per%20valutare%20un%20impianto%20fotovoltaico%20per%20la%20mia%20abitazione." target="_blank" rel="noopener"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-wa"/></svg>Parla con un tecnico</a></div>
   </div>
 </section>
-<section class="sec bol" id="risparmio-bolletta" aria-labelledby="risparmio-bolletta-t">
-  <div class="sec-head"><span class="eyebrow">Risparmio in bolletta</span><h2 id="risparmio-bolletta-t">Quanto pesa la bolletta, con e senza fotovoltaico</h2><p>Un confronto mensile per capire la differenza che può fare produrre da soli una parte dell’energia che consumi.</p></div>
-  <div class="bol-grid">
-    <article class="bol-card bol-senza">
-      <span class="bol-tag">Senza impianto fotovoltaico</span>
-      <p class="bol-prezzo"><b>156,97 &euro;</b><small>/mese</small></p>
-      <ul class="bol-voci"><li>Tutta l’energia consumata acquistata dalla rete</li><li>Trasporto, gestione del contatore e oneri di sistema sull’intero consumo</li><li>Imposte e IVA calcolate sull’importo più alto</li></ul>
+<section class="sec sim" id="simulatore" aria-labelledby="simulatore-t" data-sim-root>
+  <div class="sec-head"><span class="eyebrow">Simulatore</span><h2 id="simulatore-t">Calcola il tuo risparmio in bolletta</h2><p>Indica dove si trova l’immobile, il tipo di tetto e quanto spendi in un anno di energia elettrica: ti mostriamo due scenari a confronto.</p></div>
+  <div class="sim-wrap">
+    <form class="sim-form" onsubmit="return false" novalidate>
+      <div class="field"><label for="sim-citta">Indirizzo o citt&agrave; dell&rsquo;immobile</label>
+        <input id="sim-citta" type="text" autocomplete="address-level2" maxlength="80" placeholder="Es. Mondragone (CE)" data-sim-citta></div>
+      <fieldset class="sim-tetto"><legend>Tipo di tetto</legend>
+        <label class="sim-opt"><input type="radio" name="sim-tetto" value="A falda" checked><span>A falda</span></label>
+        <label class="sim-opt"><input type="radio" name="sim-tetto" value="Piano"><span>Piano</span></label>
+      </fieldset>
+      <div class="field"><label for="sim-spesa">Spesa annua per l&rsquo;energia elettrica: <output id="sim-out" for="sim-spesa" data-sim-out>1,500 &euro; / anno</output></label>
+        <input id="sim-spesa" type="range" min="300" max="6000" step="50" value="1500" data-sim-range>
+        <span class="sim-scala"><span>300 &euro;</span><span>6,000 &euro;</span></span></div>
+    </form>
+    <div class="sim-res">
+      <article class="sim-card sim-con" data-pct="70-80">
+      <span class="sim-badge">Consigliato</span><h3>Con sistema di accumulo</h3>
+      <p class="sim-pct"><b>70% &ndash; 80%</b><small>di risparmio stimato all&rsquo;anno</small></p>
+      <p class="sim-eur" data-eur aria-live="polite">da 1.050 a 1.200 &euro; l&rsquo;anno</p>
+      <p class="sim-txt">L’energia prodotta di giorno viene accumulata e usata anche la sera e la notte.</p>
     </article>
-    <div class="bol-freccia" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
-    <article class="bol-card bol-con">
-      <span class="bol-tag">Con impianto fotovoltaico</span>
-      <p class="bol-prezzo"><b>31,39 &euro;</b><small>/mese</small><span class="bol-badge">-80% di risparmio in bolletta</span></p>
-      <ul class="bol-voci"><li>Gran parte dell’energia prodotta e consumata in casa</li><li>Acquisti dalla rete ridotti al fabbisogno residuo</li><li>Imposte e oneri calcolati su un importo molto più basso</li></ul>
+      <article class="sim-card sim-senza" data-pct="50-60">
+      <h3>Senza accumulo</h3>
+      <p class="sim-pct"><b>50% &ndash; 60%</b><small>di risparmio stimato all&rsquo;anno</small></p>
+      <p class="sim-eur" data-eur aria-live="polite">da 750 a 900 &euro; l&rsquo;anno</p>
+      <p class="sim-txt">Usi direttamente l’energia prodotta mentre l’impianto lavora.</p>
     </article>
+    </div>
   </div>
-  <p class="bol-nota">Esempio indicativo basato sugli importi mensili indicati: il risparmio effettivo dipende da consumi, dimensionamento dell’impianto, quota di autoconsumo e tariffe in vigore, e viene valutato dal nostro tecnico caso per caso.</p>
-  <div class="bol-cta"><a class="btn btn-wa" href="https://wa.me/393278781998?text=Buongiorno%2C%20vorrei%20ricevere%20informazioni%20per%20valutare%20un%20impianto%20fotovoltaico%20per%20la%20mia%20abitazione." target="_blank" rel="noopener"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-wa"/></svg>Scrivici su WhatsApp</a>
-    <a class="btn btn-ghost" href="#contatti" data-service="Fotovoltaico domestico">Richiedi un preventivo gratuito &rarr;</a></div>
+  <p class="sim-nota">Stime indicative calcolate sulla spesa che inserisci: il risparmio reale dipende da consumi, orari di utilizzo, esposizione e inclinazione del tetto, dimensionamento dell’impianto e tariffe. Il nostro tecnico lo valuta con te dopo il sopralluogo, senza impegno.</p>
+  <div class="sim-cta"><a class="btn btn-primary" href="#contatti" data-service="Fotovoltaico domestico" data-sim-cta>Richiedi un preventivo con questi dati &rarr;</a>
+    <a class="btn btn-wa" href="https://wa.me/393278781998?text=Buongiorno%2C%20vorrei%20ricevere%20informazioni%20per%20valutare%20un%20impianto%20fotovoltaico%20per%20la%20mia%20abitazione." target="_blank" rel="noopener"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-wa"/></svg>Scrivici su WhatsApp</a></div>
 </section>
 <section class="sec sys" id="sistema" aria-labelledby="sistema-t">
   <div class="sys-head"><span class="eyebrow">Soluzione completa per la casa</span><h2 id="sistema-t">Pensiamo al sistema, non al singolo componente</h2><p>Fotovoltaico, accumulo, climatizzazione, solare termico e manutenzione non vanno necessariamente considerati come elementi separati. Valutiamo la tua abitazione e le tue esigenze per costruire, quando opportuno, una soluzione coordinata.</p></div>

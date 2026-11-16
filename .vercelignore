@@ -1,0 +1,9 @@
+backup-*/
+src/
+dev/
+serverless/
+_demo/
+*.py
+LEGGIMI.md
+LEGGIMI.txt
+.DS_Store

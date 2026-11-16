@@ -1053,22 +1053,32 @@ STORIA = [
 STORIA_MOTTO = "«Nati dal lavoro. Cresciuti con passione. Proiettati verso il futuro.»"
 
 
-# ----------------------------------------------------------------------------- WIDGET RISPARMIO BOLLETTA
-# Importi forniti dal titolare (esempio mensile). Le voci di spesa sono descrittive, senza importi.
-BOLLETTA = dict(
-    eyebrow='Risparmio in bolletta',
-    titolo='Quanto pesa la bolletta, con e senza fotovoltaico',
-    lead='Un confronto mensile per capire la differenza che può fare produrre da soli una parte dell’energia che consumi.',
-    senza=dict(etichetta='Senza impianto fotovoltaico', importo='156,97', voci=[
-        'Tutta l’energia consumata acquistata dalla rete',
-        'Trasporto, gestione del contatore e oneri di sistema sull’intero consumo',
-        'Imposte e IVA calcolate sull’importo più alto',
-    ]),
-    con=dict(etichetta='Con impianto fotovoltaico', importo='31,39', voci=[
-        'Gran parte dell’energia prodotta e consumata in casa',
-        'Acquisti dalla rete ridotti al fabbisogno residuo',
-        'Imposte e oneri calcolati su un importo molto più basso',
-    ], risparmio='-80%'),
-    nota='Esempio indicativo basato sugli importi mensili indicati: il risparmio effettivo dipende da consumi, dimensionamento dell’impianto, quota di autoconsumo e tariffe in vigore, e viene valutato dal nostro tecnico caso per caso.',
-    cta='Scrivici su WhatsApp',
+# ----------------------------------------------------------------------------- SIMULATORE RISPARMIO (Home, Privati, Fotovoltaico residenziale)
+# Percentuali indicate dal titolare: sono stime indicative, non garanzie (la nota sotto il simulatore lo dice).
+SIMULATORE = dict(
+    eyebrow='Simulatore',
+    titolo='Calcola il tuo risparmio in bolletta',
+    lead='Indica dove si trova l’immobile, il tipo di tetto e quanto spendi in un anno di energia elettrica: ti mostriamo due scenari a confronto.',
+    spesa=dict(min=300, max=6000, step=50, default=1500),
+    con=dict(nome='Con sistema di accumulo', badge='Consigliato', da=70, a=80,
+             testo='L’energia prodotta di giorno viene accumulata e usata anche la sera e la notte.'),
+    senza=dict(nome='Senza accumulo', da=50, a=60,
+               testo='Usi direttamente l’energia prodotta mentre l’impianto lavora.'),
+    nota='Stime indicative calcolate sulla spesa che inserisci: il risparmio reale dipende da consumi, orari di utilizzo, esposizione e inclinazione del tetto, dimensionamento dell’impianto e tariffe. Il nostro tecnico lo valuta con te dopo il sopralluogo, senza impegno.',
+    cta='Richiedi un preventivo con questi dati',
+)
+
+# ----------------------------------------------------------------------------- PERCHÉ SCEGLIERCI (Home)
+PERCHE_SCEGLIERCI = dict(
+    eyebrow='Rivetti Impianti',
+    titolo='Perché sceglierci',
+    lead='Tutti i vantaggi di un servizio completo',
+    voci=[
+        ('scudo', 'Qualità garantita e certificata', 'Garanzie sui prodotti e componenti selezionati con cura, per impianti pensati per durare.'),
+        ('casa', 'Nessuna esternalizzazione', 'Ogni fase è gestita internamente, con controllo totale su qualità, tempi e sicurezza.'),
+        ('chiave', 'Servizio chiavi in mano', 'Dalla consulenza al collaudo: un unico interlocutore, senza stress.'),
+        ('fulmine', 'Velocità e precisione', 'Installazioni rapide e grande attenzione all’affidabilità esecutiva.'),
+        ('cuffia', 'Assistenza post-vendita', 'Operativi al tuo fianco anche dopo l’installazione.'),
+        ('team', 'Team tecnico dedicato', 'Squadra formata, affidabile e sempre presente sul campo.'),
+    ],
 )

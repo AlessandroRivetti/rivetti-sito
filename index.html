@@ -91,24 +91,43 @@
   <ul class="stats"><li class="stat"><span class="n">1.000+</span><b class="l">Clienti</b><span class="d">Privati, imprese ed enti che hanno scelto Rivetti Impianti.</span></li><li class="stat"><span class="n">Dal 2008</span><b class="l">Esperienza nel settore</b></li></ul>
 </section>
 
-<section class="sec bol bol-compatto" id="risparmio-home" aria-labelledby="risparmio-home-t">
-  <div class="sec-head"><span class="eyebrow">Risparmio in bolletta</span><h2 id="risparmio-home-t">Quanto pesa la bolletta, con e senza fotovoltaico</h2><p>Un confronto mensile per capire la differenza che può fare produrre da soli una parte dell’energia che consumi.</p></div>
-  <div class="bol-grid">
-    <article class="bol-card bol-senza">
-      <span class="bol-tag">Senza impianto fotovoltaico</span>
-      <p class="bol-prezzo"><b>156,97 &euro;</b><small>/mese</small></p>
-      
+<section class="sec sim" id="simulatore" aria-labelledby="simulatore-t" data-sim-root>
+  <div class="sec-head"><span class="eyebrow">Simulatore</span><h2 id="simulatore-t">Calcola il tuo risparmio in bolletta</h2><p>Indica dove si trova l’immobile, il tipo di tetto e quanto spendi in un anno di energia elettrica: ti mostriamo due scenari a confronto.</p></div>
+  <div class="sim-wrap">
+    <form class="sim-form" onsubmit="return false" novalidate>
+      <div class="field"><label for="sim-citta">Indirizzo o citt&agrave; dell&rsquo;immobile</label>
+        <input id="sim-citta" type="text" autocomplete="address-level2" maxlength="80" placeholder="Es. Mondragone (CE)" data-sim-citta></div>
+      <fieldset class="sim-tetto"><legend>Tipo di tetto</legend>
+        <label class="sim-opt"><input type="radio" name="sim-tetto" value="A falda" checked><span>A falda</span></label>
+        <label class="sim-opt"><input type="radio" name="sim-tetto" value="Piano"><span>Piano</span></label>
+      </fieldset>
+      <div class="field"><label for="sim-spesa">Spesa annua per l&rsquo;energia elettrica: <output id="sim-out" for="sim-spesa" data-sim-out>1,500 &euro; / anno</output></label>
+        <input id="sim-spesa" type="range" min="300" max="6000" step="50" value="1500" data-sim-range>
+        <span class="sim-scala"><span>300 &euro;</span><span>6,000 &euro;</span></span></div>
+    </form>
+    <div class="sim-res">
+      <article class="sim-card sim-con" data-pct="70-80">
+      <span class="sim-badge">Consigliato</span><h3>Con sistema di accumulo</h3>
+      <p class="sim-pct"><b>70% &ndash; 80%</b><small>di risparmio stimato all&rsquo;anno</small></p>
+      <p class="sim-eur" data-eur aria-live="polite">da 1.050 a 1.200 &euro; l&rsquo;anno</p>
+      <p class="sim-txt">L’energia prodotta di giorno viene accumulata e usata anche la sera e la notte.</p>
     </article>
-    <div class="bol-freccia" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
-    <article class="bol-card bol-con">
-      <span class="bol-tag">Con impianto fotovoltaico</span>
-      <p class="bol-prezzo"><b>31,39 &euro;</b><small>/mese</small><span class="bol-badge">-80% di risparmio in bolletta</span></p>
-      
+      <article class="sim-card sim-senza" data-pct="50-60">
+      <h3>Senza accumulo</h3>
+      <p class="sim-pct"><b>50% &ndash; 60%</b><small>di risparmio stimato all&rsquo;anno</small></p>
+      <p class="sim-eur" data-eur aria-live="polite">da 750 a 900 &euro; l&rsquo;anno</p>
+      <p class="sim-txt">Usi direttamente l’energia prodotta mentre l’impianto lavora.</p>
     </article>
+    </div>
   </div>
-  <p class="bol-nota">Esempio indicativo basato sugli importi mensili indicati: il risparmio effettivo dipende da consumi, dimensionamento dell’impianto, quota di autoconsumo e tariffe in vigore, e viene valutato dal nostro tecnico caso per caso.</p>
-  <div class="bol-cta"><a class="btn btn-wa" href="https://wa.me/393278781998?text=Buongiorno%2C%20vorrei%20ricevere%20informazioni%20per%20valutare%20un%20impianto%20fotovoltaico%20per%20la%20mia%20abitazione." target="_blank" rel="noopener"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-wa"/></svg>Scrivici su WhatsApp</a>
-    <a class="btn btn-ghost" href="#contatti" data-service="Fotovoltaico domestico">Richiedi un preventivo gratuito &rarr;</a></div>
+  <p class="sim-nota">Stime indicative calcolate sulla spesa che inserisci: il risparmio reale dipende da consumi, orari di utilizzo, esposizione e inclinazione del tetto, dimensionamento dell’impianto e tariffe. Il nostro tecnico lo valuta con te dopo il sopralluogo, senza impegno.</p>
+  <div class="sim-cta"><a class="btn btn-primary" href="#contatti" data-service="Fotovoltaico domestico" data-sim-cta>Richiedi un preventivo con questi dati &rarr;</a>
+    <a class="btn btn-wa" href="https://wa.me/393278781998?text=Buongiorno%2C%20vorrei%20ricevere%20informazioni%20per%20valutare%20un%20impianto%20fotovoltaico%20per%20la%20mia%20abitazione." target="_blank" rel="noopener"><svg class="ic" aria-hidden="true" focusable="false"><use href="#i-wa"/></svg>Scrivici su WhatsApp</a></div>
+</section>
+
+<section class="sec ps-sec" id="perche-sceglierci">
+  <div class="sec-head"><span class="eyebrow">Rivetti Impianti</span><h2>Perché sceglierci</h2><p>Tutti i vantaggi di un servizio completo</p></div>
+  <ul class="ps-grid"><li class="ps-card"><div class="ps-ic"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3l8 3v6c0 4.5-3.4 7.8-8 9-4.6-1.2-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></div><h3>Qualità garantita e certificata</h3><p>Garanzie sui prodotti e componenti selezionati con cura, per impianti pensati per durare.</p></li><li class="ps-card"><div class="ps-ic"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></div><h3>Nessuna esternalizzazione</h3><p>Ogni fase è gestita internamente, con controllo totale su qualità, tempi e sicurezza.</p></li><li class="ps-card"><div class="ps-ic"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M14 9l2 2"/></svg></div><h3>Servizio chiavi in mano</h3><p>Dalla consulenza al collaudo: un unico interlocutore, senza stress.</p></li><li class="ps-card"><div class="ps-ic"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div><h3>Velocità e precisione</h3><p>Installazioni rapide e grande attenzione all’affidabilità esecutiva.</p></li><li class="ps-card"><div class="ps-ic"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20c0 1.5-2 2-5 2"/></svg></div><h3>Assistenza post-vendita</h3><p>Operativi al tuo fianco anche dopo l’installazione.</p></li><li class="ps-card"><div class="ps-ic"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.700 6 6M15 14.500c3 0 6 1.500 6 5.500"/></svg></div><h3>Team tecnico dedicato</h3><p>Squadra formata, affidabile e sempre presente sul campo.</p></li></ul>
 </section>
 
 <section class="sec how-sec" id="come-lavoriamo">

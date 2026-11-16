@@ -214,4 +214,34 @@
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
     els.forEach(function (el) { io.observe(el); });
   })();
+
+  /* ============ SIMULATORE RISPARMIO: aggiorna le stime e precompila il modulo di richiesta ============ */
+  (function () {
+    var root = document.querySelector('[data-sim-root]');
+    if (!root) return;
+    var rng = root.querySelector('[data-sim-range]'), out = root.querySelector('[data-sim-out]'), citta = root.querySelector('[data-sim-citta]');
+    var fmt = function (n) { return Math.round(n).toLocaleString('it-IT'); };
+    var arr = function (n) { return Math.round(n / 10) * 10; };
+    var tetto = function () { var r = root.querySelector('input[name="sim-tetto"]:checked'); return r ? r.value : ''; };
+    function aggiorna() {
+      var v = +rng.value;
+      out.textContent = fmt(v) + ' € / anno';
+      rng.setAttribute('aria-valuetext', fmt(v) + ' euro all’anno');
+      root.querySelectorAll('[data-pct]').forEach(function (c) {
+        var p = c.getAttribute('data-pct').split('-').map(Number);
+        c.querySelector('[data-eur]').textContent = 'da ' + fmt(arr(v * p[0] / 100)) + ' a ' + fmt(arr(v * p[1] / 100)) + ' € l’anno';
+      });
+    }
+    rng.addEventListener('input', aggiorna); aggiorna();
+    var cta = root.querySelector('[data-sim-cta]');
+    cta.addEventListener('click', function () {
+      var v = +rng.value, f = document.getElementById('quoteForm');
+      if (!f) return;
+      if (f.elements.comune && citta.value.trim()) f.elements.comune.value = citta.value.trim();
+      if (f.elements.tipo) f.elements.tipo.value = 'Privato';
+      if (f.elements.messaggio) f.elements.messaggio.value = 'Richiesta dal simulatore. Immobile: ' + (citta.value.trim() || 'non indicato') +
+        ' · Tetto: ' + tetto() + ' · Spesa annua energia: ' + fmt(v) + ' €. Stime mostrate: con accumulo da ' + fmt(arr(v * .7)) + ' a ' + fmt(arr(v * .8)) +
+        ' € l’anno; senza accumulo da ' + fmt(arr(v * .5)) + ' a ' + fmt(arr(v * .6)) + ' € l’anno (indicative).';
+    });
+  })();
 })();

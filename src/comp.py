@@ -1335,27 +1335,60 @@ def about_section():
 </section>'''
 
 
-# ---------------------------------------------------------------- widget confronto bolletta
-def bolletta_widget(compatto=False, sid='risparmio-bolletta'):
-    B = D.BOLLETTA
-    S, K = B['senza'], B['con']
-    voci = lambda L: '' if compatto else '<ul class="bol-voci">' + ''.join(f'<li>{esc(x)}</li>' for x in L) + '</ul>'
-    return f'''<section class="sec bol{' bol-compatto' if compatto else ''}" id="{sid}" aria-labelledby="{sid}-t">
-  {sec_head(B['eyebrow'], esc(B['titolo']), esc(B['lead'])).replace('<h2>', f'<h2 id="{sid}-t">', 1)}
-  <div class="bol-grid">
-    <article class="bol-card bol-senza">
-      <span class="bol-tag">{esc(S['etichetta'])}</span>
-      <p class="bol-prezzo"><b>{S['importo']} &euro;</b><small>/mese</small></p>
-      {voci(S['voci'])}
-    </article>
-    <div class="bol-freccia" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
-    <article class="bol-card bol-con">
-      <span class="bol-tag">{esc(K['etichetta'])}</span>
-      <p class="bol-prezzo"><b>{K['importo']} &euro;</b><small>/mese</small><span class="bol-badge">{K['risparmio']} di risparmio in bolletta</span></p>
-      {voci(K['voci'])}
-    </article>
+# ---------------------------------------------------------------- simulatore risparmio (dati in dati.SIMULATORE)
+def simulatore_widget(sid='simulatore'):
+    S = D.SIMULATORE
+    sp = S['spesa']
+    eur = lambda n: f'{round(n / 10) * 10:,}'.replace(',', '.')
+    def card(k, cls):
+        x = S[k]
+        badge = f'<span class="sim-badge">{esc(x["badge"])}</span>' if x.get('badge') else ''
+        return f'''<article class="sim-card {cls}" data-pct="{x['da']}-{x['a']}">
+      {badge}<h3>{esc(x['nome'])}</h3>
+      <p class="sim-pct"><b>{x['da']}% &ndash; {x['a']}%</b><small>di risparmio stimato all&rsquo;anno</small></p>
+      <p class="sim-eur" data-eur aria-live="polite">da {eur(sp['default'] * x['da'] / 100)} a {eur(sp['default'] * x['a'] / 100)} &euro; l&rsquo;anno</p>
+      <p class="sim-txt">{esc(x['testo'])}</p>
+    </article>'''
+    return f'''<section class="sec sim" id="{sid}" aria-labelledby="{sid}-t" data-sim-root>
+  {sec_head(S['eyebrow'], esc(S['titolo']), esc(S['lead'])).replace('<h2>', f'<h2 id="{sid}-t">', 1)}
+  <div class="sim-wrap">
+    <form class="sim-form" onsubmit="return false" novalidate>
+      <div class="field"><label for="sim-citta">Indirizzo o citt&agrave; dell&rsquo;immobile</label>
+        <input id="sim-citta" type="text" autocomplete="address-level2" maxlength="80" placeholder="Es. Mondragone (CE)" data-sim-citta></div>
+      <fieldset class="sim-tetto"><legend>Tipo di tetto</legend>
+        <label class="sim-opt"><input type="radio" name="sim-tetto" value="A falda" checked><span>A falda</span></label>
+        <label class="sim-opt"><input type="radio" name="sim-tetto" value="Piano"><span>Piano</span></label>
+      </fieldset>
+      <div class="field"><label for="sim-spesa">Spesa annua per l&rsquo;energia elettrica: <output id="sim-out" for="sim-spesa" data-sim-out>{sp['default']:,} &euro; / anno</output></label>
+        <input id="sim-spesa" type="range" min="{sp['min']}" max="{sp['max']}" step="{sp['step']}" value="{sp['default']}" data-sim-range>
+        <span class="sim-scala"><span>{sp['min']:,} &euro;</span><span>{sp['max']:,} &euro;</span></span></div>
+    </form>
+    <div class="sim-res">
+      {card('con', 'sim-con')}
+      {card('senza', 'sim-senza')}
+    </div>
   </div>
-  <p class="bol-nota">{esc(B['nota'])}</p>
-  <div class="bol-cta"><a class="btn btn-wa" href="{qa(wa_for('privati_fv'))}" target="_blank" rel="noopener">{WA}{esc(B['cta'])}</a>
-    <a class="btn btn-ghost" href="#contatti" data-service="Fotovoltaico domestico">Richiedi un preventivo gratuito &rarr;</a></div>
+  <p class="sim-nota">{esc(S['nota'])}</p>
+  <div class="sim-cta"><a class="btn btn-primary" href="#contatti" data-service="Fotovoltaico domestico" data-sim-cta>{esc(S['cta'])} &rarr;</a>
+    <a class="btn btn-wa" href="{qa(wa_for('privati_fv'))}" target="_blank" rel="noopener">{WA}Scrivici su WhatsApp</a></div>
+</section>'''
+
+
+# ---------------------------------------------------------------- Perché sceglierci
+ICO_PS = {
+    'scudo': '<path d="M12 3l8 3v6c0 4.5-3.4 7.8-8 9-4.6-1.2-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
+    'casa': '<path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/>',
+    'chiave': '<circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M14 9l2 2"/>',
+    'fulmine': '<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
+    'cuffia': '<path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20c0 1.5-2 2-5 2"/>',
+    'team': '<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.700 6 6M15 14.500c3 0 6 1.500 6 5.500"/>',
+}
+
+
+def perche_sceglierci_section():
+    P_ = D.PERCHE_SCEGLIERCI
+    li = ''.join(f'<li class="ps-card"><div class="ps-ic">{ico(ICO_PS[i])}</div><h3>{esc(t)}</h3><p>{esc(x)}</p></li>' for i, t, x in P_['voci'])
+    return f'''<section class="sec ps-sec" id="perche-sceglierci">
+  {sec_head(P_['eyebrow'], esc(P_['titolo']), esc(P_['lead']))}
+  <ul class="ps-grid">{li}</ul>
 </section>'''
