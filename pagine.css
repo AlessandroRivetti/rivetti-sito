@@ -865,7 +865,7 @@ dialog.modal.gal-modal .modal-x{background:#fff;color:#0b1d36}
 .sv-hero h1{font-size:clamp(2rem,4.4vw,3.2rem);line-height:1.12;margin-bottom:18px}
 .sv-lead{font-size:1.1rem;max-width:620px;color:#eaf4ff;margin-bottom:26px}
 .sv-tag{display:inline-block;padding:5px 14px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);font:600 .74rem var(--f-display);letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
-.sv-crumbs ol{display:flex;flex-wrap:wrap;gap:8px;list-style:none;font-size:.85rem;margin-bottom:18px;color:#d6e8fb}
+.sv-crumbs ol{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;font-size:.85rem;margin-bottom:18px;color:#d6e8fb}
 .sv-crumbs li+li::before{content:"›";margin-right:8px;opacity:.75}
 .sv-crumbs a:hover{text-decoration:underline;color:#fff}
 .sv-cta-row{display:flex;flex-wrap:wrap;gap:14px}
@@ -1146,3 +1146,10 @@ dialog.modal.gal-modal .modal-x{background:#fff;color:#0b1d36}
 .phero-vis .ofv svg{position:static;inset:auto;display:block}
 .phero-vis .ofv .ofv-svg{width:24px;height:24px}
 .phero-vis .ofv .ofv-ck{width:20px;height:20px;flex:none}
+
+/* ===== Solo pagina Fotovoltaico Residenziale: foto reale dell'impianto + overlay navy 70% ===== */
+.sv-hero.sv-foto{background:linear-gradient(rgba(13,35,70,.7),rgba(13,35,70,.7)),url(assets/fv-residenziale-sfondo.jpg) 70% 55%/cover no-repeat,#0d2d58}
+.sv-hero.sv-foto::before{display:none}
+.sv-hero.sv-foto .sv-hero-vis{display:none}
+.sv-hero.sv-foto .sv-hero-in{grid-template-columns:1fr}
+.sv-hero.sv-foto h1,.sv-hero.sv-foto .sv-lead{text-shadow:0 2px 18px rgba(8,20,45,.45)}

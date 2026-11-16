@@ -342,6 +342,8 @@ def _hero(s):
     hf = hero_file(s)
     sfondo = f' style="--sv-img:url(\'assets/servizi/{qa(hf)}\')"' if hf else ''
     cls = 'sv-hero sv-' + s['macro'] + (' has-img' if hf else '')
+    if s['file'] == 'fotovoltaico-residenziale.html':
+        cls += ' sv-foto'                       # foto reale dell'impianto come sfondo (solo questa pagina)
     bc = ('<nav class="sv-crumbs" aria-label="Percorso di navigazione"><ol><li><a href="index.html">Home</a></li>'
           f'<li><a href="{m["pagina"]}">{esc(m["nome"])}</a></li><li aria-current="page">{esc(s["menu"])}</li></ol></nav>')
     wa = qa(C.wa_for(s['macro']))
