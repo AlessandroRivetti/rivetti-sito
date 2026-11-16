@@ -1032,3 +1032,21 @@ dialog.modal.gal-modal .modal-x{background:#fff;color:#0b1d36}
 @media (max-width:900px){.ps-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.ps-grid{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){.ps-card:hover{transform:none}}
+
+/* ===== Soluzioni finanziarie ===== */
+.fin{background:linear-gradient(180deg,var(--paper),#fff)}
+.fin-testo{max-width:780px;margin:-10px 0 34px;color:var(--ink2);font-size:1.02rem;line-height:1.7}
+.fin-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;max-width:1000px}
+.fin-card{border-radius:24px;padding:30px 28px;background:#fff;border:2px solid var(--line);box-shadow:var(--shadow);transition:transform .35s,box-shadow .35s,border-color .35s}
+.fin-card:hover{transform:translateY(-6px);box-shadow:0 26px 44px -22px rgba(15,42,74,.45)}
+.fin-0{border-color:#9edbbd;background:linear-gradient(180deg,#fff,#effaf4)}
+.fin-1{border-color:#bcd6f3;background:linear-gradient(180deg,#fff,#f1f7fe)}
+.fin-ic{width:54px;height:54px;border-radius:15px;display:grid;place-items:center;margin-bottom:16px;background:linear-gradient(135deg,var(--blue),var(--green))}
+.fin-ic svg{width:27px;height:27px;fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.fin-card h3{font-size:1.3rem;margin-bottom:10px}
+.fin-card h3 small{display:block;margin-top:2px;font:600 .78rem var(--f-display);letter-spacing:.1em;text-transform:uppercase;color:var(--green-d)}
+.fin-card p{color:var(--ink2)}
+.fin-nota{max-width:780px;margin:24px 0 0;color:var(--ink2);font-size:.84rem}
+.fin-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px}
+@media (max-width:760px){.fin-grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.fin-card:hover{transform:none}}

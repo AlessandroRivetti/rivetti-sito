@@ -163,6 +163,8 @@
   $$('[data-service]').forEach(a => a.addEventListener('click', () => {
     const sel = $('#servizio'), v = a.dataset.service;
     if (sel && [...sel.options].some(o => o.value === v)) sel.value = v;
+    const m = $('#msg');
+    if (a.dataset.msg && m && !m.value.trim()) m.value = a.dataset.msg;
   }));
 
   /* ============ MODULO DI RICHIESTA ============

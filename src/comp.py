@@ -1392,3 +1392,25 @@ def perche_sceglierci_section():
   {sec_head(P_['eyebrow'], esc(P_['titolo']), esc(P_['lead']))}
   <ul class="ps-grid">{li}</ul>
 </section>'''
+
+
+# ---------------------------------------------------------------- soluzioni finanziarie (dati in dati.FINANZIAMENTI)
+ICO_FIN = {
+    'zero': '<circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5c0-1 1-1.8 2.5-1.8s2.5.8 2.5 1.8-1 1.6-2.5 2c-1.5.4-2.5 1-2.5 2s1 1.8 2.5 1.8 2.5-.8 2.5-1.8"/>',
+    'rata': '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h4"/>',
+}
+
+
+def finanziamenti_section(sid='finanziamenti'):
+    F = D.FINANZIAMENTI
+    card = lambda o, k: (f'<article class="fin-card fin-{k}"><div class="fin-ic">{ico(ICO_FIN[o["icona"]])}</div>'
+                         f'<h3>{esc(o["nome"])}<small>{esc(o["sub"])}</small></h3><p>{esc(o["testo"])}</p></article>')
+    cards = ''.join(card(o, i) for i, o in enumerate(F['opzioni']))
+    return f'''<section class="sec fin" id="{sid}" aria-labelledby="{sid}-t">
+  {sec_head(F['eyebrow'], esc(F['titolo']), esc(F['lead'])).replace('<h2>', f'<h2 id="{sid}-t">', 1)}
+  <p class="fin-testo">{esc(F['testo'])}</p>
+  <div class="fin-grid">{cards}</div>
+  <p class="fin-nota">{esc(F['nota'])}</p>
+  <div class="fin-cta"><a class="btn btn-primary" href="#contatti" data-service="Fotovoltaico domestico" data-msg="{qa(F['messaggio'])}">{esc(F['cta'])} &rarr;</a>
+    <a class="btn btn-wa" href="{qa(wa_url(testo=F['messaggio']))}" target="_blank" rel="noopener">{WA}Scrivici su WhatsApp</a></div>
+</section>'''

@@ -1082,3 +1082,22 @@ PERCHE_SCEGLIERCI = dict(
         ('team', 'Team tecnico dedicato', 'Squadra formata, affidabile e sempre presente sul campo.'),
     ],
 )
+
+
+# ----------------------------------------------------------------------------- SOLUZIONI FINANZIARIE (dopo il simulatore)
+# Nessun istituto o marchio finanziario citato. Condizioni e importi vanno definiti caso per caso.
+FINANZIAMENTI = dict(
+    eyebrow='Finanziamenti',
+    titolo='Soluzioni finanziarie su misura',
+    lead='Scegli come realizzare il tuo impianto, anche senza anticipo',
+    testo='Offriamo formule di pagamento flessibili e personalizzate per privati e aziende. Grazie a finanziamenti a tasso agevolato, leasing operativo e formule di noleggio, puoi installare il tuo impianto fotovoltaico e iniziare a risparmiare da subito, senza impegno economico iniziale.',
+    opzioni=[
+        dict(icona='zero', nome='Zero Anticipo', sub='Senza pensieri',
+             testo='Parti subito senza sborsare capitale iniziale. La rata mensile si ripaga con il risparmio in bolletta.'),
+        dict(icona='rata', nome='Piccolo Anticipo', sub='Rata leggera',
+             testo='Un piccolo versamento iniziale per rate mensili ancora più basse e su misura.'),
+    ],
+    nota='Finanziamenti, leasing e noleggio sono soggetti a valutazione e approvazione da parte dell’istituto erogante; condizioni, importi e durata vengono definiti caso per caso. Il risparmio in bolletta dipende da consumi e impianto.',
+    cta='Richiedi una consulenza finanziaria',
+    messaggio='Richiesta consulenza finanziaria: vorrei informazioni su finanziamento / leasing / noleggio per un impianto fotovoltaico.',
+)
