@@ -106,9 +106,8 @@ def home():
   <div class="hero-container">
     <div class="hero-content">
       <span class="hero-tag">{H['tag']}</span>
-      <h1 class="hero-title"><span class="hl hl-rosso">{H['titolo_rosso']}</span> <span class="hl hl-verde">{H['titolo_verde']}</span></h1>
-      <p class="hero-subtitle">{H['testo']}</p>
-      <p class="hero-chiusura">{H['chiusura']}</p>
+      <h1 class="hero-title">{H['titolo']}</h1>
+      <p class="hero-subtitle">{H['sottotitolo']}</p>
       <div class="hero-actions cta"><a class="btn btn-light" href="#contatti" data-service="Sopralluogo">{H['cta1']} &rarr;</a>
         <a class="btn btn-wa" href="{C.qa(C.wa_for('home'))}" target="_blank" rel="noopener">{C.WA}{H['cta2']} &rarr;</a></div>
     </div>

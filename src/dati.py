@@ -886,13 +886,9 @@ HERO_HOME = dict(
     video_drone='assets/hero-drone.mp4',
     poster='assets/servizi/pa-hero.png',
     tag='Rivetti Impianti &bull; Technical Engineering',
-    titolo_rosso="Smetti di subire i costi energetici",      # in ROSSO
-    titolo_verde="e inizia a risparmiare da subito",           # in VERDE
-    testo=("Riduci la dipendenza energetica e valorizza il tuo immobile con soluzioni efficienti, affidabili e progettate per durare."
-           "<br><br><strong>La fiducia si costruisce con i fatti, non con le promesse.</strong> In Rivetti Impianti crediamo che ogni investimento "
-           "debba essere chiaro, sicuro e sostenibile. Per questo offriamo consulenza tecnica, preventivi trasparenti, componenti di qualità e un "
-           "servizio di assistenza che continua anche dopo la realizzazione."),
-    chiusura="Chiedi subito un preventivo e smetti di preoccuparti della bolletta elettrica, ci pensiamo noi!",
+    # Titolo unico: {accento} è la parola chiave evidenziata in verde.
+    titolo='Indipendenza energetica e <span class="acc">risparmio concreto</span> per la tua casa e la tua impresa.',
+    sottotitolo='Progettiamo e installiamo impianti fotovoltaici ad alta efficienza con formule su misura e zero pensieri.',
     cta1='Richiedi un preventivo Gratuito', cta2='Parla direttamente con un Tecnico',
     audio_on='Attiva audio', audio_off='Disattiva audio',
 )
