@@ -161,7 +161,14 @@
         ${r.link ? `<a class="rev-link" href="${RI.esc(r.link)}" target="_blank" rel="noopener">Vedi su Google</a>` : ''}</figure>`; }).join('');
       grid.addEventListener('click', e => { const b = e.target.closest('.rev-more'); if (!b) return;
         const q = b.previousElementSibling, open = q.classList.toggle('rev-clamp') === false;
-        b.textContent = open ? 'Mostra meno' : 'Leggi di più'; b.setAttribute('aria-expanded', open); }); }
+        b.textContent = open ? 'Mostra meno' : 'Leggi di più'; b.setAttribute('aria-expanded', open); });
+      const pv = $('.rev-prev'), nx = $('.rev-next');
+      const step = () => { const c = grid.querySelector('.rev'); return c ? c.getBoundingClientRect().width + 22 : 300; };
+      const upd = () => { pv.disabled = grid.scrollLeft < 4; nx.disabled = grid.scrollLeft + grid.clientWidth >= grid.scrollWidth - 4;
+        const nav = grid.scrollWidth <= grid.clientWidth + 4; pv.hidden = nx.hidden = nav; };
+      pv.addEventListener('click', () => grid.scrollBy({ left: -step(), behavior: 'smooth' }));
+      nx.addEventListener('click', () => grid.scrollBy({ left: step(), behavior: 'smooth' }));
+      grid.addEventListener('scroll', upd, { passive: true }); addEventListener('resize', upd); setTimeout(upd, 50); }
   }
 
   /* ============ LAVORA CON NOI ============ */
