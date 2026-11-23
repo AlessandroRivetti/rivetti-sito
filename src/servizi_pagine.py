@@ -375,6 +375,7 @@ SFONDI_FOTO = {
     'comunita-energetiche.html': ('assets/sfondi/cer-sfondo.jpg', '50% 45%'),
     'termografia-imprese.html': [('assets/sfondi/termografia-imprese-visibile.jpg', '50% 45%'), ('assets/sfondi/termografia-imprese-termica.jpg', '50% 50%')],
     'solare-termico.html': ('assets/sfondi/solare-termico-sfondo.jpg', '40% 65%'),
+    'fotovoltaico-industriale.html': ('assets/sfondi/fv-industriale-sfondo.jpg', '50% 50%'),
 }
 
 
