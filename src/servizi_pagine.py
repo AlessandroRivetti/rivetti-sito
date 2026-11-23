@@ -356,6 +356,7 @@ SFONDI_FOTO = {
     'lavaggio-moduli.html': [('assets/sfondi/lavaggio-prima.jpg', '50% 40%'), ('assets/sfondi/lavaggio-dopo.jpg', '40% 50%')],
     'termografia.html': [('assets/sfondi/termografia-visibile.jpg', '45% 55%'), ('assets/sfondi/termografia-termica.jpg', '50% 50%')],
     'manutenzione-assistenza.html': [('assets/sfondi/manutenzione-batterie.jpg', '50% 25%'), ('assets/sfondi/manutenzione-cavi.jpg', '50% 40%')],
+    'comunita-energetiche.html': ('assets/sfondi/cer-sfondo.jpg', '50% 45%'),
     'solare-termico.html': ('assets/sfondi/solare-termico-sfondo.jpg', '40% 65%'),
 }
 
