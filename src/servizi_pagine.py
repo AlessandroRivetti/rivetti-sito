@@ -18,6 +18,14 @@ esc, qa = C.esc, C.qa
 MAX_FOTO = 9
 # Didascalie oggettive delle foto (cartella -> nome file senza estensione -> testo): descrivono solo ciò che si vede.
 DIDASCALIE = {
+    'termografia': {
+        'termografia-1': 'Ripresa termica del cablaggio di un inverter',
+        'termografia-2': 'Inverter e cablaggio dei moduli in un impianto a terra',
+        'termografia-3': 'Inverter con i cavi di collegamento etichettati',
+        'termografia-4': 'Ripresa termica dell’inverter e dei cavi di collegamento',
+        'termografia-5': 'Ripresa termica di un quadro elettrico, con i cavi in evidenza',
+        'termografia-6': 'Quadro elettrico aperto per la verifica dei collegamenti',
+    },
     'solare-termico': {
         'solare-1': 'Collettori solari e bollitore installati sul tetto a falda',
         'solare-2': 'Struttura di sostegno montata sul tetto, prima della posa dei collettori',
