@@ -16,6 +16,17 @@ import comp as C
 
 esc, qa = C.esc, C.qa
 MAX_FOTO = 9
+# Didascalie oggettive delle foto (cartella -> nome file senza estensione -> testo): descrivono solo ciò che si vede.
+DIDASCALIE = {
+    'solare-termico': {
+        'solare-1': 'Collettori solari e bollitore installati sul tetto a falda',
+        'solare-2': 'Struttura di sostegno montata sul tetto, prima della posa dei collettori',
+        'solare-3': 'Collettori solari posati sulla copertura',
+        'solare-4': 'Movimentazione dei materiali in quota con mezzo di sollevamento',
+        'solare-5': 'Struttura di sostegno in fase di montaggio sulle tegole',
+        'solare-6': 'Impianto completato: collettori solari e bollitore',
+    },
+}
 MIN_RIQUADRI = 3
 FOTO_DIR = os.path.join(C.ROOT, 'assets', 'lavori')
 FOTO_BASE = 'assets/lavori/'
@@ -415,10 +426,12 @@ def _foto(s):
     base = f'{FOTO_BASE}{nome}/'
     li = ''
     for i, f in enumerate(files):
-        alt = f'Intervento di {s["menu"].lower()} eseguito da Rivetti Impianti'
+        cap = DIDASCALIE.get(nome, {}).get(os.path.splitext(f)[0])
+        alt = cap or f'Intervento di {s["menu"].lower()} eseguito da Rivetti Impianti'
         img = C.img_responsive(f, alt, root, base, sizes='(max-width:700px) 100vw, 360px', cls='sv-img')
+        cap_html = '<span class="sv-cap">' + esc(cap) + '</span>' if cap else ''
         li += (f'<li><button type="button" class="gal-btn sv-ph" data-gal="{nome}" data-nocap="1" data-full="{base}{qa(f)}" '
-               f'data-alt="{qa(alt)}" aria-label="Ingrandisci la foto {i + 1}">{img}</button></li>')
+               f'data-alt="{qa(alt)}" aria-label="Ingrandisci la foto {i + 1}">{img}{cap_html}</button></li>')
     vuoti = max(0, MIN_RIQUADRI - len(files))
     li += ('<li class="sv-empty" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/>'
            '<circle cx="12" cy="13" r="3.5"/></svg><span>Foto in arrivo</span></li>') * vuoti

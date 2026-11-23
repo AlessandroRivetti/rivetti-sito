@@ -895,7 +895,7 @@ dialog.modal.gal-modal .modal-x{background:#fff;color:#0b1d36}
 .sv-step p{color:var(--ink2);font-size:.92rem}
 
 .sv-foto{background:#fff}
-.sv-grid{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;max-width:1180px;margin:0 auto}
+.sv-grid{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;max-width:1180px;margin:0 auto}
 .sv-grid li{aspect-ratio:4/3;border-radius:18px;overflow:hidden}
 .sv-ph{display:block;width:100%;height:100%;padding:0;border:0;background:none;cursor:zoom-in;position:relative}
 .sv-ph img,.sv-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
@@ -1165,3 +1165,8 @@ dialog.modal.gal-modal .modal-x{background:#fff;color:#0b1d36}
   .sv-hero.sv-foto2::before{left:0;right:0;top:0;bottom:50%}
   .sv-hero.sv-foto2::after{left:0;right:0;top:50%;bottom:0}
 }
+
+/* didascalia sulle foto della sezione «Foto dei nostri interventi» */
+.sv-cap{position:absolute;left:0;right:0;bottom:0;padding:30px 14px 11px;text-align:left;color:#fff;font:600 .82rem/1.35 var(--f-display);background:linear-gradient(180deg,transparent,rgba(10,35,71,.88))}
+@media (max-width:520px){.sv-grid{grid-template-columns:1fr}.sv-cap{font-size:.86rem}}
+.sv-ph img.sv-img{object-position:center 62%}
