@@ -1357,7 +1357,7 @@ def simulatore_widget(sid='simulatore'):
   {sec_head(S['eyebrow'], esc(S['titolo']), esc(S['lead'])).replace('<h2>', f'<h2 id="{sid}-t">', 1)}
   <div class="sim-wrap">
     <form class="sim-form" onsubmit="return false" novalidate>
-      <div class="field"><label for="sim-citta">Indirizzo o citt&agrave; dell&rsquo;immobile</label>
+      <div class="field"><label for="sim-citta">Inserisci il comune di riferimento</label>
         <input id="sim-citta" type="text" autocomplete="address-level2" maxlength="80" placeholder="Es. Mondragone (CE)" data-sim-citta></div>
       <fieldset class="sim-tetto"><legend>Tipo di tetto</legend>
         <label class="sim-opt"><input type="radio" name="sim-tetto" value="A falda" checked><span>A falda</span></label>
